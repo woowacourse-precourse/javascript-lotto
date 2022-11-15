@@ -1,6 +1,6 @@
 const inputDataObject = {
   principal: 0,
-  inputMoney: 0,
+  inputMoney: [],
   raffle: [],
   raffleNumbers: [],
   bonusNumber: 0,

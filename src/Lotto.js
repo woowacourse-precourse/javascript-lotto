@@ -1,5 +1,5 @@
 const inputDataObject = require('../src/model/InputDataObject');
-const printAverageReturn = require('./view/printAverageReturn')
+const printAverageReturn = require('./view/printAverageReturn');
 
 class Lotto {
   #numbers;
@@ -29,28 +29,32 @@ class Lotto {
   compareLotto() {
     inputDataObject.correctNumber = inputDataObject.raffle
       .map(index =>
-        inputDataObject.raffleNumbers.filter(indexValue => index.includes(indexValue)),
+        inputDataObject.raffleNumbers.filter(indexValue =>
+          index.includes(indexValue),
+        ),
       )
-      .filter(index => index.length > 2).map(count => {
-        return this.profitSum(count)
-      })
-    return printAverageReturn.printAverageReturn()
+      .filter(index => index.length > 2);
+    this.profitSum();
   }
 
-  profitSum(i) {
-    this.i = i;
-    if (i.length === 5 && i.includes(inputDataObject.bonusNumber)) {
-      inputDataObject.averageReturn['5B'][0] += 1;
-      inputDataObject.profit += inputDataObject.averageReturn['5B'][1];
-    } else if (i.length === 5 && !i.includes(inputDataObject.bonusNumber)) {
-      inputDataObject.averageReturn['5개'][0] += 1;
-      inputDataObject.profit += inputDataObject.averageReturn['5개'][1];
-    } else {
-      inputDataObject.averageReturn[i.length][0] += 1;
-      inputDataObject.profit += inputDataObject.averageReturn[i.length][1];
-    }
-    inputDataObject.profit = (inputDataObject.profit / inputDataObject.principal) * 100;
-    return inputDataObject.profit.toFixed(1)
+  profitSum() {
+    inputDataObject.correctNumber.map(i => {
+      if (i.length === 5 && i.includes(inputDataObject.bonusNumber)) {
+        inputDataObject.averageReturn['5B'][0] += 1;
+        inputDataObject.profit += inputDataObject.averageReturn['5B'][1];
+      } else if (i.length === 5 && !i.includes(inputDataObject.bonusNumber)) {
+        inputDataObject.averageReturn['5개'][0] += 1;
+        inputDataObject.profit += inputDataObject.averageReturn['5개'][1];
+      } else {
+        inputDataObject.averageReturn[i.length][0] += 1;
+        inputDataObject.profit += inputDataObject.averageReturn[i.length][1];
+      }
+      return [inputDataObject.averageReturn, inputDataObject.profit];
+    });
+    return printAverageReturn.printAverageReturn(
+      inputDataObject.averageReturn,
+      inputDataObject.profit,
+    );
   }
 }
 

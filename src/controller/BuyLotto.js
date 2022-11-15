@@ -9,9 +9,12 @@ const buyLotto = {
     MissionUtils.Console.readLine(message, inputValue => {
       if (checkError.isDivideZero(inputValue)) {
         inputDataObject.principal = inputValue;
+        inputDataObject.inputMoney = inputValue
       }
       return lotteryTicket.countOfLottery(inputDataObject.principal / 1000)
     });
+    inputDataObject.inputMoney = inputDataObject.inputMoney
+    return inputDataObject.inputMoney
   },
 };
 
