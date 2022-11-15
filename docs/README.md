@@ -28,3 +28,39 @@
     - [x] round off to one decimal place with precision  
           cf. [precise round off in JS](https://studyingazae.tistory.com/155)
 - [x] print out win stats and earning rate
+
+<br/>
+
+## **📁 파일 구성**
+
+javascript-lotto  
+**┣ src**  
+┃ ┣ App.js  
+┃ ┣ Bonus.js  
+┃ ┣ Constants.js  
+┃ ┣ Game.js  
+┃ ┣ Lotto.js  
+┃ ┗ Payment.js  
+**┣ __tests__**  
+┃ ┣ ApplicationTest.js  
+┃ ┣ BonusTest.js  
+┃ ┣ LottoTest.js  
+┗ ┗ PaymentTest.js
+
+<br/>
+
+**src 폴더**  
+- App.js: 프로그램을 구동하는 메인 파일
+- Game.js: 실제 게임을 진행하는 파일
+- Lotto.js: 당첨 번호에 오류가 있는지 검사하는 파일
+- Bonus.js: 보너스 번호에 오류가 있는지 검사하는 파일
+- Payment.js: 지불 금액에 오류가 있는지 검사하는 파일
+- Constants.js: 상수와 메시지를 저장하는 파일
+
+<br/>
+
+**__tests__ 폴더**  
+- ApplicationTest.js: App.js의 실행을 테스트하는 파일
+- LottoTest.js: Lotto.js를 테스트하는 파일
+- BonusTest.js: Bonus.js를 테스트하는 파일
+- PaymentTest.js: Payment.js를 테스트하는 파일
