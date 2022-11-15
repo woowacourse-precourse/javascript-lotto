@@ -8,6 +8,8 @@ const MESSAGE = {
 };
 
 const LOTTERY_RESULT = {
+  TITLE: "\n당첨 통계\n---",
+  UNIT: "개",
   MATCHED_SIX: "6개 일치 (2,000,000,000원)  - ",
   MATCHED_FIVE_AND_BONUS: "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
   MATCHED_FIVE: "5개 일치 (1,500,000원) - ",
@@ -16,11 +18,11 @@ const LOTTERY_RESULT = {
 };
 
 const PRIZE = {
-  FIRST_PLACE: 0,
-  SECOND_PLACE: 1,
+  FIRST_PLACE: 4,
+  SECOND_PLACE: 3,
   THIRD_PLACE: 2,
-  FOURTH_PLACE: 3,
-  FIFTH_PLACE: 4,
+  FOURTH_PLACE: 1,
+  FIFTH_PLACE: 0,
 };
 
 module.exports = { MESSAGE, LOTTERY_PRICE, LOTTERY_RESULT, PRIZE };

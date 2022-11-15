@@ -14,6 +14,15 @@ class App {
     this.#lotteryResult = new Array(5).fill(0);
   }
 
+  printLotteryResult = () => {
+    Console.print(LOTTERY_RESULT.TITLE);
+    Console.print(`${LOTTERY_RESULT.MATCHED_THREE}${this.#lotteryResult[PRIZE.FIFTH_PLACE]}${LOTTERY_RESULT.UNIT}`);
+    Console.print(`${LOTTERY_RESULT.MATCHED_FOUR}${this.#lotteryResult[PRIZE.FOURTH_PLACE]}${LOTTERY_RESULT.UNIT}`);
+    Console.print(`${LOTTERY_RESULT.MATCHED_FIVE}${this.#lotteryResult[PRIZE.THIRD_PLACE]}${LOTTERY_RESULT.UNIT}`);
+    Console.print(`${LOTTERY_RESULT.MATCHED_FIVE_AND_BONUS}${this.#lotteryResult[PRIZE.SECOND_PLACE]}${LOTTERY_RESULT.UNIT}`);
+    Console.print(`${LOTTERY_RESULT.MATCHED_SIX}${this.#lotteryResult[PRIZE.FIRST_PLACE]}${LOTTERY_RESULT.UNIT}`);
+  };
+
   checkBonusNumber = (index) => {
     if (this.#myLottery[index].includes(this.#bonusNumber)) return this.#lotteryResult[PRIZE.SECOND_PLACE]++;
     else return this.#lotteryResult[PRIZE.THIRD_PLACE]++;
@@ -27,6 +36,7 @@ class App {
       if (count === 3) this.#lotteryResult[PRIZE.FIFTH_PLACE]++;
     });
 
+    console.log(this.#matchedCounts, this.#lotteryResult);
     this.printLotteryResult();
   };
 
