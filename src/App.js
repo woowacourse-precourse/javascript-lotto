@@ -16,7 +16,9 @@ class App {
     this.rateOfReturn;
   }
 
-  play() {}
+  play() {
+    this.printStartGame();
+  }
 
   printStartGame() {
     MissionUtils.Console.readLine("구입금액을 입력해주세요: ", (amount) => {
