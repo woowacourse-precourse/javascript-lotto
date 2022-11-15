@@ -29,6 +29,10 @@ class App {
     Console.readLine(GET_WINNING_NUMBER_SENTENCE, (winningNumber) => {
       this.winningNumber = winningNumber.split(',').map(Number);
 
+      if (this.winningNumber.length !== 6) {
+        throw new Error("[ERROR] 당첨 번호가 6개가 아닙니다.")
+      }
+
       this.inputBonusNumber();
     })
   }
