@@ -1,4 +1,4 @@
-const Bonus = require('../Bonus');
+const Bonus = require('../src/Bonus');
 
 describe('보너스 번호 예외 테스트', () => {
   test('보너스 번호가 숫자가 아니면 예외가 발생한다.', () => {
