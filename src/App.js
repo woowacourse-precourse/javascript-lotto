@@ -50,7 +50,7 @@ class App {
   inputWinnings(published_Lottos, how_many) {
     MissionUtils.Console.readLine(`${Constants.GAME_MESSAGES.INPUT_NUMBER}\n`, (answer) => {
       MissionUtils.Console.print(answer);
-      const winning = answer.split(',').map(Number);
+      const winning = answer.split(',');
       new Lotto(winning);
       this.inputBonus(published_Lottos, winning, how_many);
     });
@@ -85,10 +85,10 @@ class App {
   getSingleResult(published_Lotto, winning) {
     let result = 0;
     for(let i = 0; i < 6; i++){
-      if(published_Lotto.includes(winning[i])){
+      if(published_Lotto.includes(Number(winning[i]))){
         result += 1;
       }
-      if(result == 5 && published_Lotto.includes(winning[-1])) {
+      if(result == 5 && published_Lotto.includes(Number(winning[-1]))) {
         result += 1;
       }
     }

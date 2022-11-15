@@ -6,6 +6,7 @@ class Lotto {
   constructor(numbers) {
     this.validate(numbers);
     this.isDuplicated(numbers);
+    this.isNumber(numbers);
     this.#numbers = numbers;
   }
 
@@ -21,7 +22,14 @@ class Lotto {
       throw Constants.INPUT_ERROR.DUPLICATED;
     }
   }
-  
+
+  isNumber(numbers) {
+    numbers.forEach(number => {
+      if(isNaN(number)){
+        throw Constants.INPUT_ERROR.NOT_NUMBER;
+      }
+    })
+  }
 }
 
 module.exports = Lotto;
