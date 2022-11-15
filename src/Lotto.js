@@ -19,6 +19,12 @@ class Lotto {
       }
     }
   }
+
+  checkNumDuplicate(numbers) {
+    if (new Set(numbers).length !== numbers.length) {
+      throw new Error("[ERROR] 로또 번호는 중복이 허용되지 않습니다.");
+    }
+  }
 }
 
 module.exports = Lotto;
