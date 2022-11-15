@@ -20,6 +20,12 @@ class GenerateLotto {
 
     return lottos;
   }
+
+  static printLottoNumber(lottos) {
+    lottos.forEach(lotto => {
+      Console.print(`[${lotto.join(', ')}]`);
+    });
+  }
 }
 
 module.exports = GenerateLotto;
