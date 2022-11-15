@@ -29,8 +29,10 @@ class Lotto {
   }
 
   printResult(sixlotterynumbers,bonusnumber,purchasemoney){
+    const winningarray = this.countMatchingNumbers(this.matchingNumbers(sixlotterynumbers,bonusnumber))
     Console.print("\n당첨 통계\n\n---");
-    this.printMatchingNumbers(this.countMatchingNumbers(this.matchingNumbers(sixlotterynumbers,bonusnumber)));
+    this.printMatchingNumbers(winningarray);
+    this.printProfit(winningarray,purchasemoney);
   }
 
   matchingNumbers(sixlotterynumbers,bonusnumber){
@@ -66,6 +68,12 @@ class Lotto {
     Console.print(`5개 일치 (1,500,000원) - ${winningArray[2]}개`);
     Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningArray[3]}개`);
     Console.print(`6개 일치 (2,000,000,000원) - ${winningArray[4]}개`);
+  }
+
+  printProfit(winningarray,purchasemoney){
+    const result = winningarray[0] * 5000 + winningarray[1] * 50000 + winningarray[2] * 1500000 + winningarray[3] * 30000000 + winningarray[4] * 2000000_000
+    const profit = ((result/purchasemoney) * 100).toFixed(1);
+    Console.print(`총 수익률은 ${profit}%입니다.`)
   }
 
 }
