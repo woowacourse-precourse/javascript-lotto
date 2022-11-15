@@ -21,14 +21,4 @@ describe('로또 발행 테스트', () => {
     myLotto.purchase();
     expect(myLotto.myLotto.length).toBe(8);
   });
-
-  test('로또 번호가 6개인지 확인한다.', () => {
-    const myLotto = new MyLotto('8000');
-    myLotto.purchase();
-
-    const numbersList = myLotto.myLotto;
-    numbersList.forEach((numbers) => {
-      expect(numbers.length).toBe(6);
-    });
-  });
 });
