@@ -31,8 +31,9 @@ class App {
   }
   printLotto() {
     Console.print(LOTTO_MESSAGE.BUYING(this.buyCount));
-    this.boughtLotto.forEach((lotto) => {
-      Console.print(lotto);
+    const userLotto = this.boughtLotto;
+    userLotto.forEach((lotto) => {
+      Console.print(`[${lotto.join(", ")}]`);
     });
     this.setWinningNum();
   }
