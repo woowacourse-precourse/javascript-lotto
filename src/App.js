@@ -3,6 +3,14 @@ const Lotto = require("./Lotto");
 
 class App {
     purchaseAmountArr = [];
+    lotteryNumbersArr = [];
+    lotteryWinningNumbersArr = [];
+
+    showLotteryNumbers() {
+        this.lotteryNumbersArr.forEach((lotto) => {
+            MissionUtils.Console.print(`[${String(lotto.getNumber()).split(',').join(', ')}]`);
+        });
+    }
 
     lotteryNumbers(numberOfPurchases) {
         let count = 0;
@@ -11,6 +19,8 @@ class App {
             count++;
             this.lotteryNumbersArr.push(new Lotto(lotteryNumbers))
         }
+        this.showLotteryNumbers()
+        this.lotteryWinningNumbers()
     }
 
     purchaseAmount() {
