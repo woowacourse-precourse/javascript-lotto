@@ -3,6 +3,10 @@ class InputOutput {
         Console.readLine(message, callback);
     }
 
+    static output (message) {
+        Console.print(message);
+    }
+    
 }
 
 module.exports = InputOutput;
