@@ -23,17 +23,12 @@ class Lotto {
 
       const numberOfWonTicket = this.getNumberOfWonTicket(
         myTickets,
-        this.#numbers,
         bonusNumber
       );
+      const winList = this.getWinList(numberOfWonTicket);
+      const earningsRate = this.calculateEarnings(winList, purchaseAmount);
 
-      this.printSummary(this.getSummary(numberOfWonTicket));
-
-      const earningsRate = this.calculateEarnings(
-        this.getSummary(numberOfWonTicket),
-        purchaseAmount
-      );
-      this.printEarningsRate(earningsRate);
+      this.printSummary(winList, earningsRate);
     });
   }
 
@@ -42,20 +37,18 @@ class Lotto {
     checker.checkANumber(num);
   }
 
-  getNumberOfWonTicket(tickets, winningNums, bonusNumber) {
+  getNumberOfWonTicket(tickets, bonusNumber) {
     const numberOfWonTicket = [];
 
     tickets.forEach((ticket) => {
-      numberOfWonTicket.push(
-        this.compareLotto(ticket, winningNums, bonusNumber)
-      );
+      numberOfWonTicket.push(this.compareLotto(ticket, bonusNumber));
     });
     return numberOfWonTicket;
   }
 
-  compareLotto(ticket, winningNums, bonusNumber) {
+  compareLotto(ticket, bonusNumber) {
     const matchedNumbers = ticket.filter((myNumber) =>
-      winningNums.includes(myNumber)
+      this.#numbers.includes(myNumber)
     );
 
     // 5개 맞히고 보너스 번호 맞혔다면(2등 당첨이면) 10을 더해서 반환
@@ -65,8 +58,8 @@ class Lotto {
     return matchedNumbers.length;
   }
 
-  getSummary(arr) {
-    const winList = new Array(5).fill(0);
+  getWinList(arr) {
+    const winList = [0, 0, 0, 0, 0];
     arr.forEach((value) => {
       if (value >= 3 && value <= 5) {
         winList[value - 3] += 1;
@@ -82,24 +75,12 @@ class Lotto {
     return winList;
   }
 
-  printSummary(arr) {
-    const descriptionArr = [
-      '3개 일치',
-      '4개 일치',
-      '5개 일치',
-      '5개 일치, 보너스 볼 일치',
-      '6개 일치',
-    ];
-    const prizeMoneyArr = [
-      '5,000',
-      '50,000',
-      '1,500,000',
-      '30,000,000',
-      '2,000,000,000',
-    ];
+  printWinList(arr) {
+    const descriptionArr = ['3개', '4개', '5개', '5개 일치, 보너스 볼', '6개'];
+    const prizeMoneyArr = ['5', '50', '1,500', '30,000', '2,000,000'];
 
     arr.forEach((value, index) => {
-      const script = `${descriptionArr[index]} (${prizeMoneyArr[index]}원) - ${value}개`;
+      const script = `${descriptionArr[index]} 일치 (${prizeMoneyArr[index]},000원) - ${value}개`;
       Console.print(script);
     });
   }
@@ -118,6 +99,11 @@ class Lotto {
   printEarningsRate(earningsRate) {
     Console.print(`총 수익률은 ${earningsRate}%입니다.`);
     Console.close();
+  }
+
+  printSummary(arr, num) {
+    this.printWinList(arr);
+    this.printEarningsRate(num);
   }
 
   isIncluded(num) {
