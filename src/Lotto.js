@@ -13,7 +13,7 @@ class Lotto {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
 
-    const numPattern = /[^0-9]/g;
+    const numPattern = /[^0-9]/g;	
     if (numPattern.test(numbers)) {
       throw new Error("[ERROR] 숫자만 입력하세요.");
     }
