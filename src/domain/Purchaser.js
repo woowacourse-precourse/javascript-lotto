@@ -1,3 +1,4 @@
+const { ERROR_MESSAGES } = require('../constant/messages');
 const { PRIZE } = require('../constant/prize');
 const Lotto = require('../Lotto/Lotto');
 const NumberGenerator = require('../utils/NumberGenerator');
@@ -23,10 +24,11 @@ class Purchaser {
       tokens.push(numberGenerator.pickRandomNumbers().sort((a, b) => a - b));
       count += 1;
     }
+    if (tokens.length !== number) throw Error(ERROR_MESSAGES.length);
     return tokens;
   }
 
-  countMatchedNumber(lottos, winnerNumber, bonusNumber) {
+  countMatchedNumberAll(lottos, winnerNumber, bonusNumber) {
     let matchedCountList = Array(8).fill(0);
     lottos.forEach((lotto) => {
       const { count, bonus } = this.compare(
@@ -35,7 +37,7 @@ class Purchaser {
         bonusNumber
       );
       matchedCountList = [
-        ...this.computeMatchingNumber(count, bonus, matchedCountList),
+        ...this.countMatchedNumber(count, bonus, matchedCountList),
       ];
     });
     return matchedCountList;
@@ -51,7 +53,7 @@ class Purchaser {
     return { count, bonus };
   }
 
-  computeMatchingNumber(count, bonus, list) {
+  countMatchedNumber(count, bonus, list) {
     const matchedCount = [...list];
     if (count === 5 && bonus === 1) matchedCount[count + bonus] += 1;
     else matchedCount[count] += 1;
