@@ -21,7 +21,7 @@ describe('LottoGenerator 테스트', () => {
 
   afterAll(() => MissionUtils.Console.close());
 
-  test('generateRandomLottoNumbers 테스트', () => {
+  test('generateRandomLottoNumbers 테스트 / 오름차순으로 된 랜덤 로또 번호를 생성한다.', () => {
     const result = [
       [1, 3, 14, 16, 23, 43],
       [3, 5, 11, 16, 32, 38],
@@ -32,7 +32,7 @@ describe('LottoGenerator 테스트', () => {
     result.forEach((arr) => expect(LottoGenerator.generateRandomLottoNumbers()).toStrictEqual(arr));
   });
 
-  test('getLottos 테스트', () => {
+  test('getLottos 테스트 / 여러개의 로또가 담긴 Map Object를 반환한다.', () => {
     const lottosNameArray = ['로또1', '로또2', '로또3', '로또4', '로또5'];
     const lottoNumbersArray = [
       [1, 3, 14, 16, 23, 43],

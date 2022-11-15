@@ -20,7 +20,7 @@ describe('로또 클래스 테스트', () => {
     }).toThrow('[ERROR]');
   });
 
-  test('getMatchCount 메서드 테스트', () => {
+  test('getMatchCount 테스트 / 당첨 번호와 비교하여 맞춘 개수를 반환한다.', () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     const answer = [
       [1, 2, 3, 4, 5, 6],
@@ -36,7 +36,7 @@ describe('로또 클래스 테스트', () => {
     answer.forEach((arr, index) => expect(lotto.getMatchCount(arr)).toBe(result[index]));
   });
 
-  test('hasBonusNumber 메서드 테스트', () => {
+  test('hasBonusNumber 테스트 / 보너스 번호를 가지고 있는지 검사한다.', () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     const answer = [1, 2, 3, 4, 5, 6];
     const result = [true, true, true, true, true, true, false, false, false, false];

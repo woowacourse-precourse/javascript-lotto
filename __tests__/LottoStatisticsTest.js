@@ -31,7 +31,7 @@ describe('LottoStatistics 테스트', () => {
     ]),
   ];
 
-  test('calculateProfitRate  테스트', () => {
+  test('calculateProfitRate 테스트 / 수익률을 계산한다.', () => {
     const answer = [
       [0, 1000],
       [5000, 1000],
@@ -45,14 +45,14 @@ describe('LottoStatistics 테스트', () => {
     );
   });
 
-  test('getLottoRanking 테스트', () => {
+  test('getLottoRanking 테스트 / 로또의 랭킹을 반환한다.', () => {
     const result = [FIFTH, FOURTH, THIRD, SECOND, FIRST, NOTHING];
     winningLottos.forEach((winningLotto, index) =>
       expect(LottoStatistics.getLottoRanking(lotto, winningLotto)).toBe(result[index])
     );
   });
 
-  test('getLottosResult 테스트', () => {
+  test('getLottosResult 테스트 / 로또의 결과를 반환한다.', () => {
     const lottos = new Map([
       ['로또1', new Lotto([1, 2, 3, 4, 5, 6])],
       ['로또2', new Lotto([7, 8, 9, 10, 11, 12])],
@@ -62,7 +62,7 @@ describe('LottoStatistics 테스트', () => {
     expect(LottoStatistics.getLottosResult(lottos, winningLottos[0])).toEqual(lottosResult);
   });
 
-  test('collectLottoStatistics 테스트', () => {
+  test('collectLottoStatistics 테스트 / 로또의 통계를 수집한다.', () => {
     const lottos = new Map([
       ['로또1', new Lotto([1, 2, 3, 4, 5, 6])],
       ['로또2', new Lotto([7, 8, 9, 10, 11, 12])],
