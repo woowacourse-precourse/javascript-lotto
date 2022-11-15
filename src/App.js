@@ -58,7 +58,6 @@ class App {
       this.validateWinNumbers(win);
 
       this.winNumbers = win.split(',').map((el) => Number(el));
-      console.log(this.winNumbers);
 
       new Lotto(this.winNumbers);
 
@@ -71,13 +70,11 @@ class App {
       this.bonusNumber = Number(bonus);
 
       new WinLotto(this.winNumbers, this.bonusNumber);
-      console.log(this.bonusNumber);
       this.publishedLottos.forEach((publishedLotto) => {
         const result = publishedLotto.calculateResult(this.winNumbers, this.bonusNumber);
         if (result === undefined) return;
         this.scoreBoard[result]++;
       });
-      console.log(this.scoreBoard);
       this.calculateProfit();
     });
   }
@@ -88,7 +85,6 @@ class App {
     }
     let percentage = (this.prize / this.amount) * 100;
     percentage = Number(percentage.toFixed(1)).toLocaleString();
-    console.log(percentage);
     this.profit = percentage;
     this.printResult();
     return percentage;
