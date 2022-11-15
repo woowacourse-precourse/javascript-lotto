@@ -30,7 +30,7 @@ class App {
       }
     }
   }
-  
+
   showResult() {
     Console.print(CMM_SHOW_STAT);
     const resultMap = this.#user.checkRankWithUserLottos(this.#winningNumList, this.#bonusNum);
@@ -88,6 +88,9 @@ class App {
   }
 
   validateBonusInput(bonusInput) {
+    if (isNaN(bonusInput)) {
+      throw new Error(ERR_NOT_NUM);
+    }
     bonusInput = parseInt(bonusInput);
     if (!Number.isInteger(bonusInput)) {
       throw new Error(ERR_NOT_NUM);
@@ -100,7 +103,10 @@ class App {
     }
     return bonusInput;
   }
+
+  setWinningNumForTest(winningNumList) {
+    this.#winningNumList = winningNumList;
+  }
 }
 
 module.exports = App;
-
