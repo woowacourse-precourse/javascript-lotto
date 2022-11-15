@@ -25,7 +25,7 @@ class LottoGame {
   purchaseLotto() {
     MissionUtils.Console.print(this.lottoCount + "개를 구매했습니다.");
     for (let i = 0; i < this.lottoCount; i++) {
-      const Lotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 20, 6);
+      const lotto = new Lotto();
       this.lottos.push(Lotto);
       MissionUtils.Console.print(Lotto);
     }
