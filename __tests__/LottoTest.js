@@ -1,4 +1,4 @@
-const Bonus = require("../src/bonus");
+const Bonus = require("../src/Bonus");
 const Lotto = require("../src/Lotto");
 const { ERROR_MESSAGE } = require("../src/constant/message");
 const validatePayment = require("../src/modules/validatePayment");

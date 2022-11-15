@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const Bonus = require("./bonus");
+const Bonus = require("./Bonus");
 const Calculator = require("./Calculator");
 const Lotto = require("./Lotto");
 const { INPUT_MESSAGE, OUTPUT_MESSAGE } = require("./constant/message");
