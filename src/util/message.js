@@ -2,6 +2,7 @@ const message = {
   INPUT_MESSAGE: "구입금액을 입력해 주세요.",
   BUY_MESSAGE: "개를 구매했습니다.",
   BONUS_NUMBER: "보너스 번호를 입력해 주세요.",
+  HIT_NUMBER: "당첨 번호를 입력해 주세요.",
   PRIZE_STAT: "당첨 통계",
   LINE: "---",
 

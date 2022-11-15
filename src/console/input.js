@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const TypeConverter = require("../util/TypeConverter");
 const Validator = require("../Validator");
 const console = require("./console");
 
@@ -14,13 +15,15 @@ class input extends console {
     });
   }
 
-  handleInput(predicate, errorMessage, message = "") {
+  hitNumber(message = "") {
     return new Promise((resolve, reject) => {
       MissionUtils.Console.readLine(message, (answer) => {
-        if (predicate(answer)) {
+        answer = TypeConverter.stringToArray(answer, ",");
+
+        if (Validator.isRightLottoNumbers(answer)) {
           resolve(answer);
         }
-        reject(errorMessage);
+        reject("error");
       });
     });
   }
