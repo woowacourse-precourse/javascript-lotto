@@ -50,7 +50,6 @@ const MESSAGE = {
 
 const FORMAT = {
   RESULT_ROUND: 1,
-  LOCALE_MONEY: 'ko-KR',
   LOTTO_PRINT: {
     FIRST: '[',
     SEPARATOR: ', ',
