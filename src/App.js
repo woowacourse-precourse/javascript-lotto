@@ -26,12 +26,14 @@ class App {
 
   #handlePurchasingLotto(answer) {
     const purchasedTickets = LottoStore.sellLottoTickets(answer);
+    this.#printPurchasedTicket(purchasedTickets);
+
     this.#user.setLottoTickets(purchasedTickets);
-    App.#printPurchasedTicket(purchasedTickets);
+
     this.#askWinningNumbers();
   }
 
-  static #printPurchasedTicket(tickets) {
+  #printPurchasedTicket(tickets) {
     Console.print(`\n${tickets.length}${MESSAGE.PURCHASE_RESULT}`);
     tickets.forEach(ticket => Console.print(ticket.toString()));
   }
@@ -44,6 +46,7 @@ class App {
 
   #handleWinnigNumbers(answer) {
     this.#lottoGame.setWinningNumbers(answer);
+
     this.#askBonusNumber();
   }
 
@@ -55,15 +58,18 @@ class App {
 
   #handleBonusNumber(answer) {
     this.#lottoGame.setBonusNumber(answer);
-    const statistics = this.#user.createStatisticsText();
-    App.#printWinningStatistics(statistics);
-    Console.close();
+
+    this.#printWinningStatistics();
   }
 
-  static #printWinningStatistics(statistics) {
+  #printWinningStatistics() {
+    const statistics = this.#user.createStatisticsText();
+
     Console.print(`\n${MESSAGE.WINNING_STATISTICS}`);
     Console.print('---');
     statistics.forEach(text => Console.print(text));
+
+    Console.close();
   }
 }
 

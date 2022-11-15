@@ -7,11 +7,13 @@ class Lotto {
 
   constructor(numbers) {
     validate(numbers, areLottoNumbers);
+
     this.#numbers = numbers.sort((a, b) => a - b);
   }
 
   static generateTicket() {
     const { MIN_NUMBER, MAX_NUMBER, SIZE } = LOTTO_BASE;
+
     return new Lotto(
       Random.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, SIZE),
     );
@@ -20,6 +22,7 @@ class Lotto {
   getRank(winningNumbers, bonusNumber) {
     const hasBonusNumber = this.#numbers.includes(bonusNumber);
     const matchCount = this.#countMatchingNumbers(winningNumbers);
+
     return Lotto.#getComputedRank(matchCount, hasBonusNumber);
   }
 

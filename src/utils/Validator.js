@@ -13,12 +13,14 @@ class Validator {
   static validate(input, validator) {
     if (!validator(input)) {
       Console.close();
+
       throw new Error(`[ERROR] ${Validator.#ERROR_MESSAGE[validator.name]}`);
     }
   }
 
   static isPurchaseInput(input) {
     const NUMBER_INPUT_PATTERN = /^[^0]\d+$/;
+
     return (
       NUMBER_INPUT_PATTERN.test(input) && !(Number(input) % LOTTO_BASE.PRICE)
     );
@@ -28,6 +30,7 @@ class Validator {
     const lottoNumbers = numbers.filter(
       number => Validator.isInteger(number) && Validator.isLottoNumber(number),
     );
+
     return new Set(lottoNumbers).size === LOTTO_BASE.SIZE;
   }
 
@@ -41,6 +44,7 @@ class Validator {
 
   static areWinningNumbers(input) {
     const winningNumbers = input.split(',').map(Number);
+
     return Validator.areLottoNumbers(winningNumbers);
   }
 
@@ -48,12 +52,14 @@ class Validator {
     const isBonusNumber = input => {
       const bonusNumber = Number(input);
       const isIncluded = winningNumbers.includes(bonusNumber);
+
       return (
         !isIncluded &&
         Validator.isInteger(bonusNumber) &&
         Validator.isLottoNumber(bonusNumber)
       );
     };
+
     return isBonusNumber;
   }
 }

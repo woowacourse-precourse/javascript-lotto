@@ -20,6 +20,7 @@ class User {
 
   createStatisticsText() {
     const winningMap = this.#lottoGame.computeWinningMap(this.#lottoTickets);
+
     return [
       ...User.#createWinningResultText(winningMap),
       this.#createReturnRateText(winningMap),
@@ -30,14 +31,17 @@ class User {
     return Object.values(LOTTO_RANKINGS).map(rank => {
       const count = winningMap[rank] ?? 0;
       const prize = Number(LOTTO_PRIZES[rank]).toLocaleString();
+
       return `${LOTTO_RESULT_MESSAGES[rank]} (${prize}원) - ${count}개`;
     });
   }
 
   #createReturnRateText(winningMap) {
     const purchaseAmount = this.#lottoTickets.length * LOTTO_BASE.PRICE;
+
     const totalPrize = User.#computeTotalPrize(winningMap);
     const returnRate = User.#computeReturnRate(totalPrize, purchaseAmount);
+
     return `총 수익률은 ${returnRate}%입니다.`;
   }
 
@@ -51,6 +55,7 @@ class User {
   static #computeReturnRate(totalPrize, purchaseAmount) {
     const returnRate = Number((totalPrize / purchaseAmount) * 100).toFixed(1);
     const RETURN_RATE_FORMAT = /\B(?=(\d{3})+(?!\d))/g;
+
     return returnRate.replace(RETURN_RATE_FORMAT, ',');
   }
 }
