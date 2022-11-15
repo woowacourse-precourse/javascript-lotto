@@ -5,6 +5,7 @@ class Bonus {
 
   validate(bonusNumber, winNumber) {
     this.checkIsNumber(bonusNumber);
+    this.checkLength(bonusNumber);
     this.checkRange(bonusNumber);
     this.checkDuplicate(bonusNumber, winNumber);
   }
@@ -15,6 +16,13 @@ class Bonus {
       
     }
   }
+  
+  checkLength(number) {
+    if (number.length !== 1) {
+      throw new Error('[ERROR] 보너스 번호는 한자리 숫자여야 합니다.');
+    }
+  }
+
   checkRange(number) {
     if (number > 45 || number < 1) {
       throw new Error('[ERROR] 보너스 번호는 1 ~ 45 사이여야 합니다.')
