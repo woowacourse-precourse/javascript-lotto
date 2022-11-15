@@ -1,6 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const ErrorChecker = require("./ErrorChecker");
-const PURCHASE_UNIT = 1000;
 class InputAcceptor {
 
     static async askPurchaseAmountAsyncAwait() {
@@ -8,8 +7,7 @@ class InputAcceptor {
             MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', resolve)
         });
         this.checkANumber(answer);
-        if (!Number.isInteger(answer / PURCHASE_UNIT)) throw new Error('[ERROR] 구입 금액은 1000원 단위로 입력해주세요.');
-        return answer / PURCHASE_UNIT;
+        return answer;
     }
 
     static async askWinningLottoNumbers() {
