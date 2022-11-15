@@ -17,8 +17,8 @@ function matchNumbers(Issued) {
   }, []);
 }
 
-function checkNumberOfWins(array, issued) {
-  switch (array.length) {
+function checkNumberOfWins(numberOfWins, issued) {
+  switch (numberOfWins.length) {
     case RANK.first:
       LottoRanking.first += PLUS_ONE;
       break;
