@@ -21,7 +21,7 @@ describe("Validation.isDivided", () => {
 });
 
 describe("Validation.isOnlyNumber", () => {
-  test("구입 가격인 input이 모두 숫자라면 true를 반환해야 한다.", () => {
+  test("구입 가격인 input이 모두 숫자라면 false를 반환해야 한다.", () => {
     // given
     const input = "8000";
     // when
@@ -29,7 +29,7 @@ describe("Validation.isOnlyNumber", () => {
     // then
     expect(result).toBe(false);
   });
-  test("구입 가격인 input에 문자가 포함되어 있다면 false를 반환해야 한다.", () => {
+  test("구입 가격인 input에 문자가 포함되어 있다면 true를 반환해야 한다.", () => {
     // given
     const input = "8000j";
     // when
