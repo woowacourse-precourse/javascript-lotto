@@ -12,11 +12,11 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error("[ERROR]");
+      throw new Error("[ERROR] 로또의 숫자는 6개여야 합니다.");
     }
 
     if (new Set(numbers).size !== 6) {
-      throw new Error("[ERROR]");
+      throw new Error("[ERROR] 로또의 각 숫자들은 중복되지 않아야 합니다.");
     }
   }
 
