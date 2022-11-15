@@ -28,6 +28,7 @@ class App {
   }
   winNumbers(numbers) {
     numbers = numbers.split(',')
+    this.numbersRange(numbers)
     this.Lotto.validate(numbers)
     this.winNumber = numbers
   }
