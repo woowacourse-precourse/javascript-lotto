@@ -68,6 +68,10 @@ class App {
     MissionUtils.Console.readLine(Constant.LOTTO_NUMBERS_QUESTION_MESSAGE, callback);
   }
   
+  getInputBonusNumber(callback) {
+    MissionUtils.Console.readLine(Constant.BONUS_NUMBER_QUESTION_MESSAGE, callback);
+  }
+  
 }
 
 const app = new App();
