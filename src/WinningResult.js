@@ -25,6 +25,7 @@ class WinningResult {
       }).length;
       if (matchNumber === 5 && ticket.includes(this.bunusNumber)) {
         this.numberByMatching['5+1'] += 1;
+        return 0;
       }
       if (matchNumber >= MIN_MATCH_NUMBER) {
         this.numberByMatching[matchNumber] += 1;
