@@ -111,4 +111,12 @@ describe("로또 테스트", () => {
       app.play();
     }).toThrow("[ERROR]");
   });
+
+  test("예외 테스트", () => {
+    mockQuestions(["1000", "1,g2,3,4,5,6", "46"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
 });
