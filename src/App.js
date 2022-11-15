@@ -4,12 +4,17 @@ const Lotto = require("./Lotto");
 
 class App {
   play() {
-    this.getAmountPaid((input) => {
-      let lottos = this.issueLottos(input);
-      lottos.forEach((element) => {
-        element.printNumbers();
+    this.getAmountPaid((count) => {
+      let lottos = this.issueLottos(count);
+      this.getWinningNumbers((input) => {
+        let winnigNumbers = input;
+        this.getBonusNumbers((input) => {
+          let bonusNumber = input;
+          console.log(winnigNumbers);
+          console.log(bonusNumber);
+          this.appClose();
+        });
       });
-      this.appClose();
     });
   }
 
@@ -28,6 +33,19 @@ class App {
       lottos.push(lotto);
     }
     return lottos;
+  }
+
+  getWinningNumbers(callback) {
+    Console.readLine(MESSAGES.TAKE_WINNING_NUMBERS, (input) => {
+      let winnigNumbers = input.split(",").map((x) => Number(x));
+      callback(winnigNumbers);
+    });
+  }
+
+  getBonusNumbers(callback) {
+    Console.readLine(MESSAGES.TAKE_BONUS_NUMBERS, (input) => {
+      callback(input);
+    });
   }
 
   appClose() {
