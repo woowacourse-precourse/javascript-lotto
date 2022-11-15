@@ -64,6 +64,7 @@ class Store {
         if (numbersArr.length !== 6) throw new Error("[ERROR] 6개의 숫자가 필요합니다.");
         if (/[^0-9]/g.test(numbersArr.join(''))) throw new Error("[ERROR] 숫자와 콤마(,)만 입력 가능합니다.")
         if (numbersArr.includes(0)) throw new Error("[ERROR] 0 또는 공백이 포함되어 있습니다.")
+        if (numbersArr.includes(undefined)) throw new Error("[ERROR] 누락된 숫자가 있습니다.")
         if (numbersArr.filter(x => x < 1 || x > 45).length !== 0) throw new Error("[ERROR] 1~45 사이의 정수만 입력가능합니다.");
         if (new Set(numbersArr).size !== 6) throw new Error("[ERROR] 서로 중복되지 않는 숫자들만 입력 가능합니다.");
         return true;
