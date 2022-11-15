@@ -19,12 +19,20 @@ class LottoList {
 		const stringedLottoList = [];
 			for(let i = 0; i < total; i++) {
 				let randomNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
-				randomNumbers = randomNumbers.sort((a, b) => a - b);
-				let stringedLottos = `[${randomNumbers.join(', ')}]`;
+				randomNumbers = this.sortInAscendingOrder(randomNumbers);
+				let stringedLottos = this.stringifyLottoNumbers(randomNumbers);
 				lottoList.push(randomNumbers);
 				stringedLottoList.push(stringedLottos);
 			}
 			return ([lottoList, stringedLottoList]);
+	}
+
+	sortInAscendingOrder(randomNumbers) {
+		return randomNumbers.sort((a, b) => a - b);
+	}
+
+	stringifyLottoNumbers(randomNumbers) {
+		return `[${randomNumbers.join(', ')}]`;
 	}
 
 	printLottoList(total, lottoList) {
