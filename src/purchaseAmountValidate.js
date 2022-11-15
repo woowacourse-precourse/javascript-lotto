@@ -1,10 +1,10 @@
-class PurchaseAmountValidator {
+class PurchaseAmountValidate {
   constructor(amount) {
-    PurchaseAmountValidator.validate(amount);
+    this.validate(amount);
     this.validatedAmount = amount;
   }
 
-  static validate(amount) {
+  validate(amount) {
     if (/[^0-9]/g.test(amount)) {
       throw new Error('[ERROR] 구입 금액은 숫자만 공백없이 입력 가능합니다.');
     }
@@ -18,4 +18,4 @@ class PurchaseAmountValidator {
   // TODO: 추가 기능 구현
 }
 
-module.exports = PurchaseAmountValidator;
+module.exports = PurchaseAmountValidate;
