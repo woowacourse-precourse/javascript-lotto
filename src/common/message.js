@@ -1,5 +1,5 @@
 const INPUT_MESSAGES = {
-  INPUT_BUY_LOTTO: `구매금액을 입력해주세요(1000원 단위로 입력):`,
+  INPUT_BUY_LOTTO: `구매금액을 입력해 주세요.\n`,
   INPUT_WINNING_NUMBER: `당첨 번호를 입력해 주세요.\n`,
   INPUT_BOUNS_NUMBER: `보너스 번호를 입력해 주세요.\n`,
 };
