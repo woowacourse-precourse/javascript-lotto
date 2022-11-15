@@ -35,6 +35,24 @@ class Lotto {
       );
   }
 
+  calculateResult(lottos) {
+    const result = [0, 0, 0, 0, 0];
+
+    lottos.forEach((lotto) => {
+      const count = lotto.filter((number) =>
+        this.#numbers.includes(number)
+      ).length;
+
+      if (count === 5 && lotto.includes(this.#bonus)) {
+        result[3] += 1;
+      } else if (count > 2) {
+        result[count - 3] += 1;
+      }
+    });
+
+    return result;
+  }
+
   static issueLotto = () => {
     return Random.pickUniqueNumbersInRange(
       Lotto.LOTTO_RANGE.MIN,
