@@ -16,6 +16,15 @@ class Lotto {
     )
       return true;
   }
+
+  validateBonusNum(numbers, bonus) {
+    if (
+      this.Validator.isNumber(bonus) !== Error &&
+      this.Validator.isUniqueBonus(numbers, bonus) !== Error
+    ) {
+      return true;
+    }
+  }
   // TODO: 추가 기능 구현
 }
 

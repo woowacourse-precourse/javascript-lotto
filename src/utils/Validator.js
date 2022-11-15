@@ -40,6 +40,14 @@ class Validator {
       throw new Error('[ERROR] 천원 단위로 입력해 주세요.');
     }
   }
+
+  isUniqueBonus(numbers, bonus) {
+    if (numbers.includes(bonus)) {
+      throw new Error(
+        '[ERROR] 당첨번호와 중복된 보너스 번호를 입력할 수 없습니다.',
+      );
+    }
+  }
 }
 
 module.exports = Validator;
