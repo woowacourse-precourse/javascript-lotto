@@ -1,3 +1,11 @@
+const {
+  isNumber,
+  isRightSizeAndNotDuplicated,
+  isValidRange,
+} = require('./Validation');
+
+const { ERROR } = require('./Messages');
+
 class Lotto {
   #numbers;
 
@@ -6,13 +14,21 @@ class Lotto {
     this.#numbers = numbers;
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+  get getNumbers() {
+    return this.#numbers;
   }
 
-  // TODO: 추가 기능 구현
+  validate(numbers) {
+    if (!isRightSizeAndNotDuplicated(numbers, 6)) {
+      throw new Error(ERROR.NOT_RIGHT_SIZE_AND_DUPLICATED);
+    }
+    if (numbers.filter(num => !isNumber(num)).length > 0) {
+      throw new Error(ERROR.NOT_A_NUMBER);
+    }
+    if (!isValidRange(numbers, 1, 45)) {
+      throw new Error(ERROR.NOT_VALID_RANGE);
+    }
+  }
 }
 
 module.exports = Lotto;
