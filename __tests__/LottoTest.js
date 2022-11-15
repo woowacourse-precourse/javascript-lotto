@@ -1,6 +1,7 @@
 const Lotto = require("../src/Lotto");
 const BonusNumberError = require("../src/BonusNumberError");
 const PayError = require("../src/PayError");
+const TotalRatio = require("../src/TotalRatio");
 
 
 describe("로또 클래스 테스트", () => {
@@ -65,3 +66,5 @@ describe("입력 금액 검증 클래스 테스트", () => {
   });
 
 });
+
+

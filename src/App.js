@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const {PAYMENT_MESSAGE,SELECT_NUMBER_MESSAGE,RESULT_MESSAGE,BLANK_SPACE, RESULT_PLACE} =require("./stringConst");
+const {PAYMENT_MESSAGE,SELECT_NUMBER_MESSAGE,RESULT_MESSAGE,BLANK_SPACE, RESULT_PLACE_MESSAGE} =require("./stringConst");
 const {REWARD,MATCH } =require("./numberConst");
 const Lotto = require("./Lotto");
 const BonusNumberError = require("./BonusNumberError");
@@ -14,8 +14,6 @@ class App {
     this.randomNumbersArrForPrint = [];
     this.selectedWinNumber = [];
     this.selectedBonusNumber = [];
-    this.countMatchedNumber = [];
-    this.countMatchedBonusNumber = [];
     this.myPayment = "";
     this.myRandomNumberArr= "";
   }
@@ -26,13 +24,9 @@ class App {
     MissionUtils.Console.readLine(`${PAYMENT_MESSAGE.request}\n`, (payment) => {
       const payError = new PayError(payment);
       payError.validatePay(payment); 
-
       this.printLotto(payment);
     });
   }
-
-
-
 
   generateRandomNumbers() {
     const Rannumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
@@ -58,20 +52,17 @@ class App {
     this.selectWinNumbers()
   }
 
-
-
-
   selectWinNumbers() {
     MissionUtils.Console.print(SELECT_NUMBER_MESSAGE.winNumber);
     this.inputWinNumbers();
   }
   inputWinNumbers() {
-    MissionUtils.Console.readLine("", (numbers) => {
-      const splitedWinNumber = numbers.split(",").map(Number);
-      const lotto = new Lotto(splitedWinNumber);
-      lotto.validate(splitedWinNumber); 
+    MissionUtils.Console.readLine("", (winNumber) => {
+      const numbers = winNumber.split(",").map(Number);
+      const lotto = new Lotto(numbers);
+      lotto.validate(numbers); 
       for (let i = 0; i < 6; i++) {
-        this.selectedWinNumber.push(splitedWinNumber[i]);
+        this.selectedWinNumber.push(numbers[i]);
       }
       MissionUtils.Console.print(BLANK_SPACE.line); 
       this.selectBonusNumber();
@@ -85,6 +76,7 @@ class App {
     MissionUtils.Console.readLine("", (bonusNumber) => {
       const bonusNumberError = new BonusNumberError(bonusNumber);
       bonusNumberError.validateBonusNumber(bonusNumber); 
+      
       this.selectedBonusNumber.push(Number(bonusNumber));
       MissionUtils.Console.print(BLANK_SPACE.line); 
       this.isDuplicatedNumber(bonusNumber);
@@ -97,47 +89,44 @@ class App {
     }
   }
   compareNumbers() {
+    let countMatchedNumber = []
+    let countMatchedBonusNumber = []
     for (let i = 0; i < this.randomNumbersArr.length; i++) {
-      let matchedNumber = this.selectedWinNumber.filter((matched) =>
-        this.randomNumbersArr[i].includes(matched)).length;
-      this.countMatchedNumber.push(matchedNumber);
+      let matchedNumber = this.selectedWinNumber.filter((matched) => this.randomNumbersArr[i].includes(matched)).length;
+        countMatchedNumber.push(matchedNumber);
     } 
     for (let i = 0; i < this.randomNumbersArr.length; i++) {
-      let matchedBonusNumber = this.selectedBonusNumber.filter((matched) =>
-        this.randomNumbersArr[i].includes(matched)).length;
-      this.countMatchedBonusNumber.push(matchedBonusNumber);
+      let matchedBonusNumber = this.selectedBonusNumber.filter((matched) =>this.randomNumbersArr[i].includes(matched)).length;
+        countMatchedBonusNumber.push(matchedBonusNumber);
     }  
-    this.getWinners() 
+    this.getWinners(countMatchedNumber,countMatchedBonusNumber) 
   }
 
-  getWinners() {
-    const firstPlace = this.countMatchedNumber.filter(element =>MATCH.six === element).length
-    const fourthPlace = this.countMatchedNumber.filter(element => MATCH.four === element).length
-    const fifthPlace = this.countMatchedNumber.filter(element => MATCH.three === element).length
-
-    this.isWinnerIncludesBonusNumber(firstPlace,fourthPlace,fifthPlace);
+  getWinners(countMatchedNumber,countMatchedBonusNumber) {
+    const firstPlace = countMatchedNumber.filter(element => MATCH.six === element).length
+    const fourthPlace = countMatchedNumber.filter(element => MATCH.four === element).length
+    const fifthPlace = countMatchedNumber.filter(element => MATCH.three === element).length
+    this.isWinnerIncludesBonusNumber(firstPlace,fourthPlace,fifthPlace,countMatchedNumber,countMatchedBonusNumber);
   }
   
-  isWinnerIncludesBonusNumber (firstPlace,fourthPlace,fifthPlace){
+  isWinnerIncludesBonusNumber (firstPlace,fourthPlace,fifthPlace,countMatchedNumber,countMatchedBonusNumber){ 
     let secondPlace = 0;
     let thirdPlace = 0; 
-    for (let i = 0; i <  this.countMatchedNumber.length; i++) {
-      if(this.countMatchedNumber[i] === MATCH.five && this.countMatchedBonusNumber[i] === MATCH.bonus) 
+    for (let i = 0; i <  countMatchedNumber.length; i++) {
+      if(countMatchedNumber[i] === MATCH.five && countMatchedBonusNumber[i] === MATCH.bonus) 
       secondPlace++;
     }
-    for (let i = 0; i <  this.countMatchedNumber.length; i++) {
-      if(this.countMatchedNumber.includes(MATCH.five) 
-      && this.countMatchedNumber[i] === MATCH.five && this.countMatchedBonusNumber[i] !== MATCH.bonus) 
+    for (let i = 0; i <  countMatchedNumber.length; i++) {
+      if(countMatchedNumber.includes(MATCH.five) 
+      && countMatchedNumber[i] === MATCH.five && countMatchedBonusNumber[i] !== MATCH.bonus) 
       thirdPlace++;
     }
     this.calculateYieldRatio(firstPlace,secondPlace,thirdPlace,fourthPlace,fifthPlace);
   }
 
-
-
-
   calculateYieldRatio(firstPlace,secondPlace,thirdPlace,fourthPlace,fifthPlace){
-    const addReward = (REWARD.first * firstPlace) 
+    const addReward = 
+    (REWARD.first * firstPlace) 
     + (REWARD.second * secondPlace) 
     + (REWARD.third * thirdPlace) 
     + (REWARD.fourth * fourthPlace) 
@@ -151,20 +140,18 @@ class App {
 
   seeResult(firstPlace,secondPlace,thirdPlace,fourthPlace,fifthPlace,positiveTotalCalculate,negativeTotalCalculate) {
     MissionUtils.Console.print(RESULT_MESSAGE.statistics);
-    MissionUtils.Console.print(RESULT_MESSAGE.underscore);
-    MissionUtils.Console.print(`${RESULT_PLACE.fifth}${fifthPlace}개`);
-    MissionUtils.Console.print(`${RESULT_PLACE.fourth}${fourthPlace}개`);
-    MissionUtils.Console.print(`${RESULT_PLACE.third}${thirdPlace}개`);
-    MissionUtils.Console.print(`${RESULT_PLACE.second}${secondPlace}개`);
-    MissionUtils.Console.print(`${RESULT_PLACE.first}${firstPlace}개`);
-    const totalRatio = new TotalRatio(negativeTotalCalculate,positiveTotalCalculate);
-    totalRatio.roundDecimalPoint(negativeTotalCalculate,positiveTotalCalculate); 
+    MissionUtils.Console.print(`${RESULT_PLACE_MESSAGE.fifth}${fifthPlace}개`);
+    MissionUtils.Console.print(`${RESULT_PLACE_MESSAGE.fourth}${fourthPlace}개`);
+    MissionUtils.Console.print(`${RESULT_PLACE_MESSAGE.third}${thirdPlace}개`);
+    MissionUtils.Console.print(`${RESULT_PLACE_MESSAGE.second}${secondPlace}개`);
+    MissionUtils.Console.print(`${RESULT_PLACE_MESSAGE.first}${firstPlace}개`);
     MissionUtils.Console.close();
+    const totalRatio = new TotalRatio(positiveTotalCalculate,negativeTotalCalculate);
+    totalRatio.roundDecimalPoint(positiveTotalCalculate,negativeTotalCalculate,); 
+
+
+
   }
-
-
-
-
 
 }
 

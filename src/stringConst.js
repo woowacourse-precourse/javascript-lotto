@@ -1,15 +1,3 @@
-// this.START_MESSAGE = "구입금액을 입력해 주세요.";
-// this.SELECT_WIN_NUMBER = "당첨 번호를 입력해 주세요.";
-// this.SELECT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
-// this.RESULT_MESSAGE = "당첨 통계";
-// this.RESULT_UNDERSCORE = "---";
-
-this.FIFTH_PLACE = "3개 일치 (5,000원) - ";
-this.FOURTH_PLACE = "4개 일치 (50,000원) - ";
-this.THIRD_PLACE = "5개 일치 (1,500,000원) - ";
-this.SECOND_PLACE = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
-this.FIRST_PLACE = "6개 일치 (2,000,000,000원) - ";
-
 const PAYMENT_MESSAGE = {
   request: "구입금액을 입력해 주세요.",
 };
@@ -20,11 +8,10 @@ const SELECT_NUMBER_MESSAGE = {
 };
 
 const RESULT_MESSAGE = {
-  statistics: "당첨 통계",
-  underscore: "---",
+  statistics: "당첨 통계\n---",
 };
 
-const RESULT_PLACE = {
+const RESULT_PLACE_MESSAGE = {
   first: "6개 일치 (2,000,000,000원) - ",
   second: "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
   third: "5개 일치 (1,500,000원) - ",
@@ -41,5 +28,5 @@ module.exports = {
   SELECT_NUMBER_MESSAGE,
   RESULT_MESSAGE,
   BLANK_SPACE,
-  RESULT_PLACE,
+  RESULT_PLACE_MESSAGE,
 };

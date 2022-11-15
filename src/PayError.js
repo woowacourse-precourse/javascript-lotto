@@ -4,7 +4,7 @@ class PayError {
   }
   validatePay(payment) {
     const regExp = new RegExp("^[0-9]+$");
-    if (!regExp.test((payment))) {
+    if (!regExp.test(payment)) {
       throw new Error("[ERROR] 금액은 숫자만 입력해주세요");
     }
     if (payment < 1000) {
