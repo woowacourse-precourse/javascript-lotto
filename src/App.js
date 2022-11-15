@@ -1,5 +1,13 @@
 class App {
   play() {}
+  
+  userInput(lottoCount) {
+    this.userMoneyInput();
+    for (let i = 0; i < lottoCount; i++) {
+      this.userLottoInput();
+      this.userBonusInput();
+    }
+  }
 
   computerNumber() {
     const computerRandomNumber = Random.pickUniqueNumbersInRange(1, 45, 6);
