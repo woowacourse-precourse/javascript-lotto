@@ -7,10 +7,10 @@ const exception = new Exception();
 class View extends Setting {
   lottoStart() {
     Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
-      this.isEmpty(money);
+      exception.isEmpty(money);
       money = Number(money);
-      this.isNumber(money);
-      this.isMultipleOfThousand(money);
+      exception.isNumber(money);
+      exception.isMultipleOfThousand(money);
       this.money = money / 1000;
       this.buyLotto();
       this.getWinNumber();
@@ -44,7 +44,7 @@ class View extends Setting {
   getBonusNumber() {
     Console.readLine("보너스 번호를 입력해 주세요.\n", (bonusNumber) => {
       this.bonusNumber = Number(bonusNumber);
-      this.isInWinNumber(this.bonusNumber, this.winNumber);
+      exception.isInWinNumber(this.bonusNumber, this.winNumber);
       this.lottoBox.map((oneLine) => {
         this.checkMyNumber(
           oneLine,
@@ -86,23 +86,6 @@ class View extends Setting {
       this.lottoClose();
     });
   }
-  isEmpty(money) {
-    if (money === "0" || money === "" || money === null) {
-      throw new Error("[ERROR] : 1000원 이상의 금액을 입력하세요.");
-    }
-  }
-  isMultipleOfThousand(money) {
-    if (money % 1000 !== 0) {
-      throw new Error("[ERROR] : 금액은 1000의 배수여야 합니다.");
-    }
-    return true;
-  }
-  isNumber(text) {
-    if (isNaN(text)) {
-      throw new Error("[ERROR] : 숫자만 입력 가능합니다.");
-    }
-    return true;
-  }
   checkMyNumber = (list, winNumber, score, bonusNumber) => {
     let correctCount = 0;
     if (JSON.stringify(list) === JSON.stringify(winNumber)) {
@@ -133,12 +116,6 @@ class View extends Setting {
     const revenue = (reword / (money * 1000)) * 100;
     return +(Math.round(revenue + "e+2") + "e-2");
   };
-  isInWinNumber(bonusNumber, winNumber) {
-    if (winNumber.includes(bonusNumber)) {
-      throw new Error("[ERROR] : 당첨 번호 리스트에 이미 존재하는 번호입니다.");
-    }
-    return true;
-  }
   sortList(list) {
     list = list.sort(function (a, b) {
       return a - b;
