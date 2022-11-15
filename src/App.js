@@ -11,6 +11,12 @@ class App {
     let lottos = [];
     let bonusNum = '';
     const realLottoNumbers = [];
+
+    function payMoney(){
+      MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (answer) => {
+        payCash = answer;
+      });
+    }
   } //Play() 닫는 닫는 괄호
 }//class App 닫는괄호
 
