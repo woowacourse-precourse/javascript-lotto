@@ -145,20 +145,25 @@ class App {
    */
   getLottoResult({ wins, bonus }) {
     const lotto = new Lotto({ wins, bonus })
-    const lottoResult = Object.keys(prize).reduce((result, rank) => {
-      result[rank] = 0
-
-      return result
-    }, {})
+    const lottoResult = this.#initializeResult()
 
     this.#lottosOwnedByUser.forEach((lottoOwnedByUser) => {
       const rank = lotto.checkRank(lottoOwnedByUser)
+
       if (rank in lottoResult) {
         lottoResult[rank]++
       }
     })
 
     return lottoResult
+  }
+
+  #initializeResult() {
+    return Object.keys(prize).reduce((result, rank) => {
+      result[rank] = 0
+
+      return result
+    }, {})
   }
 
   /**
