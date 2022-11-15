@@ -89,7 +89,8 @@ class Lotto {
       const bonusNum = parseInt(bonus);
       this.bonusInrangeNumber(bonusNum);
       this.checkBonusNumber(bonusNum);
-      MissionUtils.Console.close();
+      this.bonus = bonusNum;
+      this.processList();
     });
   }
 
@@ -105,6 +106,22 @@ class Lotto {
         throw new Error("당첨 번호와 같은 번호를 입력하셨습니다.");
       }
     }
+  }
+
+  processList() {
+    this.lottoArray.map((numbers) => {
+      let sameCount = 0;
+      let sameBonus = false;
+      numbers.map((number) => {
+        if (this.win.includes(number)) {
+          sameCount += 1;
+        }
+        if (number === this.bonus) {
+          sameBonus = true;
+        }
+      });
+      console.log(sameCount, sameBonus);
+    });
   }
 }
 module.exports = Lotto;
