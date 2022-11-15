@@ -24,11 +24,11 @@ class App {
   }
 
   handleAmount(amount) {
-    amount = +amount;
-    if (!Vaildator.isRightAmount(+amount)) {
+    amount = TypeConverter.stringToNumber(amount);
+    if (!Vaildator.isRightAmount(amount)) {
       throw new Error(error.INVALID_AMOUNT);
     }
-    this.user.amount = +amount;
+    this.user.amount = amount;
     this.printUserLottos();
     this.input.readLine(this.handleHitNumbers.bind(this));
   }
