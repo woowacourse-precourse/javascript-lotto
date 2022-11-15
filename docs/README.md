@@ -72,6 +72,7 @@
   - 📁error
     - 📜InvalidInputError.js
   - 📜App.js
+  - 📜Calculation.js
   - 📜Game.js
   - 📜Lotto.js
   - 📜Validation.js
