@@ -1,5 +1,5 @@
 const Exception = require("./error/exception");
-const PurchaseError = require("./error/purchase");
+const Purchase = require("./error/purchase");
 const BonusNumber = require("./error/bonusNumber");
 const ChangeLotto = require("./ChangeLotto");
 const Lotto = require("./error/Lotto");
@@ -81,7 +81,7 @@ class App {
 
   play() {
     Console.readLine(`${COMMAND.BUY}\n`, (purchaseAmount) => {
-      this.exception.isAllow(new PurchaseError(purchaseAmount));
+      this.exception.isAllow(new Purchase(purchaseAmount));
       this.purchaseAmount = purchaseAmount;
       this.userLotto = new ChangeLotto(this.purchaseAmount).change();
       this.askWinNumber();

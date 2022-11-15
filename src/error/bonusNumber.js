@@ -12,8 +12,7 @@ class BonusNumber extends Exception {
   }
 
   isDuplicate(comparison) {
-    if (comparison.includes(Number(this.#input))) return true;
-    return false;
+    return comparison.includes(Number(this.#input));
   }
 
   isAllowNumber() {

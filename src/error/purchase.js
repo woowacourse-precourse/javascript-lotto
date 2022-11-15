@@ -2,7 +2,7 @@ const Exception = require("./exception");
 
 const { ERROR, UNIT } = require("../utils/constant");
 
-class PurchaseError extends Exception {
+class Purchase extends Exception {
   #input;
 
   constructor(input) {
@@ -11,15 +11,15 @@ class PurchaseError extends Exception {
     this.#input = Number(input);
   }
   isZero() {
-    return this.#input !== 0 ? UNIT.ALLOW : UNIT.NOT_ALLOW;
+    return this.#input === 0;
   }
 
   isNegative() {
-    return this.#input > 0 ? UNIT.ALLOW : UNIT.NOT_ALLOW;
+    return this.#input < 0;
   }
 
   isAllowUnit() {
-    return this.#input % UNIT.MONETARY === 0 ? UNIT.ALLOW : UNIT.NOT_ALLOW;
+    return this.#input % UNIT.MONETARY !== 0;
   }
 
   checkInput() {
@@ -28,4 +28,4 @@ class PurchaseError extends Exception {
   }
 }
 
-module.exports = PurchaseError;
+module.exports = Purchase;

@@ -13,40 +13,31 @@ class Lotto extends Exception {
   }
 
   duplicateCheck() {
-    let allow = UNIT.ALLOW;
     const numbersLength = [...new Set(this.#numbers)].length;
-    if (numbersLength !== UNIT.LOTTO_LENGTH) {
-      allow = allow || UNIT.NOT_ALLOW;
-    }
-    return allow;
+    return numbersLength !== UNIT.LOTTO_LENGTH;
   }
 
   checkCnt() {
-    if (this.#numbers.length !== UNIT.WIN_NUMBER_CNT) return UNIT.NOT_ALLOW;
-    return UNIT.ALLOW;
+    return this.#numbers.length !== UNIT.WIN_NUMBER_CNT;
   }
 
-  checkRange() {
-    let check = UNIT.ALLOW;
-    this.#numbers.forEach((num) => {
-      if (num < UNIT.MIN_NUMBER || num > UNIT.MAX_NUMBER) {
-        check = check || UNIT.NOT_ALLOW;
-      }
-    });
-    return check;
+  checkRange(number) {
+    return number < UNIT.MIN_NUMBER || number > UNIT.MAX_NUMBER;
   }
 
-  isAllowNumber() {
-    let allow = UNIT.ALLOW;
-    this.#numbers.forEach((num) => {
-      if (num % 1 !== 0) allow = allow || UNIT.NOT_ALLOW;
-    });
-    return allow;
+  isAllowNumber(number) {
+    return number % 1 !== 0;
   }
 
   checkInput() {
-    if (this.checkCnt() || this.checkRange() || this.isAllowNumber())
-      throw new Error(ERROR.WIN_NUMBER);
+    if (this.checkCnt()) throw new Error(ERROR.WIN_NUMBER);
+    this.#numbers.forEach((number) => {
+      if (this.checkRange(number)) throw new Error(ERROR.WIN_NUMBER);
+    });
+    this.#numbers.forEach((number) => {
+      if (this.isAllowNumber(number)) throw new Error(ERROR.WIN_NUMBER);
+    });
+
     if (this.duplicateCheck()) throw new Error(ERROR.WIN_NUMBER_DUPLICATE);
   }
 }
