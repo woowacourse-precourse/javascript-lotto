@@ -15,6 +15,7 @@ class Store {
       [WINMESSAGE["5+"], [30000000, 0]],
       [WINMESSAGE[6], [2000000000, 0]],
     ]);
+    this.prizeMoney = 0;
   }
 
   issue() {
@@ -79,6 +80,15 @@ class Store {
         ]);
       }
     });
+    this.setPrizeMoney();
+  }
+
+  setPrizeMoney() {
+    let prize = 0;
+    this.result.forEach(([winMoney, winCount]) => {
+      prize += winMoney * winCount;
+    });
+    this.prizeMoney = prize;
   }
 }
 
