@@ -61,6 +61,7 @@ class App {
         Helper.checkDuplicatedNumber([this.#winningNumbersList, bonusNumber]);
         Helper.checkRangedNumber([bonusNumber]);
         this.#bonusNumber = bonusNumber;
+        this.matchLottoGame();
       }
     );
   }
@@ -76,6 +77,8 @@ class App {
     this.#matchingNumberCountObj = lotto.returnMatchingNumberObj(winningPrizeList);
   }
 
+
+  
 }
 
 module.exports = App;
