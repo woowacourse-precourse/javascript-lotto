@@ -26,10 +26,10 @@
 
 ---
 필요 class 종류:
-1. Lotto - 복권 자체
-2. LottoMachine - 복권 발행기
-3. WinningLotto - 사용자가 입력하는 당첨 번호
-4. Matcher - 번호가 몇 개 일치하는지 계산
-5. ReturnCalculator - 수익률 계산기
-6. MessagePrinter - 메시지 출력기
-7. InputAcceptor - 입력 받기
+1. ErrorChecker - 에러 체크 메서드
+2. InputAcceptor - 입력 받기 (UI 테스트 x)
+3. Lotto - 복권 자체
+4. LottoMachine - 복권 발행기
+5. Matcher - 번호가 몇 개 일치하는지 계산
+6. MessagePrinter - 메시지 출력기 (UI 테스트 x)
+7. ReturnCalculator - 수익률 계산기
