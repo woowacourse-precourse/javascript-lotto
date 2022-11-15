@@ -4,23 +4,23 @@ describe('로또 구매 테스트', () => {
   test('입력금액에 따른 로또 개수 테스트', () => {
     const inputPricesAndLottoCount = [
       {
-        price: 1000,
+        price: '1000',
         count: 1,
       },
       {
-        price: 2000,
+        price: '2000',
         count: 2,
       },
       {
-        price: 5000,
+        price: '5000',
         count: 5,
       },
       {
-        price: 15000,
+        price: '15000',
         count: 15,
       },
       {
-        price: 21000,
+        price: '21000',
         count: 21,
       },
     ];
@@ -121,18 +121,18 @@ describe('로또 당첨 테스트', () => {
       fiveAndBonusMatches: 1,
       sixMatches: 1,
     };
-    const proceeds = 2030060000;
+    const procdeeds = 2030060000;
 
-    expect(proceedsGetter(winningList)).toEqual(proceeds);
+    expect(proceedsGetter(winningList)).toEqual(procdeeds);
   });
 
   test('수익률 구하기 테스트', () => {
     const { returnRateGetter } = App;
     const purchaseAmount = 8000;
-    const proceeds = [5000, 1000, 1500000, 1505000, 2000005000];
+    const procdeeds = [5000, 1000, 1500000, 1505000, 2000005000];
     const returnRate = ['62.5', '12.5', '18750.0', '18812.5', '25000062.5'];
 
-    proceeds.map((proceed, index) => {
+    procdeeds.map((proceed, index) => {
       expect(returnRateGetter(proceed, purchaseAmount)).toEqual(
         returnRate[index],
       );
