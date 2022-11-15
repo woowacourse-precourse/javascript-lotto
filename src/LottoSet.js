@@ -18,7 +18,7 @@ class LottoSet {
     return Number(money);
   }
 
-  buyLottos(money) {
+  printPurchaseLottoNum(money) {
     const lottos = Math.floor(money / 1000);
     MissionUtils.Console.print(`${lottos}개를 구매했습니다.`);
     this.randomLottoSet(lottos);
@@ -40,7 +40,7 @@ class LottoSet {
 
   play() {
     this.validate(this.#money);
-    this.buyLottos(this.#money);
+    this.printPurchaseLottoNum(this.#money);
     return this.#lottoSet;
   }
 }
