@@ -10,6 +10,10 @@ class Exception {
     if (lottoNumber < 1 || 45 < lottoNumber) {
       throw new Error('[ERROR] 로또 번호에 1미만 45초과하는 번호가 존재합니다');
     }
+
+    if (Number.isInteger(Number(lottoNumber)) === false) {
+      throw new Error('[ERROR] 로또 번호는 정수값이어야 합니다.');
+    }
   };
 
   exceptLottoPrice = (lottoPrice) => {

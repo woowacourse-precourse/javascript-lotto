@@ -37,8 +37,11 @@ class App {
   #makeLotteryTickets(lotteryTicketNumber) {
     let lotteryTickets = new Array(lotteryTicketNumber).fill([]);
     lotteryTickets.map((lotteryTicket, ticketsIdx) => {
-      lotteryTickets[ticketsIdx] = MissionUtils.Random.pickUniqueNumbersInRange(1,45,6);
-
+      lotteryTickets[ticketsIdx] = MissionUtils.Random.pickUniqueNumbersInRange(
+        1,
+        45,
+        6
+      );
       lotteryTickets[ticketsIdx].sort((a, b) => {
         if (a < b) {return -1;}
         if (a > b) {return 1;}
@@ -50,11 +53,19 @@ class App {
     return lotteryTickets;
   }
 
+  //test에서 array를 string형으로 요구하기에 변환 함수를 만듦
+  #convertArrayToString(array = []) {
+    let str = array.join(', ');
+    return '[' + str + ']';
+  }
+
   #printLotteryTickets(lotteryTicketNumber, lotteryTickets) {
     MissionUtils.Console.print(`${lotteryTicketNumber}개를 구매했습니다.`);
 
     lotteryTickets.map((lotteryTicket) => {
-      MissionUtils.Console.print(lotteryTicket);
+      MissionUtils.Console.print(
+        `${this.#convertArrayToString(lotteryTicket)}`
+      );
     });
   }
 
@@ -67,7 +78,7 @@ class App {
 
   #inputWinningNumbers() {
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요\n', (winNum) => {
-      //예외사항
+      //예외사항 통과
       const lotto = new Lotto(this.#arrayStrToNumber(winNum.split(',')));
       this.#winningNumbers = lotto.getLottoNumber();
 
@@ -99,7 +110,7 @@ class App {
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${winningCount[5]}개`);
     MissionUtils.Console.print(`4개 일치 (50,000원) - ${winningCount[4]}개`);
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${winningCount[3]}개`);
-    MissionUtils.Console.print(`5개, 보너스 볼 일치 (30,000,000원) - ${winningCount[2]}개`);
+    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningCount[2]}개`);
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${winningCount[1]}개`);
   }
 
@@ -109,9 +120,9 @@ class App {
       amount += count * WINNING_PRICE[countIdx];
     });
 
-    let yields = amount / lotteryTicketNumber / 10;
+    let yields = Number((amount / lotteryTicketNumber / 10).toFixed(1));
 
-    MissionUtils.Console.print(`총 수익률은 ${yields}% 입니다.`);
+    MissionUtils.Console.print(`총 수익률은 ${yields}%입니다.`);
   }
 
   #makeWinningCount(lotteryTicketNumber) {
@@ -147,7 +158,6 @@ class App {
     let countBonus = 0;
 
     lotteryTicket.map((lottoNumber) => {
-      //arr.includes(1) 값이 포함되면 true를 리턴함
       if (winningNumbers.includes(lottoNumber) === true) {
         countSameNumber++;
       }
@@ -183,7 +193,5 @@ class App {
   }
 }
 
-const app = new App();
-app.play();
 
 module.exports = App;
