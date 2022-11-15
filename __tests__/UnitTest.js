@@ -1,15 +1,6 @@
 const App = require("../src/App");
 const MissionUtils = require("@woowacourse/mission-utils");
 
-// const mockQuestions = (answers) => {
-//   MissionUtils.Console.readLine = jest.fn();
-//   answers.reduce((acc, input) => {
-//     return acc.mockImplementationOnce((question, callback) => {
-//       callback(input);
-//     });
-//   }, MissionUtils.Console.readLine);
-// };
-
 const getLogSpy = () => {
   const logSpy = jest.spyOn(MissionUtils.Console, "print");
   logSpy.mockClear();
@@ -50,5 +41,20 @@ describe("App 클래스 메소드 테스트 ", () => {
     expect(app.lottoArray).toHaveLength(3);
   });
 
-  // 아래에 추가 테스트 작성 가능
+  test("유저 로또 번호 sort 테스트", () => {
+    const app = new App();
+    app.lottoArray = [
+      [1, 2, 6, 5, 4, 3],
+      [6, 1, 5, 4, 3, 2],
+      [4, 2, 6, 1, 5, 3],
+    ];
+    const testarray = [
+      [1, 2, 3, 4, 5, 6],
+      [1, 2, 3, 4, 5, 6],
+      [1, 2, 3, 4, 5, 6],
+    ];
+    app.sortLottoNumber();
+
+    expect(app.lottoArray).toEqual(testarray);
+  });
 });
