@@ -1,5 +1,12 @@
+const MoneyInput = require("./MoneyInput");
+
 class App {
-  play() {}
+  play() {
+    new MoneyInput().buyLotteryTickets();
+  }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
