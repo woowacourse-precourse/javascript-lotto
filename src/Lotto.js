@@ -18,7 +18,13 @@ class Lotto {
     return "[" + this.#numbers.join(", ") + "]";
   }
 
-  // TODO: 추가 기능 구현
+  getCountMatches(winningNumber, bonusNumber) {
+    const countMatches =
+      this.#numbers.filter((value) => winningNumber.includes(value)).length +
+      (this.#numbers.includes(bonusNumber) ? 0.5 : 0);
+
+    return countMatches;
+  }
 }
 
 module.exports = Lotto;
