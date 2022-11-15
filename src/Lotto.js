@@ -26,8 +26,7 @@ class Lotto {
     if (isNaN(isNumCheck)) throw new Error("[ERROR] 문자를 입력하실 수 없습니다.");
     if (numbers.length !== 6) throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     for (let i = 0; i < 6; ++i) {
-      if (numbers[i] < 0 || numbers[i] > 45)
-        throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+      if (numbers[i] < 0 || numbers[i] > 45) throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
     let numSet = [...new Set(numbers)];
     if (numbers.length != numSet.length) throw new Error("[ERROR] 중복된 숫자가 존재합니다.");
@@ -53,8 +52,6 @@ class Lotto {
 
   compareLottoNums(myNumbers, winNums) {
     let isMatch = new Array(myNumbers.length).fill(0);
-    let bonusNum = winNums.pop();
-
     for (let i in myNumbers) {
       for (let j in winNums) {
         let winnum = Number(winNums[j]);
