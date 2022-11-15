@@ -14,7 +14,7 @@ class LottoIssuer {
   static issue(number) {
     return Array(number)
       .fill(0)
-      .map(() => Random.pickUniqueNumbersInRange(1, 45, 6));
+      .map(() => Random.pickUniqueNumbersInRange(1, 45, 6).sort((current, next) => current - next));
   }
 
   print() {
