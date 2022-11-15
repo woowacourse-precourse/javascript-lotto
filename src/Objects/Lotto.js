@@ -21,25 +21,29 @@ class Lotto {
 		if (this.checkComma(numbers)) {
 			throw new Error(Messages.ERROR.WINNING_NUMBERS.NOT_INSERT_COMMA);
 		}
-		if (numbers.length !== 6) {
+		if (numbers.split(',').length !== 6) {
 			throw new Error(Messages.ERROR.WINNING_NUMBERS.DIFFERENT_LENGTH);
 		}
 	}
 
 	checkNumber(number) {
-		return typeof Number(number) === 'number';
+		return typeof Number(number) !== 'number';
 	}
 
 	checkBelongTo(number) {
-		return number >= 1 && number <= 45;
+		return number < 1 && number > 45;
 	}
 
 	checkDuplicate(numbers) {
-		return [...new Set(numbers)].length === 6;
+		return [...new Set(numbers)].length !== 6;
 	}
 
 	checkComma(numbers) {
-		return numbers.match(/,/g).length === 5;
+		return numbers.match(/,/g).length !== 5;
+	}
+
+	getters() {
+		return this.#numbers;
 	}
 }
 
