@@ -91,10 +91,18 @@ describe("Validator 클래스 테스트", () => {
     expect(user.dicideRank(2, false)).toEqual(0);
   });
 
-  test('총 당첨 금액을 계산 테스트', () => {
+  test("총 당첨 금액을 계산 테스트", () => {
     const user = new User();
     user.hitRanks = [0, 0, 0, 0, 0, 1];
     user.calculateTotalPrize();
     expect(user.prize).toEqual(5000);
+  });
+
+  test("수익율 계산 테스트", () => {
+    const user = new User();
+    user.prize = 5000;
+    user.fee = 8000;
+    user.calcuateReturnOfInvestment();
+    expect(user.returnOfInvestment).toEqual("62.5");
   });
 });

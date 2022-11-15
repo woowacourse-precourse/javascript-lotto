@@ -37,10 +37,12 @@ class App {
 
   handleHitLottos(hitLottos) {
     hitLottos = TypeConverter.stringToArray(hitLottos, ",").map((e) => +e);
+    console.log(hitLottos)
 
     if (!Validator.isRightLottoNumbers(hitLottos)) {
       throw new Error("[ERROR]");
     }
+
     this.hitLotto = new Lotto(hitLottos);
     this.print.print(message.BONUS_NUMBER);
     this.input.readLine(this.handleBonusNumber.bind(this));
@@ -51,7 +53,7 @@ class App {
 
     if (
       !Validator.isRightLottoNumber(number) ||
-      Validator.isNumberInArray(this.hitLotto.getNumbers(), number)
+      Validator.isNumberInArray(this.hitLotto.getNumber(), number)
     ) {
       throw new Error("[ERROR]");
     }
