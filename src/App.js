@@ -11,7 +11,7 @@ class App {
     Console.readLine("구입금액을 입력해주세요.", (value) => {
       const isValidate = this.isValidate(value);
 
-      if (isValidate.state === "exception") {
+      if (isValidate.state === ExceptionState.EXCEPTION_STATE) {
         Console.print(isValidate.reason);
         this.play();
         return;
@@ -30,10 +30,13 @@ class App {
     }
 
     if (value % 1000 !== 0) {
-      return new ExceptionState("exception", "1000원 단위로 입력해주세요.");
+      return new ExceptionState(
+        ExceptionState.EXCEPTION_STATE,
+        "1000원 단위로 입력해주세요."
+      );
     }
 
-    return new ExceptionState("success");
+    return new ExceptionState(ExceptionState.SUCCESS_STATE);
   }
 
   makePayment(value) {
@@ -77,7 +80,7 @@ class App {
   getWinner(lottos, amountOfPaid) {
     Console.readLine("당첨번호를 입력해주세요.", (value) => {
       const result = this.getWinnerNumber(value, lottos, amountOfPaid);
-      if (result.state === "exception") {
+      if (result.state === ExceptionState.EXCEPTION_STATE) {
         Console.print(result.reason);
         this.getWinner(lottos, amountOfPaid);
         return;
@@ -89,7 +92,10 @@ class App {
     const winnerNumber = value.split(",").map((string) => parseInt(string, 10));
 
     if (winnerNumber.length !== App.LENGTH_OF_LOTTO_NUMBER) {
-      return new ExceptionState("exception", "6개의 번호를 입력해주세요");
+      return new ExceptionState(
+        ExceptionState.EXCEPTION_STATE,
+        "6개의 번호를 입력해주세요"
+      );
     }
 
     Console.readLine("보너스 번호를 입력해주세요.", (value) => {
@@ -97,7 +103,7 @@ class App {
       this.getBonusNumber(bonusNumber, winnerNumber, lottos, amountOfPaid);
     });
 
-    return new ExceptionState("success");
+    return new ExceptionState(ExceptionState.SUCCESS_STATE);
   }
 
   getBonusNumber(bonusNumber, winnerNumber, lottos, amountOfPaid) {
