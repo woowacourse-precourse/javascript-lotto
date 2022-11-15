@@ -11,7 +11,7 @@ class App {
   }
   cost(){
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.', (money)=>{
-      if(this.costValidate(money)) this.numberOfPurchases(money);
+      if(this.costValidate(money)) this.purchasesCount(money);
     });
   }
   costValidate(money){
@@ -23,11 +23,11 @@ class App {
     }
     return true;
   }
-  numberOfPurchases(money){
+  purchasesCount(money){
     this.number=parseInt(money/1000);
-    this.purchaseLottoNumbers();
+    this.createLottoNumber();
   }
-  purchaseLottoNumbers(){
+  createLottoNumber(){
     MissionUtils.Console.print(`${this.number}개를 구매했습니다.`)
     for(let i=0;i<this.number;i++){
       let lottonumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);      
