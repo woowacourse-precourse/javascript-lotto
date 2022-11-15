@@ -15,4 +15,16 @@ describe("로또 클래스 테스트", () => {
   });
 
   // 아래에 추가 테스트 작성 가능
+  test("로또 번호의 범위가 1부터 45까지가 아니라면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([1,2,3,4,5,50]);
+    }).toThrow("[ERROR]");
+  });
+
+  test("보너스 번호가 로또 번호에 존재하면 예외가 발생한다.", () => {
+    expect(() => {
+      const lotto = new Lotto([1,2,3,4,5]);
+      lotto.validateBonus(5);
+    }).toThrow("[ERROR]");
+  })
 });
