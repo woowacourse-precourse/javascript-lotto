@@ -34,3 +34,16 @@ const PRIZE = { // 당첨 금액
   fifth: 5000,
 };
 
+const ERROR = { // 에러 메세지
+  COMMON: '[ERROR]',
+  PURCHASE_AMOUNT: '구입하는 금액은 숫자로만 입력해야 합니다.',
+  PURCHASE_UNIT: '구입하는 금액은 1,000단위로 입력해야 합니다.',
+  ZERO: '0개는 구매하실 수 없습니다.',
+  SIX_LENGTH: '당첨번호는 쉼표(,)로 구분되며, 6개의 숫자를 입력해야 합니다.',
+  BONUS: '보너스 번호와 당첨번호는 중복이 없습니다.',
+  OVERLAP: '로또 번호 간에는 중복이 없습니다.',
+  RANGE: '로또 번호는 1~45 까지 입니다.',
+  SIX_COUNT: '로또 번호는 6개입니다.',
+};
+
+module.exports = { GAME, MESSAGE, RANK, PRIZE, ERROR };
