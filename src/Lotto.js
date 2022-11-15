@@ -1,6 +1,7 @@
 const { Console } = require("@woowacourse/mission-utils");
 const ValidateLotto = require("./validation/ValidateLotto");
 const MakeWinResult = require("./components/MakeWinResult");
+const { INPUT_MSG } = require("./constants");
 
 class Lotto {
   #numbers;
@@ -16,7 +17,7 @@ class Lotto {
 
   inputBonusNumber(lotteries) {
     let bonusNumber;
-    Console.readLine("\n보너스 번호를 입력해 주세요,\n", (number) => {
+    Console.readLine(INPUT_MSG.BONUS_MSG, (number) => {
       bonusNumber = number;
 
       const makeWinResult = new MakeWinResult(

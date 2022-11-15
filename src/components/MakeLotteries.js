@@ -1,5 +1,13 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
 const Lotto = require("../Lotto");
+const {
+  ERROR_MSG,
+  INPUT_MSG,
+  MIN_NUMBER,
+  MAX_NUMBER,
+  LOTTO_NUMBERS,
+  DIVISION_UNIT,
+} = require("../constants");
 
 class MakeLotteries {
   #lotteries = [];
@@ -8,7 +16,7 @@ class MakeLotteries {
 
   constructor(amount) {
     this.validateAmount(amount);
-    this.#quantity = +amount / 1000;
+    this.#quantity = +amount / DIVISION_UNIT;
     this.makeRandomLotteries(this.#quantity);
   }
 
@@ -29,7 +37,11 @@ class MakeLotteries {
   }
 
   makeRandomNumbers() {
-    this.#lottery = Random.pickUniqueNumbersInRange(1, 45, 6);
+    this.#lottery = Random.pickUniqueNumbersInRange(
+      MIN_NUMBER,
+      MAX_NUMBER,
+      LOTTO_NUMBERS
+    );
     this.sortLottery(this.#lottery);
     this.#lotteries.push(this.#lottery);
   }
@@ -39,14 +51,14 @@ class MakeLotteries {
   }
 
   validateAmount(amount) {
-    if (amount % 1000 !== 0) {
-      throw new Error("[ERROR]구매 금액은 1000원 단위로 입력해주세요.");
+    if (amount % DIVISION_UNIT !== 0) {
+      throw new Error(ERROR_MSG.OUT_OF_AMOUNT);
     }
   }
 
   inputSixNumbers() {
     let inputNumbers = [];
-    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (numbers) => {
+    Console.readLine(INPUT_MSG.NUMBERS_MSG, (numbers) => {
       inputNumbers = numbers.split(",").map((v) => +v);
       const lotto = new Lotto(inputNumbers);
       lotto.inputBonusNumber(this.#lotteries);

@@ -1,5 +1,11 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { MATCH_MSG, PAYOUT, MIN_MATCH, MAX_MATCH } = require("../constants");
+const {
+  MATCH_MSG,
+  PAYOUT,
+  MIN_MATCH,
+  MAX_MATCH,
+  DIVISION_UNIT,
+} = require("../constants");
 
 class Statistic {
   #result;
@@ -26,7 +32,10 @@ class Statistic {
       sumOfPayout += +winner * PAYOUT[idx];
     });
 
-    this.#profit = ((sumOfPayout / (this.#quantity * 1000)) * 100).toFixed(1);
+    this.#profit = (
+      (sumOfPayout / (this.#quantity * DIVISION_UNIT)) *
+      100
+    ).toFixed(1);
   }
 
   printStatistic() {
