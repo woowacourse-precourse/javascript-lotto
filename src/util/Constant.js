@@ -1,5 +1,5 @@
 const LOTTO_PRICE = 1000;
-const LOTTO_COUNT = 6;
+const LOTTO_LENGTH = 6;
 const LOTTO_MIN = 1;
 const LOTTO_MAX = 45;
 
@@ -62,7 +62,7 @@ const RESULT_CORRECT = {
 
 module.exports = {
   LOTTO_PRICE,
-  LOTTO_COUNT,
+  LOTTO_LENGTH,
   LOTTO_MIN,
   LOTTO_MAX,
   LOTTO_MESSAGE,

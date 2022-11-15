@@ -1,6 +1,6 @@
 const {
   LOTTO_ERROR,
-  LOTTO_COUNT,
+  LOTTO_LENGTH,
   LOTTO_MIN,
   LOTTO_MAX,
 } = require("./util/Constant");
@@ -27,12 +27,12 @@ class Lotto {
     }
   }
   checkLength(numbers) {
-    if (numbers.length !== LOTTO_COUNT) {
+    if (numbers.length !== LOTTO_LENGTH) {
       throw new Error(LOTTO_ERROR.LENGTH);
     }
   }
   checkRepeat(numbers) {
-    if ([...new Set(numbers)].length !== LOTTO_COUNT) {
+    if ([...new Set(numbers)].length !== LOTTO_LENGTH) {
       throw new Error(LOTTO_ERROR.REPEAT);
     }
   }
