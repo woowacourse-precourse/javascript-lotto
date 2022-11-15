@@ -1,6 +1,7 @@
 const InputWinningNum = require("./InputWinningNum");
 const CreateRandomLotto = require("./CreateRandomLotto");
-
+const {ERROR_MESSAGE} = require("./Constants");
+const {DUPLICATE_WINNING_BONUS} = ERROR_MESSAGE;
 class NumberCompare{
     constructor(){
         this.inputWinningNum = new InputWinningNum();
@@ -15,7 +16,7 @@ class NumberCompare{
 
     sameWinningNumBonusNum(winningNum, bonusNum){
          if(winningNum.includes(bonusNum[0])){
-            throw new Error("[ERROR] 당첨번호와 보너스번호의 숫자가 중복됩니다");
+            throw new Error(DUPLICATE_WINNING_BONUS);
             }
         }
     

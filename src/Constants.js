@@ -10,7 +10,8 @@ const ERROR_MESSAGE = {
     NOT_BETWEEN_NUMBER: "[ERROR] 로또 번호는 1이상 45이하여야 합니다.",
     DUPLICATE_NUMBER: "[ERROR] 로또 번호안에 중복 숫자가 존재합니다.",
     IS_NOT_NUMBER : "[ERROR] 로또의 값이 숫자가 아닙니다.",
-    NOT_THOUSAND_UNIT : "[ERROR] 구입 금액은 1000원 단위입니다."
+    NOT_THOUSAND_UNIT : "[ERROR] 구입 금액은 1000원 단위입니다.",
+    DUPLICATE_WINNING_BONUS : "[ERROR] 당첨번호와 보너스번호의 숫자가 중복됩니다."
 };
 
 const REWARD_MESSAGE = {
