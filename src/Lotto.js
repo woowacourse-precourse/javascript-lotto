@@ -19,9 +19,15 @@ class Lotto {
   validateLotto() {
     this.validate(this.#numbers);
     Console.print('당첨 번호를 받는 것까지 성공했습니다.');
+    this.getGuessBonusLotto(this.#numbers);
   }
 
   
+
+  getStatics(guessLottoArray, guessBonusArr) {
+
+  }
+
 }
 
 module.exports = Lotto;
