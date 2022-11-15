@@ -42,6 +42,7 @@ class App {
 		});
 
 		this.showResult();
+		this.showProfitPercent();
 	}
 
 	lottoPublish(count) {
@@ -86,6 +87,21 @@ class App {
 		if (lotto.includes(this.bonusNumber)) {
 			this.#result.bonus += 1;
 		}
+	}
+
+	showProfitPercent() {
+		const profitPercent = this.calculate(this.pay, this.#result);
+		printProfitPercent(profitPercent);
+	}
+
+	calculate(pay, result) {
+		let profit = 0;
+
+		for (let rank in result) {
+			profit += result[rank] * BENEFIT[rank];
+		}
+
+		return Math.round((profit / pay) * 1000) / 10;
 	}
 }
 

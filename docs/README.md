@@ -60,7 +60,7 @@
   - [x] 로또 번호에 당첨 번호가 포함되어있는지 확인 -> App#getResult()
     - [x] 로또 번호에 보너스 번호가 포함되어있는지 확인 -> App#checkBonus()
     - [x] 포함되어있는 숫자가 있을 경우 카운트 -> App#checkWinning()
-- [] 수익률을 계산 -> App#calculate()
-- [] '당첨 통계' 메시지, 구분선 출력
+- [x] 수익률을 계산 -> App#calculate()
+- [x] '당첨 통계' 메시지, 구분선 출력
   - [x] 등수별 갯수 출력 -> Print#printResults()
-  - [] 수익률 출력 -> Print#printProfitPercent()
+  - [x] 수익률 출력 -> Print#printProfitPercent()
