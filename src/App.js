@@ -58,6 +58,12 @@ class App {
 
 	handleBonus(bonus) {
 		this.bonus = new Bonus(Number(bonus), this.lotto);
+		this.evaluate();
+	}
+
+	evaluate() {
+		const score = this.evaluator.getScore(this.tickets, this.lotto, this.bonus);
+		this.book.setEarnings(score);
 	}
 }
 
