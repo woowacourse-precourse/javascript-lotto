@@ -1,4 +1,4 @@
-const Bonus = require("../src/Domians/Bonus");
+const Bonus = require("../src/Domains/Bonus");
 
 describe("보너스 번호 테스트", () => {
   test("보너스 번호가 로또 번호와 중복되면 예외가 발생한다.", () => {
