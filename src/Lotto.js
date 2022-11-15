@@ -16,7 +16,7 @@ class Lotto {
   }
 
   // TODO: 추가 기능 구현
-  checkRedundancy(numbers){//중복성
+  checkRedundancy(numbers){
     const setNumbers = new Set(numbers);
     if (numbers.length !== [...setNumbers].length){
       throw new Error("[ERROR] 로또 번호는 중복되면 안됩니다.")

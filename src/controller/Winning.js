@@ -15,14 +15,14 @@ class Winning{
     const check = /^[0-9]+$/;
     input.split(',').forEach((target)=>{
       if(!check.test(target)){
-        throw new Error("[ERROR] 로또 번호는 숫자로 이루어져야 합니다.")
+        throw new Error("[ERROR] 로또 번호는 숫자로 이루어져야 합니다.");
       }
     })
   }
   validateBonus(input){
     const check = /^[0-9]+$/;
     if(!check.test(input)){
-      throw new Error("[ERROR] 보너스 번호는 숫자로 이루어져야 합니다.")
+      throw new Error("[ERROR] 보너스 번호는 숫자로 이루어져야 합니다.");
     }
   }
   checkWinNumbers(win_numbers){
@@ -30,10 +30,10 @@ class Winning{
   }
   checkBonusNumber(bonus_number){
     if(this.model.getWin().includes(bonus_number)){
-      throw new Error("[ERROR] 보너스 번호는 당첨 번호에 포함되면 안됩니다")
+      throw new Error("[ERROR] 보너스 번호는 당첨 번호에 포함되면 안됩니다");
     }
     if(bonus_number<1 || bonus_number>45){
-      throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.")
+      throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
   }
   controllWin(input){

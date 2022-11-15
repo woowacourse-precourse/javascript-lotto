@@ -1,5 +1,5 @@
-const Model = require("../model/Model")
-const View = require("../view/View")
+const Model = require("../model/Model");
+const View = require("../view/View");
 const Profit = require("./Profit");
 
 class Ranks{

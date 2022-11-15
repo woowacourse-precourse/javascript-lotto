@@ -46,7 +46,7 @@ class Model{
   initRank(){
     this.chart.rank = [
       [],[],[],[],[]
-    ]
+    ];
   }
   getRank(){
     return this.chart.rank;

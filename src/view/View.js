@@ -35,7 +35,7 @@ class View{
   printRank(ranks){
     Console.print(this.messages.result_title());
     ranks.forEach((rank,idx)=>{
-      Console.print(this.messages.ranks(rank, idx))
+      Console.print(this.messages.ranks(rank, idx));
     })
   }
   printProfit(profit){

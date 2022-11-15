@@ -5,7 +5,7 @@ describe("수익률 클래스 테스트", () => {
       const profit = new Profit({});
       const result = profit.calculateProfit(3000,50);
 
-      expect(result).toEqual(1666.7)
+      expect(result).toEqual(1666.7);
     });
 
 });

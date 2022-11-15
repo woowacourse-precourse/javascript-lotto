@@ -5,7 +5,7 @@ describe("로또발행 클래스 테스트", () => {
       const publish = new Publish({paid: 5000});
       const result =  publish.calculateNumberOfLotto();
 
-      expect(result).toEqual(5)
+      expect(result).toEqual(5);
     });
 
   test("로또 장수만큼 발행", () => {
@@ -13,6 +13,6 @@ describe("로또발행 클래스 테스트", () => {
     publish.controllPublish();
     const result =  publish.model.getPublished().length;
 
-    expect(result).toEqual(5)
+    expect(result).toEqual(5);
   });
 });

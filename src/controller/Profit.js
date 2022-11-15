@@ -12,17 +12,17 @@ class Profit{
     return roundProfit;
   }
   eachRankPrize(rank){
-    if(rank===0){ return 5 }
-    if(rank===1){ return 50 }
-    if(rank===2){ return 1500 }
-    if(rank===3){ return 30000 }
-    if(rank===4){ return 2000000 }
+    if(rank===0){ return 5; }
+    if(rank===1){ return 50; }
+    if(rank===2){ return 1500; }
+    if(rank===3){ return 30000;}
+    if(rank===4){ return 2000000; }
   }
   calculatePrize(){
     const ranks = this.model.getRank();
     let prize = 0;
     ranks.forEach((rank, index)=>{
-      prize += (rank.length * this.eachRankPrize(index))
+      prize += (rank.length * this.eachRankPrize(index));
     })
     return prize;
   }

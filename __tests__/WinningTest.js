@@ -29,4 +29,4 @@ describe("당첨/보너스 번호 클래스 테스트", () => {
       winning.checkBonusNumber(3);
     }).toThrow("[ERROR]");
   });
-});
+}); 
