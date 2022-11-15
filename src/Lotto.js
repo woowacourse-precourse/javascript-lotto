@@ -1,18 +1,25 @@
+const { validateLotto } = require('./functionValidation')
+
 class Lotto {
-  #numbers;
+    #numbers
 
-  constructor(numbers) {
-    this.validate(numbers);
-    this.#numbers = numbers;
-  }
-
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    constructor(numbers) {
+        validateLotto(numbers)
+        this.#numbers = this.lottoNumberSort(numbers)
     }
-  }
 
-  // TODO: 추가 기능 구현
+    lottoNumberSort(numbers) {
+        function compareNumbers(a, b) {
+            return a - b
+        }
+
+        return numbers.sort(compareNumbers)
+    }
+
+    getNumbers() {
+        return this.#numbers
+    }
+    // TODO: 추가 기능 구현
 }
 
-module.exports = Lotto;
+module.exports = Lotto
