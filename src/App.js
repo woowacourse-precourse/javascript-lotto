@@ -92,6 +92,7 @@ class App {
       this.sixMatch * 2000000000;
       
     this.profitRate = ((sum / (this.numberOfPurchases * 1000)) * 100).toFixed(1);
+    if (this.profitRate.split('.')[1] === "0") this.profitRate = this.profitRate.split('.')[0];
   }
 
   printResult() {
