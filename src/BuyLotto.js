@@ -1,5 +1,5 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
-const { MESSAGE, CONDITION } = require("./constant/constant");
+const { MESSAGE, CONDITION, PRIZE_MONEY } = require("./constant/constant");
 const validate = require("./Validate");
 
 class BuyLotto {
@@ -13,6 +13,7 @@ class BuyLotto {
     thirdPrize,
     secondPrize,
     firstPrize,
+    sum,
     getYield
   ) {
     this.howMany = howMany;
@@ -26,6 +27,7 @@ class BuyLotto {
     this.thirdPrize = thirdPrize;
     this.secondPrize = secondPrize;
     this.firstPrize = firstPrize;
+    this.sum = sum;
     this.getYield = getYield;
   }
 
@@ -97,7 +99,8 @@ class BuyLotto {
     this.thirdPrize = 0;
     this.secondPrize = 0;
     this.firstPrize = 0;
-    this.yield = 0;
+    this.getYield = 0;
+    this.sum = 0;
 
     Console.print(MESSAGE.PRIZE_RESULT);
     Console.print("---");
@@ -133,7 +136,16 @@ class BuyLotto {
           : null;
       }
     }
+    console.log(this.sum);
 
+    this.sum = this.sum + this.firstPrize * PRIZE_MONEY.FIRST_PRIZE;
+    this.sum = this.sum + this.secondPrize * PRIZE_MONEY.SECOND_PRIZE;
+    this.sum = this.sum + this.thirdPrize * PRIZE_MONEY.THIRD_PRIZE;
+    this.sum = this.sum + this.fourthPrize * PRIZE_MONEY.FOURTH_PRIZE;
+    this.sum = this.sum + this.fifthPrize * PRIZE_MONEY.FIFTH_PRIZE;
+    console.log(this.sum);
+
+    this.getYield = (this.sum / (this.howMany * 1000)) * 100;
     this.printResult();
   }
 
@@ -145,7 +157,7 @@ class BuyLotto {
       `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.secondPrize}개`
     );
     Console.print(`6개 일치 (2,000,000,000원) - ${this.firstPrize}개`);
-    Console.print(`총 수익률은 ${this.getYield}입니다`);
+    Console.print(`총 수익률은 ${this.getYield}%입니다`);
   }
 }
 
