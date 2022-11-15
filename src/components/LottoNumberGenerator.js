@@ -12,27 +12,31 @@ class LottoNumberGenerator {
   #winningNumbers = { winnerNumbers: [], bonusNumber: 0 };
 
   drawLottery() {
+    this.inputWinnerNumber();
+    this.inputBonusNumber();
+    return this.#winningNumbers;
+  }
+
+  inputWinnerNumber() {
     Console.readLine(
       MESSAGE.LOTTO_NUMBER_GENERATOR.INPUT_WINNER_NUMBER,
-      this.inputWinnerNumber.bind(this),
+      (numbers) => {
+        const winnerNumbers = numbers.split(',').map((n) => +n);
+        this.#validate(winnerNumbers, 'WINNER_NUMBER');
+        this.#winningNumbers.winnerNumbers = winnerNumbers;
+      },
     );
+  }
 
+  inputBonusNumber() {
     Console.readLine(
       MESSAGE.LOTTO_NUMBER_GENERATOR.INPUT_BONUS_NUMBER,
-      this.inputBonusNumber.bind(this),
+      (number) => {
+        const bonusNumber = number.split(',').map((n) => +n);
+        this.#validate(bonusNumber, 'BONUS_NUMBER');
+        this.#winningNumbers.bonusNumber = bonusNumber[0];
+      },
     );
-  }
-
-  inputWinnerNumber(numbers) {
-    const winnerNumbers = numbers.split(',').map((n) => +n);
-    this.#validate(winnerNumbers, 'WINNER_NUMBER');
-    this.#winningNumbers.winnerNumbers = winnerNumbers;
-  }
-
-  inputBonusNumber(number) {
-    const bonusNumber = number.split(',').map((n) => +n);
-    this.#validate(bonusNumber, 'BONUS_NUMBER');
-    this.#winningNumbers.bonusNumber = bonusNumber[0];
   }
 
   #validate(numbers, type) {
@@ -64,10 +68,6 @@ class LottoNumberGenerator {
     ) {
       throw new Error(makeErrorMsg(RANGE));
     }
-  }
-
-  getNumbers() {
-    return this.#winningNumbers;
   }
 }
 
