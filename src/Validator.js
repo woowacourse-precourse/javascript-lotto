@@ -20,7 +20,6 @@ class Validator {
   }
 
   static isNotExceedAmount(list, len = 6) {
-    console.log('ok is exceed?', list, len, list.length > len);
     if (list.length > len) {
       throw new Error(`[ERROR] ${len}개 이하의 숫자를 입력하세요.`);
     }
@@ -33,17 +32,16 @@ class Validator {
     return true;
   }
 
-  static moneyInputCheckHandler(input) {
+  static moneyInputCheckHandler(input, f) {
     reducer(
       input,
       Validator.isNumber(input),
       Validator.isValidPayAmount(input),
     );
-    return Number(input);
+    return f(Number(input));
   }
 
   static lottoInputCheckHandler(input, len = 6) {
-    console.log(input, len);
     const target = numList(input);
     reducer(
       input,
