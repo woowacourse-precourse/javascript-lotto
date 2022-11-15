@@ -42,6 +42,7 @@ const LOTTO_PRIZE = {
 module.exports = {
   INPUT_MESSAGE,
   ERROR_MESSAGE,
+  RESULT_MESSAGE,
   LOTTO,
   LOTTO_PRIZE,
 };
