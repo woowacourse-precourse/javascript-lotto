@@ -3,12 +3,12 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class Lotto {
   #numbers;
   #bonusNumber;
-  #result;
 
   constructor(numbers) {
+    this.bonusNumber = null;
     this.validate(numbers);
     this.isCorrectNumber(numbers);
-    this.#numbers = numbers;
+    this.setWonLotto(numbers);
     this.inputBonusNumber();
   }
 
@@ -21,6 +21,9 @@ class Lotto {
   isCorrectNumber(numbers) {
     let bit = 0;
     for (let index = 0; index < 6; index++) {
+      if (numbers[index] % 1 > 0) {
+        throw new Error("[ERROR] 로또 번호는 자연수만 입력할 수 있습니다.");
+      }
       if (numbers[index] < 1 || numbers[index] > 45) {
         throw new Error("[ERROR] 로또 번호는 1~45까지만 입력할 수 있습니다.");
       }
@@ -35,11 +38,14 @@ class Lotto {
     MissionUtils.Console.readLine(
       "\n보너스 번호를 입력해 주세요.\n",
       (bonusNumber) => {
+        if (bonusNumber % 1 > 0) {
+          throw new Error("[ERROR] 보너스 번호는 자연수이어야합니다.");
+        }
         if (isNaN(bonusNumber)) {
           throw new Error("[ERROR] 보너스 번호는 숫자이어야합니다.");
         }
-        const BONUS = this.validateBonusNumber(bonusNumber);
-        this.#bonusNumber = BONUS;
+        this.bonusNumber = this.validateBonusNumber(bonusNumber);
+        this.setBonus(this.bonusNumber);
       }
     );
   }
@@ -58,6 +64,14 @@ class Lotto {
       throw new Error("[ERROR] 보너스 번호는 1~45까지만 입력할 수 있습니다.");
     }
     return bonusNumber;
+  }
+
+  setBonus(bonusNumber) {
+    this.#bonusNumber = bonusNumber;
+  }
+
+  setWonLotto(numbers) {
+    this.#numbers = numbers;
   }
 
   getBonus() {

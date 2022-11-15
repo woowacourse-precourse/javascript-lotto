@@ -24,4 +24,21 @@ describe("로또 클래스 테스트", () => {
       new Lotto([1.5, 2, 3, 4, 5, 45]);
     }).toThrow("[ERROR]");
   });
+
+  test("getBonus 메서드가 정상 동작한다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+
+    lotto.setBonus(7);
+
+    const bonusNumber = lotto.getBonus();
+    expect(bonusNumber).toEqual(7);
+  });
+
+  test("getWonLotto 메서드가 정상 동작한다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    lotto.setWonLotto([1, 2, 3, 4, 5, 6]);
+
+    const wonLotto = lotto.getWonLotto();
+    expect(wonLotto).toEqual([1, 2, 3, 4, 5, 6]);
+  });
 });
