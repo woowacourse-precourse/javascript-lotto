@@ -58,16 +58,25 @@ class App {
     Console.print(this.arrayToString(lottos));
   }
 
-  calculateCount(count) {
+  calculateCount(count, bonusCheck) {
     if (count === 3) this.#winList.three++;
     else if (count === 4) this.#winList.four++;
     else if (count === 5) this.#winList.five++;
+    else if (count === 5 && bonusCheck) this.#winList.bonus++;
     else if (count === 6) this.#winList.six++;
+  }
+
+  matchBonus(user) {
+    if (user.indexOf(Bonus) !== -1) {
+      return true;
+    }
+    false;
   }
 
   getResult() {
     this.#numbers.map((userLotto) => {
       let count = this.#lotto.matchNumber(userLotto);
+      let bonusCheck = this.matchBonus(userLotto, bonusCheck);
       this.calculateCount(count);
     });
   }
