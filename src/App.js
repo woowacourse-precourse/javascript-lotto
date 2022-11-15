@@ -14,6 +14,7 @@ const BONUS_ERROR = {
   number: "[ERROR] 보너스 번호는 숫자여야 합니다",
   range: "[ERROR] 로또 번호는 1~45 사이여야 합니다",
 };
+const NUMBER_ERROR = "[ERROR] 잘못된 입력입니다.";
 
 class App {
   userNumbersArray;
@@ -47,13 +48,13 @@ class App {
         Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b)
       );
     }
-
     return userNumbersArray;
   }
 
   MakeLotto() {
     Console.print(INPUT_MESSAGE.winning);
     Console.readLine("", (prizeNums) => {
+      this.validInput(prizeNums);
       this.lotto = new Lotto(prizeNums.split(","));
       this.getBonusNumberAndPrintResult();
     });
@@ -67,6 +68,14 @@ class App {
 
       Console.close();
     });
+  }
+
+  validInput(input) {
+    for (let word of input) {
+      if (isNaN(word) && word !== ",") {
+        throw new Error(NUMBER_ERROR);
+      }
+    }
   }
 
   validateMoney(money) {
