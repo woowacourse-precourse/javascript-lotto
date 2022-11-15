@@ -87,6 +87,16 @@ class App {
     });
   }
 
+  calReturn() { //수익률 계산
+    for (const [result, count] of Object.entries(this.score)) {
+      this.prize += PRIZE[result] * count;
+    }
+    let percentage = (this.prize / this.amount) * 100;
+    percentage = Number(percentage.toFixed(1)).toLocaleString();
+    this.return = percentage;
+    this.printResult();
+  }
+
 
 }
 
