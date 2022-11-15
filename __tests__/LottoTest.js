@@ -36,14 +36,21 @@ describe('Validator 클래스 테스트', () => {
       LottoValidator.checkMoney('1002');
     }).toThrow('[ERROR]');
   });
+
   test('getLottoPurchasenumber는 1000으로 나뉘지 못하면 예외가 발생한다.', () => {
     expect(() => {
       LottoValidator.getLottoPuchaseNumber(1002);
     }).toThrow('[ERROR]');
   });
+
   test('splitLottoNumbers는 6개의 서로 다른 로또번호가 아닐시 예외가 발생한다.', () => {
     expect(() => {
-      LottoValidator.splitLottoNumbers("1,2,3,4,5,5");
+      LottoValidator.splitLottoNumbers('1,2,3,4,5,5');
+    }).toThrow('[ERROR]');
+  });
+  test('splitLottoNumbers는 6개의 번호가 와야 한다.', () => {
+    expect(() => {
+      LottoValidator.splitLottoNumbers('1,2,3,4,5');
     }).toThrow('[ERROR]');
   });
 });
