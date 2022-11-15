@@ -48,4 +48,17 @@ class App {
       this.printWinningStatistics();
     });
   }
+
+  // [v][로또 당첨 통계 전 지정 문구 출력 기능]
+  printWinningStatistics() {
+    const statistics = this.lottoGame.getStatistics();
+
+    Console.print(APP_MESSAGE.OUTPUT_WINNING_STATISTICS);
+
+    for (let i = 0; i < PRINT_LOTTO_MATCH.length; i++) {
+      Console.print(PRINT_LOTTO_MATCH[i](statistics[i]));
+    }
+
+    Console.close();
+  }
 module.exports = App;
