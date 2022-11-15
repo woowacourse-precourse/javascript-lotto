@@ -35,7 +35,7 @@ class LottoGame {
   }
 
   printLottoInfo() {
-    MissionUtils.Console.print(this.lottoCount + "개를 구매했습니다.");
+    print.lottoInfo(this.lottoCount, this.lottos);
     this.lottos.map((lotto) =>
       MissionUtils.Console.print("[" + lotto.join(", ") + "]")
     );
@@ -94,7 +94,7 @@ class LottoGame {
   }
 
   printLottoResult() {
-    MissionUtils.Console.print("\n당첨 통계");
+    print.lottoResult(this.countEachWinningCost, this.purchasePrice);
     MissionUtils.Console.print("---");
     MissionUtils.Console.print(
       `3개 일치 (5,000원) - ${this.countEachWinningCost[0]}개`
