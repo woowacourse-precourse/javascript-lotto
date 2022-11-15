@@ -2,8 +2,8 @@ const inputDataObject = {
   principal: 0,
   inputMoney: 0,
   raffle: [],
+  raffleNumbers: [],
   bonusNumber: 0,
-  publishLotto: [],
   correctNumber: [],
   averageReturn: {
     3: [0, 5000],
