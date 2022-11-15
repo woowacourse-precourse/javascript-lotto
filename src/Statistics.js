@@ -1,5 +1,11 @@
 const { Console } = require("@woowacourse/mission-utils");
-
+const LOTTO_REWARD = {
+  "3hit": 5000,
+  "4hit": 50000,
+  "5hit": 1500000,
+  "5hitBonus": 30000000,
+  "6hit": 2000000000,
+};
 class Statistic {
   #totalCount;
   constructor() {
