@@ -1,5 +1,4 @@
 const { Console } = require("@woowacourse/mission-utils");
-const Mission = require("@woowacourse/mission-utils");
 const { GAME_MESSAGES, LOTTO_INFO } = require("../utils/Constants");
 const LottoUtils = require("../utils/LottoUtils");
 const QuickPick = require("../input/QuickPick");
