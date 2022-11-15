@@ -1,5 +1,5 @@
 const { Random } = require('@woowacourse/mission-utils');
-const { ERROR, MESSAGE, RESULT, LOTTO_NUMBER } = require('./Contants.js');
+const { ERROR, LOTTO_NUMBER } = require('./Contants');
 
 class Input {
   constructor(inputMoney) {
@@ -21,25 +21,20 @@ class Input {
     }
   }
 
-  createRandomLotto(inputCount) {
+  static createRandomLotto(inputCount) {
     const compareLotto = [];
-    for (let i = 0; i < inputCount; i++) {
-      const lottoArray = this.ascendingLottoArray(this.makeRandomLottoNumber());
-      this.compareLotto.push(lottoArray);
+    while (compareLotto.length < inputCount) {
+      const randomLotto = Random.pickUniqueNumbersInRange(
+        LOTTO_NUMBER.MIN_RANGE,
+        LOTTO_NUMBER.MAX_RANGE,
+        LOTTO_NUMBER.COUNT
+      );
+
+      const sortedLotto = randomLotto.sort((a, b) => a - b);
+
+      compareLotto.push(sortedLotto);
     }
     return compareLotto;
-  }
-
-  makeRandomLottoNumber() {
-    return Random.pickUniqueNumbersInRange(
-      LOTTO_NUMBER.MIN_RANGE,
-      LOTTO_NUMBER.MAX_RANGE,
-      LOTTO_NUMBER.COUNT
-    );
-  }
-
-  ascendingLottoArray(lottoArray) {
-    return lottoArray.sort((a, b) => a - b);
   }
 }
 
