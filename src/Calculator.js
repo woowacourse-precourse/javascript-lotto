@@ -22,31 +22,38 @@ class Calculator {
     };
   }
 
+  calcCount(lotto) {
+    let count = 0;
+    lotto.forEach(lottoNumber => {
+      if(this.#winningNumber.includes(lottoNumber)) count++
+    });
+    return count;
+  }
+
   calculateRank() {
     const totalScore = [];
     this.#totalLotto.map((lotto) => {
-      let count = 0;
-      lotto.forEach(lottoNumber => {
-        if(this.#winningNumber.includes(lottoNumber)) count++
-      });
-      totalScore.push(count);
+      totalScore.push(this.calcCount(lotto));
     })
     this.extractScore(totalScore);
   }
 
+  calcScore(score, index) {
+    if(score === 3) {
+      this.#totalScore.three += 1;
+    } else if (score === 4) {
+      this.#totalScore.four += 1;
+    } else if (score === 5) {
+      if(this.#totalLotto[index].includes(this.#bonusNumber)) this.#totalScore.five_bonus += 1;
+      else this.#totalScore.five += 1;
+    } else if (score === 6) {
+      this.#totalScore.six += 1;
+    }
+  }
+
   extractScore(totalScore) {
     totalScore.map((score, index) => {
-      if(score === 3) {
-        this.#totalScore.three += 1;
-      } else if (score === 4) {
-        this.#totalScore.four += 1;
-      } else if (score === 5) {
-        if(this.#totalLotto[index].includes(this.#bonusNumber)) {
-          this.#totalScore.five_bonus += 1;
-        } else this.#totalScore.five += 1;
-      } else if (score === 6) {
-        this.#totalScore.six += 1;
-      }
+      this.calcScore(score, index);
     })
   }
     
