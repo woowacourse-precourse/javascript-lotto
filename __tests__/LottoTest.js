@@ -1,7 +1,7 @@
 const Lotto = require("../src/Lotto");
 const lotto = new Lotto();
 
-describe("로또 클래스 테스트", () => {
+describe("Lotto 클래스 테스트", () => {
   test("가격만큼의 로또를 살 수 있는지 테스트", () => {
     const input = 8000;
     const result = lotto.howManyLotto(input);
