@@ -1,6 +1,8 @@
 const Lotto = require("../src/Lotto/Lotto");
 const { ERROR } = require("../src/Constants");
 
+const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
     expect(() => {
@@ -18,5 +20,9 @@ describe("로또 클래스 테스트", () => {
     expect(() => {
       new Lotto([0, 2, 3, 4, 5, 46]);
     }).toThrow(ERROR.number_out_of_range);
+  });
+
+  test("getNumbers()", () => {
+    expect(lotto.getNumbers()).toEqual([1, 2, 3, 4, 5, 6]);
   });
 });
