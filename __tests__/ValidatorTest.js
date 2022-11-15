@@ -47,6 +47,15 @@ describe('입력 공통 예외 테스트', () => {
         Validator.isBonusRange(input);
       }).toThrow('[ERROR] 1-45사이의 수를 입력하세요.');
     });
+
+    test('보너스 번호 입력 예외', () => {
+      const bonusNumber = '2';
+      const winNumberList = '2,4,5,6,23,53';
+  
+      expect(() => {
+        Validator.inputBonusNumber(bonusNumber, winNumberList);
+      }).toThrow('[ERROR] 보너스 번호는 다른 값을 입력하세요.');
+    });
   })
 
 });
