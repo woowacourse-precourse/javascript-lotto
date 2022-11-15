@@ -1,6 +1,6 @@
 const Lotto = require("./Lotto");
 const { Random } = require("@woowacourse/mission-utils");
-const MESSAGE = require("./Message");
+const MESSAGES = require("./Messages");
 const { LOTTO_PRICE, LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, PRIZE_CRITERIA, PRIZE_MONEY_PRICE} = require("./GameConstants");
 
 class LottoGame {
@@ -28,15 +28,15 @@ class LottoGame {
 
   validatePurchaseAmount(purchaseAmount) {
     if (Number.isNaN(purchaseAmount)) {
-      throw new Error(MESSAGE.ERROR_LOTTO_GAME.NOT_NUMBER_AMOUNT);
+      throw new Error(MESSAGES.ERROR_LOTTO_GAME.NOT_NUMBER_AMOUNT);
     }
 
     if ((purchaseAmount < LOTTO_PRICE)) {
-      throw new Error(MESSAGE.ERROR_LOTTO_GAME.MINIMUM_AMOUNT);
+      throw new Error(MESSAGES.ERROR_LOTTO_GAME.MINIMUM_AMOUNT);
     }
 
     if (!Number.isInteger(purchaseAmount) || purchaseAmount % LOTTO_PRICE) {
-      throw new Error(MESSAGE.ERROR_LOTTO_GAME.UNIT_OF_AMOUNT);
+      throw new Error(MESSAGES.ERROR_LOTTO_GAME.UNIT_OF_AMOUNT);
     }
   }
   
@@ -74,24 +74,24 @@ class LottoGame {
 
   validateBonusNumber(bonus) {
     if (Number.isNaN(Number(bonus))) {
-      throw new Error(MESSAGE.ERROR_LOTTO_GAME.NOT_NUMBER_BONUS);
+      throw new Error(MESSAGES.ERROR_LOTTO_GAME.NOT_NUMBER_BONUS);
     }
 
     if (!Number.isInteger(Number(bonus))) {
-      throw new Error(MESSAGE.ERROR_LOTTO_GAME.NOT_INTEGER_BONUS);
+      throw new Error(MESSAGES.ERROR_LOTTO_GAME.NOT_INTEGER_BONUS);
     }
 
     if (Number(bonus) < LOTTO_MIN_NUMBER || Number(bonus) > LOTTO_MAX_NUMBER) {
-      throw new Error(MESSAGE.ERROR_LOTTO_GAME.OUT_OF_RANGE_BONUS);
+      throw new Error(MESSAGES.ERROR_LOTTO_GAME.OUT_OF_RANGE_BONUS);
     }
 
-    this.checkDuplicationBonusNumber(Number(bonus));
+    this.duplicationBonusException(Number(bonus));
   }
 
-  checkDuplicationBonusNumber(bonus) {
+  duplicationBonusException(bonus) {
     const winningNumber = this.winningLotto.getNumber();
     if (winningNumber.includes(bonus)) {
-      throw new Error(MESSAGE.ERROR_LOTTO_GAME.DUPLICATION_BONUS);
+      throw new Error(MESSAGES.ERROR_LOTTO_GAME.DUPLICATION_BONUS);
     }
   }
 

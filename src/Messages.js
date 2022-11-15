@@ -1,6 +1,6 @@
 const { LOTTO_NUMBER_LENGTH, LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_PRICE } = require("./GameConstants");
 
-const MESSAGE = Object.freeze({
+const MESSAGES = Object.freeze({
   INPUT: {
     PURCHASE_AMOUNT: '구입금액을 입력해 주세요.\n',
     WINNING_NUMBER: '\n당첨 번호를 입력해 주세요.\n',
@@ -39,4 +39,4 @@ const MESSAGE = Object.freeze({
   },
 });
 
-module.exports = MESSAGE;
+module.exports = MESSAGES;

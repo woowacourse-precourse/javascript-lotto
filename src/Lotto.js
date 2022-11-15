@@ -1,4 +1,4 @@
-const MESSAGE = require("./Message");
+const MESSAGES = require("./Messages");
 const { LOTTO_NUMBER_LENGTH, LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER } = require("./GameConstants");
 
 class Lotto {
@@ -10,12 +10,12 @@ class Lotto {
   }
 
   validate(numbers) {
-    this.checkLength(numbers);
+    this.wrongLengthException(numbers);
     numbers.forEach((num, index) => {
-      this.checkNaN(num);
-      this.checkNotInteger(num);
-      this.checkOutOfRange(num);
-      this.checkDuplication(numbers, num, index);
+      this.notNumberException(num);
+      this.notIntegerException(num);
+      this.outOfRangeException(num);
+      this.duplicationException(numbers, num, index);
     });
   }
 
@@ -23,34 +23,34 @@ class Lotto {
     return this.#numbers;
   }
 
-  checkLength(num) {
+  wrongLengthException(num) {
     if (num.length !== LOTTO_NUMBER_LENGTH) {
-      throw new Error(MESSAGE.ERROR_LOTTO.LENGTH);
+      throw new Error(MESSAGES.ERROR_LOTTO.LENGTH);
     }
   }
 
-  checkNaN(num) {
+  notNumberException(num) {
     if (Number.isNaN(Number(num))) {
-      throw new Error(MESSAGE.ERROR_LOTTO.NOT_NUMBER);
+      throw new Error(MESSAGES.ERROR_LOTTO.NOT_NUMBER);
     }
   }
 
-  checkNotInteger(num) {
+  notIntegerException(num) {
     if (!Number.isInteger(num)) {
-      throw new Error(MESSAGE.ERROR_LOTTO.NOT_INTEGER);
+      throw new Error(MESSAGES.ERROR_LOTTO.NOT_INTEGER);
     }
   }
 
-  checkOutOfRange(num) {
+  outOfRangeException(num) {
     if (num < LOTTO_MIN_NUMBER || num > LOTTO_MAX_NUMBER) {
-      throw new Error(MESSAGE.ERROR_LOTTO.OUT_OF_RANGE);
+      throw new Error(MESSAGES.ERROR_LOTTO.OUT_OF_RANGE);
     }
   }
 
-  checkDuplication(numbers, comparisonNumber, comparisonIndex) {
+  duplicationException(numbers, comparisonNumber, comparisonIndex) {
     numbers.forEach((num, index) => {
       if (comparisonNumber === num && comparisonIndex !== index) {
-        throw new Error(MESSAGE.ERROR_LOTTO.DUPLICATION);
+        throw new Error(MESSAGES.ERROR_LOTTO.DUPLICATION);
       }
     });
   }
