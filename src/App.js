@@ -48,7 +48,7 @@ class App {
 
   getBonusNumbers(callback, winningNumbers) {
     Console.readLine(MESSAGES.TAKE_BONUS_NUMBERS, (input) => {
-      ERROR.CHECK_BONUS(input, winningNumbers);
+      ERROR.CHECK_BONUS(Number(input), winningNumbers);
       callback(Number(input));
     });
   }
@@ -117,3 +117,6 @@ class App {
 }
 
 module.exports = App;
+
+let app = new App();
+app.play();
