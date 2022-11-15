@@ -76,6 +76,13 @@ class Game {
         }
     }
 
+    setBonusNumber (bonusNumber) {
+        this.bonusNumber = Number(bonusNumber);
+        this.checkBonusNumber(this.bonusNumber)
+        this.score.setBonusNumber(this.bonusNumber);
+        this.calculateStatics();
+    }
+
 }
 
 module.exports = Game;
