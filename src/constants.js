@@ -18,6 +18,8 @@ const PRIZE_INDEX = {
 const ERROR_MESSAGE = {
     LOTTO_NUMBERS_NOT_SIX_DIGITS: "[ERROR] 로또 번호는 6개여야 합니다.",
     LOTTO_NUMBERS_DUPLICATE: "[ERROR] 로또 번호는 중복되지 않는 6자리 숫자여야 합니다.",
+    NOT_A_NUMBER: "[ERROR]",
+    NOT_VALID_RANGE: "[ERROR] 1~45 사이의 숫자를 입력해주세요.",
 };
 
 module.exports = {

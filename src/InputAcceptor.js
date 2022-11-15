@@ -1,5 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const ErrorChecker = require("./ErrorChecker");
+const ERROR_MESSAGE = require("./constants").ERROR_MESSAGE;
 class InputAcceptor {
 
     static async askPurchaseAmountAsyncAwait() {
@@ -39,12 +40,12 @@ class InputAcceptor {
     }
 
     static checkANumber(number) { //보너스 넘버
-        if (isNaN(number)) throw new Error("[ERROR]");
+        if (isNaN(number)) throw new Error(ERROR_MESSAGE.NOT_A_NUMBER);
         return true;
     }
 
     static checkNumberValidRange(number) {
-        if (number < 1 || number > 45) throw new Error('[ERROR] 1~45 사이의 숫자를 입력해주세요.');
+        if (number < 1 || number > 45) throw new Error(ERROR_MESSAGE.NOT_VALID_RANGE);
     }
 
     static checkWinningLottoNumbersValidation(numberArray) {
