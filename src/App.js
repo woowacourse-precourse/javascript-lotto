@@ -2,6 +2,8 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const PurchaseLotto = require("./PurchaseLotto");
 const Lotto = require("./Lotto");
 const { Helper } = require("./lib/Helper");
+const { LOTTO_REWARD } = require("./constants/Constants");
+const { Message } = require("./constants/Message");
 
 class App {
   #inputMoney = 0;
@@ -87,6 +89,17 @@ class App {
     MissionUtils.Console.print(`6개 일치 (${LOTTO_REWARD.FIRST.toLocaleString()}원) - ${this.#matchingNumberCountObj[6]}개`);
   }
   
+  printRateOfReturn() {
+    let hap = 0;
+    hap += this.#matchingNumberCountObj[3] * LOTTO_REWARD.FIFTH;
+    hap += this.#matchingNumberCountObj[4] * LOTTO_REWARD.FOURTH;
+    hap += this.#matchingNumberCountObj[5] * LOTTO_REWARD.THIRD;
+    hap += this.#matchingNumberCountObj["Bonus"] * LOTTO_REWARD.SECOND;
+    hap += this.#matchingNumberCountObj[6] * LOTTO_REWARD.FIRST;
+    const ratio = ((hap / this.#inputMoney) * 100).toFixed(1);
+    MissionUtils.Console.print(`총 수익률은 ${ratio}%입니다.`);
+    MissionUtils.Console.close();
+  }
 }
 
 module.exports = App;
