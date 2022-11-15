@@ -5,16 +5,14 @@ class Profit {
     this.purchase = purchase;
     this.result = result;
     this.receiveAmount = UNIT.DEFAULT;
-    this.nowCheckRank = UNIT.DEFAULT;
     this.profit = UNIT.DEFAULT;
   }
 
   receiveMoney() {
     const rankNumber = Object.keys(RANK).slice(0, 5);
-    rankNumber.forEach((target) => {
-      this.nowCheckRank = RANK[target];
+    rankNumber.forEach((nowCheckRank) => {
       this.receiveAmount +=
-        this.result[target] * PRIZE_MONEY[this.nowCheckRank];
+        this.result[nowCheckRank] * PRIZE_MONEY[nowCheckRank];
     });
   }
 

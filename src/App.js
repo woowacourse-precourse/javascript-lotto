@@ -15,6 +15,7 @@ const {
   CORRECT,
   UNIT,
 } = require("./utils/constant");
+const { TITLE, LINE, WON, BAR, PCS } = GUIDE;
 
 class App {
   constructor() {
@@ -24,38 +25,37 @@ class App {
     this.profit = UNIT.DEFAULT;
     this.userLotto = UNIT.STORAGE_SPACE;
     this.winNumber = UNIT.STORAGE_SPACE;
-    this.rank = {};
+    this.rankCnt = {};
   }
 
   printResult() {
-    Console.print(`\n${GUIDE.TITLE}\n${GUIDE.LINE}`);
-    const rankNumber = Object.keys(RANK).slice(0, 5).reverse();
-    rankNumber.forEach((nowRank) => {
+    const ranking = Object.keys(RANK).slice(0, 5).reverse();
+    Console.print(`\n${TITLE}\n${LINE}`);
+    ranking.forEach((nowRank) => {
+      const prizeMoney = this.makeWonUnit(PRIZE_MONEY[nowRank]);
       Console.print(
-        `${CORRECT[nowRank]} (${this.divideThousandUnit(
-          PRIZE_MONEY[RANK[nowRank]]
-        )}${GUIDE.WON}) ${GUIDE.BAR} ${this.rank[nowRank]}${GUIDE.PCS}`
+        `${CORRECT[nowRank]} (${prizeMoney}${WON}) ${BAR} ${this.rankCnt[nowRank]}${PCS}`
       );
     });
     Console.print(`${GUIDE.TOTAL_PROFIT} ${this.profit}${GUIDE.PERCENT}`);
   }
 
-  divideThousandUnit(number) {
+  makeWonUnit(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
   getProfit() {
-    const [integer, decimal] = new Profit(this.purchaseAmount, this.rank)
+    const [integer, decimal] = new Profit(this.purchaseAmount, this.rankCnt)
       .calculate()
       .split(".")
       .map(Number);
-    this.profit = `${this.divideThousandUnit(integer)}.${decimal}`;
+    this.profit = `${this.makeWonUnit(integer)}.${decimal}`;
     this.printResult();
     Console.close();
   }
 
   compareNumber() {
-    this.rank = new CompareLotto(
+    this.rankCnt = new CompareLotto(
       this.userLotto,
       this.winNumber,
       this.bonusNumber

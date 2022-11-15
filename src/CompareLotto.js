@@ -48,6 +48,7 @@ class CompareLotto {
         this.ranking[this.saveResult(correctCnt, correctBonus)] += 1;
       }
     });
+
     return this.ranking;
   }
 }
