@@ -11,7 +11,16 @@ class App {
     winningFiveArr = [];
     winningFivePlusBonusArr = [];
     winningSixArr = [];
+    lottoWinningAmountArr = [5000, 50000, 1500000, 30000000, 2000000000];
 
+    rateOfReturn() {
+        let lottoWinnings = this.lottoWinningAmountArr[0] * this.winningThreeArr[0] +
+            this.lottoWinningAmountArr[1] * this.winningFourArr[0] +
+            this.lottoWinningAmountArr[2] * this.winningFiveArr[0] +
+            this.lottoWinningAmountArr[3] * this.winningFivePlusBonusArr[0] +
+            this.lottoWinningAmountArr[4] * this.winningSixArr[0]
+        let rateOfReturn = lottoWinnings / this.purchaseAmountArr[0] * 100
+    }
 
     contrastSix() {
         let countSix = 0;
@@ -22,6 +31,7 @@ class App {
             }
         }
         this.winningSixArr.push(countSix);
+        this.rateOfReturn();
     }
 
     contrastFivePlusBonus() {
