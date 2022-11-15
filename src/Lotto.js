@@ -18,6 +18,18 @@ class Lotto {
       throw new Error("[ERROR] 로또 번호는 중복이 없어야 합니다.");
     }
   }
+
+  validateNumber(numbers) {
+    for (const number of numbers) {
+      this.validateIsInteger(number)
+    }
+  }
+
+  validateIsInteger(number) {
+    if (!Number.isInteger(number)) {
+      throw new Error("[ERROR] 로또 번호는 자연수여야 합니다.");
+    }
+  }
 }
 
 module.exports = Lotto;
