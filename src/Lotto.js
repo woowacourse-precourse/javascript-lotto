@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const { LOTTO_STATUS, PRIZE, MESSAGES, ERROR_MESSAGES } = require("./enum");
 
 class Lotto {
   #numbers;
@@ -22,14 +23,14 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    if (numbers.length !== LOTTO_STATUS.LENGTH) {
+      throw new Error(ERROR_MESSAGES.LENGTH_ERROR);
     }
     this.isValidNumber(numbers);
     const temp = new Set(numbers);
 
     if (temp.size !== numbers.length) {
-      throw new Error("[ERROR] 로또 번호는 중복되어서는 안됩니다.");
+      throw new Error(ERROR_MESSAGES.OVERLAP_ERROR);
     }
   }
 
@@ -38,10 +39,13 @@ class Lotto {
 
     for (let index = 0; index < numbers.length; index++) {
       if (regExp.test(numbers[index])) {
-        throw new Error("[ERROR] 숫자만 입력할 수 있습니다.");
+        throw new Error(ERROR_MESSAGES.INPUT_ERROR);
       }
-      if (numbers[index] < 1 || numbers[index] > 45) {
-        throw new Error("[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다.");
+      if (
+        numbers[index] < LOTTO_STATUS.MIN ||
+        numbers[index] > LOTTO_STATUS.MAX
+      ) {
+        throw new Error(ERROR_MESSAGES.RANGE_ERROR);
       }
     }
   }

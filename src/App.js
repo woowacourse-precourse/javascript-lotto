@@ -1,11 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
-
-const FIRST_PRIZE = 2000000000;
-const SECOND_PRIZE = 30000000;
-const THIRD_PRIZE = 1500000;
-const FOURTH_PRIZE = 50000;
-const FIFTH_PRIZE = 5000;
+const { LOTTO_STATUS, PRIZE, MESSAGES, ERROR_MESSAGES } = require("./enum");
 
 class App {
   constructor() {
@@ -17,10 +12,10 @@ class App {
   getPlayerInput() {
     let count;
 
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (input) => {
+    MissionUtils.Console.readLine(MESSAGES.PURCHASE_PRICE_MESSAGE, (input) => {
       this.validateCost(input);
       count = parseInt(input) / 1000;
-      this.printMessage(`${count}개를 구매했습니다.`);
+      this.printMessage(`${count}${MESSAGES.LOTTO_COUNT_MESSAGE}`);
       this.buyLotto(count);
       this.getWinningNumbersInput();
     });
@@ -31,7 +26,7 @@ class App {
     let cost = parseInt(input);
 
     if (cost % 1000) {
-      throw new Error("[ERROR] 1,000원 단위로 입력해야합니다");
+      throw new Error(ERROR_MESSAGES.COST_ERROR);
     }
   }
 
@@ -61,23 +56,27 @@ class App {
 
   printPrize() {
     this.printMessage(
-      `3개 일치 (${FIFTH_PRIZE.toLocaleString()}원) - ${this.result[5]}개\n
-      4개 일치 (${FOURTH_PRIZE.toLocaleString()}원) - ${this.result[4]}개\n
-      5개 일치 (${THIRD_PRIZE.toLocaleString()}원) - ${this.result[3]}개\n
-      5개 일치, 보너스 볼 일치 (${SECOND_PRIZE.toLocaleString()}원) - ${
+      `3개 일치 (${PRIZE.FIFTH_PRIZE.toLocaleString()}원) - ${
+        this.result[5]
+      }개\n
+      4개 일치 (${PRIZE.FOURTH_PRIZE.toLocaleString()}원) - ${
+        this.result[4]
+      }개\n
+      5개 일치 (${PRIZE.THIRD_PRIZE.toLocaleString()}원) - ${this.result[3]}개\n
+      5개 일치, 보너스 볼 일치 (${PRIZE.SECOND_PRIZE.toLocaleString()}원) - ${
         this.result[2]
       }개\n
-      6개 일치 (${FIRST_PRIZE.toLocaleString()}원) - ${this.result[1]}개`
+      6개 일치 (${PRIZE.FIRST_PRIZE.toLocaleString()}원) - ${this.result[1]}개`
     );
   }
 
   calcProfit() {
     let totalPrize =
-      this.result[1] * FIRST_PRIZE +
-      this.result[2] * SECOND_PRIZE +
-      this.result[3] * THIRD_PRIZE +
-      this.result[4] * FOURTH_PRIZE +
-      this.result[5] * FIFTH_PRIZE;
+      this.result[1] * PRIZE.FIRST_PRIZE +
+      this.result[2] * PRIZE.SECOND_PRIZE +
+      this.result[3] * PRIZE.THIRD_PRIZE +
+      this.result[4] * PRIZE.FOURTH_PRIZE +
+      this.result[5] * PRIZE.FIFTH_PRIZE;
     let cost = this.myLottery.length * 1000;
     let profit = ((totalPrize / cost) * 100).toFixed(1);
 
@@ -85,7 +84,7 @@ class App {
   }
 
   getWinningNumbersInput() {
-    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (input) => {
+    MissionUtils.Console.readLine(MESSAGES.WINNING_NUMBER_MESSAGE, (input) => {
       this.validateWinningNumbers(input);
       this.getBonusNumberInput();
     });
@@ -95,7 +94,7 @@ class App {
     let splitInput = input.split(",");
     let checkNumber;
 
-    this.validateLength(splitInput, 6);
+    this.validateLength(splitInput, LOTTO_STATUS.LENGTH);
     for (let index = 0; index < splitInput.length; index++) {
       this.isNumber(splitInput[index]);
       checkNumber = parseInt(splitInput[index]);
@@ -105,7 +104,7 @@ class App {
   }
 
   getBonusNumberInput() {
-    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (input) => {
+    MissionUtils.Console.readLine(MESSAGES.BONUS_NUMBER_MESSAGE, (input) => {
       this.validateBonusNumber(input);
       this.getResult(parseInt(input));
     });
@@ -119,7 +118,7 @@ class App {
 
   validateNumberOvelap(number) {
     if (this.winningNumber.includes(number)) {
-      throw new Error("[ERROR] 로또 번호는 중복되어서는 안됩니다.");
+      throw new Error(ERROR_MESSAGES.OVERLAP_ERROR);
     }
   }
 
@@ -128,8 +127,11 @@ class App {
   }
 
   getRandomNumber() {
-    const ret = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-
+    const ret = MissionUtils.Random.pickUniqueNumbersInRange(
+      LOTTO_STATUS.MIN,
+      LOTTO_STATUS.MAX,
+      LOTTO_STATUS.LENGTH
+    );
     ret.sort(function (a, b) {
       if (a > b) {
         return 1;
@@ -139,7 +141,6 @@ class App {
       }
       return 0;
     });
-
     return ret;
   }
 
@@ -147,19 +148,19 @@ class App {
     const regExp = /\D/g;
 
     if (regExp.test(number)) {
-      throw new Error("[ERROR] 숫자만 입력할 수 있습니다.");
+      throw new Error(ERROR_MESSAGES.INPUT_ERROR);
     }
   }
 
   validateLength(numbers, length) {
     if (numbers.length !== length) {
-      throw new Error(`[ERROR] 로또 번호는 ${length}개여야 합니다.`);
+      throw new Error(ERROR_MESSAGES.LENGTH_ERROR);
     }
   }
 
   validateNumberRange(number) {
-    if (number < 1 || number > 45) {
-      throw new Error("[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다.");
+    if (number < LOTTO_STATUS.MIN || number > LOTTO_STATUS.MAX) {
+      throw new Error(ERROR_MESSAGES.RANGE_ERROR);
     }
   }
 
