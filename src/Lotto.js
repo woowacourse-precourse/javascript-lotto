@@ -9,6 +9,7 @@ class Lotto {
   constructor(userInputWinNumbers) {
     this.validate(userInputWinNumbers);
     this.#numbers = userInputWinNumbers;
+    this.calculator = new Calculator();
     this.bonusNumber;
     this.bundle;
     this.resultMap = {
@@ -19,6 +20,8 @@ class Lotto {
       firstGrade: 0,
       loseMoney: 0,
     };
+    this.lottoCount;
+    this.profitRate;
   }
 
   validate(numbers) {
@@ -62,6 +65,11 @@ class Lotto {
       return PRIZE_MATCH.FIVEPLUSBONUS;
     }
     return PRIZE_MATCH[count];
+  }
+
+  profitRateOfUserPurchase(resultMap, UserInputMoney) {
+    const totalprofit = this.calculator.profit(resultMap);
+    return (this.profitRate = this.calculator.profitRate(totalprofit, UserInputMoney));
   }
 
   print() {
