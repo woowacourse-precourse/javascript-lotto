@@ -5,7 +5,7 @@ class InputAcceptor {
 
     static async askPurchaseAmountAsyncAwait() {
         const purchaseAmount = await new Promise(resolve => {
-            MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', resolve)
+            MissionUtils.Console.readLine('구입금액을 입력해 주세요.', resolve)
         });
         this.checkANumber(purchaseAmount);
         return purchaseAmount;
@@ -13,7 +13,7 @@ class InputAcceptor {
 
     static async askWinningLottoNumbers() {
         const answer = await new Promise(resolve => {
-            MissionUtils.Console.readLine('\n당첨 번호를 입력해 주세요.\n', resolve)
+            MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', resolve)
         });
         const answerArray = answer.split(',');
         this.checkWinningLottoNumbersValidation(answerArray);
@@ -23,7 +23,7 @@ class InputAcceptor {
 
     static async askWinningLottoBonusNumber(winningLottoNumbers) {
         const answer = await new Promise(resolve => {
-            MissionUtils.Console.readLine('\n보너스 번호를 입력해 주세요.\n', resolve)
+            MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', resolve)
         });
         this.checkANumber(answer);
         this.checkNumberValidRange(answer);
