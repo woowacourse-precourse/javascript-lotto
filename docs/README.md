@@ -38,6 +38,6 @@
 
 9. 로또 결과 (등수, 갯수, 수익률) 출력하기 (printScore)
 
-10. 수익률 계산하기 (calculateProfit)
+10. 수익률 계산하기 (Calculator.conductRevenue)
 
 11. 게임 종료 (gameOver)
