@@ -1,37 +1,38 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
+const Lotto = require("./Lotto");
 
 class LottoList {
 
-	buyLotto() {
-		Console.readLine("구입금액을 입력해주세요.\n", this.userInput);
-	}
-	
 	userInput = (amount) => {
 		this.isValidAmount(amount);
 	}
 	
 	isValidAmount(amount) {
-		if(parseInt(amount) % 1000 !== 0) {
-				throw new Error("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다."); 
+		if(amount % 1000 !== 0) {
+			throw new Error("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다."); 
 		}
-		this.makeLottoList(amount / 1000);
+		return amount / 1000;
 	}
 	
 	makeLottoList(total) {
-		const lottoList = {};
+		const lottoList = [];
+		const stringedLottoList = [];
 			for(let i = 0; i < total; i++) {
 				let randomNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
 				randomNumbers = randomNumbers.sort((a, b) => a - b);
-				lottoList[i] = randomNumbers;
+				let stringedLottos = `[${randomNumbers.join(', ')}]`;
+				lottoList.push(randomNumbers);
+				stringedLottoList.push(stringedLottos);
 			}
-		this.printLottoList(total, lottoList);
+			return ([lottoList, stringedLottoList]);
 	}
 
 	printLottoList(total, lottoList) {
 		Console.print(`\n${total}개를 구매했습니다.`);
 		for(let i = 0; i < total; i++) {
-			Console.print(lottoList[i]);
+			Console.print(lottoList[i].toString());
 		}
 	}
-
 }
+
+module.exports = LottoList;
