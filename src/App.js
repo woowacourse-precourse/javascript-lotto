@@ -8,6 +8,13 @@ const {
   printLottoResult,
   printProfit,
 } = require("./Output.js");
+const {
+  validateSixLength,
+  validatePurchaseAmount,
+  validateNumber,
+  validateBonusDuplicate,
+  validateBlank,
+} = require("./Exception.js");
 const { Print } = require("./lib/MissionUtils.js");
 const { createLotto } = require("./Random.js");
 const { RESULT_WINNINGS } = require("./ResultMessage.js");
@@ -25,18 +32,26 @@ class App {
     this.saveLottoResult();
   }
   async savePurchaseAmount() {
-    this.$purchaseAmount = await getPurchaseAmount().then(
-      (data) => Number(data) / 1000
+    this.$purchaseAmount = await getPurchaseAmount().then((data) =>
+      validatePurchaseAmount(Number(data))
     );
     printUserPurchaseAmount(this.$purchaseAmount);
   }
   async saveWinningNumber() {
-    this.$winNum = await getWinningNumber().then((data) =>
-      data.split(",").map((v) => +v)
-    );
+    this.$winNum = await getWinningNumber().then((data) => {
+      let splitedData = data.split(",");
+      validateSixLength(splitedData);
+      validateNumber(splitedData);
+      validateBlank(splitedData);
+      return splitedData.map((v) => +v);
+    });
   } //나눌 때 예외처리, 숫자,6개인지
   async saveBonusNumber() {
-    this.$bonus = await getBonusNumber().then((data) => +data);
+    this.$bonus = await getBonusNumber().then((data) => {
+      validateNumber(data.split(""));
+      validateBonusDuplicate(+data, this.$winNum);
+      return +data;
+    });
   }
   saveLottoResult() {
     this.$lottos.forEach((el, i) => {
