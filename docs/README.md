@@ -15,7 +15,7 @@
       - [x] 로또 번호가 1부터 45 사이의 숫자가 아니면 예외가 발생한다.
 - [x] 당첨 번호를 입력 받는다. | #receiveWinningNumbers()
 - [x] 보너스 번호를 입력 받는다. | #receiveBonusNumber()
-- [x] 당첨 번호와 구매자 번호를 비교할 수 있다. | Lotto#compare()
+- [x] 당첨 번호와 구매자 번호를 비교할 수 있다. | Comparator#compare()
   - [ ] 당첨 내역을 출력한다. | #printDetialsOfLotto()
 - [ ] 수익률을 알 수 있다. | Calculator#calculateRateOfReturn()
   - [ ] 수익률을 출력한다. | #printRateOfReturn()
