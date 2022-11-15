@@ -11,7 +11,6 @@ class LottoNumberGenerator {
   sortingNumbers(numbers) {
     const nums = numbers.sort((a, b) => a - b);
 
-    // return "[" + nums.toString().replaceAll(",", ", ").trim() + "]";
     return nums;
   }
 }

@@ -39,7 +39,6 @@ class State {
     }
     this.moneyInput = userInput;
     this.buyLottoCount = parseInt(userInput / 1000);
-    // this.messageOutput.printMesage("");
     this.messageOutput.printMesage(`${this.buyLottoCount}${PURCHACE_MESSAGE}`);
     this.pickuserLottos(this.buyLottoCount);
   }
@@ -53,14 +52,12 @@ class State {
       );
       lottos.push(lotto);
     }
-    // this.messageOutput.printMesage("");
 
     this.buyLottoNumbers = lottos;
     this.callMessage(REQUIRE_WIN_NUMBER_MESSAGE);
   }
 
   callMessage(message) {
-    // this.messageOutput.printMesage(message);
     this.winNumbersInput(message);
   }
 
@@ -94,8 +91,6 @@ class State {
 
   makeResultMessage() {
     const messageArr = [THIRD, FORTH, FIFTH, FIFTHBONUS, SIX];
-    // this.messageOutput.printMesage("당첨 통계");
-    // this.messageOutput.printMesage("---");
 
     messageArr.map((arr) => {
       const message = `${arr.condition} (${arr.price}원) - ${arr.count}개`;
@@ -119,8 +114,6 @@ class State {
 
     new Lotto(splitedNumbers);
     this.winNumbers = splitedNumbers;
-    // this.messageOutput.printMesage("");
-    // this.messageOutput.printMesage("보너스 번호를 입력해 주세요");
     this.bonusNumbersInput("보너스 번호를 입력해 주세요.\n");
   }
   splitNumber(number, flag) {
@@ -128,10 +121,6 @@ class State {
       return parseInt(item);
     });
   }
-  // isNotNumberDuplicate(numberArr) {
-  //   const setNumberArr = new Set(numberArr);
-  //   return setNumberArr.size === 6 ? true : false;
-  // }
 
   isValidateNumberRange(numberArr) {
     let flag = true;
