@@ -8,6 +8,9 @@ const Bonus = require("../model/Bonus");
 class Controller {
   view;
   paymentModel;
+  quickPickModel;
+  lottoModel;
+  bonusModel;
 
   constructor(view) {
     this.view = view;
