@@ -22,7 +22,7 @@
 [:deciduous_tree:] 당첨 내역을 출력한다.
 [:deciduous_tree:] 수익률을 계산한다.
     [:deciduous_tree:] 수익률을 소수점 둘째 자리에서 반올림한다.
-11. 수익률을 출력한다.
+[:deciduous_tree:] 수익률을 출력한다.
 
 ---
 필요 class 종류:
