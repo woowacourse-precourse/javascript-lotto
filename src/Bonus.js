@@ -4,15 +4,17 @@ const { checkBonusLottoNumber } = require("./validation");
 
 class Bonus {
   #bonusNumber;
+  #winningNumber;
 
   constructor(bonusNumber, winningNumber){
+    this.#winningNumber = winningNumber;
     checkBonusLottoNumber(bonusNumber);
-    this.isBonusInLotto(bonusNumber, winningNumber);    
+    this.isBonusInLotto(bonusNumber);
     this.#bonusNumber = bonusNumber;
   }
 
-  isBonusInLotto(bonusNumber, winningNumber) {
-    if (winningNumber.includes(Number(bonusNumber))) {
+  isBonusInLotto(bonusNumber) {
+    if (this.#winningNumber.includes(Number(bonusNumber))) {
       error(ERROR.DUPLICATE);
     }
   }
