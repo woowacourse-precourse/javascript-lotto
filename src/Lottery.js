@@ -7,6 +7,7 @@ const Lotto = require('./Lotto');
 class Lottery {
   #lotto;
   #lottoStore;
+  #lottoResult;
 
   progress() {
     this.getPrice();
@@ -42,12 +43,17 @@ class Lottery {
   getBonusNumber() {
     readLine(INPUT.BONUS_NUMBER, (number) => {
       this.#lotto.setBonus(number);
+      this.printResult();
     });
-    this.printResult();
   }
 
   printResult() {
+    this.#lottoResult = new LottoResult(this.#lotto.getLotto(), this.#lottoStore.getAutoLotto());
     print(OUTPUT.STATISTICS);
+    print()
+
+    print(this.#lottoResult.getResult());
+
   }
 
 }
