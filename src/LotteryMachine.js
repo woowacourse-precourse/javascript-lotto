@@ -1,6 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const { QUESTION, ERR_MSG } = require("./constants/constants");
 const Lotto = require("./Lotto");
+const Bonus = require("./Bonus");
 
 class LotteryMachine {
   #winningNum;
@@ -26,23 +27,18 @@ class LotteryMachine {
       bonusNum = input;
     });
     MissionUtils.Console.close();
-    this.validNum(bonusNum);
-    this.validBonusNum(bonusNum);
-    this.#bonusNum = parseInt(bonusNum);
+    const bonus = new Bonus(this.#winningNum, bonusNum).getBonusNum();
+    this.#bonusNum = bonus;
   }
 
   validNum(value) {
     if (isNaN(+value)) {
+      MissionUtils.Console.close();
       throw new Error(ERR_MSG.notNumber);
     }
     if (!(value >= 1 && value <= 45)) {
+      MissionUtils.Console.close();
       throw new Error(ERR_MSG.notLottoRange);
-    }
-  }
-
-  validBonusNum(value) {
-    if (this.#winningNum.includes(parseInt(value))) {
-      throw new Error(ERR_MSG.notUniqueNumber);
     }
   }
 
