@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { CONSOLE_MESSAGE, PRINT_RESULT, RANK_STRING } = require("./constants");
+const { CONSOLE_MESSAGE, PRINT_RESULT, RANK_STRING, profitRateString } = require("./constants");
 const LottoMachine = require("./LottoMachine");
 const LottoResult = require("./LottoResult");
 const { stringToNumberArray } = require("./utils");
@@ -21,9 +21,9 @@ class App {
 
   showPurchasedLotto() {
     const lottoList = this.#lottoMachine.getLottoList();
-    MissionUtils.Console.print(`\n${lottoList.length}${CONSOLE_MESSAGE.SHOW_PURCHASED_MONEY}`);
+    MissionUtils.Console.print(`${lottoList.length}${CONSOLE_MESSAGE.SHOW_PURCHASED_MONEY}`);
     lottoList.forEach((lotto)=>{
-      MissionUtils.Console.print(lotto.getNumbers());
+      MissionUtils.Console.print(`[${lotto.getNumbers().join(', ')}]`);
     });
     this.inputWinningLotto();
   }
@@ -41,6 +41,7 @@ class App {
       this.showWinningStats();
     });
   }
+
   showWinningStats() {
     this.#result.makeResult();
     MissionUtils.Console.print(PRINT_RESULT.TITLE);
@@ -48,6 +49,13 @@ class App {
       const ranking = this.#result.getRank();
       MissionUtils.Console.print(`${RANK_STRING[rank]} - ${ranking[rank] ? 1 : 0}개`);
     })
+    this.showProfitRate();
+  }
+
+  showProfitRate() {
+    const profitRate = this.#result.haveProfitRate(this.#money);
+    MissionUtils.Console.print(profitRateString(profitRate));
+    MissionUtils.Console.close();
   }
 }
 
