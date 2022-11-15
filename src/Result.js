@@ -5,24 +5,30 @@ class Result {
     this.myMoney = myMoney;
     this.collectCount = [0, 0, 0, 0, 0];
   }
+
   statistics(bundle, numbers, bonus) {
     for (let i = 0; i < bundle.length; i++) {
-      let count = 0;
       let bonusCount = 0;
       if (bundle[i].includes(bonus)) {
         bonusCount += 1;
       }
-      for (let j = 0; j < bundle[i].length; j++) {
-        if (bundle[i].includes(numbers[j])) {
-          count += 1;
-        }
-      }
-      this.setCount(count, bonusCount);
+      let count = this.setCount(bundle[i], numbers);
+      this.setCollectCount(count, bonusCount);
     }
     this.calculationResult();
   }
 
-  setCount(count, bonusCount) {
+  setCount(lotto, numbers) {
+    let count = 0;
+    for (let i = 0; i < lotto.length; i++) {
+      if (lotto.includes(numbers[i])) {
+        count += 1;
+      }
+    }
+    return count;
+  }
+
+  setCollectCount(count, bonusCount) {
     if (count === 3) {
       this.collectCount[0]++;
     }
