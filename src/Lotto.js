@@ -1,9 +1,4 @@
-const {
-  isCorrectLength,
-  isOnlyNumber,
-  isDuplicate,
-  isOverFlow,
-} = require("./Validation");
+const { isCorrectLength, isOnlyNumber, isDuplicate, isOverFlow } = require("./Validation");
 class Lotto {
   #numbers;
 

@@ -30,10 +30,7 @@ class Statistic {
   }
   countRank(lottoNumbers, winningNumber) {
     lottoNumbers.forEach((lottoNumber) => {
-      const rank = this.checkRank(
-        this.countHit(lottoNumber, winningNumber),
-        this.checkBonusNumber(lottoNumber, winningNumber)
-      );
+      const rank = this.checkRank(this.countHit(lottoNumber, winningNumber), this.checkBonusNumber(lottoNumber, winningNumber));
       if (rank) {
         this.#totalCount[rank] = this.#totalCount[rank] += 1;
       }
@@ -82,26 +79,16 @@ class Statistic {
     }
   }
   showCount(hit) {
-    Console.print(
-      `${hit}개 일치 ` +
-        `(${this.formatingNumber(LOTTO_REWARD[hit + "hit"])}원) ` +
-        `- ${this.#totalCount[hit + "hit"]}개`
-    );
+    Console.print(`${hit}개 일치 ` + `(${this.formatingNumber(LOTTO_REWARD[hit + "hit"])}원) ` + `- ${this.#totalCount[hit + "hit"]}개`);
     if (hit === 5) {
       this.showBonusCount();
     }
   }
   showBonusCount() {
-    Console.print(
-      `5개 일치, 보너스 볼 일치 (${this.formatingNumber(
-        LOTTO_REWARD["5hitBonus"]
-      )}원) - ${this.#totalCount["5hitBonus"]}개`
-    );
+    Console.print(`5개 일치, 보너스 볼 일치 (${this.formatingNumber(LOTTO_REWARD["5hitBonus"])}원) - ${this.#totalCount["5hitBonus"]}개`);
   }
   showLotteryReturn() {
-    Console.print(
-      `총 수익률은 ${this.formatingNumber(this.#totalReturn)}%입니다.\n`
-    );
+    Console.print(`총 수익률은 ${this.formatingNumber(this.#totalReturn)}%입니다.\n`);
   }
   formatingNumber(number) {
     return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
