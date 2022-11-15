@@ -53,7 +53,9 @@ class App {
     });
   }
   inputBonusNumber(bonusNumber) {
-    this.bonusNumber = (bonusNumber) => {};
+    this.bonusNumber = (bonusNumber) => {
+      if (number < 1 || number > 45) throw new Error(ERROR_MESSAGE.RANGE);
+    };
   }
 }
 
