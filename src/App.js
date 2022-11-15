@@ -125,6 +125,7 @@ class App {
 
   static returnRatePrinter(returnRate) {
     this.printer(`총 수익률은 ${returnRate}%입니다.`);
+    Console.close();
   }
 
   play() {
