@@ -39,6 +39,15 @@ class Judge {
       }
     }
   }
+
+  isLottoInputLengthValid(lottoInput) {
+    if (lottoInput.length !== 6) {
+      MissionUtils.Console.print(
+        "[ERROR] 당첨 번호는 6개로 이루어져야 합니다."
+      );
+      throw new Error("[ERROR] 당첨 번호는 6개로 이루어져야 합니다.");
+    }
+  }
 }
 
 module.exports = Judge;
