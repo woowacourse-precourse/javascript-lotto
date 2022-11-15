@@ -109,17 +109,19 @@ class Game {
     Console.print('---');
 
     this.countArr.forEach((count, idx) => {
-      if(idx !== 3){
-        Console.print(`${this.static[idx].match}개 일치 (${this.static[idx].prize.toLocaleString()}원) - ${count}개`);
-      }
-      else{
-        Console.print(`${this.static[idx].match}개 일치, 보너스 볼 일치 (${this.static[idx].prize.toLocaleString()}원) - ${count}개`);
-      }
+      this.resultMessage(count, idx);
     });
 
     Console.print(`총 수익률은 ${this.earningPercent}%입니다.`);
   }
 
+  resultMessage(count, idx){
+    if(idx === 3){
+      Console.print(`${this.static[idx].match}개 일치, 보너스 볼 일치 (${this.static[idx].prize.toLocaleString()}원) - ${count}개`);
+    }
+    
+    return Console.print(`${this.static[idx].match}개 일치 (${this.static[idx].prize.toLocaleString()}원) - ${count}개`);
+  }
 
 }
 
