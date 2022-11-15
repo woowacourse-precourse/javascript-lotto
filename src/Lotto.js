@@ -2,6 +2,7 @@ const ERROR_LOTTO_SIZE_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.
 const ERROR_LOTTO_IS_INT_MESSAGE = "[ERROR] 로또 번호는 자연수여야 합니다.";
 const ERROR_LOTTO_OVERLAP_MESSAGE = "[ERROR] 로또 번호는 중복되는 숫자가 없어야 합니다.";
 const ERROR_LOTTO_VALUE_MESSAGE = "[ERROR] 로또 번호는 1 ~ 45 사이의 숫자입니다.";
+const ERROR_LOTTO_IS_ASCENDING_MESSAGE = "[ERROR] 로또 번호는 오름차순이어야 합니다.";
 
 class Lotto {
   #numbers;
@@ -20,6 +21,7 @@ class Lotto {
     this.checkLottoIsInt(numbers);
     this.checkLottoOverlap(numbers);
     this.checkLottoValue(numbers);
+    this.checkLottoIsAscending(numbers);
   }
 
   checkLottoSize(numbers) {
@@ -56,7 +58,13 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
+  checkLottoIsAscending(numbers) {
+    for(let i = 0; i < numbers.length - 1; i++) {
+      if(numbers[i] > numbers[i + 1]) {
+        throw new Error(ERROR_LOTTO_IS_ASCENDING_MESSAGE);
+      }
+    }
+  }
 }
 
 module.exports = Lotto;
