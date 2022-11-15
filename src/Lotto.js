@@ -14,12 +14,11 @@ class Lotto {
       throw Error.OVERLAP_ERROR
     }
   }
-}
-rangeIsValid(max, min) {
-  if (max > 45 || min < 1) {
-    throw Error.RANGE_ERROR
+  rangeIsValid(max, min) {
+    if (max > 45 || min < 1) {
+      throw Error.RANGE_ERROR
+    }
   }
-}
 
   // TODO: 추가 기능 구현
 }

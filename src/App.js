@@ -26,11 +26,19 @@ class App {
       this.winNumber(numbers)
     });
   }
+  inputBonusNumber() {
+    MissionUtils.Console.readLine(Notice.INPUT_BONUSNUMBER, (numbers) => {
+      this.bonusnumber = numbers
+      this.checkNumber()
+    });
+  }
   winNumbers(numbers) {
     numbers = numbers.split(',')
     this.numbersRange(numbers)
     this.Lotto.validate(numbers)
     this.winNumber = numbers
+    this.checkNumber()
+    this.inputBonusNumber()
   }
   createRandomNumber(number) {
     const lottoLength = money / 1000;
@@ -51,6 +59,14 @@ class App {
     const min = Math.min(...numbers)
 
     this.Lotto.rangeIsValid(max, min)
+  }
+  checkNumber() {
+    console.log(this.raffleNumber)
+
+    for (let i = 0; i < this.raffleNumber.length; i++) {
+      let winningNumber = this.raffleNumber[i].filter(x => this.Winnumber.includes(x))
+      console.log(winningNumber)
+    }
   }
 }
 
