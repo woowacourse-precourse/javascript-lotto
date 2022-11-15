@@ -12,7 +12,15 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
+  matchNumbers(ticket){
+    let match = 0;
+    const ticketNumbers = ticket.getNumbers();
+    ticketNumbers.forEach(ticketNumber => {
+      this.#numbers.includes(ticketNumber) ? match++ : null
+    })
+    return match;
+  }
+
 }
 
 module.exports = Lotto;
