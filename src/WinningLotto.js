@@ -3,7 +3,18 @@ const messages = require("./constants/messages.js");
 const terms = require("./constants/terms");
 
 class WinningLotto {
-  constructor(numbers) {}
+  constructor(numbers) {
+    this.createWinningNumber(numbers);
+  }
+
+  createWinningNumber(numbers) {
+    const { result, errorMessage } = this.checkWinningNumber(numbers);
+    if (!result) {
+      MissionUtils.Console.close();
+      MissionUtils.Console.print(errorMessage);
+      throw new Error(errorMessage);
+    }
+  }
 
   checkWinningNumber(lottoNumber) {
     const lottoArray = lottoNumber.split(",");
