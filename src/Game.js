@@ -49,6 +49,10 @@ class Game {
         this.inputCorrectNumbers();
     }
 
+    inputCorrectNumbers () {
+        InputOutput.input(Message.PLEASE_TYPING_CORRECT_NUMBER , (correct) => {this.setCorrectNumber(correct)
+    })}
+
 }
 
 module.exports = Game;
