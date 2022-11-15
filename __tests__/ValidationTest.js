@@ -1,6 +1,6 @@
 const { validateNumber } = require('../src/utils/validation');
 
-describe('validation 테스트', () => {
+describe('validation.js 테스트', () => {
   test('보너스 번호 유효 검증 : 0', () => {
     expect(() => {
       const input = 0;
