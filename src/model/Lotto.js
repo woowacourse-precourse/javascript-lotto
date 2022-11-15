@@ -16,7 +16,7 @@ class Lotto {
   }
 
   validate(numbers) {
-    Validator.WinnigLottoNumberValidator(
+    Validator.winnigLottoNumberValidator(
       numbers[NUMBER_TYPE.WINNING_NUMBER],
       numbers[NUMBER_TYPE.BONUS_NUMBER]
     );
