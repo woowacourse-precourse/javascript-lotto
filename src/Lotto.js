@@ -1,3 +1,8 @@
+const Random = require("@woowacourse/mission-utils").Random;
+const Console = require("@woowacourse/mission-utils").Console;
+const inputValidation = require("./inputValidation");
+const { INPUTS } = require("./constants");
+
 class Lotto {
   #numbers;
 
@@ -6,13 +11,21 @@ class Lotto {
     this.#numbers = numbers;
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+  get inputLottoNumbers() {
+    return this.#numbers;
   }
 
-  // TODO: 추가 기능 구현
+  set inputLottoNumbers(value) {
+    const inputArr = value.split(",").map((value) => Number(value));
+    this.#numbers = inputArr;
+  }
+
+  validate(numbers) {
+    const checkSixNum = inputValidation.checkSixNum(numbers);
+    const checkNoOverlap = inputValidation.checkNoOverlap(numbers);
+    const checkLottoRange = inputValidation.checkLottoRange(numbers);
+    if (checkSixNum && checkNoOverlap && checkLottoRange) return true;
+  }
 }
 
 module.exports = Lotto;
