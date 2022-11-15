@@ -50,8 +50,12 @@ class LottoDrawer {
     });
   }
 
-  run(lottos) {
+  setPurchasedLottos(lottos) {
     this.winnerSelector.lottos = lottos;
+  }
+
+  run(lottos) {
+    this.setPurchasedLottos(lottos);
 
     Console.readLine('\n당첨 번호를 입력해 주세요. (,로 구분하여 입력하세요.)\n', (numbers) => {
       this.setWinnerNumber(numbers);
