@@ -21,6 +21,25 @@ const INFORMATION_MESSAGE = Object.freeze({
   INPUT_BONUS_NUMBER: '보너스 번호를 입력해 주세요.\n',
 });
 
+const PRINT_MESSAGE = (printValue, printValue2) => {
+  return {
+    PRINT_INFORMATION_PURCHASED_LOTTO: `${printValue}개를 구매했습니다.`,
+    RENDER_LOTTO_NUMBER: `[${printValue}]`,
+    RESULT: `당첨 통계`,
+    HORIZONTAL_DELIMITER: `---`,
+    PROFIT_RATE: `총 수익률은 ${printValue}%입니다.`,
+    RANK_PRICE_COUNT: `${printValue}${printValue2}개`,
+  };
+};
+
+const LOTTO_RANKING_INFORMATION_MESSAGE = Object.freeze({
+  '1등': `6개 일치 (2,000,000,000원) - `,
+  '2등': `5개 일치, 보너스 볼 일치 (30,000,000원) - `,
+  '3등': `5개 일치 (1,500,000원) - `,
+  '4등': `4개 일치 (50,000원) - `,
+  '5등': `3개 일치 (5,000원) - `,
+});
+
 const LOTTO_RANKING_REWARD = Object.freeze({
   '1등': 2_000_000_000,
   '2등': 30_000_000,
@@ -37,4 +56,12 @@ const RANKING_ACCORDING_MATCH_COUNT = Object.freeze({
   3: '5등',
 });
 
-module.exports = { RULES, ERROR_MESSAGE, INFORMATION_MESSAGE, LOTTO_RANKING_REWARD, RANKING_ACCORDING_MATCH_COUNT };
+module.exports = {
+  RULES,
+  ERROR_MESSAGE,
+  INFORMATION_MESSAGE,
+  PRINT_MESSAGE,
+  LOTTO_RANKING_INFORMATION_MESSAGE,
+  LOTTO_RANKING_REWARD,
+  RANKING_ACCORDING_MATCH_COUNT,
+};
