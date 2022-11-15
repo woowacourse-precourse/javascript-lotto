@@ -24,6 +24,8 @@ const MESSAGE = {
   Six: 6,
   LOTTO_EQUAL_MESSAGE: '개 일치',
   WON: '원',
+  YIELD_START_MESSAGE: '총 수익률은 ',
+  YIELD_END_MESSAGEL: '입니다.',
 };
 
 module.exports = MESSAGE;
