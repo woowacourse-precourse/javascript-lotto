@@ -1,6 +1,5 @@
-//예제테스트
 const { LottoNumberData } = require('./components/lotto-data/LottoNumberData');
-//constant
+// constant
 const {
   RESTRICTIONS,
   ERROR_MESSAGE,
