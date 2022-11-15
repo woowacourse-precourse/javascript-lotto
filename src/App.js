@@ -39,4 +39,13 @@ class App {
     });
   }
 
+  // [v][사용자가 보너스 번호 입력 후에 메서드 순서대로 호출 기능]
+  readBonusNumber() {
+    Console.readLine(APP_MESSAGE.INPUT_BONUS_NUMBER, (userInputString) => {
+      const bonusNumber = Number(userInputString);
+      this.lottoGame.setBonusNumbers(bonusNumber);
+
+      this.printWinningStatistics();
+    });
+  }
 module.exports = App;
