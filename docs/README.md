@@ -5,8 +5,10 @@
 ## 🚀 기능 목록
 
 - [v] 로또 구입 가격을 입력받는다. `getInputPurchaseAmount()`
-- [v] 로또 구입 가격에 해당되는 로또의 총 갯수를 계산한다. `calculateNumberOfTickets()`, `manageInputPurchaseAmout()` -> 입력받은 값을 관리하는 함수
-- [ ] 중복되지 않는 6개의 숫자를 로또의 총 갯수만큼 생성한다. `generateTickets()`
+- [v] 로또 구입 가격에 해당되는 로또의 총 갯수를 계산한다. `calculateNumberOfTickets()` 
+`manageInputPurchaseAmout()` -> 로또 구매 금액 입력값을 관리하는 함수
+- [ ] 중복되지 않는 6개의 숫자를 생성한다. `createTicketNumbers()`
+`manageTickets()` -> 자동발행되는 티켓을 관리하는 함수
 - [ ] 발행한 로또 수량 및 번호를 출력한다. 로또 번호는 오름차순으로 정렬하여 보여준다. `printTickets()`
 - [ ] 로또 당첨 번호와 보너스 번호를 입력받는다. `getInputLottoNumber()`, `getInputBonusNumber()`
 - [ ] 사용자가 잘못된 값을 입력할 경우 `throw`문을 사용해 예외를
