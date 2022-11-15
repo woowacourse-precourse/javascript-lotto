@@ -19,7 +19,7 @@ class App {
       const money = Number(answer);
       this.purchasedLottos = this.store.buy(money);
 
-      input_winningNum();
+      this.input_winningNum();
     })
   }
   
@@ -29,7 +29,7 @@ class App {
 
       this.draw.setWinningNums(numbers);
 
-      input_bonusNum();
+      this.input_bonusNum();
      });
   }
   input_bonusNum() {
