@@ -1,3 +1,4 @@
+const { Console } = require('@woowacourse/mission-utils');
 const { ERROR_MESSAGE, NUMBERS_LIMIT } = require('./constant/constantOfLotto');
 
 const { NOT_SIX_NUMBERS_MESSAGE, INCORRECT_LOTTO_NUMBER_MESSAGE, DUPLICATE_NUMBER_MESSAGE } =
