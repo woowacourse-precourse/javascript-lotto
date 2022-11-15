@@ -91,6 +91,10 @@ class Game {
         InputOutput.close();
     }
 
+    printScore () {
+        InputOutput.output(Message.getStaticsMessage(this.score.getScore()));
+    }
+
 }
 
 module.exports = Game;
