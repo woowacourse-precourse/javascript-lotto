@@ -1,7 +1,16 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const { MESSAGE } = require('./Constant');
+const Lotto = require('./Lotto')
 
 class MadeNumber {
+
+  static getLottoNumber() {
+    const randomNumberArray = Random.pickUniqueNumbersInRange(1, 45, 6);
+    randomNumberArray.sort((a, b) => {
+      return a - b;
+    })
+    return randomNumberArray;
+  }
 
   static purchaseLotto(answer) {
     if (isNaN(answer)) {
@@ -16,9 +25,22 @@ class MadeNumber {
     return answer / 1000;
   }
 
+  static shuffleNumber(number) {
+    let totalPurchaseArray = [];
+    let purchaseArray = [];
+    while (totalPurchaseArray.length < number) {
+      purchaseArray = MadeNumber.getLottoNumber();
+      Console.print(`[${purchaseArray.join(", ")}]`);
+      totalPurchaseArray.push(purchaseArray);
+    }
+    return totalPurchaseArray;
+  }
+
   static userLotto(answer) {
     let number = MadeNumber.purchaseLotto(answer);
     Console.print(`${number}개를 구매했습니다.`);
+    let randomLotto = MadeNumber.shuffleNumber(number);
+    return randomLotto;
   }
 
 }

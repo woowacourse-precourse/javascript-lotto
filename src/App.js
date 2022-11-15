@@ -1,4 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
+const { MESSAGE } = require('./Constant');
 const MadeNumber = require('./LottoTool');
 
 class App {
@@ -19,5 +20,6 @@ class App {
       this.userNumber();
     })
   }
+
 }
 module.exports = App;
