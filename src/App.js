@@ -1,5 +1,12 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
+const score = {
+  1: 2000000000,
+  2: 30000000,
+  3: 1500000,
+  4: 50000,
+  5: 5000,
+}; 
 class App {
   constructor() {
     this.money = null;
@@ -61,8 +68,16 @@ class App {
       throw new Error("[ERROR] 보너스 번호는 1부터 45까지의 숫자입니다.");
     if(this.winNum.includes(num))
       throw new Error("[ERROR] 당첨번호에 포함되어 있는 번호입니다.");
-      this.bonusNum = bonus;   
+      this.bonusNum = bonus;
+      this.result();
   });
+ }
+ Ranksystem() {
+  let rankSystem = {};
+  for(let i=0; i<6; i++) {
+    rankSystem[i] = 0;
+  }
+  return rankSystem;
  }
   play() {
     this.setMoney();
