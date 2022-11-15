@@ -1,5 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
+const { LOTTO_PRICE, AWARD } = require('./constants');
 
 class App {
   price = 0;
@@ -14,7 +15,7 @@ class App {
     if (!/^[0-9]+$/.test(price)) {
       throw new TypeError('[ERROR] 금액은 숫자만 입력할 수 있습니다.');
     }
-    if (+price % Lotto.LOTTO_PRICE) {
+    if (+price % LOTTO_PRICE) {
       throw new RangeError(
         '[ERROR] 금액은 1,000원 단위로 나누어 떨어져야 합니다.'
       );
@@ -33,7 +34,7 @@ class App {
   }
 
   printLottos() {
-    Console.print(`\n${this.price / Lotto.LOTTO_PRICE}개를 구매했습니다.`);
+    Console.print(`\n${this.price / LOTTO_PRICE}개를 구매했습니다.`);
     this.lottos.forEach((lotto) => {
       lotto.sort((a, b) => a - b);
       Console.print(`[${lotto.join(', ')}]`);
@@ -71,7 +72,7 @@ class App {
   getProfit(result) {
     return (
       Math.round(
-        (result.reduce((total, count, i) => total + count * Lotto.AWARD[i], 0) /
+        (result.reduce((total, count, i) => total + count * AWARD[i], 0) /
           this.price) *
           10000
       ) / 100
@@ -91,7 +92,7 @@ class App {
       '6개 일치',
     ].forEach((stat, i) => {
       Console.print(
-        `${stat} (${Lotto.AWARD[i].toLocaleString()}원) - ${result[i]}개`
+        `${stat} (${AWARD[i].toLocaleString()}원) - ${result[i]}개`
       );
     });
 
