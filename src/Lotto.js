@@ -11,6 +11,10 @@ class Lotto {
   #validate(numbers) {
     Validator.errorIfLottosInvalidFormat(numbers);
   }
+
+  getLotto() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
