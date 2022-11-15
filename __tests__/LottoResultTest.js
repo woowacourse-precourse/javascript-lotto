@@ -21,6 +21,12 @@ describe("로또결과 클래스 테스트", () => {
     expect(result).toEqual('RANK_1');
   });
 
+  test("당첨 번호가 6자리 숫자가 아니면 예외가 발생한다.", () => {
+    expect(() => {
+      new LottoResult([1, 12, 34, 2, 3, 4, 5], 7, new LottoMachine(7000));
+    }).toThrow(ERROR_MESSAGE.WINNING_LOTTO_DUPLICATION_ERROR);
+  });
+
   test("당첨 번호에 중복이 있으면 예외가 발생한다.", () => {
     expect(() => {
       new LottoResult([1, 12, 34, 2, 3, 3], 7, new LottoMachine(7000));
