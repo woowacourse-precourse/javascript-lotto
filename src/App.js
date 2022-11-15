@@ -2,6 +2,8 @@ const { Random, Console } = require("@woowacourse/mission-utils");
 const { MESSAGE, LOTTERY_PRICE, LOTTERY_RESULT, PRIZE_GRADE, PRIZE_PRICE } = require("./Constant");
 const Money = require("./Money");
 const Lotto = require("./Lotto");
+const BonusNumber = require("./BonusNumber");
+
 class App {
   #money;
   #numberOfLottery;
@@ -75,10 +77,14 @@ class App {
     this.getLotteryResult();
   };
 
+  checkIsValidBonusNumber = (bonusNumber, winningNumbers) => {
+    return new BonusNumber(bonusNumber, winningNumbers);
+  };
+
   getBonusNumber = () => {
     Console.readLine(MESSAGE.GET_BONUS_NUMBER, (bonusNumber) => {
       this.#bonusNumber = Number(bonusNumber);
-      // TODO: bonusNumber Validate Test
+      this.checkIsValidBonusNumber(this.#bonusNumber, this.#winningNumbers);
       this.getMatchedCounts();
     });
   };
