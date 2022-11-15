@@ -1,6 +1,6 @@
+const Validation = require("./validator/Validation");
 const { Console } = require("@woowacourse/mission-utils");
 const { RANKING, MATCH } = require("./constants/rule");
-const Validation = require("./validator/Validation");
 
 class Lotto {
   #numbers;

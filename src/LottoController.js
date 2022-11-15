@@ -1,7 +1,7 @@
-const { Console, Random } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const LottoCalculator = require("./LottoCalculator");
 const Validation = require("./validator/Validation");
+const { Console, Random } = require("@woowacourse/mission-utils");
 const { RULE } = require("./constants/rule");
 
 class LottoController {

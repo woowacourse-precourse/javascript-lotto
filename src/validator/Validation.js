@@ -3,7 +3,6 @@ const {
   ERROR_LOTTO,
   ERROR_BONUS,
 } = require("../constants/messages");
-
 const { RULE } = require("../constants/rule");
 
 class Validation {
