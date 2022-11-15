@@ -63,8 +63,18 @@ class App {
     Console.readLine("보너스 번호를 입력해 주세요.\n", (bonusNumber) => {
       this.bonusNumber = new Bonus(bonusNumber);
       this.bonusNumber = bonusNumber;
+      this.compareLotto();
     });
   }
-}
 
-module.exports = App;
+  compareLotto() {
+    const compare = new Compare(
+      this.lottoLists,
+      this.winningNumbers,
+      this.bonusNumber
+    );
+  }
+}
+const app = new App();
+app.play();
+// module.exports = App;
