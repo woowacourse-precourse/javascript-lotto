@@ -17,7 +17,7 @@ class App {
     const lottoShop = new LottoShop(this.money);
     this.userLottosArr = lottoShop.getLottos();
     this.lottosQuantity = lottoShop.getLottosQuantity();
-    Console.print(this.lottosQuantity + InfoMessages.PURCHASE_QUANTITY);
+    Console.print("\n" + this.lottosQuantity + InfoMessages.PURCHASE_QUANTITY);
     this.userLottosArr.forEach((lotto) => {
       Console.print(`[${lotto.join(", ")}]`);
     });
