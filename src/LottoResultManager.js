@@ -19,7 +19,7 @@ class LottoResultManager {
 
   countWin(winRanks) {
     winRanks.forEach((winRank) => {
-      if (winRank !== "NOT_IN_RANK") {
+      if (winRank !== NOT_IN_RANK) {
         this.winCount[winRank]++;
       }
     });

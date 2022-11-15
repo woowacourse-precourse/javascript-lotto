@@ -1,13 +1,13 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-
-const ranks = ["noRank", "noRank", "noRank", "rank5", "rank4", "rank3", "rank1", "rank2"];
-const LOTTO_LENGTH = 6;
-const COUNT_TO_CHECK_BONUS = 5;
+const SETTING = require("./constants/setting");
 
 const ERROR_MESSAGE = {
-  WRONG_LENGTH: "[ERROR] 로또의 숫자는 6개여야 합니다.",
+  WRONG_LENGTH: `[ERROR] 로또의 숫자는 ${SETTING.LOTTO_NUMBER_LENGTH}개여야 합니다.`,
   DUPLICATE: "[ERROR] 로또의 각 숫자들은 중복되지 않아야 합니다.",
 };
+
+const ranks = ["noRank", "noRank", "noRank", "rank5", "rank4", "rank3", "rank1", "rank2"];
+const COUNT_TO_CHECK_BONUS = 5;
 
 class Lotto {
   #numbers;
@@ -26,11 +26,11 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== LOTTO_LENGTH) {
+    if (numbers.length !== SETTING.LOTTO_NUMBER_LENGTH) {
       throw new Error(ERROR_MESSAGE.WRONG_LENGTH);
     }
 
-    if (new Set(numbers).size !== LOTTO_LENGTH) {
+    if (new Set(numbers).size !== SETTING.LOTTO_NUMBER_LENGTH) {
       throw new Error(ERROR_MESSAGE.DUPLICATE);
     }
   }

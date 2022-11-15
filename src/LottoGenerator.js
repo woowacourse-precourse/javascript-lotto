@@ -1,14 +1,12 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
+const SETTING = require("./constants/setting");
 
 const LOTTO_PRICE = 1000;
-const MIN_NUMBER = 1;
-const MAX_NUMBER = 45;
-const PICK_COUNT = 6;
 
 const ERROR_MESSAGE = {
   WRONG_TYPE: "[ERROR] 구매 금액은 숫자만 입력하셔야 합니다.",
-  WRONG_UNIT: "[ERROR] 구매 금액은 천원 단위로 입력하셔야 합니다.",
+  WRONG_UNIT: `[ERROR] 구매 금액은 ${LOTTO_PRICE}원 단위로 입력하셔야 합니다.`,
 };
 
 class LottoGenerator {
@@ -37,7 +35,7 @@ class LottoGenerator {
     let numberOfCreatedLotto = 0;
 
     while (numberOfCreatedLotto < this.numberOfPurchasedLotto) {
-      const uniqueNumbers = MissionUtils.Random.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, PICK_COUNT);
+      const uniqueNumbers = MissionUtils.Random.pickUniqueNumbersInRange(SETTING.MIN_NUMBER, SETTING.MAX_NUMBER, SETTING.LOTTO_NUMBER_LENGTH);
       lotteries.push(new Lotto(uniqueNumbers));
       numberOfCreatedLotto++;
     }
