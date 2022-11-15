@@ -1,14 +1,13 @@
 const { Console } = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
 const LottoMachine = require("./LottoMachine");
-const { lottoQuantity, getProfit, getProfitRate } = require("./utils");
-const { validateInputMoney, validateInputBonusNum } = require("./validator");
+const { validateInputMoney, validateInputBonusNum } = require("./Validator");
 const View = require("./View");
 
 class App {
   constructor() {
     this.lottoMachine = new LottoMachine();
-    this.view = new View();
+    this.view = new View(this.lottoMachine);
     this.userLottoNumbers;
     this.userMoney;
     this.winningNumbers;
@@ -22,7 +21,9 @@ class App {
     Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
       validateInputMoney(money);
       this.userMoney = money;
-      this.userLottoNumbers = this.view.showUserLotto(lottoQuantity(money));
+      this.userLottoNumbers = this.view.showUserLotto(
+        this.lottoMachine.getLottoQuantity(money)
+      );
       this.inputWinningNum();
     });
   }
@@ -45,13 +46,15 @@ class App {
         this.winningNumbers,
         Number(bonusNum)
       );
-      this.view.showWinResult(rank);
-      this.calculateYield(rank);
+      this.result(rank);
     });
   }
 
-  calculateYield(equalScore) {
-    this.view.showProfit(getProfitRate(equalScore, this.userMoney));
+  result(equalScore) {
+    this.view.showWinResult(equalScore);
+    this.view.showProfit(
+      this.lottoMachine.getProfitRate(equalScore, this.userMoney)
+    );
     this.end();
   }
 

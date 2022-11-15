@@ -1,12 +1,15 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { getRandomNum } = require("./utils");
 
 class View {
+  constructor(lottoMachine) {
+    this.lottoMachine = lottoMachine;
+  }
+
   showUserLotto(lottoQuantity) {
     const numbers = [];
     Console.print("\n" + lottoQuantity + "개를 구매했습니다.");
     for (let i = 0; i < lottoQuantity; i++) {
-      numbers.push(getRandomNum());
+      numbers.push(this.lottoMachine.getRandomNum());
     }
     numbers.forEach((number) => Console.print(`[${number.join(", ")}]`));
     return numbers;
