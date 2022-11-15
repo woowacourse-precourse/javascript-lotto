@@ -23,7 +23,8 @@ class UserLotto {
     }
 
     printUserLotto(numOfLotto) {
-        Console.print(`\n${numOfLotto}개를 구매했습니다.`);
+        const LOTTO_BUY_MESSAGE = `\n${numOfLotto}개를 구매했습니다.`;
+        Console.print(LOTTO_BUY_MESSAGE);
         this.#userLotto.forEach((lotto) => Console.print(`[${lotto.join(", ")}]`));
     }
 }
