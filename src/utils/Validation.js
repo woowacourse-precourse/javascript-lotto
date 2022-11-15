@@ -22,6 +22,11 @@ class Validation {
     if (array.length !== MAX_LENGTH)
       throw new Error("[ERROR] 로또의 길이가 유효하지 않습니다.");
   }
+
+  isNotNumber(item) {
+    if (isNaN(item))
+      throw new Error("[ERROR] 로또에 숫자 형식만 넣을 수 있습니다.");
+  }
 }
 
 module.exports = Validation;
