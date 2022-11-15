@@ -1,6 +1,6 @@
-class purchaseAmountValidator {
+class PurchaseAmountValidator {
   constructor(amount) {
-    purchaseAmountValidator.validate(amount);
+    PurchaseAmountValidator.validate(amount);
     this.validatedAmount = amount;
   }
 
@@ -18,4 +18,4 @@ class purchaseAmountValidator {
   // TODO: 추가 기능 구현
 }
 
-module.exports = purchaseAmountValidator;
+module.exports = PurchaseAmountValidator;
