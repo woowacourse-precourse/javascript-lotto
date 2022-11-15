@@ -18,4 +18,12 @@ describe("로또 금액 값 테스트", () => {
             userInputNumber.userLottoPaymentAmount()
             }).toThrow("[ERROR]");
     });
+
+    test("로또 구입 금액이 1000원 단위가 아닐 경우 에러 발생", () => {
+        mockQuestions(["8500"]);
+        const userInputNumber = new UserInputNumber();
+        expect(() => {
+            userInputNumber.userLottoPaymentAmount()
+            }).toThrow("[ERROR]");
+    });
 });
