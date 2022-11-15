@@ -15,19 +15,19 @@ class LottoGameMachine {
   }
 
   startLottoGameMachine() {
-    User.inputTotalPurchaseAmount(this.setTotalPurchaseAmount.bind(this));
+    User.inputTotalPurchaseAmount(this.#setTotalPurchaseAmount.bind(this));
   }
 
-  endLottoGame() {
+  endLottoGameMachine() {
     Console.close();
   }
 
-  printLottoNumbers() {
-    Console.print(MESSAGE.OUTPUT.totalPurchaseAmount(this.lottos.size));
+  #printLottoNumbers() {
+    Console.print(MESSAGE.OUTPUT.totalPurchaseAmount(this.totalLottosCount));
     this.lottos.forEach((lotto) => Console.print(`[${lotto.getLottoNumbers().join(', ')}]`));
   }
 
-  printLottoStatistics() {
+  #printLottoStatistics() {
     Console.print(MESSAGE.OUTPUT.WINNING_HISTORY);
     RANKING_ARRAY.forEach((RANKING) =>
       Console.print(MESSAGE.OUTPUT.match(RANKING, this.lottoStatistics[RANKING.NAME]))
@@ -37,31 +37,31 @@ class LottoGameMachine {
     return this;
   }
 
-  setTotalPurchaseAmount(totalPurchaseAmount) {
+  #setTotalPurchaseAmount(totalPurchaseAmount) {
     this.totalPurchaseAmount = totalPurchaseAmount;
     this.totalLottosCount = totalPurchaseAmount / UNIT_OF_AMOUNT;
-    this.setLottos();
-    User.inputWinningLottoNumbers(this.setWinningLottoNumbers.bind(this));
+    this.#setLottos();
+    User.inputWinningLottoNumbers(this.#setWinningLottoNumbers.bind(this));
   }
 
-  setWinningLottoNumbers(winningLottoNumbers) {
+  #setWinningLottoNumbers(winningLottoNumbers) {
     this.winningLotto.set('당첨 번호', winningLottoNumbers);
-    User.inputBonusLottoNumber(this.setBonusLottoNumber.bind(this));
+    User.inputBonusLottoNumber(this.#setBonusLottoNumber.bind(this));
   }
 
-  setBonusLottoNumber(bonusLottoNumber) {
+  #setBonusLottoNumber(bonusLottoNumber) {
     this.winningLotto.set('보너스 번호', bonusLottoNumber);
-    this.setLottoStatistics().printLottoStatistics().endLottoGame();
+    this.#setLottoStatistics().#printLottoStatistics().endLottoGameMachine();
   }
 
-  setLottoStatistics() {
+  #setLottoStatistics() {
     this.lottoStatistics = LottoStatistics.collectLottoStatistics(this.lottos, this.winningLotto);
     return this;
   }
 
-  setLottos() {
+  #setLottos() {
     this.lottos = LottoGenerator.getLottos(this.totalLottosCount);
-    this.printLottoNumbers();
+    this.#printLottoNumbers();
     return this;
   }
 }

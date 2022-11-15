@@ -31,7 +31,7 @@
 - [x] 로또 결과 통계를 저장한다.. : `setLottoStatistics`
 - [x] 통계를 출력하고 로또 게임을 종료한다.
   - [x] 당첨 통계 및 수익률 통계 출력 : `printLottoStatistics`
-  - [x] 로또 게임 종료 : `endLottoGame`
+  - [x] 로또 게임 종료 : `endLottoGameMachine`
 
 ## 로또 게임을 이용하는 사람인 `User` 클래스를 생성한다.
 
