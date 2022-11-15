@@ -1,5 +1,15 @@
+const BuyLotto = require("./BuyLotto");
+
 class App {
-  play() {}
+  constructor() {
+    this.buyLotto = new BuyLotto();
+  }
+  play() {
+    this.buyLotto.start();
+  }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
