@@ -3,15 +3,9 @@ const { Console } = require('@woowacourse/mission-utils');
 const User = require('./User');
 const Lotto = require('./Lotto');
 const Drawing = require('./Drawing');
-const { MESSAGE, AMOUNT_UNIT } = require('../src/utils/constants');
-const { hasChar, hasCharExceptComma, isDivisible, hasDuplicate, isOutOfRange, parseNumbers } = require('./utils/utils');
-const {
-  InvalidAmountInputError,
-  IndivisibleError,
-  InvalidWinningNumbersInputError,
-  InvalidBonusNumberInputError,
-  InvalidLottoNumberRangeError,
-} = require('./lib/errors');
+const { MESSAGE } = require('../src/utils/constants');
+const { parseNumbers } = require('./utils/utils');
+const { validateAmount, validateWinningNumbers, validateBonusNumber } = require('./utils/validateInput');
 
 class App {
   constructor() {
@@ -28,22 +22,12 @@ class App {
 
   setLottoBuyer(amount) {
     const trimmedAmount = amount.trim();
-    this.validateAmount(amount);
+    validateAmount(amount);
 
     this.drawing.user = new User(trimmedAmount);
     this.printBoughtLottos(this.drawing.user.buyLotto());
 
     this.getWinningNumbers(this.setLottoWinningNumbers.bind(this));
-  }
-
-  validateAmount(amount) {
-    if (hasChar(amount)) {
-      throw new InvalidAmountInputError();
-    }
-
-    if (!isDivisible(amount, AMOUNT_UNIT)) {
-      throw new IndivisibleError();
-    }
   }
 
   printBoughtLottos({ quantity, lottos }) {
@@ -59,17 +43,11 @@ class App {
 
   setLottoWinningNumbers(numbers) {
     const trimmedNumbers = numbers.trim();
-    this.validateWinningNumbers(trimmedNumbers);
+    validateWinningNumbers(trimmedNumbers);
 
     this.drawing.winningNumbers = new Lotto(parseNumbers(trimmedNumbers)).numbers;
 
     this.getBonusNumber(this.setLottoBonusNumber.bind(this));
-  }
-
-  validateWinningNumbers(numbers) {
-    if (hasCharExceptComma(numbers)) {
-      throw new InvalidWinningNumbersInputError();
-    }
   }
 
   getBonusNumber(callback) {
@@ -79,24 +57,10 @@ class App {
 
   setLottoBonusNumber(number) {
     const trimmedNumber = number.trim();
-    this.validateBonusNumber(trimmedNumber);
+    validateBonusNumber(this.drawing.winningNumbers, trimmedNumber);
 
     this.drawing.bonusNumber = Number(trimmedNumber);
     this.printStatistics();
-  }
-
-  validateBonusNumber(number) {
-    if (hasChar(number)) {
-      throw new InvalidBonusNumberInputError();
-    }
-
-    if (isOutOfRange(number)) {
-      throw new InvalidLottoNumberRangeError();
-    }
-
-    if (hasDuplicate([...this.drawing.winningNumbers, Number(number)])) {
-      throw new InvalidBonusNumberInputError();
-    }
   }
 
   printStatistics() {
