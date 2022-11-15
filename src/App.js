@@ -1,7 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const { MESSAGE, ERROR } = require("./constant");
 const Lotto = require("./Lotto");
 const Result = require("./Result");
-const { MESSAGE } = require("./constant");
 class App {
   constructor() {
     this.myMoney = 0;
@@ -15,12 +15,12 @@ class App {
     let piece = 0;
     MissionUtils.Console.readLine(MESSAGE.INPUT_AMOUNT, (answer) => {
       if (+answer % 1000 > 0) {
-        throw new Error("[ERROR] 천원 단위로만 구매 가능합니다.");
+        throw new Error(ERROR.AMOUNT_UNIT);
       }
       this.myMoney += +answer;
       piece = +answer / 1000;
       if (isNaN(piece)) {
-        throw new Error("[ERROR] 숫자만 입력 가능합니다.");
+        throw new Error(ERROR.AMOUNT_ISNAN);
       }
       MissionUtils.Console.print(`${piece}개를 구매했습니다.`);
       this.createLottoBundle(piece);
@@ -64,17 +64,13 @@ class App {
     let bonus = 0;
     MissionUtils.Console.readLine(MESSAGE.INPUT_BONUS, (answer) => {
       if (numbers.includes(+answer)) {
-        throw new Error(
-          "[ERROR] 보너스 번호는 입력한 당첨 번호와 중복될 수 없습니다."
-        );
+        throw new Error(ERROR.BONUS_DUPLICATION);
       }
       if (+answer > 45 || +answer < 1) {
-        throw new Error(
-          "[ERROR] 보너스 번호는 1부터 45까지의 수만 입력할 수 있습니다."
-        );
+        throw new Error(ERROR.BONUS_RANGE);
       }
       if (isNaN(+answer)) {
-        throw new Error("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
+        throw new Error(ERROR.BONUS_ISNAN);
       }
       bonus += +answer;
       new Result(this.myMoney).statistics(bundle, numbers, bonus);
