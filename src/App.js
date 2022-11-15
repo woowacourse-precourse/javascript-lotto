@@ -1,11 +1,10 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const Lotto = require("./Lotto");
 const { LOTTO_ERROR_MENTION, LOTTO_PRINT_MENTION, LOTTO_REWARD } = require("./constant");
+const Lotto = require("./Lotto"); 
 
-function printLottoRevenuePercent(lottoRevenue, lottoCount) {
-  let investMoney = 1000 * lottoCount;
-  let RevenuePercent = lottoRevenue / investMoney;
-  Console.print(`총 수익률은 ${(RevenuePercent * 100).toLocaleString('en')}%입니다.`)
+function printLottoRevenuePercent(lottoRevenue, lottoTicketCount) {
+  let RevenuePercent= calcRevenuePercent(lottoRevenue, lottoTicketCount);
+  Console.print(`총 수익률은 ${(RevenuePercent).toLocaleString('en')}%입니다.`)
   Console.close();
 }
 
@@ -15,6 +14,10 @@ function calcLottoResultMoney(lottoResult) {
     resultMoney += reward * Number(lottoResult[index]);
   })
   return resultMoney;
+}
+
+function calcRevenuePercent(lottoRevenue, lottoTicketCount) {
+  return lottoRevenue / (lottoTicketCount * 1000) * 100;
 }
 
 function calcLottoResultCount(lottoResult) {
@@ -62,7 +65,7 @@ function isValidateBonusNumber(number) {
 
 class App {
   constructor(){
-    this.lottoCount = 0;
+    this.lottoTicketCount = 0;
     this.lottoInfo = [];
     this.BonusNumber = '';
     this.lottoResult = [0,0,0,0,0];
@@ -73,7 +76,7 @@ class App {
     Console.print(LOTTO_PRINT_MENTION.result_header);
     calcLottoResultCount(this.lottoResult);
     countAmount = calcLottoResultMoney(this.lottoResult);
-    printLottoRevenuePercent(countAmount, this.lottoCount);
+    printLottoRevenuePercent(countAmount, this.lottoTicketCount);
   }
 
   inputBonusNumber() {
@@ -95,28 +98,28 @@ class App {
     })
   }
 
-  printLottoCount(lottoCount) {
-    Console.print(`${lottoCount}개를 구매했습니다.`)
+  printLottoTicketCount(lottoTicketCount) {
+    Console.print(`${lottoTicketCount}개를 구매했습니다.`)
   }
 
   printRandomLottoNumber() {
-    this.lottoInfo.forEach((randomLotto) => {
-      let randomLottoString = String(randomLotto).split(',').join(', ');
-      Console.print(`[${randomLottoString}]`);
+    this.lottoInfo.forEach((randomLottoNumber) => {
+      let randomLottoNumberString = String(randomLottoNumber).split(',').join(', ');
+      Console.print(`[${randomLottoNumberString}]`);
     })
   }
 
   inputBuyLottoMoney() {
     Console.readLine(LOTTO_PRINT_MENTION.input_money,(money) => {
       isInputValidate(money);
-      this.lottoCount = Number(money) / 1000;
-      this.printLottoCount(this.lottoCount);
+      this.lottoTicketCount = Number(money) / 1000;
+      this.printLottoTicketCount(this.lottoTicketCount);
     });
   };
 
   play() {
     this.inputBuyLottoMoney();
-    setRandomLottoNumber(this.lottoInfo, this.lottoCount);
+    setRandomLottoNumber(this.lottoInfo, this.lottoTicketCount);
     this.printRandomLottoNumber();
     this.inputJackpotNumber();
     this.printLottoJackpotResult();
