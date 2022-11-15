@@ -61,11 +61,15 @@ describe("로또 테스트", () => {
     });
   });
 
-  test("예외 테스트", () => {
-    mockQuestions(["1000j"]);
-    expect(() => {
-      const app = new App();
-      app.play();
-    }).toThrow("[ERROR]");
+  test("구매금액은 숫자만 입력가능합니다.", () => {
+    mockQuestions(["1000t", "ttt", "1t1t"]);
+    const app = new App();
+    expect(() => app.getLottoCount()).toThrow("[ERROR]");
+  });
+
+  test("구매금액은 1,000 단위인 숫자만 입력가능합니다.", () => {
+    mockQuestions(["1005", "5010", "55000"]);
+    const app = new App();
+    expect(() => app.getLottoCount()).toThrow("[ERROR]");
   });
 });

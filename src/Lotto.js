@@ -3,8 +3,8 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class Lotto {
   #numbers;
 
-  constructor() {
-    this.#numbers = this.generateLotto();
+  constructor(n) {
+    this.#numbers = this.generateLotto(n);
     this.validate(this.#numbers);
     return this.#numbers;
   }
@@ -18,10 +18,10 @@ class Lotto {
   }
 
   // TODO: 추가 기능 구현
-  generateLotto() {
+  generateLotto(n) {
     const LOTTO_START_NUM = 1;
     const LOTTO_END_NUM = 45;
-    const LOTTO_NUM_COUNT = 6;
+    const LOTTO_NUM_COUNT = n;
 
     return MissionUtils.Random.pickUniqueNumbersInRange(
       LOTTO_START_NUM,
