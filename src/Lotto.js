@@ -1,18 +1,33 @@
+const MESSAGES = require("./Constants");
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
-    this.#numbers = numbers;
+    this.#numbers = this.validate(this.changeForm(numbers));
+  }
+
+  changeForm(numbers) {
+    return numbers.split(',').map((number) => parseInt(number));
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    if (numbers.includes(NaN)) {
+      throw new Error(MESSAGES.ERROR.FORM);
     }
+    if (numbers.length !== 6) {
+      throw new Error(MESSAGES.ERROR.NUMBER);
+    }
+    numbers.forEach(number => {
+      if(number > 45 || number < 1) {
+        throw new Error(MESSAGES.ERROR.RANGE);
+      }
+    });
+    if ([...new Set(numbers)].length !== 6) {
+      throw new Error(MESSAGES.ERROR.DUPICATION);
+    }
+    return numbers;
   }
-
-  // TODO: 추가 기능 구현
 }
 
 module.exports = Lotto;

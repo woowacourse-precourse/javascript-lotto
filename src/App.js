@@ -27,7 +27,7 @@ class App {
   }
   setLottoNumber = () => {
     Console.readLine(MESSAGES.SET_LOTTO, (answer) => {
-      Console.print(answer);
+      const lotto = new Lotto(answer);
     })
   }
 }
