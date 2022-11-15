@@ -1,8 +1,10 @@
 //예외 사항들
 
+const NUM_REG = /[^0-9]/g;
+
 class Exception {
   exceptLottoNumbers = (lottoNumber) => {
-    const NUM_REG = /[^0-9]/g;
+
     if (('' + lottoNumber).match(NUM_REG) != null) {
       throw new Error('[ERROR] 로또 번호에 숫자가 아닌 것이 있습니다');
     }
@@ -19,6 +21,14 @@ class Exception {
   exceptLottoPrice = (lottoPrice) => {
     if (lottoPrice % 1000 !== 0) {
       throw new Error('[ERROR] 로또 구입 금액은 1000원 단위여야 합니다.');
+    }
+
+    if (Number.isInteger(Number(lottoPrice)) === false) {
+      throw new Error('[ERROR] 로또 구입 금액은 정수값이어야 합니다.');
+    }
+
+    if (('' + lottoPrice).match(NUM_REG) != null) {
+      throw new Error('[ERROR] 로또 번호에 숫자가 아닌 것이 있습니다');
     }
   };
 
