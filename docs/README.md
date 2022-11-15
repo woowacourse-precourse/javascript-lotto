@@ -87,6 +87,8 @@
 - [x] refactor: 랜덤 로또를 만드는 함수와 오름차순으로 정렬하는 함수를 분리
 - [x] refactor: Lotto 클래스의 필드를 Game 클래스로 분리
 - [x] style: 쌍따옴표에서 홀따옴표로 교체
+- [x] refactor: Lotto 클래스의 함수를 다른 클래스로 분리
+  - BonusLotto, GameResult 클래스로 분리
 
 ### 체크리스트
 

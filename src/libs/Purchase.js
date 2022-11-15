@@ -32,9 +32,8 @@ class Purchase {
     });
   }
 
-  createLottoArray(money) {
-    this.money = money;
-    const count = money / 1000;
+  createLottoArray() {
+    const count = this.money / 1000;
     for (let i = 0; i < count; i += 1) {
       const unorderedLotto = Utils.createRandomLotto();
       const lottoArray = Utils.sortAscent(unorderedLotto);
