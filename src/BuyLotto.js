@@ -74,8 +74,13 @@ class BuyLotto {
       Console.print(JSON.stringify(sortNumber).replace(/,/g, ", "));
     }
     this.makeNumbers = makeNumbers;
+<<<<<<< HEAD
     // Console.print(this.makeNumbers);
 
+=======
+    Console.print(this.howMany + MESSAGE.BUYING_RESULT);
+    Console.print(this.makeNumbers);
+>>>>>>> parent of 48f726c (fix : test코드 구현)
     this.userInputNumber();
   }
 
