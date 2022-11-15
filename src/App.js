@@ -9,7 +9,7 @@ class App {
   
   play() {
     this.purchaseLotto();
-    this.WinningNumbers();
+    this.winningNumbers();
   }
 
   purchaseLotto() {
@@ -38,7 +38,7 @@ class App {
     }
   }
 
-  WinningNumbers() {
+  winningNumbers() {
     let winningnumbers;
     Console.readLine("당첨 번호를 입력해 주세요", (numbers) => {
       winningnumbers = numbers.split(",").map(Number);
