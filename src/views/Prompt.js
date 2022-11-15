@@ -77,7 +77,7 @@ class Prompt {
     }
   }
 
-  *#run() {
+  * #run() {
     const routineState = this.#routine(this);
     while (!routineState.done) {
       const query = routineState.next().value;

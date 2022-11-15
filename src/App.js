@@ -2,6 +2,7 @@ const Prompt = require('./views/Prompt');
 const Lotto = require('./domains/Lotto');
 const WinningLotto = require('./domains/WinningLotto');
 const Messages = require('./constants/Messages');
+const Reward = require('./domains/Reward');
 
 class App {
   /** @type {Lotto[]} */
@@ -17,7 +18,7 @@ class App {
    * @param {Prompt} prompt
    * @yields {string}
    */
-  *#routineBuy(prompt) {
+  * #routineBuy(prompt) {
     yield Messages.ROUTINE_BUY_PUT_MONEY;
     const money = prompt.readNumber();
     this.#lottos = Lotto.buyLottos(money);
@@ -30,7 +31,7 @@ class App {
    * @param {Prompt} prompt
    * @yields {string}
    */
-  *#routineReward(prompt) {
+  * #routineReward(prompt) {
     yield Messages.ROUTINE_REWARD_PUT_WINNING_NUMBERS;
     yield Messages.ROUTINE_REWARD_PUT_BONUS_NUMBER;
     this.#winningLotto = new WinningLotto(Lotto.fromString(prompt.read()), prompt.readNumber());
@@ -43,7 +44,7 @@ class App {
    * @param {Prompt} prompt
    */
   // eslint-disable-next-line require-yield
-  *#routineStats(prompt) {
+  * #routineStats(prompt) {
     prompt.print(Messages.ROUTINE_STATS_TITLE);
     [...this.#winningLotto.getAvailableRewards()]
       .reverse()
@@ -59,7 +60,7 @@ class App {
    * @param {Prompt} prompt
    * @yields {string}
    */
-  *#routine(prompt) {
+  * #routine(prompt) {
     yield* this.#routineBuy(prompt);
     yield* this.#routineReward(prompt);
     yield* this.#routineStats(prompt);
