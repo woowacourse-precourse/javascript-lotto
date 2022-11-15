@@ -1,6 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Console = MissionUtils.Console;
-const { mapKey } = require("./util.js");
+const { mapKey } = require("./constant.js");
 
 function initMap(map) {
     map.set(mapKey.THREE, 0);

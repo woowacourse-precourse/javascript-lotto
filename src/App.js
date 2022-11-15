@@ -7,7 +7,7 @@ const [Console, Random] = [MissionUtils.Console, MissionUtils.Random];
 
 class App {
   #totalMoney;
-  #lottoArray;
+  #lottoArray; //2차원배열
   #winningNums;
   #bonusNum;
 
@@ -45,7 +45,7 @@ class App {
 
   readMoney() {
     return new Promise((resolve, _) => {
-      Console.readLine("구입금액을 입력해주세요.\n", (money) => {
+      Console.readLine("구입금액을 입력해주세요.", (money) => {
         const validation = validatePrice(money);
         resolve(this.setMoney(validation));
       })
@@ -55,7 +55,7 @@ class App {
 
   buyLotto() {
     const lottoCount = this.getMoney() / 1000;
-    Console.print(`\n${lottoCount}개를 구매했습니다.`);
+    Console.print(`${lottoCount}개를 구매했습니다.`);
     for (let i = 1; i <= lottoCount; i++) {
       const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
       const lotto = new Lotto(numbers);
@@ -65,8 +65,8 @@ class App {
   }
 
   readWinNums() {
-    return new Promise((resolve, reject) => {
-      Console.readLine("\n당첨번호를 입력해주세요\n", (winNums) => {
+    return new Promise((resolve, _) => {
+      Console.readLine("당첨번호를 입력해주세요", (winNums) => {
         const validation = validateWinNums(winNums);
         resolve(this.setWinNums(validation));
       })
@@ -74,8 +74,8 @@ class App {
   }
 
   readBonusNum() {
-    return new Promise((resolve, reject) => {
-      Console.readLine("\n보너스 넘버를 입력해주세요.\n", (bonus) => {
+    return new Promise((resolve, ) => {
+      Console.readLine("보너스 넘버를 입력해주세요.", (bonus) => {
         const bonusNum = parseInt(bonus);
         const validation = validateBounus(bonusNum, this.getWinNums());
         resolve(this.setBonus(validation));
@@ -108,6 +108,7 @@ class App {
       await this.readWinNums();
       await this.readBonusNum();
       this.makeResult();
+      Console.close();
     }
     catch (err) {
       Console.print(err.message);

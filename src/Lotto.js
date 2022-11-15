@@ -7,6 +7,7 @@ class Lotto {
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
+    this.sort();
   }
 
   validate(numbers) {
@@ -23,6 +24,10 @@ class Lotto {
     return [...this.#numbers];
   }
 
+  sort(){
+    this.#numbers.sort((a,b) => a-b);
+  }
+
   printLotto(){
     Console.print(this.#numbers);
   }
@@ -34,7 +39,6 @@ class Lotto {
   includes(num){
     return this.getLotto().includes(num);
   }
-
 }
 
 module.exports = Lotto;

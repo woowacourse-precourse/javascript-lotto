@@ -1,6 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Console = MissionUtils.Console;
-const { mapKey, priceMap } = require("./util.js");
+const { mapKey, priceMap } = require("./constant.js");
 
 
 function calProfit(map) {

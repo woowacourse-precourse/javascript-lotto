@@ -27,8 +27,8 @@ function validateWinNums(winNums){
 
 
   function validatePrice(price) {
-    const priceNum = parseInt(price);
-    if (isNaN(priceNum)) {
+    const priceNum = Number(price);
+    if (!Number.isInteger(priceNum)) {
       throw new Error("[ERROR] price는 숫자여야 합니다.");
     }
     if (priceNum % 1000 !== 0) {
