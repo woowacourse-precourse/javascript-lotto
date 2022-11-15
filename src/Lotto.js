@@ -31,6 +31,16 @@ class Lotto {
     if (numbers.length !== [...new Set(numbers)].length) {
       throw new Error(LOTTO_ERROR_MSG.IS_DUPLICATE_NUMBER);
     }
+    if (numbers.forEach(number => this.checkNumberRange(number))) {
+      throw new Error(LOTTO_ERROR_MSG.IS_WRONG_NUMBER_RANGE);
+    }
+  }
+
+  checkNumberRange(number) {
+    const regExp = /^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$/gm;
+    if (!regExp.test(number)) {
+      throw new Error(LOTTO_ERROR_MSG.IS_WRONG_NUMBER_RANGE);
+    }
   }
 
   makeSixNumbers() {
