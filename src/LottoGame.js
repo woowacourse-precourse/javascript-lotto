@@ -1,8 +1,12 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { MESSAGES, LOTTO_RANK, LOTTO_PRIZE } = require("./Constants/Constants");
+const {
+  MESSAGES,
+  LOTTO_RANK,
+  LOTTO_PRIZE,
+  LOTTO_STATS_MESSAGES,
+} = require("./Constants/Constants");
 const Validation = require("./Validation");
 const LottoGameOperator = require("./LottoGameOperator");
-const LottoStats = require("./LottoStats");
 
 class LottoGame {
   #purchaseAmount;
@@ -68,12 +72,11 @@ class LottoGame {
     this.calculateTotalProfit(
       this.#LottoList,
       this.#winningNumbers,
-      this.#bonusNumber,
-      this.#purchaseAmount
+      this.#bonusNumber
     );
   }
 
-  calculateTotalProfit(lottoList, winningNumbers, bonusNumber, purchaseAmount) {
+  calculateTotalProfit(lottoList, winningNumbers, bonusNumber) {
     lottoList.map((lottoNumber) => {
       const result = this.compareLottoNumbers(
         lottoNumber.getLottoNumbers(),
@@ -109,12 +112,24 @@ class LottoGame {
 
   calculateTotalPrizeMoney() {
     let totalPrizeMoney = 0;
-
     for (const [prize, count] of Object.entries(this.#lottoRanking)) {
       let prizeMoney = LOTTO_PRIZE[prize] * count;
       totalPrizeMoney += prizeMoney;
     }
+    const totalProfitRate = this.calculateTotalProfitRate(totalPrizeMoney);
 
+    this.showLottoResult(totalProfitRate);
+  }
+
+  calculateTotalProfitRate(totalPrizeMoney) {
+    const totalProfitRate = (
+      (totalPrizeMoney / this.#purchaseAmount) *
+      100
+    ).toFixed(1);
+    return totalProfitRate;
+  }
+
+  showLottoResult(totalProfitRate) {
     Console.print(`
     3개 일치 (5,000원) - ${this.#lottoRanking["fifthPlace"]}개\n
     4개 일치 (50,000원) - ${this.#lottoRanking["fourthPlace"]}개\n
@@ -123,12 +138,13 @@ class LottoGame {
       this.#lottoRanking["secondPlace"]
     }개\n
     6개 일치 (2,000,000,000원) - ${this.#lottoRanking["firstPlace"]}개\n`);
-    Console.print(
-      `총 수익률은 ${((totalPrizeMoney / this.#purchaseAmount) * 100).toFixed(
-        1
-      )}%입니다.`
-    );
+    this.showTotalProfitRate(totalProfitRate);
+
     this.endGame();
+  }
+
+  showTotalProfitRate(totalProfitRate) {
+    Console.print(LOTTO_STATS_MESSAGES.TOTAL_PROFIT_RATE(totalProfitRate));
   }
 
   endGame() {
