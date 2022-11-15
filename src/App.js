@@ -30,11 +30,16 @@ function makeLottoList(money) {
   return winningList(LOTTO_LIST)
 }
 
-function winningList () {
-  MissionUtils.Console.readLine('당첨 번호를 입력해 주세요', (winning_inputnumber)=>{
-    const WINNING_LIST = winning_inputnumber.split(',').map(item => parseInt(item))
-    console.log(WINNING_LIST)
-
+function winningList (LOTTO_LIST) {
+  MissionUtils.Console.readLine('당첨 번호를 입력해 주세요', (winning_Number)=>{
+    const WINNING_LIST = winning_Number.split(',').map(item => parseInt(item))
+    return makeBonusNumber(LOTTO_LIST, WINNING_LIST)
+  })
+}
+function makeBonusNumber (LOTTO_LIST, WINNING_LIST){
+  MissionUtils.Console.readLine('보너스 번호를 입력해 주세요', (bonus_Number)=>{
+    if(WINNING_LIST.includes(bonus_Number)){throw 'aaa'}
+    console.log('aaa')
   })
 }
 
