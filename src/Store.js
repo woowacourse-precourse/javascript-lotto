@@ -104,6 +104,11 @@ class Store {
       );
     });
     MissionUtils.Console.print(`총 수익률은 ${this.getEarningRate()}%입니다.`);
+    this.exit();
+  }
+
+  exit() {
+    MissionUtils.Console.close();
   }
 }
 
