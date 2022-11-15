@@ -1,5 +1,4 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-
 class LottoUI {
   inputRequest(message, callbackFunction) {
     MissionUtils.Console.readLine(message, callbackFunction);

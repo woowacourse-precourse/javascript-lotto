@@ -90,7 +90,6 @@ class App {
     const winningMoney = this.getWinningMoney(rankingTotal);
     const earningRatio = this.getEarningRatio(winningMoney);
     const result = this.resultSynthesis(rankingTotal);
-
     this.LottoUI.printRankingTotal(result);
     this.LottoUI.printEarningRatio(earningRatio);
     MissionUtils.Console.close();

@@ -38,14 +38,12 @@ const ERROR_MESSAGE = {
   SIZE_INVALID,
   NOT_IN_RANGE,
 };
-
 const LOTTO_RANKING_CONDITION = {
   FIRST_RANK,
   THIRD_RANK,
   FOURTH_RANK,
   FIFTH_RANK,
 };
-
 const LOTTO_RANKING = {
   FIRST,
   SECOND,
@@ -54,7 +52,6 @@ const LOTTO_RANKING = {
   FIFTH,
   FAIL,
 };
-
 const LOTTO_MONEY = {
   "1등": 2000000000,
   "2등": 30000000,
