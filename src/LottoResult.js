@@ -15,9 +15,16 @@ class LottoResult {
   }
 
   print(winningNumbers, lotteries) {
-    this.countMatching(winningNumbers, lotteries);
+    this.countMatch(winningNumbers, lotteries);
     this.calculateProfitRate(lotteries.length * LOTTO_PRICE);
     this.printResult();
+  }
+
+  countMatch(winningNumbers, lotteries) {
+    lotteries.forEach((lottery) => {
+      const count = LottoResult.getMatchCount(winningNumbers, new Set(lottery));
+      this.lottoMatchCounter[count] += 1;
+    });
   }
 }
 
