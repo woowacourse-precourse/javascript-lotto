@@ -26,7 +26,7 @@ class App {
       this.buyPrice = input;
     });
 
-    return money / 1000;
+    return this.buyPrice / 1000;
   }
 
   publishLotto(num) {
