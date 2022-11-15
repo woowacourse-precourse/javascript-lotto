@@ -1,4 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+const PromptError = require('../errors/PromptError');
 
 /**
  * Console.readLine의 콜백 지옥에서 벗어나게 도와주는 클래스입니다.
@@ -51,7 +52,7 @@ class Prompt {
    */
   readNumber() {
     const number = Number(this.read());
-    if (Number.isNaN(number)) throw new Error('[ERROR] 숫자를 입력해야 합니다.');
+    if (Number.isNaN(number)) throw new PromptError('숫자를 입력해야 합니다.');
 
     return number;
   }
