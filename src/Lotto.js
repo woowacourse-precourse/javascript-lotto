@@ -1,5 +1,4 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-
 class Lotto {
   #numbers;
 
@@ -54,12 +53,11 @@ class Lotto {
     return score;
   }
 
-  getLottoScores() {}
-
   // TODO: 추가 기능 구현
 
-  static creatRandomLotto() {
+  static createRandomLotto() {
     const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+    numbers.sort((a, b) => a - b);
 
     return new Lotto(numbers);
   }
@@ -67,7 +65,7 @@ class Lotto {
   static createTotalLottoArr(lottoNum) {
     const lottoArr = [];
     for (let i = 0; i < lottoNum; i++) {
-      lottoArr.push(Lotto.creatRandomLotto());
+      lottoArr.push(Lotto.createRandomLotto());
     }
     return lottoArr;
   }
