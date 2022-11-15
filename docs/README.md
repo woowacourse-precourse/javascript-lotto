@@ -73,14 +73,14 @@ Array histories : [3개 일치, 4개 일치, 5개 일치, 5개+보너스 일치,
 - 당첨금이 0원일 경우 수익률은 0을 반환
 
 #### 문자열 반환 함수
-#### `toStringCountLotto(myLotto)`
+#### `toStringCountLotto(countMyLotto)`
 - 구매한 로또 개수 문자열 반환
 - 반환 문자열 형식
 ```
-{len(myLottoNums)}개를 구매했습니다.
+{countMyLotto}개를 구매했습니다.
 ```
 
-#### `toStringMyLotto(myLotto)`
+#### `toStringMyLotto(myLottoes)`
 - 구매한 로또 내역 문자열 반환
 - 반환 문자열 형식
 ```
