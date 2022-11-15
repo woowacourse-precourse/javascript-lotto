@@ -66,26 +66,19 @@ class LotteryMachine {
     });
   }
 
-  static confirmWin(lottos, winnerNumbers) {
-    const winningStatistics = LotteryMachine.readQrCode(lottos, winnerNumbers);
-    LotteryMachine.printWinResult(winningStatistics);
-  }
-
-  static readQrCode(lottos, winnerNumbers) {
+  readQrCode(lottos) {
     const { winningStatistics, winTheLottery } =
       LotteryMachine.#calcWinningStatistics(lottos);
-
-    const correctNums = lottos.map((lotto) =>
-      LotteryMachine.#calcCorrectNum(lotto, winnerNumbers),
-    );
+    const correctNums = lottos.map((lotto) => this.#calcCorrectNum(lotto));
 
     correctNums.forEach((num) => {
-      const winner = Object.keys(LOTTO_RANK).find(
+      const ranking = Object.keys(LOTTO_RANK).find(
         (rank) => LOTTO_RANK[rank].matchNum === num,
       );
 
-      if (!winner) return;
-      winTheLottery(winner);
+      if (!ranking) return;
+
+      winTheLottery(ranking);
     });
 
     return winningStatistics;
@@ -113,13 +106,12 @@ class LotteryMachine {
     return { winningStatistics, winTheLottery };
   }
 
-  static #calcCorrectNum(lotto, winnerNumbers) {
-    const [winnerNumber, bonusNumber] = winnerNumbers;
+  #calcCorrectNum(lotto) {
     return lotto.getQrCode().reduce((correctNum, lottoNumber) => {
-      if (winnerNumber.includes(lottoNumber)) {
+      if (this.#winnerNumber.includes(lottoNumber)) {
         correctNum += NUMBER.CORRECT_WINNER_NUMBER;
       }
-      if (bonusNumber === lottoNumber) {
+      if (this.#bonusNumber === lottoNumber) {
         correctNum += NUMBER.CORRECT_BONUS_NUMBER;
       }
       return correctNum;

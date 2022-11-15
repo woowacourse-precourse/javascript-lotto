@@ -10,6 +10,7 @@ class App {
   play() {
     const lottos = LotteryMachine.issueTicket();
     this.drawLots();
+    this.confirmWin(lottos);
   }
 
   drawLots() {
@@ -18,5 +19,10 @@ class App {
     this.lotteryMachine.updateWinnerNumber(winnerNumbers);
   }
 
+  confirmWin(lottos) {
+    const winningStatistics = this.lotteryMachine.readQrCode(lottos);
+    LotteryMachine.printWinResult(winningStatistics);
+  }
 }
+
 module.exports = App;
