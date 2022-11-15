@@ -6,6 +6,7 @@ const Validation = require("./Validation");
 const stringToArray = require("./utils/stringToArray");
 const makeStat = require("./utils/makeStat");
 const makeResult = require("./utils/makeResult");
+const makeProfit = require("./utils/makeProfit");
 
 class Lotto {
   #numbers;
@@ -48,37 +49,23 @@ class Lotto {
     const bonusWin = stringToArray(bonus);
     const result = makeStat(lottos, win, bonusWin);
 
-    makeResult(result);
+    const hitResult = makeResult(result).hitResult;
+    const profitResult = makeProfit(hitResult, lottos).profit;
+    this.showResult(hitResult, profitResult);
   }
 
-  // makeResult(result) {
-  //   const hitResult = [0, 0, 0, 0, 0, 0];
-  //   console.log(result.stats, result.bonusHit);
-
-  //   for (let i = 0; i < result.stats.length; i++) {
-  //     if (result.stats[i] === 3) {
-  //       hitResult[0]++;
-  //     }
-  //     if (result.stats[i] === 4) {
-  //       hitResult[1]++;
-  //     }
-  //     if (result.stats[i] === 5 && result.bonusHit[i]) {
-  //       hitResult[3];
-  //     }
-  //     if (result.stats[i] === 5) {
-  //       hitResult[2]++;
-  //     }
-  //     if (result.stats[i] === 6) {
-  //       hitResult[4];
-  //     }
-  //   }
-
-  //   this.showResult;
-  // }
-
-  // showResult(result) {
-  //   MissionUtils.Console.print(INGAME_RESULT.STATS(1, 0, 0, 0, 0, 62.5));
-  // }
+  showResult(hitResult, profitResult) {
+    MissionUtils.Console.print(
+      INGAME_RESULT.STATS(
+        hitResult[0],
+        hitResult[1],
+        hitResult[2],
+        hitResult[3],
+        hitResult[4],
+        profitResult
+      )
+    );
+  }
 
   // 그다음 총 test 되어야하고, #numbers 활용 하도록 리팩토링
   // }

@@ -5,6 +5,7 @@ const CONFIG = Object.freeze({
 });
 
 const ERROR_INPUT_MESSAGE = Object.freeze({
+  ZERO: "[ERROR] 최소 1,000 이상 입력해야 합니다.",
   TYPE: "[ERROR] 입력값은 숫자여야 합니다.",
   UNIT: "[ERROR] 입력값은 1,000원 단위로 떨어져야 합니다.",
   RANGE: "[ERROR] 입력 요소의 범위는 숫자 1 ~ 45 입니다.",
@@ -29,11 +30,6 @@ const INGAME_INPUT = Object.freeze({
 const INGAME_INFORM = Object.freeze({
   PURCHASED: "개를 구매했습니다.",
 });
-
-//   STATS_4: (count) => `5개 일치, 보너스 볼 일치 (30,000,000원) -${count}개`,
-//   STATS_5: (count) => `6개 일치 (2,000,000,000원) -${count}개`,
-//   PROFIT: (profit) => `총 수익률은 ${profit}%입니다.`,
-// });
 
 const INGAME_RESULT = Object.freeze({
   STATS: (hit3, hit4, hit5, hitBonus, hitAll, profit) =>

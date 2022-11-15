@@ -9,6 +9,10 @@ class Player {
       throw new Error(ERROR_INPUT_MESSAGE.TYPE);
     }
 
+    if (amount === 0) {
+      throw new Error(ERROR_INPUT_MESSAGE.ZERO);
+    }
+
     if (!validation.amountUnit(amount)) {
       throw new Error(ERROR_INPUT_MESSAGE.UNIT);
     }

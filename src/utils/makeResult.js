@@ -18,7 +18,7 @@ const makeResult = (result) => {
       hitResult[4]++;
     }
   }
-  console.log(result.stats, result.bonusHit, hitResult);
+
   return { hitResult };
 };
 
