@@ -17,7 +17,7 @@ function calculate() {
 }
 
 function RoundSecondDecimalPlace(value) {
-  return value ? value.toFixed(SECOND_DECIMAL) : value;
+  return value.toFixed(SECOND_DECIMAL);
 }
 
 function sum() {
