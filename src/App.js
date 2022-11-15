@@ -55,6 +55,13 @@ class App {
         MissionUtils.Console.print("[" + lottos[ind].join(', ') + "]");
       }
     }
+
+    function getUserLottoNumbers(){
+      MissionUtils.Console.readLine("당첨 번호를 입력해주세요.", (answer) => {
+        let temp = answer.split(',');
+        userLottoNumbers = temp.map((ind) => Number(ind));
+      });
+    }
   } //Play() 닫는 닫는 괄호
 }//class App 닫는괄호
 
