@@ -27,54 +27,53 @@
 
 ### 로또 구매
 
-- [x] 구입 금액을 입력 받는다
-    - [x] 구입 금액 입력에 대한 예외 처리 및 단위테스트를 진행 한다 
+- [x] 구입 금액을 입력 받는다  - getLottoInfo() > PurchasePrice.getPurchasePrice()
+    - [x] 구입 금액 입력에 대한 예외 처리 및 단위테스트를 진행 한다  - __tests__/PurchasePriceTest.js
         - [x] 1,000원 단위로 나누어 떨어지지 않는 경우
         - [x] 숫자가 아닌 경우
 
 
-- [x] 구입한 로또 번호를 입력 받는다
-    - [x] 로또 번호에 대해서 예외 처리 및 단위테스트를 진행 한다 
+- [x] 구입한 로또 번호를 입력 받는다 - getLottoInfo() > getLottoNum()
+    - [x] 로또 번호에 대해서 예외 처리 및 단위테스트를 진행 한다 - __tests__/LottoTest.js
         - [x] 1~45 사이의 값이 아닌 경우
         - [x] 중복된 값이 존재하는 경우
         - [x] 숫자가 아닌 값이 들어가 있는 경우
         - [x] 로또 번호의 갯수가 6개가 아닌 경우
-- [x] 구입한 로또번호 출력
+- [x] 구입한 로또번호 출력 -  Lotto.resultPrint()
 
 
 
 ### 당첨 번호 입력
 
-- [x] 당첨 번호를 입력 받는다
-    - [x]  당첨 번호에 대해서 예외 처리 및 단위테스트를 진행 한다 
+- [x] 당첨 번호를 입력 받는다 - getLottoInfo() > getWinningNum()
+    - [x]  당첨 번호에 대해서 예외 처리 및 단위테스트를 진행 한다 - __tests__/LottoTest.js
         - [x] 1~45 사이의 값이 아닌 경우
         - [x] 중복된 값이 존재하는 경우
         - [x] 숫자가 아닌 값이 들어가 있는 경우
         - [x] 당첨번호의 갯수가 6개가 아닌 경우
-- [x] 입력한 당첨 번호 출력
+- [x] 입력한 당첨 번호 출력 - WinningNum.resultPrint()
 
-- [x] 보너스 번호를 입력 받는다 
-    - [x] 보너스 번호에 대해서 예외 처리 및 단위테스트를 진행 한다 
+- [x] 보너스 번호를 입력 받는다 - getLottoInfo() > getBounsNum()
+    - [x] 보너스 번호에 대해서 예외 처리 및 단위테스트를 진행 한다 - __tests__/BonusNumTest.js
         - [x] 1~45 사이의 값이 아닌 경우
         - [x] 보너스 번호가 숫자가 아닌 경우
         - [x] 당첨번호와 중복되는 경우
-- [x] 입력한 보너스 번호 출력
+- [x] 입력한 보너스 번호 출력 - BonusNum.resultPrint()
 
 
 ### 당첨 확인
 
-- [x] 구입한 로또 번호로 당첨 여부 확인
-    - [x] 당첨 번호와 일치한 정보 찾고 이를 바탕으로 당첨금 수령가능한 3개 이상 일치하는 것들만 추출
-      (일반 당첨자 , 보너스 당첨자 구분해서)
+- [x] 구입한 로또 번호로 당첨 여부 확인 - getResult()
+    - [x] 당첨 번호와 일치한 정보 찾고 이를 바탕으로 당첨금 수령가능한 3개 이상 일치하는 것들만 추출 (일반 당첨자 , 보너스 당첨자 구분해서) - LottoResult.calcLottoResult() > findCorrectValue()
 
 
 ### 계산
 
-- [x] 총 당첨금액 찾기
+- [x] 총 당첨금액 찾기 - LottoResult.calcLottoResult() > getPrice()
 
-- [x] 수익률 계산
+- [x] 수익률 계산 - LottoResult.calcLottoResult() > getRate()
 
 
 ### 출력
 
-- [x] 로또 결과 출력
+- [x] 로또 결과 출력 - LottoResult.calcLottoResult() > printResult()
