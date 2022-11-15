@@ -46,6 +46,7 @@ class App {
   manageTickets(numberOfTickets) {
     for (let i = 0; i < numberOfTickets; i++) {
       const ticketNumbers = this.createTicketNumbers();
+      ticketNumbers = this.sortAscendingOrder(ticketNumbers);
       this.printTickets(ticketNumbers);
       this.tickets.push(new Ticket(randomTicketNumbers));
     }
@@ -57,6 +58,10 @@ class App {
 
   printTickets(ticketNumbers) {
     MissionUtils.Console.print(ticketNumbers);
+  }
+
+  sortAscendingOrder(ticketNumbers) {
+    return ticketNumbers.sort((a, b) => a - b);
   }
 }
 
