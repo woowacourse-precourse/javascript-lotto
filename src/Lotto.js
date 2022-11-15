@@ -10,13 +10,16 @@ class Lotto {
     this.#numbers = numbers;
   }
 
-  returnSameNumberCount(purchasedLottoNumbersList) {
+  returnSameNumberCount(purchasedLottoNumbersList, bounusNumber) {
     let count = 0;
     this.#numbers.forEach((number) => {
       if (purchasedLottoNumbersList.includes(number) === true) {
         count += 1;
       }
     });
+    if (count === 5) {
+      return this.returnBonusNumberCount(purchasedLottoNumbersList, bounusNumber);
+    }
     return count;
   }
 
