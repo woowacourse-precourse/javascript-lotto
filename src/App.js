@@ -166,11 +166,4 @@ class App {
   }
 }
 
-const app = new App();
-app.play();
-
-// console.log(isNaN('6'));
-// console.log(isNaN('HI'));
-// console.log(isNaN('1000J'));
-
 module.exports = App;
