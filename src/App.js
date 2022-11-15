@@ -33,7 +33,7 @@ class App {
   printMyLotto() {
     const { myLotto, lottoCount } = this;
 
-    Console.print(`${lottoCount}${UNIT.LOTTO}를 구매했습니다.`);
+    Console.print(`\n${lottoCount}${UNIT.LOTTO}를 구매했습니다.`);
     myLotto.forEach((lotto) => {
       lotto.print();
     });
