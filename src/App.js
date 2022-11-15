@@ -3,14 +3,14 @@ const { MESSAGES } = require("./lib/constant");
 class App {
   play() {
     this.getAmountPaid((input) => {
+      console.log(input);
       this.appClose();
     });
   }
 
   getAmountPaid(callback) {
     Console.readLine(MESSAGES.TAKE_MONEY, (input) => {
-      console.log(input);
-      callback(input);
+      callback(input / 1000);
     });
   }
 
