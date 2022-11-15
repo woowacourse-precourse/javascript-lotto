@@ -1,7 +1,7 @@
 const { Console } = require("@woowacourse/mission-utils");
 const GameUtils = require("./utils/GameUtils");
 const ValidCheckUtils = require("./utils/ValidCheckUtils");
-const Result = require("./message/Result");
+const { ResultMsg, GuideMsg, ConstNumber } = require("./Constant");
 
 class LottoGame {
   pay;
@@ -13,12 +13,12 @@ class LottoGame {
   constructor() {}
 
   start() {
-    Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
+    Console.readLine(GuideMsg.INPUT_PAY, (input) => {
       ValidCheckUtils.checkPay(input);
 
       this.pay = input;
 
-      this.purchaseLottos(Number(this.pay) / 1000);
+      this.purchaseLottos(Number(this.pay) / ConstNumber.PAY_UNIT);
     });
   }
 
@@ -39,7 +39,7 @@ class LottoGame {
   }
 
   setWinnigNumber() {
-    Console.readLine("당첨 번호를 입력해 주세요.\n", (input) => {
+    Console.readLine(GuideMsg.INPUT_WINNING, (input) => {
       ValidCheckUtils.checkWinningNumber(input);
 
       this.winningNumber = GameUtils.getWinnigNumbersArray(input);
@@ -49,7 +49,7 @@ class LottoGame {
   }
 
   setBonusNumber() {
-    Console.readLine("보너스 번호를 입력해 주세요.\n", (input) => {
+    Console.readLine(GuideMsg.INPUT_BONUS, (input) => {
       ValidCheckUtils.checkBonusNumber(input, this.winningNumber);
 
       this.bonusNumber = input;
@@ -70,7 +70,7 @@ class LottoGame {
 
   printResult() {
     this.lottoRanks.forEach((r, i) => {
-      Console.print(`${Result.RESULT_STRING[i]}${r}개`);
+      Console.print(`${ResultMsg[i]}${r}개`);
     });
 
     Console.print(

@@ -1,5 +1,6 @@
 const { Random } = require("@woowacourse/mission-utils");
 const Lotto = require("../Lotto");
+const { ConstNumber } = require("../Constant");
 
 class GameUtils {
   constructor() {}
@@ -42,7 +43,7 @@ class GameUtils {
         bonusNumber
       );
 
-      if (rank) rankArray[5 - Number(rank)] += 1;
+      if (rank) rankArray[ConstNumber.RANK_ARRAY_SIZE - Number(rank)] += 1;
     });
 
     return rankArray;
@@ -56,7 +57,9 @@ class GameUtils {
       totalReward += ranks[i] * rw;
     });
 
-    return ((totalReward / Number(pay)) * 100).toFixed(1);
+    return ((totalReward / Number(pay)) * ConstNumber.PERCENTAGE_NUM).toFixed(
+      1
+    );
   }
 
   static getRankOfLotto(lottoNumber, winningNumber, bonusNumber) {

@@ -1,4 +1,4 @@
-const ErrorMsg = require("../message/Error");
+const { ErrorMsg } = require("../Constant");
 
 class ValidCheckUtils {
   constructor() {}
