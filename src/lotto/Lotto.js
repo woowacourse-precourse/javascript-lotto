@@ -1,5 +1,5 @@
-const Vaildator = require('./Vaildator');
-const error = require('./util/error');
+const Vaildator = require('../Vaildator');
+const error = require('../util/error');
 
 class Lotto {
   #numbers;
