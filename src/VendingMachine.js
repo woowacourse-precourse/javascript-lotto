@@ -26,15 +26,15 @@ class VendingMachine {
   }
 
   askPurchaseAmount() {
-    const answerCbFn = (answer) => {
-      this.validate(answer);
-      this.setPurchaseOptions(answer);
-      this.#randomNumbers = this.pickRandomNumbers();
-      this.printPickedNumbers();
-      this.askLottoNumbers();
-    };
+    Console.readLine(CONSOLE_MSG.enterPerchaseAmount, this.askPurchaseAmountCb.bind(this));
+  }
 
-    Console.readLine(CONSOLE_MSG.enterPerchaseAmount, answerCbFn);
+  askPurchaseAmountCb(answer) {
+    this.validate(answer);
+    this.setPurchaseOptions(answer);
+    this.#randomNumbers = this.pickRandomNumbers();
+    this.printPickedNumbers();
+    this.askLottoNumbers();
   }
 
   validate(purchaseAmount) {
@@ -72,31 +72,31 @@ class VendingMachine {
   }
 
   askLottoNumbers() {
-    const answerCbFn = (answer) => {
-      const lottoNumbers = splitStrByComma(answer).map(Number);
-      lottoNumbers.sort((a, b) => a - b);
+    Console.readLine(CONSOLE_MSG.enterLottoNumbers, this.askLottoNumbersCb.bind(this));
+  }
 
-      this.#lottoMachine = new Lotto(lottoNumbers);
-      this.askBonusNumber();
-    };
+  askLottoNumbersCb(answer) {
+    const lottoNumbers = splitStrByComma(answer).map(Number);
+    lottoNumbers.sort((a, b) => a - b);
 
-    Console.readLine(CONSOLE_MSG.enterLottoNumbers, answerCbFn);
+    this.#lottoMachine = new Lotto(lottoNumbers);
+    this.askBonusNumber();
   }
 
   askBonusNumber() {
-    const answerCbFn = (answer) => {
-      this.#lottoMachine.setBonus(Number(answer));
-      this.#randomNumbers.forEach((numbers) => {
-        const { score, bonusScore } = this.#lottoMachine.getScore(numbers);
-        this.#scores.push([score, bonusScore]);
-      });
+    Console.readLine(CONSOLE_MSG.enterBonusNumber, this.askBonusNumberCb.bind(this));
+  }
 
-      this.#rankBoard = this.getRanksByScores();
-      const [winMessages, rateOfProfit] = this.calculateStatistics();
-      this.printStatistics(winMessages, rateOfProfit);
-    };
+  askBonusNumberCb(answer) {
+    this.#lottoMachine.setBonus(Number(answer));
+    this.#randomNumbers.forEach((numbers) => {
+      const { score, bonusScore } = this.#lottoMachine.getScore(numbers);
+      this.#scores.push([score, bonusScore]);
+    });
 
-    Console.readLine(CONSOLE_MSG.enterBonusNumber, answerCbFn);
+    this.#rankBoard = this.getRanksByScores();
+    const [winMessages, rateOfProfit] = this.calculateStatistics();
+    this.printStatistics(winMessages, rateOfProfit);
   }
 
   getRanksByScores() {
