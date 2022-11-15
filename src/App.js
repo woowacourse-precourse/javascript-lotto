@@ -8,6 +8,7 @@ const rank = require('./util/rank');
 const lottoRank = require('./util/lottoRank');
 const Vaildator = require('./Vaildator');
 const TypeConverter = require('./util/TypeConverter');
+const error = require('./util/error');
 
 class App {
   constructor() {
@@ -25,7 +26,7 @@ class App {
   handleAmount(amount) {
     amount = +amount;
     if (!Vaildator.isRightAmount(+amount)) {
-      throw new Error('[ERROR]');
+      throw new Error(error.INVALID_AMOUNT);
     }
     this.user.amount = +amount;
     this.printUserLottos();
@@ -35,7 +36,7 @@ class App {
   handleHitNumbers(hitNumbers) {
     hitNumbers = TypeConverter.stringToArray(hitNumbers, ',').map((e) => +e);
     if (!Vaildator.isRightLottoNumbers(hitNumbers)) {
-      throw new Error('[ERROR]');
+      throw new Error(error.INVALID_HIT_NUMBERS);
     }
     this.hitLotto = new Lotto(hitNumbers);
     this.input.readLine(this.handleBonusNumber.bind(this));
@@ -47,7 +48,7 @@ class App {
       !Vaildator.isRightLottoNumber(number) ||
       Vaildator.isDuplicateNumberInArray(this.hitLotto.getNumbers(), number)
     ) {
-      throw new Error('[ERROR]');
+      throw new Error(error.INVALID_BONUS_NUMBER);
     }
     this.bonusNumber = number;
     this.showStat();
