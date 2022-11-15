@@ -8,6 +8,10 @@ class User {
         return this.lottoCount;
     }
 
+    getUserLotto () {
+        return this.userLotto;
+    }
+
 }
 
 module.exports = User;
