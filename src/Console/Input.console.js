@@ -23,7 +23,9 @@ class InputConsole {
   }
 
   static getLottoAdditional(lottoNumbers) {
-    const LottoAdditinalNumberString = this.#readLine(INPUT.GET_LOTTO_ADDITINAL);
+    const LottoAdditinalNumberString = this.#readLine(
+      INPUT.GET_LOTTO_ADDITINAL,
+    );
     return LottoValidator.additionalNumber(
       LottoAdditinalNumberString,
       lottoNumbers,

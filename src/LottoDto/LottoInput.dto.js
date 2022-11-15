@@ -1,5 +1,4 @@
 const Lotto = require('../Lotto');
-const MissionUtils = require('@woowacourse/mission-utils');
 
 class LottoInputDto extends Lotto {
   #bonus = 0;
