@@ -14,7 +14,7 @@ class App {
   }
 
   play() {
-    Console.readLine(PURCHASE_PRICE_MESSAGE, this.start.bind(this));
+    Console.readLine(PURCHASE_PRICE_MESSAGE, (answer) => this.start(answer));
   }
 
   start(answer) {
@@ -22,7 +22,7 @@ class App {
     this.myLotto.purchase();
     this.myLotto.print();
 
-    Console.readLine(WINNING_NUMBER_MESSAGE, this.input.bind(this));
+    Console.readLine(WINNING_NUMBER_MESSAGE, (answer) => this.input(answer));
   }
 
   input(answer) {
