@@ -1,18 +1,39 @@
-const { WinningExceptions } = require('./Exceptions');
+const { Exceptions } = require('./Exceptions');
+const { ERROR } = require('../util/Message');
 
-class Lotto {
+class Lotto extends Exceptions {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    super(numbers);
+    this.validate();
     this.#numbers = numbers;
   }
 
-  validate(numbers) {
-    new WinningExceptions(numbers).check();
+  validate() {
+    if (this.isNotRightLength()) super.occurError(ERROR.WINNING_LENGTH);
+    if (this.isNotAllDigit()) super.occurError(ERROR.WINNING_DIGIT);
+    if (this.isNotInRangeArr()) super.occurError(ERROR.WINNING_RANGE);
+    if (this.isDuplicated()) super.occurError(ERROR.WINNING_DUPLICATED);
   }
 
-  // TODO: 추가 기능 구현
+  isNotRightLength() {
+    return this.input.length !== 6;
+  }
+
+  isNotAllDigit() {
+    return !this.input.every((winningNum) => !super.isNotDigit(winningNum));
+  }
+
+  isNotInRangeArr() {
+    return !this.input.every((winningNum) => super.isInRange(winningNum));
+  }
+
+  isDuplicated() {
+    const winningArr = this.input.map((num) => parseInt(num));
+    const set = new Set(winningArr);
+    return [...set].length !== winningArr.length;
+  }
 }
 
 module.exports = Lotto;

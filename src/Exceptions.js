@@ -33,33 +33,6 @@ class MoneyExceptions extends Exceptions {
   }
 }
 
-class WinningExceptions extends Exceptions {
-  check() {
-    if (this.isNotRightLength(6)) super.occurError(ERROR.WINNING_LENGTH);
-    if (this.isNotAllDigit()) super.occurError(ERROR.WINNING_DIGIT);
-    if (this.isNotInRangeArr()) super.occurError(ERROR.WINNING_RANGE);
-    if (this.isDuplicated()) super.occurError(ERROR.WINNING_DUPLICATED);
-  }
-
-  isNotRightLength(LENGTH) {
-    return this.input.length !== LENGTH;
-  }
-
-  isNotAllDigit() {
-    return !this.input.every((winningNum) => !super.isNotDigit(winningNum));
-  }
-
-  isNotInRangeArr() {
-    return !this.input.every((winningNum) => super.isInRange(winningNum));
-  }
-
-  isDuplicated() {
-    const winningArr = this.input.map((num) => parseInt(num));
-    const set = new Set(winningArr);
-    return [...set].length !== winningArr.length;
-  }
-}
-
 class BonusExceptions extends Exceptions {
   check(winningArr) {
     if (super.isNotDigit(this.input)) super.occurError(ERROR.BONUS_DIGIT);
@@ -72,4 +45,8 @@ class BonusExceptions extends Exceptions {
   }
 }
 
-module.exports = { MoneyExceptions, WinningExceptions, BonusExceptions };
+module.exports = {
+  Exceptions,
+  MoneyExceptions,
+  BonusExceptions,
+};
