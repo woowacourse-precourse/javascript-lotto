@@ -1,7 +1,9 @@
 class UserError {
   includingCharactersError(money) {
-    if (/\D/g.test(money)) {
-      throw new Error("[ERROR] 숫자를 입력해 주세요.");
+    for (let i = 0; i < money.length; i++) {
+      if (/\D/g.test(money[i])) {
+        throw new Error("[ERROR] 숫자를 입력해 주세요.");
+      }
     }
   }
 
@@ -34,16 +36,10 @@ class UserError {
   }
 
   validateNumberRange(numbers) {
-    numbers.forEach((number) => {
-      if (number < 1 || number > 45) {
+    for (let i = 0; i < numbers.length; i++) {
+      if (numbers[i] < 1 || numbers[i] > 45) {
         throw new Error("[ERROR] 1~45 사이의 번호를 입력해 주세요.");
       }
-    });
-  }
-
-  validateBonusNumber(number) {
-    if (number.length !== 1) {
-      throw new Error("[ERROR] 보너스 번호는 1개만 입력해 주세요.");
     }
   }
 }
