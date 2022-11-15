@@ -33,6 +33,7 @@ function makeLottoList(money) {
 function winningList (LOTTO_LIST) {
   MissionUtils.Console.readLine('당첨 번호를 입력해 주세요', (winning_Number)=>{
     const WINNING_LIST = winning_Number.split(',').map(item => parseInt(item))
+    exceptionWinning(WINNING_LIST)
     return makeBonusNumber(LOTTO_LIST, WINNING_LIST)
   })
 }
@@ -54,8 +55,9 @@ function WinningCheck (LOTTO_LIST, WINNING_LIST, bonus_Number) {
     })
     countcheck(COUNT, BONUS, winningPoint)
   })
-  
+  return resultPrint(LOTTO_LIST, winningPoint)
 }
+
 function countcheck(COUNT, BONUS, winningPoint){
   switch (COUNT) {
     case 3:
@@ -76,19 +78,20 @@ function countcheck(COUNT, BONUS, winningPoint){
     winningPoint[3]++
   }
 }
-// function winningresult(lotto_number, winningPoint) {
-//   let value = 5000*winningPoint[0] + 50000*winningPoint[1] + 1500000*winningPoint[2] + 30000000*winningPoint[3] + 2000000000*winningPoint[4]
-//   let dummy = lotto_number.length*1000
-//   MissionUtils.Console.print(`당첨 통계`)
-//   MissionUtils.Console.print('---')
-//   MissionUtils.Console.print(`3개 일치 (5,000원) - ${winningPoint[0]}개`)
-//   MissionUtils.Console.print(`4개 일치 (50,000원) - ${winningPoint[1]}개`)
-//   MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${winningPoint[2]}개`)
-//   MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningPoint[3]}개`)
-//   MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${winningPoint[4]}개`)
-//   MissionUtils.Console.print(`총 수익률은 ${value*100/dummy}%입니다.`)
-//   MissionUtils.Console.close()
-// }
+function resultPrint(LOTTO_LIST, winningPoint) {
+  let value = 5000*winningPoint[0] + 50000*winningPoint[1] + 1500000*winningPoint[2] + 30000000*winningPoint[3] + 2000000000*winningPoint[4]
+  let dummy = LOTTO_LIST.length*1000
+  MissionUtils.Console.print(`당첨 통계`)
+  MissionUtils.Console.print('---')
+  MissionUtils.Console.print(`3개 일치 (5,000원) - ${winningPoint[0]}개`)
+  MissionUtils.Console.print(`4개 일치 (50,000원) - ${winningPoint[1]}개`)
+  MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${winningPoint[2]}개`)
+  MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningPoint[3]}개`)
+  MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${winningPoint[4]}개`)
+  MissionUtils.Console.print(`총 수익률은 ${value*100/dummy}%입니다.`)
+  MissionUtils.Console.close()
+}
+
 function exceptionMoney(money) {
   if (isNaN(money)){
     throw '[ERROR] 숫자만 입력해 주세요'
@@ -97,17 +100,18 @@ function exceptionMoney(money) {
     throw '[ERROR] 금액은 1,000원 단위로 입력해야 합니다.'
   }
 }
-function exceptionWinning(winningInput){
-  if (isNaN(winningInput)){
+
+function exceptionWinning(WINNING_LIST){
+  if (isNaN(WINNING_LIST)){
     throw '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.'
   }
-  if (Math.max(...winningInnputArray)>45){
+  if (WINNING_LIST.some(item => item > 45)){
     throw '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.'
   }
-  if (winningInputArray.length !== 6) {
+  if (WINNING_LIST.length !== 6) {
     throw '[ERROR] 로또 번호는 6개여야 합니다.'
   }
-  if (winningSet.size !== 6) {
+  if ([...new Set(WINNING_LIST)].length !== 6) {
     throw '[ERROR] 로또 번호는 서로 다른 6개여야 합니다.'
   }
 }
