@@ -4,10 +4,8 @@ const LottoCompany = require("./LottoCompany");
 const LottoManager = require("./LottoManager");
 const LogicChain = require("./LogicChain");
 const getUserInputAsync = require("./lib/userInput");
-const INSTRUCTION = require("./lib/constants")
+const { INSTRUCTION, LOTTO_PRICE, WINNING_MONEYS} = require("./lib/constants")
 
-const lottoPrice = 1000;
-const winningMoney = [2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000];
 class App {
   #lottoCompany;
 
@@ -16,7 +14,7 @@ class App {
   #logicChain;
 
   constructor() {
-    this.#lottoCompany = new LottoCompany(lottoPrice, winningMoney);
+    this.#lottoCompany = new LottoCompany(LOTTO_PRICE, WINNING_MONEYS);
     this.#lottoManager = new LottoManager();
     this.#logicChain = new LogicChain();
     this.makeLogicOrders();
