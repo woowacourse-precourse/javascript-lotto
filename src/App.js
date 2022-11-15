@@ -47,17 +47,22 @@ class App {
   }
 
   userLottoNum(userPrice) {
-    const userLottoNum = new Array(lottoNum);
-    while (userLottoNum.length < 6) {
-      const lottoNum = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-      if (!userLottoNum.includes(lottoNum)) {
-        userLottoNum.push(lottoNum);
-      }
+    const userLottoNum = new Array();
+    const gameTime = Number(userPrice) / 1000;
+    for (let i = 0; i < gameTime; i++) {
+      userLottoNum.push(this.lottoAuto());
+      MissionUtils.Console.print(userLottoNum);
     }
-    MissionUtils.Console.print(userLottoNum);
-    this.winLottoNum();
-    return userLottoNum;
+    this.userLottoNum = userLottoNum;
   }
+
+  // 로또 번호 자동 생성
+  lottoAuto() {
+    const autoLottoNum = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    autoLottoNum.sort((a, b) => a - b);
+    return autoLottoNum;
+  }
+
   play() {
     this.userPaid();
   }
