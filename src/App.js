@@ -72,10 +72,16 @@ class App {
       }
     }
   }
-  
+
   inputExceptionNotANumber(answer) {
     if (isNaN(answer) === true) {
       throw new Error("[ERROR] 숫자를 쉼표 구분하여 입력해 주세요.");
+    }
+  }
+
+  inputExceptionThousand(inputMoney) {
+    if (inputMoney % 1000 !== 0) {
+      throw new Error("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
     }
   }
 }
