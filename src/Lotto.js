@@ -9,21 +9,21 @@ class LottoBuilder {
   }
   createLottoList(input) {
     const lottoList = [];
-    const countLotto = this.#countAmountLotto(input);
+    const countLotto = this.countAmountLotto(input);
 
     Array(countLotto)
       .fill(countLotto)
-      .forEach(_ => lottoList.push(this.#createLottoNumber()));
+      .forEach(_ => lottoList.push(this.createLottoNumber()));
 
     this.lottoList = lottoList;
     return lottoList;
   }
 
-  #createLottoNumber() {
+  createLottoNumber() {
     const randomNumber = Random.pickUniqueNumbersInRange(1, 45, 6);
     return randomNumber.sort((a, b) => a - b);
   }
-  #countAmountLotto(input) {
+  countAmountLotto(input) {
     return Number(input.slice(0, input.length - 3));
   }
 }

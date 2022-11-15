@@ -1,6 +1,10 @@
 const { Console } = require('@woowacourse/mission-utils');
 const checkPriceValidation = require('./checkValid/checkPriceValidation');
 const { LottoBuilder } = require('./Lotto');
+const {
+  checkWinningValidation,
+} = require('./checkValid/checkWinningValidation');
+
 class App {
   constructor() {
     this.LottoBuilder = new LottoBuilder();
@@ -24,7 +28,7 @@ class App {
   showLottoList(lists) {
     this.print(`${lists.length}개를 구매했습니다.`);
     lists.forEach(list => {
-      this.print(`[${list}]`);
+      this.print(`[${list.join(', ')}]`);
     });
   }
 
