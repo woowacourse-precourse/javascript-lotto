@@ -76,6 +76,7 @@
     * [ ] 당첨번호 및 보너스 번호 입력받기 App
     * [ ] 비교하기 CompareLotto
     * [ ] 예외사항 Validation
+* [ ] 원시타입 상수화
 
 
 
