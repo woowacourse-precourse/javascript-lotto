@@ -42,6 +42,10 @@ class InputAcceptor {
         return true;
     }
 
+    static checkNumberValidRange(number) {
+        if (number < 1 || number > 45) throw new Error('[ERROR] 1~45 사이의 숫자를 입력해주세요.');
+    }
+
     static checkWinningLottoNumbersValidation(numberArray) {
         ErrorChecker.checkSixElementArray(numberArray); //6개 요소를 갖고 있는가
         ErrorChecker.checkDuplicatedElement(numberArray); //중복은 없는가
@@ -50,10 +54,6 @@ class InputAcceptor {
             this.checkNumberValidRange(numberElement); //범위 내인가
         });
         return true;
-    }
-
-    static checkNumberValidRange(number) {
-        if (number < 1 && number > 45) throw new Error('[ERROR] 1~45 사이의 숫자를 입력해주세요.');
     }
 }
 
