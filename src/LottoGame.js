@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { MESSAGE, RANK, PRIZE } = require('./utils/constant');
+const { MESSAGE, RANK, PRIZE, CONDITION } = require('./utils/constant');
 const LottoShop = require('./LottoShop');
 const Lotto = require('./Lotto');
 const Bonus = require('./Bonus');
@@ -81,7 +81,9 @@ class LottoGame {
   }
 
   calcRateOfReturn(totalPrize) {
-    return ((totalPrize / this.purchaseAmount) * 100).toFixed(1);
+    return ((totalPrize / this.purchaseAmount) * CONDITION.PERCENTAGE).toFixed(
+      1
+    );
   }
 
   drawLotto() {
