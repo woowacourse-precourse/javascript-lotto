@@ -46,4 +46,9 @@ describe("Validator 클래스 테스트", () => {
     expect(Validator.isRightFee(7000)).toEqual(true);
     expect(Validator.isRightFee(7014)).toEqual(false);
   });
+
+  test("isNumberInArray : 숫자가 배열 안에 있는지 테스트", () => {
+    expect(Validator.isNumberInArray([1, 2, 3, 4, 5, 6], 1)).toEqual(true);
+    expect(Validator.isNumberInArray([1, 2, 3, 4, 5, 6], 7)).toEqual(false);
+  });
 });
