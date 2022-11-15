@@ -1,5 +1,6 @@
+const Game = require('./Game'); 
+
 class App {
-  play() {}
   constructor(){
     this.Game = new Game();
   }
@@ -8,5 +9,8 @@ class App {
     this.Game.play();
   }
 }
+const app = new App();
+
+app.play();
 
 module.exports = App;
