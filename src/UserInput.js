@@ -6,25 +6,25 @@ const Bonus = require('./Lotto/Bonus.js');
 
 class UserInput {
   play() {
-    readLine(INPUT_QUERY.LOTTO_AMOUNT, this.publishLotto.bind(this));
+    readLine(INPUT_QUERY.LOTTO_AMOUNT, this.handleInputMoney.bind(this));
   }
 
-  publishLotto(money) {
-    this.lotto = new LottoGenerator(money);
-    this.publishedLotto = this.lotto.publishUserLotto();
-    readLine(INPUT_QUERY.WINNING_NUMBER, this.handleLottoNumber.bind(this));
+  handleInputMoney(money) {
+    this.lottoGenerator = new LottoGenerator(money);
+    this.publishedLotto = this.lottoGenerator.publishUserLotto();
+    readLine(INPUT_QUERY.WINNING_NUMBER, this.handleWinningNumber.bind(this));
   }
 
-  handleLottoNumber(winningNumber) {
-    this.winningNumber = new Lotto(winningNumber);
-    this.winningNumbers = this.winningNumber.getWinningNumber();
-    this.winningNumber.checkEachLottoNumber(this.publishedLotto);
+  handleWinningNumber(winningNumber) {
+    this.lotto = new Lotto(winningNumber);
+    this.winningNumber = this.lotto.getWinningNumber();
+    this.lotto.checkEachLottoNumber(this.publishedLotto);
     readLine(INPUT_QUERY.BONUS_NUMBER, this.handleBonusNumber.bind(this));
   }
 
   handleBonusNumber(bonusNumber) {
-    this.bonusNumber = new Bonus(bonusNumber, this.winningNumbers);
-    this.bonusNumber.compareUserAndBonus(this.publishedLotto);
+    this.bonus = new Bonus(bonusNumber, this.winningNumber);
+    this.bonus.compareUserAndBonus(this.publishedLotto);
     this.printLottoResult();
   }
 
@@ -34,7 +34,7 @@ class UserInput {
     print(OUTPUT.FIVE(prizeCount.third));
     print(OUTPUT.FIVEBONUS(prizeCount.second));
     print(OUTPUT.SIX(prizeCount.first));
-    print(OUTPUT.PROFIT(this.lotto.calculateProfit()));
+    print(OUTPUT.PROFIT(this.lottoGenerator.calculateProfit()));
     close();
   }
 }
