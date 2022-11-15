@@ -7,13 +7,13 @@ class App {
     this.Lotto = [];
     this.winNum = [];
     this.bonusNum = null;
-    this.score = {};
+    this.score = { "3개": 0, "4개": 0, "5개": 0, bonus개: 0, "6개": 0 };
     this.prize = {
-      3: 5000,
-      4: 50000,
-      5: 1500000,
-      bonus: 30000000,
-      6: 2000000000,
+      "3개": 5000,
+      "4개": 50000,
+      "5개": 1500000,
+      bonus개: 30000000,
+      "6개": 2000000000,
     };
     this.totalMoney = null;
   }
@@ -54,13 +54,17 @@ class App {
       this.Lotto = [...this.Lotto, new Lotto()];
     }
     MissionUtils.Console.print(`${this.LottoCount}개를 구매했습니다.`);
-    MissionUtils.Console.print(this.Lotto);
+    this.Lotto.forEach((lotto) =>
+      MissionUtils.Console.print(`[${lotto.join(", ")}]`)
+    );
+    this.getWinNum();
   }
 
   getWinNum() {
     MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (answers) => {
       this.checkWinNum(answers);
       this.winNum = answers.split(",").map(Number);
+      this.getBonusNum();
     });
   }
 
@@ -79,9 +83,13 @@ class App {
   }
 
   getBonusNum() {
-    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (answers) => {
+    MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.", (answers) => {
       this.checkBonusNum(+answers);
       this.bonusNum = +answers;
+      this.compareWinToLotto();
+      this.calculateScoreToMoney();
+      this.printResult();
+      MissionUtils.Console.close();
     });
   }
 
@@ -111,7 +119,7 @@ class App {
           count = "bonus";
         }
       }
-      this.score[count] = this.score[count] ?? 0 + 1;
+      this.score[`${count}개`] += 1;
     }
   }
 
@@ -123,6 +131,20 @@ class App {
 
   calculateProfit() {
     return ((this.totalMoney / (this.LottoCount * 1000)) * 100).toFixed(1);
+  }
+
+  printResult() {
+    const keys = Object.keys(this.score);
+    MissionUtils.Console.print("당첨 통계");
+    MissionUtils.Console.print("---");
+    for (let rank in this.score) {
+      MissionUtils.Console.print(
+        `${rank === "bonus개" ? "5개" : rank} 일치${
+          rank === "bonus개" ? ", 보너스 볼 일치" : ""
+        } (${this.prize[rank].toLocaleString()}원) - ${this.score[rank]}개`
+      );
+    }
+    MissionUtils.Console.print(`총 수익률은 ${this.calculateProfit()}%입니다.`);
   }
 }
 
