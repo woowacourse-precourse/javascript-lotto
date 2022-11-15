@@ -1,16 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
-
-const LOTTO_PRICE = 1000;
-const LOTTERY_RANK_LENGTH = 5;
+const { LOTTO, PRIZE, RANK } = require("./utils/constant");
 const RATE_PROFIT_FIXED = 1;
-const FIFTH_PRIZE = 5000;
-const FOURTH_PRIZE = 50000;
-const THIRD_PRIZE = 1500000;
-const SECOND_PRIZE = 30000000;
-const FIRST_PRIZE = 2000000000;
-const LOTTO_NUM_START = 1;
-const LOTTO_NUM_LAST = 45;
-const LOTTO_NUM_LENGTH = 6;
 
 class Lotto {
   #numbers; // 로또 당첨번호
@@ -32,7 +22,7 @@ class Lotto {
       const winStats = this.lotteryResult(userLottos, bonusNumber);
       const rateOfprofit = this.getRateOfProfit(
         winStats.get("profit"),
-        userLottos.length * LOTTO_PRICE
+        userLottos.length * LOTTO.PRICE
       );
       this.printWinStats(winStats, rateOfprofit);
       Console.close();
@@ -40,15 +30,15 @@ class Lotto {
   }
 
   validateLength(numbers) {
-    if (numbers.length !== LOTTO_NUM_LENGTH) {
-      throw new Error(`[ERROR] 로또 번호는 ${LOTTO_NUM_LENGTH}개여야 합니다.`);
+    if (numbers.length !== LOTTO.NUM_LENGTH) {
+      throw new Error(`[ERROR] 로또 번호는 ${LOTTO.NUM_LENGTH}개여야 합니다.`);
     }
   }
   validateRange(numbers) {
     for (let i = 0; i < numbers.length; i++) {
-      if (numbers[i] < LOTTO_NUM_START || numbers[i] > LOTTO_NUM_LAST) {
+      if (numbers[i] < LOTTO.NUM_START || numbers[i] > LOTTO.NUM_LAST) {
         throw new Error(
-          `[ERROR] 로또 번호는 ${LOTTO_NUM_START}~${LOTTO_NUM_LAST} 사이만 가능합니다.`
+          `[ERROR] 로또 번호는 ${LOTTO.NUM_START}~${LOTTO.NUM_LAST} 사이만 가능합니다.`
         );
       }
     }
@@ -61,7 +51,7 @@ class Lotto {
 
   lotteryResult(userLottos, bonusNumber) {
     const result = new Map();
-    for (let i = 1; i <= LOTTERY_RANK_LENGTH; i++) {
+    for (let i = 1; i <= RANK.LENGTH; i++) {
       result.set(i, 0);
     }
     userLottos.map((lotto) => {
@@ -85,19 +75,19 @@ class Lotto {
     let money = 0;
     switch (rank) {
       case 5:
-        money = FIFTH_PRIZE;
+        money = PRIZE.FIFTH;
         break;
       case 4:
-        money = FOURTH_PRIZE;
+        money = PRIZE.FOURTH;
         break;
       case 3:
-        money = THIRD_PRIZE;
+        money = PRIZE.THIRD;
         break;
       case 2:
-        money = SECOND_PRIZE;
+        money = PRIZE.SECOND;
         break;
       case 1:
-        money = FIRST_PRIZE;
+        money = PRIZE.FIRST;
         break;
       default:
         money = 0;
