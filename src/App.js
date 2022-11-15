@@ -73,7 +73,25 @@ class App {
     this.printResult();
   }
 
+  initializeResult() {
+    this.result[MONEY.FifthPlaceMoney] = 0;
+    this.result[MONEY.FourthPlaceMoney] = 0;
+    this.result[MONEY.ThirdPlaceMoney] = 0;
+    this.result[MONEY.SecondPlaceMoney] = 0;
+    this.result[MONEY.FristPlaceMoney] = 0;
+  }
 
+  separateWin(count, bonus) {
+    if (count === 3) this.result[MONEY.FifthPlaceMoney] += 1;
+    if (count === 4) this.result[MONEY.FourthPlaceMoney] += 1;
+    if (count === 5) {
+      if (bonus === false) this.result[MONEY.ThirdPlaceMoney] += 1;
+      if (bonus === true) this.result[MONEY.SecondPlaceMoney] += 1;
+    }
+    if (count === 6) this.result[MONEY.FristPlaceMoney] += 1;
+  }
+
+  
 }
 
 let app = new App().play;
