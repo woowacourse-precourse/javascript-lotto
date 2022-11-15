@@ -23,7 +23,7 @@ class Lotto {
 
   matchNumbers(winNumbers, bonusNumber) {
     let winCount = this.#numbers.filter((value) =>
-      winNumbers.has(value)
+      winNumbers.includes(value)
     ).length;
     const matchBonus = winCount === 5 && this.#numbers.includes(bonusNumber);
     if (matchBonus) winCount = 5.5;
