@@ -23,12 +23,12 @@ class App {
   }
 
   handleByFee(fee) {
-    fee = +fee;
+    fee = TypeConverter.stringToNumber(fee);
 
     if (!Validator.isRightFee(+fee)) {
       throw new Error("[ERROR]");
     }
-    this.user.fee = +fee;
+    this.user.fee = fee;
     this.printUserLottos();
     this.input.readLine(this.handleHitLottos.bind(this));
   }
