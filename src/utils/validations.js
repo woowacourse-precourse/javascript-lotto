@@ -54,10 +54,10 @@ const checkValidArrayLength = (numbersArray) => {
 };
 
 const isValidRange = (number) => {
-  if (number >= NUMBER.MIN_LOTTO_RANGE || number <= NUMBER.MAX_LOTTO_RANGE) return;
+  if (number >= NUMBER.MIN_LOTTO_RANGE && number <= NUMBER.MAX_LOTTO_RANGE) return;
 
   Console.close();
-  throw new Error(ERROR.INVALID_LENGTH);
+  throw new Error(ERROR.INVALID_RANGE);
 };
 
 const checkLottoInputValidation = (inputNumbers) => {
