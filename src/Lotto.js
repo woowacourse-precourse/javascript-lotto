@@ -7,6 +7,7 @@ class Lotto {
     this.validate(numbers);
     this.isDuplicated(numbers);
     this.isNumber(numbers);
+    this.isInRange(numbers);
     this.#numbers = numbers;
   }
 
@@ -27,6 +28,14 @@ class Lotto {
     numbers.forEach(number => {
       if(isNaN(number)){
         throw Constants.INPUT_ERROR.NOT_NUMBER;
+      }
+    })
+  }
+
+  isInRange(numbers) {
+    numbers.forEach(number => {
+      if(Number(number) < 1 || Number(number) > 45){
+        throw Constants.INPUT_ERROR.NOT_IN_RANGE
       }
     })
   }
