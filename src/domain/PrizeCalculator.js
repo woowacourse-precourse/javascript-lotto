@@ -1,4 +1,4 @@
-const { PRIZE_MATCH_NUMBER_COUNT } = require("./constants/condition.js");
+const { PRIZE_MATCH_NUMBER_COUNT } = require("../constants/condition.js");
 
 class PrizeCalculator {
   calculatePrize(eachLottoNumbers, winningNumbers, bonusNumber) {

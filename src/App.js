@@ -1,4 +1,4 @@
-const LottoGame = require("./LottoGame.js");
+const LottoGame = require("./service/LottoGame.js");
 
 class App {
   constructor() {

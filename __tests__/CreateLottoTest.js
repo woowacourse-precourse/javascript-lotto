@@ -1,4 +1,4 @@
-const LottoPerchaseMachine = require("../src/LottoPurchaseMachine.js");
+const LottoPerchaseMachine = require("../src/domain/LottoPurchaseMachine.js");
 const Lotto = require("../src/Lotto.js");
 const { Console } = require("@woowacourse/mission-utils");
 

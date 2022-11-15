@@ -1,4 +1,4 @@
-const { PRIZE_MATCH_NUMBER_COUNT, LOTTO_PRIZE_MONEY } = require("./constants/condition.js");
+const { PRIZE_MATCH_NUMBER_COUNT, LOTTO_PRIZE_MONEY } = require("../constants/condition.js");
 
 class Statistics {
   totalPrizeMoney;

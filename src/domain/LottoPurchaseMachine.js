@@ -4,9 +4,9 @@ const {
   LOTTO_NUM_MIN_RANGE,
   LOTTO_NUM_MAX_RANGE,
   LOTTO_DIGITS,
-} = require("./constants/condition.js");
-const Validation = require("./Validation.js");
-const Lotto = require("./Lotto.js");
+} = require("../constants/condition.js");
+const Validation = require("../Validation.js");
+const Lotto = require("../Lotto.js");
 
 class LottoPerchaseMachine {
   purchaseAmount;

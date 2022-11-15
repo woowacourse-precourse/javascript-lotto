@@ -1,10 +1,10 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { REQUEST_MESSAGE } = require("./constants/message.js");
-const LottoGameView = require("./LottoGameView.js");
-const LottoPerchaseMachine = require("./LottoPurchaseMachine.js");
-const WinningLotto = require("./WinningLotto.js");
-const PrizeCalculator = require("./PrizeCalculator.js");
-const Statistics = require("./Statistics.js");
+const { REQUEST_MESSAGE } = require("../constants/message.js");
+const LottoGameView = require("../view/LottoGameView.js");
+const LottoPerchaseMachine = require("../domain/LottoPurchaseMachine.js");
+const PrizeCalculator = require("../domain/PrizeCalculator.js");
+const Statistics = require("../domain/Statistics.js");
+const WinningLotto = require("../WinningLotto.js");
 
 class LottoGame {
   playerLottos;
