@@ -11,7 +11,7 @@ class RandomNums {
   getRandomNums() {
     if (this.randomNumUnits.length === this.amount) {
       this.printRandomNums();
-      return this.randomNumUnits;
+      return;
     }
     this.randomNumUnits.push(this.makeRandomNums());
     this.getRandomNums();
@@ -34,6 +34,7 @@ class RandomNums {
   }
 
   printRandomNums() {
+    MissionUtils.Console.print('');
     MissionUtils.Console.print(`${this.amount}개를 구매했습니다.`);
     this.randomNumUnits.forEach((randomNums) => {
       MissionUtils.Console.print(randomNums);

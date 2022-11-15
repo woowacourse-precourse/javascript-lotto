@@ -1,9 +1,16 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const RandomNums = require('./RandomNums');
+const Result = require('./Result');
 const { LOTTO, REGEX_NUM, PRICE_PER_LOTTO } = require('./constants');
 
 class User {
+  constructor() {
+    this.money;
+    this.randomNumUnits;
+    this.bonusNum;
+  }
+
   readInput() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
       this.validateMoney(money);
@@ -31,7 +38,8 @@ class User {
 
   makeLotto() {
     const amount = this.getAmount();
-    this.randomNums = new RandomNums(amount);
+    const random = new RandomNums(amount);
+    this.randomNumUnits = random.randomNumUnits;
     this.readLottoNums();
   }
 
@@ -40,6 +48,7 @@ class User {
   }
 
   readLottoNums() {
+    MissionUtils.Console.print('');
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (numbers) => {
       this.lotto = new Lotto(numbers.split(','));
       this.readBonusNum();
@@ -47,19 +56,24 @@ class User {
   }
 
   readBonusNum() {
-    MissionUtils.Console.readLine(
-      '보너스 번호를 입력해 주세요.\n',
-      (number) => {
-        this.validateBonusNum(number);
-      }
-    );
+    MissionUtils.Console.print('');
+    MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.\n', (input) => {
+      this.validateBonusNum(input);
+      this.bonusNum = input;
+      const result = new Result(
+        this.randomNumUnits,
+        this.lotto.getNumbers(),
+        this.bonusNum
+      );
+      result.getResult();
+      MissionUtils.Console.close();
+    });
   }
 
   validateBonusNum(number) {
     User.checkIsNum(number);
     User.checkNumRange(number);
     User.checkDuplicatedNum(this.lotto.getNumbers(), number);
-    this.bonusNum = number;
   }
 
   static checkNumRange(number) {
