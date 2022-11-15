@@ -59,6 +59,21 @@ class App {
     });
   }
 
+  compareLottoNumbers() {
+    this.initializeResult();
+    this.arrayLotto.map((numbers) => {
+      let countSameNumbers = 0;
+      let isBonusNumber = false;
+      numbers.map((number) => {
+        if(this.arrayWinLotto.includes(number)) countSameNumbers += 1;
+        if(this.numberBonus === number) isBonusNumber = true; 
+      });
+      this.separateWin(countSameNumbers, isBonusNumber);
+    });
+    this.printResult();
+  }
+
+
 }
 
 let app = new App().play;
