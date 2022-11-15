@@ -94,7 +94,17 @@ class App {
   Console.print(`5개 일치 (1,500,000원) - ${rankObject[3]}개`);
   Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankObject[2]}개`);
   Console.print(`6개 일치 (2,000,000,000원) - ${rankObject[1]}개`);
+  this.stats(rankObject);
  }
+ stats(rankObject) {
+  let useMoney = 0;
+  for(let i =1; i<= 5; i++) {
+    if(rankObject[i] != 0) useMoney += score[i] * rankObject[i];
+  }
+  Console.print(`총 수익률은 ${((useMoney / this.money) * 100).toFixed(1)}%입니다.`);
+  Console.close();
+ }
+
   play() {
     this.setMoney();
   }
