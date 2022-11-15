@@ -1,3 +1,5 @@
+const { Console } = require("@woowacourse/mission-utils");
+
 class Lotto {
   #numbers;
 
@@ -26,7 +28,7 @@ class Lotto {
       counts[count]++;
     }
 
-    return this.printStats(counts);
+    return counts;
   }
 
   printStats(counts) {
@@ -37,7 +39,7 @@ class Lotto {
     stats += `\n5개 일치, 보너스 볼 일치 (30,000,000원) - ${counts[5.5]}개`;
     stats += `\n6개 일치 (2,000,000,000원) - ${counts[6]}개`;
 
-    return stats;
+    Console.print(stats);
   }
 }
 

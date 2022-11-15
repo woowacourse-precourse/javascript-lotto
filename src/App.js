@@ -38,9 +38,9 @@ class App {
       this.bonusNumber = parseInt(bonusNumber);
 
       const lotto = new Lotto(this.lottos);
-      const stats = lotto.calculateStats(this.winningNumber, this.bonusNumber);
+      const counts = lotto.calculateStats(this.winningNumber, this.bonusNumber);
       
-      Console.print(stats);
+      lotto.printStats(counts);
     })
   }
 
@@ -51,6 +51,5 @@ class App {
 
 const app = new App();
 app.play();
-
 
 module.exports = App;
