@@ -15,10 +15,13 @@ class GenerateLotto {
     if (!regex.test(money)) {
       throw new Error('[ERROR] 숫자만 입력해주세요.');
     }
+    if (money / 1000 !== 0) {
+      throw new Error('[ERROR] 1000원 단위로 입력해주세요.');
+    }
   }
 
   purchaseCount() {
-    this.count = Math.floor(this.#money / LOTTO_PRICE);
+    this.count = this.#money / LOTTO_PRICE;
     return this.count;
   }
 
