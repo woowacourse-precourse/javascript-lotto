@@ -25,6 +25,13 @@ class App {
     Console.readLine("\n당첨 번호를 입력해 주세요.\n", this.stringToNumbers);
   }
 
+  stringToNumbers = (winningNumbers) => {
+    this.winningList = winningNumbers.split(',').map(num => parseInt(num));
+    this.startLotto = new Lotto(this.winningList);
+    this.startLotto;
+    this.letBonusNumber();
+  }
+
 }
 const a = new App;
 a.play();
