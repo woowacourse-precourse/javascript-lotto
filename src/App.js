@@ -1,5 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const { VALIDATE_NUMBER, ERROR_MESSAGE, INPUT_QUESTION, PRINT_MESSAGE, PRIZE } = require('./utils/Constants'); 
+const { VALIDATE_NUMBER, INPUT_QUESTION, PRINT_MESSAGE, PRIZE } = require('./utils/Constants'); 
 const Bonus = require('./Bonus');
 const Lotto = require('./Lotto');
 const PurchaseAmount = require('./PurchaseAmount');
@@ -95,25 +95,28 @@ class App {
   }
 
   getRank(matchingNumbers, lotto) {
+    const {rank} = this;
     const matchCount = matchingNumbers.length;
-    if (matchCount === 3) this.rank.fifth++;
-    if (matchCount === 4) this.rank.fourth++;
-    if (matchCount === 5 && !lotto.includes(this.bonusNumber)) this.rank.third++;
-    if (matchCount === 5 && lotto.includes(this.bonusNumber)) this.rank.second++;
-    if (matchCount === 6) this.rank.first++;
+
+    if (matchCount === 3) rank.fifth++;
+    if (matchCount === 4) rank.fourth++;
+    if (matchCount === 5 && !lotto.includes(this.bonusNumber)) rank.third++;
+    if (matchCount === 5 && lotto.includes(this.bonusNumber)) rank.second++;
+    if (matchCount === 6) rank.first++;
   }
 
   printResult() {
+    const {rank} = this;
     Console.print(PRINT_MESSAGE.statistics);
-    Console.print(PRINT_MESSAGE.matchThree(this.rank.fifth));
-    Console.print(PRINT_MESSAGE.matchFour(this.rank.fourth));
-    Console.print(PRINT_MESSAGE.matchFive(this.rank.third));
-    Console.print(PRINT_MESSAGE.matchFiveBonus(this.rank.second));
-    Console.print(PRINT_MESSAGE.matchSix(this.rank.first));
+    Console.print(PRINT_MESSAGE.matchThree(rank.fifth));
+    Console.print(PRINT_MESSAGE.matchFour(rank.fourth));
+    Console.print(PRINT_MESSAGE.matchFive(rank.third));
+    Console.print(PRINT_MESSAGE.matchFiveBonus(rank.second));
+    Console.print(PRINT_MESSAGE.matchSix(rank.first));
   }
 
   getProfit() {
-    const rank = this.rank;
+    const {rank} = this;
     const totalPrize = 
       rank.fifth * PRIZE.fifth + 
       rank.fourth * PRIZE.fourth + 
@@ -135,3 +138,4 @@ class App {
 }
 
 module.exports = App;
+
