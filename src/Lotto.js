@@ -5,8 +5,10 @@ class Lotto {
 
   constructor(numbers) {
     this.validate(numbers);
+    this.#numbers = numbers.sort((a, b) => {
+      return a - b;
+    });
     this.printlotto(numbers);
-    this.#numbers = numbers;
   }
 
   validate(numbers) {
@@ -17,6 +19,10 @@ class Lotto {
 
   printlotto(numbers) {
     MissionUtils.Console.print(numbers);
+  }
+
+  getArr() {
+    return this.#numbers;
   }
 
   // TODO: 추가 기능 구현

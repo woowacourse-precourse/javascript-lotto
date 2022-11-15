@@ -12,7 +12,7 @@ const lottoPrice = () => {
   MissionUtils.Console.readLine('구입금액을 입력해 주세요. \n', (answer) => {
     lottoPriceValidate(+answer);
     const lottoCnt = answer / LOTTO;
-    createLotto(lottoCnt);
+    const lottoArr = createLotto(lottoCnt);
   })
 
 }
@@ -25,15 +25,14 @@ const lottoPriceValidate = (lottoprice) => {
 
 
 const createLotto = (lottocnt) => {
+  const lottoArr = [];
   MissionUtils.Console.print(`\n${lottocnt}개를 구매했습니다.`);
   for (let i = 0; i < lottocnt; i++){
     let numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-    numbers.sort();
-    const lottoArr = new Lotto(numbers);
-    
+    const lottoNum = new Lotto(numbers);
+    lottoArr.push(lottoNum.getArr());
   }
-  
-
+  return lottoArr;
 }
 
 
