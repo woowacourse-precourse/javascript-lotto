@@ -39,7 +39,7 @@ class LottoSeller {
 
   countTicket(money) {
     this.isValidMoney(money);
-    return money / this.lottoPrice;
+    return Number(money) / this.lottoPrice;
   }
 
   issue(count) {
