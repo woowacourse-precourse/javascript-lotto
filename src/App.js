@@ -7,18 +7,21 @@ const inputObjects = {
   'numbers': [],
   'bonus': '',
 }
-const randomNumberList = []
+
+const results = [0, 0, 0, 0, 0, 0]
+
 function getBudget() {
   Console.readLine('', (answer) => {
     const gameBudget = new Budget(Number(answer));
     inputObjects['budget'] = gameBudget.getBudget();
-    getLottoNumbers()
+    getLottoNumbers();
   })
 }
+
 function inputValueToArray(inputValue) {
   const inputArray = inputValue.split(',')
   inputArray.forEach((element, index) => {
-    inputArray[index] = Number(element.trim())
+    inputArray[index] = Number(element.trim());
   })
   return inputArray;
 }
@@ -29,24 +32,26 @@ function getLottoNumbers() {
     lotto.getNumbers().forEach((element) => {
       inputObjects['numbers'].push(element);
     })
-    getBonusNumber()
+    getBonusNumber();
   })
 }
+
 function getBonusNumber() {
   Console.readLine('', (answer) => {
     const bonusNum = new Bonus(inputObjects['numbers'], Number(answer));
     inputObjects['bonus'] = bonusNum.getBonus();
-    startLotto()
+    startLotto();
   })
 }
+
 function startLotto() {
-  Console.print(`${inputObjects['budget']/1000}개를 구매했습니다.`)
-  getRandomNumberList()
+  Console.print(`${inputObjects['budget']/1000}개를 구매했습니다.`);
+  getRandomNumberList();
 }
 
 function getRandomNumber() {
-  const randomNumber = Random.pickNumberInRange(1, 45)
-  return randomNumber
+  const randomNumber = Random.pickNumberInRange(1, 45);
+  return randomNumber;
 }
 
 function getRandomNumbers() {
@@ -59,20 +64,48 @@ function getRandomNumbers() {
   return randomNumbers;
 }
 
+function getBonusResult(bonus) {
+  return inputObjects['numbers'].includes(bonus);
+}
+
+function getNumbersResult(randomNumbers) {
+  const sameNumbers = randomNumbers.filter((element) => {
+    return inputObjects['numbers'].includes(element);
+  })
+  return sameNumbers;
+}
+
+function getResult(randomNumbers, bonus) {
+  const sameNumbersCount = getNumbersResult(randomNumbers).length;
+  const bonusResult = getBonusResult(bonus);
+
+  if(sameNumbersCount===6) return 5;
+  if(sameNumbersCount===5 && bonusResult===true) return 4;
+  if(sameNumbersCount===5 && bonusResult===false) return 3;
+  if(sameNumbersCount===4) return 2;
+  if(sameNumbersCount===3) return 1;
+  return 0;
+}
+
 function getRandomNumberList() {
   for(let i=0; i<inputObjects['budget']/1000; i++){
-    const randomNumbers = getRandomNumbers()
-    randomNumberList.push(randomNumbers)
-    Console.print(randomNumbers)
+    const randomNumbers = getRandomNumbers();
+    const result = getResult(randomNumbers, inputObjects['bonus'])
+    Console.print(randomNumbers);
+    results[result] += 1;
   }
+  console.log(results)
 }
+
 class App {
   constructor() {
-    this.play()
+    this.play();
   }
+
   play() {
-    getBudget()
+    getBudget();
   }
 }
+
 module.exports = App;
 test = new App();
