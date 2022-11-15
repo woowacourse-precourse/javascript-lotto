@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const LottoCalculator = require("./");
+const LottoCalculator = require("./LottoCalculator");
 
 class LottoResultManager {
   constructor() {
