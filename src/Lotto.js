@@ -10,6 +10,13 @@ class Lotto {
     this.bonus = 0;
     this.sameCount = 0;
     this.sameBonus = false;
+    this.valueResult = {
+      "5,000": 0,
+      "50,000": 0,
+      "1,500,000": 0,
+      "30,000,000": 0,
+      "2,000,000,000": 0,
+    };
   }
 
   inputAmount() {
@@ -93,6 +100,7 @@ class Lotto {
       this.checkBonusNumber(bonusNum);
       this.bonus = bonusNum;
       this.processList();
+      this.lottoValueResult();
     });
   }
 
@@ -120,10 +128,21 @@ class Lotto {
           this.sameBonus = true;
         }
       });
-      console.log(this.sameCount, this.sameBonus);
     });
   }
 
-  //lottoResult() {}
+  lottoValueResult() {
+    if (this.sameCount === 3) {
+      this.valueResult["5,000"] += 1;
+    } else if (this.sameCount === 4) {
+      this.valueResult["50,000"] += 1;
+    } else if (this.sameCount === 5 && this.sameBonus === false) {
+      this.valueResult["1,500,000"] += 1;
+    } else if (this.sameCount === 5 && this.sameBonus === true) {
+      this.valueResult["30,000,000"] += 1;
+    } else if (this.sameCount === 6) {
+      this.valueResult["2,000,000,000"] += 1;
+    }
+  }
 }
 module.exports = Lotto;
