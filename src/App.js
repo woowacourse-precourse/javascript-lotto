@@ -87,7 +87,7 @@ class App {
       this.prize += PRIZE_BOARD[result] * count;
     }
     let percentage = (this.prize / this.amount) * 100;
-    percentage = percentage.toFixed(1);
+    percentage = Number(percentage.toFixed(1)).toLocaleString();
     console.log(percentage);
     this.profit = percentage;
     this.printResult();
