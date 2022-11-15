@@ -1,6 +1,6 @@
 const MESSAGE = {
   USER_ENTER_PURCHASE: "구입금액을 입력해 주세요.",
-  USER_BOUGHT: "구입금액을 입력해 주세요.",
+  USER_BOUGHT: "개를 구매했습니다.",
   LOTTO_WINNING_NUMBER: "당첨 번호를 입력해 주세요.",
   LOTTO_BONUS_NUMBER: "보너스 번호를 입력해 주세요.",
   WINNING_STATISTICS: "당첨 통계\n---",
