@@ -40,6 +40,10 @@ const ERROR = {
   NOT_MULTIPLE_OF_THOUSAND: '구입금액은 1000단위로 입력하세요.',
   CANT_ZERO: '0개는 구매할 수 없습니다.',
   MUST_HAVE_COMMA: '당첨번호는 쉼표(,)로 구분하여 6개의 정수를 입력해야 합니다.',
+  CANT_OVERLAP_BONUS: '보너스번호는 당첨번호와 중복될 수 없습니다.',
+  CANT_OVERLAP_LOTTO: '로또 번호는 중복이 없어야 합니다.',
+  MUST_IN_RANGE: '로또 번호는 1 ~ 45 사이의 값 입니다.',
+  NOT_PROPER_LENGTH: '로또 번호는 6개여야 합니다.',
 };
 
 module.exports = { GAME, MESSAGE, RULE, PRIZE_BOARD, ERROR };
