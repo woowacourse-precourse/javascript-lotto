@@ -7,6 +7,12 @@ describe("Validation 클래스 테스트", () => {
     expect(Validation.isThatSix(input)).toBe(false);
   });
 
+  test("당첨 번호 입력값이 중복되는지 검사", () => {
+    const input = [1, 2, 3, 4, 5, 5];
+
+    expect(Validation.isThatDuplicate(input)).toBe(true);
+  });
+
 //   test("당첨 번호 입력값이 1 ~ 45 사이인지 검사", () => {
 //     const input = [1, 2, 3, 4, 5, 70];
 
