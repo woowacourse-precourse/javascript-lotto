@@ -1,4 +1,5 @@
 const { ERROR_MESSAGE } = require("./Constants");
+const { Random } = require("@woowacourse/mission-utils");
 
 module.exports = {
   Check: {
@@ -34,6 +35,12 @@ module.exports = {
         .filter((number) => !isNaN(number))
         .filter((number) => number >= 1 && number <= 45)
         .filter((number) => number === Math.floor(number));
+    },
+  },
+
+  Create: {
+    randomNumbers() {
+      return Random.pickUniqueNumbersInRange(1, 45, 6);
     },
   },
 };

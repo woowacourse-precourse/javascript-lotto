@@ -1,9 +1,5 @@
-const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
-
-const getRandomNumbers = () => {
-  return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-};
+const { Create } = require("./Utils");
 
 class LottoArray {
   constructor(cash) {
@@ -22,7 +18,7 @@ class LottoArray {
   }
 
   makeLotto = () => {
-    const randomNumbers = getRandomNumbers();
+    const randomNumbers = Create.randomNumbers();
     const lotto = new Lotto(randomNumbers);
     return lotto;
   };
