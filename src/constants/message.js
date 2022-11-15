@@ -6,6 +6,7 @@ const ASK = Object.freeze({
 
 const ERROR = Object.freeze({
   LOTTO_PRICE: '[ERROR] 1000원 단위의 금액만 입력하세요.',
+  MIN_MONEY: '[ERROR] 1000원부터 구매할 수 있습니다.',
   ONLY_NUMBER: '[ERROR] 숫자만 입력해주세요.',
   NUMBER_COUNT: '[ERROR] 로또 번호는 6개여야 합니다.',
   NO_DUPLICATE: '[ERROR] 중복되지 않는 숫자를 입력해주세요.',

@@ -31,6 +31,10 @@ class Player {
     if (!Number.isInteger(money / SETTING.LOTTO_PRICE)) {
       throw new Error(ERROR.LOTTO_PRICE);
     }
+
+    if (money < SETTING.LOTTO_PRICE) {
+      throw new Error(ERROR.MIN_MONEY);
+    }
   }
 
   addPrizeCounts(prize) {
