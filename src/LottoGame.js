@@ -77,6 +77,10 @@ class LottoGame {
 
     return totalPrize;
   }
+
+  calcRateOfReturn(totalPrize) {
+    return ((totalPrize / this.purchaseAmount) * 100).toFixed(1);
+  }
 }
 
 module.exports = LottoGame;
