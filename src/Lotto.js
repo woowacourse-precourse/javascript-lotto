@@ -1,3 +1,5 @@
+const { ERROR, LOTTO } = require("./constants");
+
 class Lotto {
   #numbers;
 
@@ -7,12 +9,12 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (new Set(numbers).size !== 6) {
-      throw new Error("[ERROR] 로또 번호는 중복되지 않는 수여야 합니다.");
+    if (new Set(numbers).size !== LOTTO.NUMBER_COUNT) {
+      throw new Error(ERROR.INVALID_WIN_DUPLICATE);
     }
     numbers.forEach(number => {
       if (number < 1 || number > 45) {
-        throw new Error("[ERROR] 로또 번호는 1과 45 사이의 수여야 합니다.");
+        throw new Error(ERROR.INVALID_WIN_RANGE);
       }
     });
   }

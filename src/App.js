@@ -1,4 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils/");
+const { MESSAGE, ERROR } = require("./constants");
 const User = require("./User");
 const Lotto = require("./Lotto");
 const Util = require("./Util");
@@ -20,16 +21,16 @@ class App {
   }
 
   getPerchaseAmount() {
-    Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
+    Console.readLine(MESSAGE.GET_PERCHASE, (money) => {
       this.#User = new User(money);
       Console.close();
     })
   }
 
   getWinLottoNumber() {
-    Console.readLine('\n당첨 번호를 입력해 주세요.', (answer) => {
+    Console.readLine(MESSAGE.GET_WIN, (answer) => {
       if (!this.isValidWinNumberInput(answer)) {
-        throw new Error("[ERROR] 로또 번호는 쉼표로 구분된 6개의 수를 입력해야 합니다.");
+        throw new Error(ERROR.INVALID_WIN_INPUT);
       }
       const numbers = answer.split(',').map(Number);
       this.#Lotto = new Lotto(numbers);
@@ -41,9 +42,9 @@ class App {
   }
 
   getBonusNumber() {
-    Console.readLine('\n보너스 번호를 입력해 주세요.\n', (answer) => {
+    Console.readLine(MESSAGE.GET_BONUS, (answer) => {
       if (!this.isValidBonusNumberInput(answer)) {
-        throw new Error("[ERROR] 보너스 번호는 로또 번호와 중복되지 않는 1과 45 사이의 수여야 합니다.");
+        throw new Error(ERROR.INVALID_BONUS_INPUT);
       }
       this.#bonusNumber = answer;
     });

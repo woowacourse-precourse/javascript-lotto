@@ -1,13 +1,12 @@
 const { Console } = require("@woowacourse/mission-utils/");
+const { RESULT, LOTTO } = require("./constants");
 
 class Util {
   printRankCount(rankCountTable) {
     Console.print("\n당첨 통계\n---\n");
-    Console.print(`3개 일치 (5,000원) - ${rankCountTable[5]}개`);
-    Console.print(`4개 일치 (50,000원) - ${rankCountTable[4]}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${rankCountTable[3]}개`);
-    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${rankCountTable[2]}개`);
-    Console.print(`6개 일치 (2,000,000,000원) - ${rankCountTable[1]}개`);
+    for (let i = 5; i > 0; i--) {
+      Console.print(RESULT.RANK_PHRASE[i] + rankCountTable[i] + "개");
+    }
   }
 
   getRankCount(userLottoList, winNumbers, bonusNumber) {
@@ -72,10 +71,9 @@ class Util {
   }
 
   calculateTotalEarn(rankCountTable) {
-    const rewardTable = {1: 2000000000, 2: 30000000, 3: 1500000, 4: 50000, 5: 5000};
     let totalEarn = 0;
-    for (let i = 1; i < 6; i++) {
-      totalEarn += (rankCountTable[i] * rewardTable[i]);
+    for (let i = 1; i < LOTTO.NUMBER_COUNT; i++) {
+      totalEarn += (rankCountTable[i] * LOTTO.REWARD_TABLE[i]);
     }
     return totalEarn;
   }

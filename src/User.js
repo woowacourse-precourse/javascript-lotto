@@ -1,5 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils/");
-const NUMBER_COUNT_PER_LOTTO = 6;
+const { ERROR, LOTTO } = require("./constants");
 
 class User {
   #money;
@@ -8,7 +8,7 @@ class User {
 
   constructor(money) {
     if (!this.isValid(money)) {
-      throw new Error("[ERROR] 구입 금액은 1000원 단위의 수여야 합니다.");
+      throw new Error(ERROR.INVALID_MONEY);
     }
     this.#money = money;
     this.#lottoAmount = money / 1000;
@@ -46,7 +46,7 @@ class User {
   }
 
   createLotto() {
-    return Random.pickUniqueNumbersInRange(1, 45, 6);
+    return Random.pickUniqueNumbersInRange(1, 45, LOTTO.NUMBER_COUNT);
   }
 
   printLottoList() {
