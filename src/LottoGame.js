@@ -78,7 +78,7 @@ class LottoGame {
       this.checkBonusNum(userPickLotto, bonusNumber, resultExceptBonus);
     });
     this.announceResult();
-    this.userPrizeValue = this.calculateResult();
+    this.userPrizeValue = this.calculateResult(this.prizeList);
     this.announceYield(this.money, this.userPrizeValue);
     MissionUtils.Console.close();
   };
@@ -130,13 +130,13 @@ class LottoGame {
     );
   };
 
-  calculateResult = () => {
+  calculateResult = (prizeList) => {
     return (
-      this.calculatePrize(STATIC.LOTTERY_PRIZE.THREE, this.prizeList[3]) +
-      this.calculatePrize(STATIC.LOTTERY_PRIZE.FOUR, this.prizeList[4]) +
-      this.calculatePrize(STATIC.LOTTERY_PRIZE.FIVE, this.prizeList[5]) +
-      this.calculatePrize(STATIC.LOTTERY_PRIZE.FIVE_BONUS, this.prizeList[7]) +
-      this.calculatePrize(STATIC.LOTTERY_PRIZE.SIX, this.prizeList[6])
+      this.calculatePrize(STATIC.LOTTERY_PRIZE.THREE, prizeList[3]) +
+      this.calculatePrize(STATIC.LOTTERY_PRIZE.FOUR, prizeList[4]) +
+      this.calculatePrize(STATIC.LOTTERY_PRIZE.FIVE, prizeList[5]) +
+      this.calculatePrize(STATIC.LOTTERY_PRIZE.FIVE_BONUS, prizeList[7]) +
+      this.calculatePrize(STATIC.LOTTERY_PRIZE.SIX, prizeList[6])
     );
   };
 
