@@ -68,4 +68,51 @@ describe("로또 테스트", () => {
       app.play();
     }).toThrow("[ERROR]");
   });
+
+test("당첨번호(보너스번호 제외) 예외처리 테스트_1", () => {
+  expect(() => {
+    const app = new App();
+    app.winningLottoValidate([1, 2, 3, 4, 5, 6, 7]);
+  }).toThrow("[ERROR]");
+});
+
+test("당첨번호(보너스번호 제외) 예외처리 테스트_2", () => {
+  expect(() => {
+    const app = new App();
+    app.winningLottoValidate([1, 2, 3, 4, 5, 5]);
+  }).toThrow("[ERROR]");
+});
+
+test("당첨번호(보너스번호 제외) 예외처리 테스트_3", () => {
+  expect(() => {
+    const app = new App();
+    app.winningLottoValidate([1, 2, 3, 4, 5, 6, 46]);
+  }).toThrow("[ERROR]")
+});
+
+test("보너스 번호 예외처리 테스트_1", () => {
+  expect(() => {
+    const app = new App();
+    app.winningLottoArr = [[1, 2, 3, 4, 5, 6]] //당첨번호와 중복 확인하기 위해 설정
+    app.winningLottoBonusValidate(6);
+  }).toThrow("[ERROR]");
+});
+
+test("보너스 번호 예외처리 테스트_2", () => {
+  expect(() => {
+    const app = new App();
+    app.winningLottoBonusValidate(50);
+  }).toThrow("[ERROR]");
+});
+
+test("수익률 계산을 위한 수익 계산테스트_1", () => {
+  const app = new App();
+  expect(app.yieldCal([0, 0, 0, 0, 1])).toEqual(2000000000);
+});
+
+test("수익률 계산을 위한 수익 계산테스트_2", () => {
+  const app = new App();
+  expect(app.yieldCal([0, 1, 1, 0, 0])).toEqual(1550000)
+});
+
 });

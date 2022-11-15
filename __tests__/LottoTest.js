@@ -14,5 +14,26 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
-  // 아래에 추가 테스트 작성 가능
+  test("로또 번호가 범위를 벗어나면 예외가 발생한다._1", () => {
+    expect(() => {
+      new Lotto([0, 1, 2, 3, 4, 5]);
+    }).toThrow("[ERROR]");
+  });
+
+  test("로또 번호가 범위를 벗어나면 예외가 발생한다._2", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, 46]);
+    }).toThrow("[ERROR]");
+  });
+
+  test("랜덤번호와 당첨번호가 4개 일치할때 등수 index = 1", () => {
+    let lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    expect(lotto.setSizeCount(new Set([1, 2, 3, 4, 5, 6, 7, 8]), 9)).toEqual(1);
+  });
+
+  test("랜덤번호와 당첨번호가 6개 일치할때 등수 index = 4", () => {
+    let lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    expect(lotto.setSizeCount(new Set([1, 2, 3, 4, 5, 6]), 9)).toEqual(4);
+  });
+
 });
