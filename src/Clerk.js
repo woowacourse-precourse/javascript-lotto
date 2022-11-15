@@ -24,6 +24,17 @@ class Clerk {
     }
     return [lottoCnt, bonusCnt];
   }
+
+  countPlace() {
+    for (let i = 0; i < this.#lottoArr.length; i++) {
+      let [lottoCnt, bonusCnt] = this.findPlace(this.#lottoArr[i]);
+      if (lottoCnt + bonusCnt === 3) this.#place[0]++;
+      if (lottoCnt + bonusCnt === 4) this.#place[1]++;
+      if (lottoCnt + bonusCnt === 5) this.#place[2]++;
+      if (lottoCnt === 5 && bonusCnt === 1) this.#place[3]++;
+      if (lottoCnt === 6) this.#place[4]++;
+    }
+  }
 }
 
 module.exports = Clerk;
