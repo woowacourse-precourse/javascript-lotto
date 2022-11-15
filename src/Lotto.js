@@ -18,9 +18,11 @@ class Lotto {
   }
 
   rangedate(numbers) {
-    if (/[^1-45]/g.test(numbers)) {
-      throw new Error("[ERROR] 1~45 숫자만 입력해야 합니다.");
-    }
+    numbers.forEach(function (num) {
+      if (!(num >= 1 && num <= 45)) {
+        throw new Error("[ERROR] 1~45 숫자만 입력해야 합니다.");
+      }
+    });
   }
 
   // TODO: 추가 기능 구현
