@@ -84,6 +84,12 @@ class App {
       throw new Error("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
     }
   }
+
+  inputExceptionNumberRange(userLottoList) {
+    if (userLottoList[1] < 0 || userLottoList[-1] > 45) {
+      throw new Error("[ERROR] 로또 번호는 1부터 45까지의 숫자여야 합니다.");
+    }
+  }
 }
 
 module.exports = App;
