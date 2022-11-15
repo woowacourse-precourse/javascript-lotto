@@ -22,9 +22,14 @@ const isOutOfVolumeAndThrowError = (input, volume) => {
   if (input.length !== volume) throwErrorMessage(Display.error('OUT_OF_VOLUME'));
 };
 
+const validatePayment = (payment) => {
+  if (payment % Display.info('PRICE') !== 0) throwErrorMessage(Display.error('UNACCEPTABLE_PAYMENT'));
+};
+
 module.exports = {
   REG_NUMBER_RANGE,
   isOutOfRangeAndThrowError,
   isDuplicatedAndThrowError,
   isOutOfVolumeAndThrowError,
+  validatePayment,
 };
