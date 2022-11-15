@@ -12,6 +12,7 @@ class BonusNumber{
     if (bonusNumber <= 0 || bonusNumber === String || SPECIAL_CHARACTERS.test(bonusNumber)) {
       throw "[ERROR]";
     }
+
     return bonusNumber;
   }
 
@@ -19,6 +20,7 @@ class BonusNumber{
     if (!lottoWinningNumber.includes(bonusNumber)) {
       return bonusNumber;
     }
+    
     return -1;
   }
 }
