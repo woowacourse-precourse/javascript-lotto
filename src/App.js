@@ -19,8 +19,7 @@ class App {
 
   getUserMoney() {
     Console.readLine(COMMAND.MONEY, (money) => {
-      new MoneyExceptions(money).check();
-      this.#money = parseInt(money);
+      this.#money = new MoneyExceptions(money).check();
       this.#lottoArr = new CreateLotto(money).make();
       this.getWinning();
     });
@@ -36,23 +35,23 @@ class App {
 
   getBonus() {
     Console.readLine(COMMAND.BONUS, (bonus) => {
-      new BonusExceptions(bonus).check(this.#winningArr);
-      this.#bonus = parseInt(bonus);
-      const result = new CompareNumbers(
-        this.#lottoArr,
-        this.#winningArr,
-        this.#bonus
-      ).getResult();
-      this.printResult(result);
+      this.#bonus = new BonusExceptions(bonus).check(this.#winningArr);
+      this.printResult(
+        new CompareNumbers(
+          this.#lottoArr,
+          this.#winningArr,
+          this.#bonus
+        ).getResult()
+      );
     });
   }
 
   printResult(result) {
     let income = ZERO;
     console.log(COMMAND.RESULT);
-    for (let index = FIFTH; index > ZERO; index--) {
-      income += lotto[index].amount * result[index];
-      Console.print(`${lotto[index].message}${result[index]}개`);
+    for (let rank = FIFTH; rank > ZERO; rank--) {
+      income += lotto[rank].amount * result[rank];
+      Console.print(`${lotto[rank].message}${result[rank]}개`);
     }
     const percent = (income / this.#money) * 100;
     Console.print(`${COMMAND.YIELD}${percent.toFixed(DECIMAL_PLACES)}%입니다.`);

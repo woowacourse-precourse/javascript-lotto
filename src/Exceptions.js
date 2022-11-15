@@ -27,6 +27,7 @@ class MoneyExceptions extends Exceptions {
   check() {
     if (super.isNotDigit(this.input)) super.occurError(ERROR.MONEY_DIGIT);
     if (this.isNotDivisible()) super.occurError(ERROR.MONEY_DIVISIBLE);
+    return parseInt(this.input);
   }
 
   isNotDivisible() {
@@ -39,6 +40,7 @@ class BonusExceptions extends Exceptions {
     if (super.isNotDigit(this.input)) super.occurError(ERROR.BONUS_DIGIT);
     if (!super.isInRange(this.input)) super.occurError(ERROR.BONUS_RANGE);
     if (this.isDuplicated(winningArr)) super.occurError(ERROR.BONUS_DUPLICATED);
+    return parseInt(this.input);
   }
 
   isDuplicated(winningArr) {
