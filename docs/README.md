@@ -54,6 +54,14 @@
 
 ---
 
+## 💻 프로그램 설계
+
+<img src="https://user-images.githubusercontent.com/108187253/201929202-f6b438a1-4d7a-4da9-95e7-b96c60f3d0ba.png" width="700px">
+
+
+
+---
+
 ## 📛 예외 목록
 
 * 로또 번호의 숫자는 1~45까지
