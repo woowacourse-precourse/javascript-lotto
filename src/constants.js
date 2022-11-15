@@ -8,7 +8,9 @@ const MESSAGE = {
   },
 };
 
-const ERROR_PREFIX = '[ERROR]';
+const NUMBER = {
+  MONEY_UNIT: 1000,
+};
 
 const COUNT = {
   LOTTO_NUMBER: 6,
@@ -35,4 +37,5 @@ module.exports = {
   ERROR_MESSAGE,
   ERROR_PREFIX,
   COUNT,
+  NUMBER,
 };
