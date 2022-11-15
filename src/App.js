@@ -53,7 +53,13 @@ class App {
     ).returnRank();
     this.printResult(result);
   }
-  printResult(result) {}
+  printResult(result) {
+    Console.print(OUTPUT_MESSAGE.FIFTH(result.fifth));
+    Console.print(OUTPUT_MESSAGE.FOURTH(result.fourth));
+    Console.print(OUTPUT_MESSAGE.THIRD(result.third));
+    Console.print(OUTPUT_MESSAGE.SECOND(result.second));
+    Console.print(OUTPUT_MESSAGE.FIRST(result.first));
+  }
 }
 const app = new App();
 app.play();
