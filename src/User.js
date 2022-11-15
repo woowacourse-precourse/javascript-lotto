@@ -60,7 +60,7 @@ class User {
         winning_number = winning_number.split(',');
         const VALIDATION = this.validate_winning_number(winning_number);
         if (!VALIDATION) {
-          throw new Error('[Error] 롯또 번호는 1~45 사이의 6자리 숫자입니다.');
+          throw new Error('[Error] 로또 번호는 1~45 사이의 6자리 숫자입니다.');
         }
         const toNumbers = arr => arr.map(Number);
         this.setWinningNumber(toNumbers(winning_number));
@@ -86,8 +86,12 @@ class User {
       '\n보너스 번호를 입력해 주세요.\n',
       bonus_number => {
         const VALIDATION = this.validate_bonus_number(bonus_number);
-        if (!VALIDATION) {
-          throw new Error('[Error] 롯또 번호는 1~45 사이의 숫자입니다.');
+        if (VALIDATION === 'outofrange') {
+          throw new Error('[Error] 보너스 번호는 1~45 사이의 숫자입니다.');
+        } else if (VALIDATION === 'overlap') {
+          throw new Error(
+            '[Error] 보너스 번호는 당첨번호와 일치할 수 없습니다.',
+          );
         }
         this.setBonusNumber(Number(bonus_number));
         this.calculate();
@@ -98,7 +102,10 @@ class User {
   validate_bonus_number(number) {
     let validation = true;
     if (!(number >= '1' && number <= 45)) {
-      validation = false;
+      return 'outofrange';
+    }
+    if (this.winning_number.includes(Number(number))) {
+      return 'overlap';
     }
     return validation;
   }
