@@ -9,8 +9,7 @@ class LottoBundle {
         )
       );
     }
-    const bundleString = bundle.map((x) => JSON.stringify(x));
-    const bundleForPrint = bundleString.map((x) => x.replaceAll(",", ", "));
+    const bundleForPrint = bundle.map((x) => "[" + x.join(", ") + "]");
     return [bundle, bundleForPrint];
   }
 }
