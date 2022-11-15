@@ -1,15 +1,21 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
-const PRICE = 1000
+const {
+  LOTTO,
+  REWARD,
+  INPUT_MESSAGE,
+  ERROR_MESSAGE,
+  RESULT_MESSAGE } = require("./util/constants")
+
 class App {
   play() {
-    MissionUtils.Console.readLine('구입금액을 입력해 주세요 : ', (money) => {
+    MissionUtils.Console.readLine(INPUT_MESSAGE.MONEY, (money) => {
       this.verificateMoney(money)
       let myLotto = this.issueLotto(money);
       this.showIssuedLotto(myLotto);
-      MissionUtils.Console.readLine('\n당첨 번호를 입력해 주세요 : ', (winningNumbers) => {
+      MissionUtils.Console.readLine(INPUT_MESSAGE.WINNING_NUMBER, (winningNumbers) => {
         this.verificateWinningNumbers(winningNumbers);
-        MissionUtils.Console.readLine('\n보너스 번호를 입력해 주세요 : ', (bonusNumber) => {
+        MissionUtils.Console.readLine(INPUT_MESSAGE.BONUS_NUMBER, (bonusNumber) => {
           this.verificateBonusNumber(winningNumbers,bonusNumber);
           let result = this.isJackpot(myLotto,winningNumbers,bonusNumber);
           this.showResult(money,result);
@@ -22,40 +28,40 @@ class App {
     winningNumbers = winningNumbers.split(',').map((i)=>Number(i));
     const winningNumbersSet = new Set(winningNumbers);
     if(winningNumbers.length !== winningNumbersSet.size){
-      throw new Error("[ERROR] 당첨 번호는 중복되지 않아야합니다.");
+      throw new Error(ERROR_MESSAGE.WINNING_NUMBER_DUPLICATED);
     }
     winningNumbers.map(function(element){
       if(!(element>=1&&element<=45)){
-        throw new Error("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+        throw new Error(ERROR_MESSAGE.WINNING_NUMBER_OUT_OF_RANGE);
       }
     })
     if(winningNumbers.length !== 6){
-      throw new Error("[ERROR] 당첨 번호는 6개여야 합니다.");
+      throw new Error(ERROR_MESSAGE.WINNING_NUMBER_MISMATCH);
     }
   }
   verificateBonusNumber(winningNumbers,bonusNumber){
-    winningNumbers = winningNumbers.split(',').map((i)=>Number(i));
+    winningNumbers = winningNumbers.split(', ').map((i)=>Number(i));
     if(winningNumbers.includes(Number(bonusNumber))){
-      throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야합니다.");
+      throw new Error(ERROR_MESSAGE.BONUS_NUMBER_DUPLICATED);
     }
     if(!(bonusNumber>=1&&bonusNumber<=45)){
-      throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+      throw new Error(ERROR_MESSAGE.BONUS_NUMBER_OUT_OF_RANGE);
     }
   }
   verificateMoney(money){
-    if(money % PRICE != 0) throw new Error('[ERROR] 구입금액은 1000원 단위여야 합니다')
+    if(money % LOTTO.PRICE != 0) throw new Error(ERROR_MESSAGE.MONEY_OUT_OF_RANGE);
   }
   issueLotto(money){
     let myLotto = { };
-    for(let i=0;i<money/PRICE;i++){
-      let newLotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    for(let i=0;i<money/ LOTTO.PRICE;i++){
+      let newLotto = MissionUtils.Random.pickUniqueNumbersInRange(LOTTO.MIN, LOTTO.MAX, LOTTO.COUNT);
       myLotto[`lotto${i}`] = new Lotto(newLotto);
     }
     return myLotto;
   }
   showIssuedLotto(myLotto){
     const NUMBER_OF_LOTTO = Object.keys(myLotto).length;
-    MissionUtils.Console.print("\n" + NUMBER_OF_LOTTO + "개를 구매했습니다.")
+    MissionUtils.Console.print(RESULT_MESSAGE.HOW_MANY_TICKET(NUMBER_OF_LOTTO))
     for(let i=0;i<NUMBER_OF_LOTTO;i++){
       MissionUtils.Console.print("["+(myLotto[`lotto${i}`].getLotto().sort(function compare(a, b) { //오름차순으로 정렬
         return a - b;
@@ -87,14 +93,14 @@ class App {
     return place;
   }
   showResult(money,result){
-    MissionUtils.Console.print('\n당첨 통계\n---')
-    MissionUtils.Console.print('3개 일치 (5,000원) - '+result[4]+'개')
-    MissionUtils.Console.print('4개 일치 (50,000원) - '+result[3]+'개')
-    MissionUtils.Console.print('5개 일치 (1,500,000원) - '+result[2]+'개')
-    MissionUtils.Console.print('5개 일치, 보너스 볼 일치 (30,000,000원) - '+result[1]+'개')
-    MissionUtils.Console.print('6개 일치 (2,000,000,000원) - '+result[0]+'개')
-    const rateOfReturn = ((result[0]*2000000000)+(result[1]*30000000)+(result[2]*1500000)+(result[3]*50000)+(result[4]*5000)*100)/money
-    MissionUtils.Console.print('총 수익률은 '+rateOfReturn.toFixed(1)+'%입니다.');
+    MissionUtils.Console.print(RESULT_MESSAGE.WIN_LIST_TITLE)
+    MissionUtils.Console.print(RESULT_MESSAGE.WIN_FIFTH_PLACE(result[4]))
+    MissionUtils.Console.print(RESULT_MESSAGE.WIN_FOURTH_PLACE(result[3]))
+    MissionUtils.Console.print(RESULT_MESSAGE.WIN_THIRD_PLACE(result[2]))
+    MissionUtils.Console.print(RESULT_MESSAGE.WIN_SECOND_PLACE(result[1]))
+    MissionUtils.Console.print(RESULT_MESSAGE.WIN_FIRST_PLACE(result[0]))
+    const rateOfReturn = ((result[0]*REWARD.FIRST_PLACE)+(result[1]*REWARD.SECOND_PLACE)+(result[2]*REWARD.THIRD_PLACE)+(result[3]*REWARD.FOURTH_PLACE)+(result[4]*REWARD.FIFTH_PLACE)*100)/money
+    MissionUtils.Console.print(RESULT_MESSAGE.RATE_OF_RETURN(rateOfReturn));
   }
 }   
 const app = new App();
