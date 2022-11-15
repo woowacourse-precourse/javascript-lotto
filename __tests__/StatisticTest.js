@@ -1,6 +1,24 @@
-const { Statistic } = require("../src/Player");
+const { Statistic } = require("../src/Statistics");
+const { Player } = require("../src/Player");
+const { Lotto } = require("../src/Lotto");
 describe("금액 validation 테스트", () => {
-  test("로또 번호가 맞은 갯수를 센다", () => {});
+  test("로또 번호가 맞은 갯수를 센다", () => {
+    const statistic = new Statistic();
+    const oneHit = [1, 2, 3, 5, 6, 7];
+    const twoHit = [1, 2, 3, 4, 5, 6];
+    const threeHit = [1, 4, 24, 25, 26, 27];
+    const fourHit = [1, 4, 24, 32, 33, 34];
+    const fiveHit = [1, 4, 24, 32, 40, 41];
+    const sixHit = [1, 4, 24, 32, 40, 44];
+
+    const winningNumber = [1, 4, 24, 32, 40, 44, 7];
+    expect(statistic.countHit(oneHit, winningNumber)).toBe(1);
+    expect(statistic.countHit(twoHit, winningNumber)).toBe(2);
+    expect(statistic.countHit(threeHit, winningNumber)).toBe(3);
+    expect(statistic.countHit(fourHit, winningNumber)).toBe(4);
+    expect(statistic.countHit(fiveHit, winningNumber)).toBe(5);
+    expect(statistic.countHit(sixHit, winningNumber)).toBe(6);
+  });
 
   test("보너스 번호가 맞았는지를 판단한다", () => {});
 
