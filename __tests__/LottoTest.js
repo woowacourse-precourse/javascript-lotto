@@ -14,5 +14,14 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
-  // 아래에 추가 테스트 작성 가능
+  test("로또 구매 금액에 대해 몇 개의 로또를 구매할 수 있는지 알 수 있다.", () => {
+    expect(Lotto.caculateLottoNumPerUnit(1000)).toBe(1);
+    expect(Lotto.caculateLottoNumPerUnit(19000)).toBe(19);
+    expect(Lotto.caculateLottoNumPerUnit(25000)).toBe(25);
+  });
+
+  test("생성자를 통해 만들어진 로또 인스턴스의 getter를 통해 로또 번호를 가져올 수 있다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 7]);
+    expect(lotto.getNumbers).toEqual([1, 2, 3, 4, 5, 7]);
+  });
 });
