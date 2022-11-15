@@ -1,9 +1,11 @@
 const { Random } = require("@woowacourse/mission-utils");
 const LOTTO_PRICE = 1000;
+const REGEX = /^[0-9]+$/;
 
 class GenerateLotto {
   #money;
   #lotto;
+
   constructor(money) {
     this.validate(money);
     this.#money = money;
@@ -11,11 +13,10 @@ class GenerateLotto {
   }
 
   validate(money) {
-    const regex = /^[0-9]+$/;
-    if (!regex.test(money)) {
+    if (!REGEX.test(money)) {
       throw new Error('[ERROR] 숫자만 입력해주세요.');
     }
-    if (money / 1000 !== 0) {
+    if (money % 1000 !== 0) {
       throw new Error('[ERROR] 1000원 단위로 입력해주세요.');
     }
   }
