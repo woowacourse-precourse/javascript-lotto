@@ -51,6 +51,38 @@ class Lotto {
       this.myPay = answer;
     });
   }
+  lotto() {
+    this.printLottoAmount();
+    for (let i = 0; i < this.getLottoAmount(); i++) {
+      this.sortLotto(this.pickLottoNumbers());
+      this.printLotto(i);
+    }
+  }
+
+  printLottoAmount() {
+    MissionUtils.Console.print(
+      `${Data.RESULT_MESSAGES.printLottoAmount(this.lottoCountReturn())}`
+    );
+  }
+
+  getLottoAmount() {
+    return this.myPay / 1000;
+  }
+
+  pickLottoNumbers() {
+    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+  }
+
+  sortLotto(numbers) {
+    numbers.sort((a, b) => {
+      return a - b;
+    });
+    this.myLottoNumbers.push(numbers);
+  }
+
+  printLotto(number) {
+    MissionUtils.Console.print(`[${this.myLottoNumbers[number].join(", ")}]`);
+  }
 
   // TODO: 추가 기능 구현
 }
