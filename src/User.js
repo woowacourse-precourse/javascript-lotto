@@ -16,7 +16,7 @@ class User {
   }
 
   validateMoney(money) {
-    const numberStyle = /^[0-9]+$/;
+    let numberStyle = /^[0-9]+$/;
     if (!numberStyle.test(money)) throw new Error(MESSAGE.ERROR.MONEY.NUMBER);
     if (money % 1000 !== 0) throw new Error(MESSAGE.ERROR.MONEY.THOUSAND);
     if (money === 0) throw new Error(MESSAGE.ERROR.MONEY.ZERO);
