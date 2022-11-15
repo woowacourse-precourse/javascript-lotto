@@ -12,7 +12,6 @@ class CompareNumber {
     this.correctBonus = correctBonus;
     this.inputLotto = inputLotto;
     this.inputBonus = inputBonus;
-    this.caculateRate = new CaculateRate();
   }
 
   comparefirstCipher(computerNumbers, inputLotto, inputBonus) {
@@ -96,7 +95,7 @@ class CompareNumber {
       this.secondPlace(lottoCipher);
       this.firstPlace(lottoCipher);
     }
-    this.caculateRate.caculateNumbers(this.computerNumbers, GRADE);
+    new CaculateRate(this.computerNumbers, GRADE);
   }
 
   fifthPlace(lottoCipher) {

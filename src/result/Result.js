@@ -1,7 +1,9 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
 class Result {
-  constructor() {}
+  constructor(GRADE, RESULT) {
+    this.showResult(GRADE, RESULT);
+  }
   showResult(GRADE, RESULT) {
     console.log(`\n당첨 통계`);
     console.log(`---`);
