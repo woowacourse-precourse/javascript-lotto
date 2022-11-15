@@ -25,6 +25,8 @@ class Controller {
 
     if (input[0] === '0') throw new Error(INCORRECT_INPUT_MESSAGE);
 
+    if (Number(input) / UNIT_AMOUNT < 1) throw new Error(INCORRECT_INPUT_MESSAGE);
+
     input.split('').forEach((number) => {
       if (Number(number) >= 0 && Number(number) <= 9) return;
 
