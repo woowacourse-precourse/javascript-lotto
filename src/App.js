@@ -29,13 +29,13 @@ class App {
   }
 
   play() {
-    Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
-      const lottoSeller = new LottoSeller(this.lottoPrice);
-      const winnerSelector = new WinnerSelector(this.lottoPrice, this.winnerRule);
-      const lottoDrawer = new LottoDrawer(this.lottoNumberCount, winnerSelector);
+    const lottoSeller = new LottoSeller(this.lottoPrice);
+    const winnerSelector = new WinnerSelector(this.lottoPrice, this.winnerRule);
+    const lottoDrawer = new LottoDrawer(this.lottoNumberCount, winnerSelector);
 
-      lottoSeller.purchase(money);
-      lottoDrawer.drawLotto(lottoSeller.lottos);
+    Console.readLine('구입금액을 입력해 주세요.\n', (money) => {
+      lottoSeller.run(money);
+      lottoDrawer.run(lottoSeller.lottos);
     });
   }
 }

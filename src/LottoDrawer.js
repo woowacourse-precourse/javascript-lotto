@@ -22,10 +22,11 @@ class LottoDrawer {
 
   selectWinner() {
     this.winnerSelector.setWinnerNumber(this.result);
+    this.winnerSelector.setResultData();
     View.print(this.winnerSelector);
   }
 
-  setLottoWinner(input) {
+  setLottoWinnerNumber(input) {
     this.validator.isValidInput(input);
 
     const winnerNumbers = input.split(',').map(Number);
@@ -44,10 +45,11 @@ class LottoDrawer {
     });
   }
 
-  drawLotto(lottos) {
+  run(lottos) {
+    this.winnerSelector.lottos = lottos;
+
     Console.readLine('\n당첨 번호를 입력해 주세요. (,로 구분하여 입력하세요.)\n', (numbers) => {
-      this.winnerSelector.lottos = lottos;
-      this.setLottoWinner(numbers);
+      this.setLottoWinnerNumber(numbers);
       this.setBonusNumber();
     });
   }

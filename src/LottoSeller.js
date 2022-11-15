@@ -63,8 +63,9 @@ class LottoSeller {
     };
   }
 
-  purchase = (money) => {
+  run = (money) => {
     this.issueLotto(this.countLottoTicket(money));
+    this.setResultData();
     View.print(this);
   };
 }
