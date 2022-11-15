@@ -4,38 +4,46 @@ const lottoUtils = require('./LottoUtils');
 const Lotto = require("./Lotto");
 
 class App {
+  constructor() {
+    this.lotto;
+    this.payment;
+    this.lottoNumbers;
+    this.bonusNumber;
+  }
+
   play() {
     this.setPayment();
   }
 
   setPayment = () => {
     Console.readLine(MESSAGES.PAYMENT, (payment) => {
-      lottoUtils.validatePayment(payment);
-      Console.print(`${payment / 1000}개를 구매했습니다.`);
-      const lottoNumbers = lottoUtils.getLottoNumbers(payment / 1000);
-      this.setLottoNumber(lottoNumbers);
+      this.payment = payment;
+      lottoUtils.validatePayment(this.payment);
+      Console.print(`${this.payment / 1000}개를 구매했습니다.`);
+      this.lottoNumbers = lottoUtils.getLottoNumbers(this.payment / 1000);
+      this.setLottoNumber();
     });
   }
 
-  setLottoNumber = (lottoNumbers) => {
+  setLottoNumber = () => {
     Console.readLine(MESSAGES.SET_LOTTO, (numbers) => {
-      const lotto = new Lotto(numbers.split(',').map((number) => parseInt(number)));
-      this.setBonusLottoNumber(lotto, lottoNumbers);
+      this.lotto = new Lotto(numbers.split(',').map((number) => parseInt(number)));
+      this.setBonusLottoNumber();
     });
   }
 
-  setBonusLottoNumber = (lotto, lottoNumbers) => {
+  setBonusLottoNumber = () => {
     Console.readLine(MESSAGES.SET_BONUS, (number) => {
-      const bonusNumber = parseInt(number);
-      lottoUtils.validateBonus(bonusNumber);
-      lotto.validateBonus(bonusNumber);
-      this.resultLotto(lotto, lottoNumbers, bonusNumber);
+      this.bonusNumber = parseInt(number);
+      lottoUtils.validateBonus(this.bonusNumber);
+      this.lotto.validateBonus(this.bonusNumber);
+      this.resultLotto();
     });
   }
 
-  resultLotto = (lotto, lottoNumbers, bonusNumber) => {
-    const result = lotto.checkLotto(lottoNumbers, bonusNumber);
-    const rateOfReturn = lottoUtils.caculateYield(result, lottoNumbers.length);
+  resultLotto = () => {
+    const result = this.lotto.checkLotto(this.lottoNumbers, this.bonusNumber);
+    const rateOfReturn = lottoUtils.caculateYield(result, this.lottoNumbers.length);
     lottoUtils.printResultLotto(result, rateOfReturn);
     Console.close();
   }
