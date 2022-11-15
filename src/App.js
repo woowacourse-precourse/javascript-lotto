@@ -75,7 +75,8 @@ class App {
         );
       }
       this.#inputBonusNum = Number(bonus);
-      Console.print(this.#inputBonusNum); //
+      this.countLottoScore();
+      this.winLottoScore();
       this.printLottoScore();
     });
   }
@@ -92,10 +93,10 @@ class App {
   //score 합계
   winLottoScore() {
     for (let index = 0; index < this.#countList.length; index++) {
-      if (this.#countList[index] === 3 || this.#countList[index] === 13) {
+      if (this.#countList[index] % 10 === 3) {
         this.#scoreList[0] += 1;
       }
-      if (this.#countList[index] === 4 || this.#countList[index] === 14) {
+      if (this.#countList[index] % 10 === 4) {
         this.#scoreList[1] += 1;
       }
       if (this.#countList[index] === 5) {
@@ -104,18 +105,19 @@ class App {
       if (this.#countList[index] === 15) {
         this.#scoreList[3] += 1;
       }
-      if (this.#countList[index] === 6 || this.#countList[index] === 16) {
+      if (this.#countList[index] % 10 === 6) {
         this.#scoreList[4] += 1;
       }
     }
+    Console.print(this.#scoreList);//
   }
 
   //등수 logic -> 8개의 로또를 돌면서 체크
   countLottoScore() {
     for (let index = 0; index < this.#lottosList.length; index++) {
-      const countPlus = countMatchingLotto(this.#lottosList[index]);
+      const countPlus = this.countMatchingLotto(this.#lottosList[index]);
       Console.print(countPlus); //
-      return this.#countList.push(countPlus);
+      this.#countList.push(countPlus);
     }
   }
 
@@ -131,7 +133,6 @@ class App {
     if (lottos.includes(this.#inputBonusNum)) {
       count += 10;
     }
-    Console.print(count); //
     return count;
   }
 }
