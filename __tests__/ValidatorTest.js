@@ -39,4 +39,14 @@ describe('입력 공통 예외 테스트', () => {
     });
   });
 
+  describe('보너스번호 입력 예외 테스트', () => {
+    test('보너스 번호 입력 범위 예외 테스트', () => {
+      const input = '55';
+  
+      expect(() => {
+        Validator.isBonusRange(input);
+      }).toThrow('[ERROR] 1-45사이의 수를 입력하세요.');
+    });
+  })
+
 });
