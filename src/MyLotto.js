@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+import {sortAscending} from './Util';
 
 class MyLotto {
     #lottoList = [];
@@ -21,7 +22,8 @@ class MyLotto {
     createLottoList(numbers) {
         for (let i = 0; i < numbers; i++) {
             let lotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-            this.#lottoList.push(lotto)
+            sortAscending(lotto);
+            this.#lottoList.push(lotto);
         }
     }
 
