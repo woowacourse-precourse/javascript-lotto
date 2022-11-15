@@ -20,10 +20,14 @@ class LottoDrawer {
     return this.#result;
   }
 
+  printWinner() {
+    View.print(this.winnerSelector);
+    Console.close();
+  }
+
   selectWinner() {
     this.winnerSelector.setWinnerNumber(this.result);
     this.winnerSelector.setResultData();
-    View.print(this.winnerSelector);
   }
 
   setLottoWinnerNumber(input) {
@@ -42,6 +46,7 @@ class LottoDrawer {
 
       this.result = { ...this.result, bonus };
       this.selectWinner();
+      this.printWinner();
     });
   }
 
