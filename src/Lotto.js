@@ -28,7 +28,7 @@ class Lotto {
   }
 
   isNumber(numbers) {
-    return numbers.every((number) => number.match(/^[0-9]+$/));
+    return numbers.every((number) => String(number).match(/^[0-9]+$/));
   }
 
   isRange(numbers) {
