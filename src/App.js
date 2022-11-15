@@ -30,22 +30,15 @@ class App {
   createLottoBundle(piece) {
     const bundle = [];
     for (let i = 0; i < piece; i++) {
-      bundle.push(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6));
+      bundle.push(
+        MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort(
+          (a, b) => a - b
+        )
+      );
     }
-    for (let i = 0; i < bundle.length; i++) {
-      let str = "";
-      JSON.stringify(bundle[i].sort((a, b) => a - b))
-        .split("")
-        .forEach((y) => {
-          if (y === ",") {
-            str += ", ";
-          }
-          if (y !== ",") {
-            str += y;
-          }
-        });
-      MissionUtils.Console.print(str);
-    }
+    const bundleString = bundle.map((x) => JSON.stringify(x));
+    const bundleForPrint = bundleString.map((x) => x.replaceAll(",", ", "));
+    bundleForPrint.forEach((x) => MissionUtils.Console.print(x));
     this.inputLottoNumber(bundle);
   }
 
