@@ -13,8 +13,6 @@ class Controller {
 
   #winningLotto;
 
-  #result;
-
   static create() {
     return new Controller();
   }
@@ -50,10 +48,10 @@ class Controller {
   }
 
   printResult() {
-    this.#result = Result.from(this.#lottoTicket, this.#winningLotto);
-    const profit = this.#result.getProfit(this.#lottoAmount.getValue());
+    const result = Result.from(this.#lottoTicket, this.#winningLotto);
+    const profit = result.getProfit(this.#lottoAmount.getValue());
 
-    PrintView.printWinningStats(this.#result);
+    PrintView.printWinningStats(result);
     PrintView.printProfit(profit);
 
     Controller.exit();
