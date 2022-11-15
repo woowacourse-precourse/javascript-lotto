@@ -1,7 +1,11 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+
+const printLottoResult = require('./printResult');
+const allIncome = require('./allIncome');
+const { includedLotto, includedBonus } = require('./lottoBonusCheck');
+const { RESULT_CHECK } = require('../constant/constant');
 
 const lottoGame = (inputNumber, lottoArray, bonusNumber, userBuyMoney) => {
-    const resultCheck = resultObject();
+    const resultCheck = RESULT_CHECK;
     
     lottoArray.forEach((numbers) => {
         const lottoCount = includedLotto(inputNumber, numbers);
@@ -15,69 +19,6 @@ const lottoGame = (inputNumber, lottoArray, bonusNumber, userBuyMoney) => {
     });
 
     printLottoResult(resultCheck, userBuyMoney);
-}
-
-const resultObject = () => {
-    const resultCheck = {
-        three: { count: 0, winnings: 5000 },
-        four: { count: 0, winnings: 50000 },
-        five: { count: 0, winnings: 1500000 },
-        fiveBonus: { count: 0, winnings: 30000000 },
-        six: { count: 0, winnings: 2000000000 }
-    };
-
-    return resultCheck;
-}
-
-const printLottoResult = (lottoResult, userBuyMoney) => {
-    const allIncomePer = ((allIncome(lottoResult) / userBuyMoney) * 100).toFixed(1);
-    printContents(lottoResult, allIncomePer);
-}
-
-const printContents = (lottoResult, totalPer) => {
-    const contents = `
-        당첨 통계
-        ---
-        3개 일치 (5,000원) - ${lottoResult.three.count}개
-        4개 일치 (50,000원) - ${lottoResult.four.count}개
-        5개 일치 (1,500,000원) - ${lottoResult.five.count}개
-        5개 일치, 보너스 볼 일치 (30,000,000원) - ${lottoResult.fiveBonus.count}개
-        6개 일치 (2,000,000,000원) - ${lottoResult.six.count}개
-        총 수익률은 ${totalPer}%입니다.
-    `;
-
-    MissionUtils.Console.print(contents);
-    MissionUtils.Console.close();
-}
-
-const allIncome = (lottoResult) => {
-    let income = 0;
-    if (lottoResult.three.count > 0) income += (lottoResult.three.winnings * lottoResult.three.count);
-    if (lottoResult.four.count > 0) income += (lottoResult.four.winnings * lottoResult.four.count);
-    if (lottoResult.five.count > 0) income += (lottoResult.five.winnings * lottoResult.five.count);
-    if (lottoResult.fiveBonus.count > 0) income += (lottoResult.fiveBonus.winnings * lottoResult.fiveBonus.count);
-    if (lottoResult.six.count > 0) income += (lottoResult.six.winnings * lottoResult.six.count);
-
-    return income;
-}
-
-const includedLotto = (inputNumber, lottoArray) => {
-    let lottoCount = 0;
-    const userNumber = inputNumber.split(',').map((num) => Number(num));
-    lottoArray.forEach((number) => {
-        if (userNumber.includes(number)) lottoCount += 1;
-    })
-
-    return lottoCount;
-}
-
-const includedBonus = (lottoArray, bonusNumber) => {
-    let bonusCheck = false;
-    lottoArray.forEach((number) => {
-        if (number === bonusNumber) bonusCheck = true;
-    })
-
-    return bonusCheck;
 }
 
 module.exports = lottoGame;
