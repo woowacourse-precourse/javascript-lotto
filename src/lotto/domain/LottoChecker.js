@@ -32,6 +32,18 @@ class LottoChecker {
 
     return countLottoReward;
   }
+
+  CalculateProfit(lottoResult, money) {
+    const totalPrice =
+      lottoResult[0] * 5000 +
+      lottoResult[1] * 50000 +
+      lottoResult[3] * 1500000 +
+      lottoResult[2] * 30000000 +
+      lottoResult[4] * 2000000000;
+    const profitRate = ((totalPrice / money) * 100).toFixed(1);
+
+    return profitRate;
+  }
 }
 
 module.exports = LottoChecker;
