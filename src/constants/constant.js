@@ -49,19 +49,11 @@ const THIRD = {
   price: "5,000",
   count: 0,
 };
-const RESULT_RANK = {
-  THIRD,
-  FORTH,
-  FIFTH,
-  FIFTHBONUS,
-  SIX,
-};
 
 module.exports = {
   GAME_START_MESSAGE,
   PURCHACE_MESSAGE,
   REQUIRE_WIN_NUMBER_MESSAGE,
-  RESULT_RANK,
   THIRD,
   FORTH,
   FIFTH,
