@@ -108,21 +108,26 @@ class Lotto {
   }
 
   calculateBonus(computerNumberArray,countArray,bonusNumber){
-    let checkBonus=[]
     let bonusArr=[]
+    let checkBonus;
     if (countArray.includes(5)) {
       let idx=countArray.indexOf(5)
       while(idx!==-1){
         bonusArr.push(idx)
         idx=countArray.indexOf(5,idx+1)
       }
-      bonusArr.forEach((nums)=>{
-        if(computerNumberArray[nums].includes(bonusNumber)){
-          checkBonus.push(nums)
-        }
-      })
+      checkBonus=this.checkBounsHelper(bonusArr,computerNumberArray,bonusNumber)
     }
     return [countArray,checkBonus]
+  }
+  checkBounsHelper(bonusArr,computerNumberArray,bonusNumber){
+    let checkBonus=[]
+    bonusArr.forEach((nums)=>{
+      if(computerNumberArray[nums].includes(bonusNumber)){
+        checkBonus.push(nums)
+      }
+    })
+    return checkBonus
   }
 
   checkPrizeAmount(getCountedArray, getBonusArrays, amountOfMoney) {
