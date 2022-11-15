@@ -20,4 +20,9 @@ describe('로또 클래스 테스트', () => {
       new Lotto([1, 2, 3, 4, 5, 56]);
     }).toThrow(Display.error('OUT_OF_RANGE'));
   });
+
+  test('로또 번호는 오름차순으로 정렬되어야 한다.', () => {
+    const lotto = new Lotto([6, 5, 4, 3, 2, 1]);
+    expect(lotto.numbers).toEqual([1, 2, 3, 4, 5, 6]);
+  });
 });
