@@ -1,15 +1,13 @@
 const CorrectValue = require('./CorrectValue')
 const Price = require('./Price')
+const { Console } = require('@woowacourse/mission-utils')
 
 class LottoResult {
-
-
-    constructor(userLottoNum,winningNum,lottoBonusNum){
-        this.userLottoNum=userLottoNum
-        this.winningNum=winningNum
-        this.lottoBonusNum=lottoBonusNum
-    }
-
+  constructor(userLottoNum, winningNum, lottoBonusNum) {
+    this.userLottoNum = userLottoNum
+    this.winningNum = winningNum
+    this.lottoBonusNum = lottoBonusNum
+  }
 
   calcLottoResult() {
     let [countNormalWinner, countBonusWinner] = this.findCorrectValue(
@@ -18,9 +16,7 @@ class LottoResult {
       this.lottoBonusNum,
     )
 
-    console.log(countNormalWinner, countBonusWinner)
     let revenue = this.getPrice(countNormalWinner, countBonusWinner)
-    console.log(revenue)
     let result = this.getRate(revenue)
   }
 
@@ -37,7 +33,11 @@ class LottoResult {
   getPrice(countNormalWinner, countBonusWinner) {
     return new Price(countNormalWinner, countBonusWinner).calcPrice()
   }
-  getRate(revenue) {}
+  getRate(revenue) {
+    return ((revenue / 8000) * 100).toFixed(1)
+  }
+
+ 
 }
 
 module.exports = LottoResult
