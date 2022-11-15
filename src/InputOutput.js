@@ -7,6 +7,9 @@ class InputOutput {
         Console.print(message);
     }
     
+    static close () {
+        Console.close();
+    }
 }
 
 module.exports = InputOutput;
