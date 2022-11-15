@@ -5,7 +5,7 @@ class PurchaseLotto {
   #purchasedCount;
 
   constructor(money) {
-    Helper.checkValidPrice(money);
+    Helper.checkValidMoney(money);
     this.#purchasedCount = money / 1000;
   }
 
