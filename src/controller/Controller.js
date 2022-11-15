@@ -45,7 +45,8 @@ class Controller {
    */
   setWinningNumberFromUser(userInput) {
     const userSplitInput = userInput.split(",");
-    this.setLottoToUse(new Lotto(userSplitInput).getLottoNumbers());
+    this.setLottoToUse(new Lotto(userSplitInput).getLottoNumbers()
+      .map(Number));
   }
 
   /**
