@@ -66,8 +66,18 @@ class App {
     });
   }
   getCountOfMatchingNumber(lottoList, userLottoNumber, userBonusNumber) {
+    let result = {
+      three: 0,
+      four: 0,
+      five: 0,
+      fiveBonus: 0,
+      six: 0,
+    };
+
+
     lottoList.forEach((list) => {
-      let count = { normal: 0, bonus: 0 }
+      let count = { normal: 0, bonus: 0 };
+
       list.forEach((number) => {
         if (userLottoNumber.map(Number).includes(number) === true) {
           count.normal++;
@@ -77,9 +87,22 @@ class App {
           count.bonus++;
         }
       });
+      this.getLottoResult(count.normal, count.bonus, result);
     });
   }
-
+  getLottoResult(normalCount, bonusCount, result) {
+    if (normalCount === 3) {
+      result.three++;
+    } else if (normalCount === 4) {
+      result.four++;
+    } else if (normalCount === 5) {
+      result.five++;
+    } else if (normalCount === 5 && bonusCount === 1) {
+      result.fiveBonus++;
+    } else if (normalCount === 6) {
+      result.six++;
+    }
+  }
 }
 const app = new App();
 app.play();
