@@ -105,6 +105,7 @@ describe("Store 클래스 테스트", () => {
   });
 
   test("발행된 로또와 정답을 비교하여 당첨 결과를 저장한다.", () => {
+    store.setPrizeMoney = jest.fn();
     store.candidates = [
       [1, 2, 3, 4, 5, 6],
       [4, 5, 6, 7, 8, 9],
@@ -115,5 +116,17 @@ describe("Store 클래스 테스트", () => {
     store.setResult();
     expect(store.result.get(WINMESSAGE[3])[1]).toBe(1);
     expect(store.result.get(WINMESSAGE["5+"])[1]).toBe(1);
+  });
+
+  test("총 당첨금을 산출한다.", () => {
+    store.result = new Map([
+      [WINMESSAGE[3], [5000, 0]],
+      [WINMESSAGE[4], [50000, 1]],
+      [WINMESSAGE[5], [1500000, 1]],
+      [WINMESSAGE["5+"], [30000000, 0]],
+      [WINMESSAGE[6], [2000000000, 0]],
+    ]);
+    store.setPrizeMoney();
+    expect(store.prizeMoney).toBe(1550000);
   });
 });
