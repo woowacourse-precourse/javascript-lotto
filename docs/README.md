@@ -4,7 +4,7 @@
 - [x] 로또 구매 수량을 구한다.
 - [x] 발행한 로또 번호를 전달한다.
   - MissionUtils의 Random 사용
-- [ ] 당첨 번호를 입력받는다.
+- [x] 당첨 번호를 입력받는다.
   - MissionUtils의 Console.readLine 사용
 - [ ] 보너스 번호를 입력받는다.
   - MissionUtils의 Console.readLine 사용
