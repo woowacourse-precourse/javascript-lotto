@@ -1,9 +1,8 @@
-const App = require('../src/App');
 const utils = require('../src/utils/utils');
-const { InvalidWinningNumbersInputError, InvalidBonusNumberInputError } = require('../src/lib/errors');
+const { InvalidWinningNumbersInputError } = require('../src/lib/errors');
 
-describe('입력한 구매 금액이 유효한 값인지 검사한다.', () => {
-  test('금액에 숫자 이외의 값이 있다면 true를 반환한다.', () => {
+describe('숫자 이외의 문자를 잘 잡아내는지 테스트한다.', () => {
+  test('구입 금액에 숫자 이외의 값이 있다면 true를 반환한다.', () => {
     expect(utils.hasChar('1oo0')).toEqual(true);
     expect(utils.hasChar('1dollar')).toEqual(true);
     expect(utils.hasChar('삼만사천원')).toEqual(true);
@@ -20,8 +19,39 @@ describe('입력한 구매 금액이 유효한 값인지 검사한다.', () => {
     expect(utils.hasChar('10,000')).toEqual(true);
     expect(utils.hasChar('100,000')).toEqual(true);
     expect(utils.hasChar('1,000')).toEqual(true);
+    expect(utils.hasChar('u12')).toEqual(true);
+    expect(utils.hasChar('1 2')).toEqual(true);
+    expect(utils.hasChar('3ee')).toEqual(true);
+    expect(utils.hasChar('asdb')).toEqual(true);
+    expect(utils.hasChar('34 5')).toEqual(true);
+    expect(utils.hasChar('bcd 123')).toEqual(true);
+    expect(utils.hasChar(' 13 0')).toEqual(true);
   });
 
+  test('구입 금액이 공백 문자열일경우 숫자 이외의 값으로 처리하여 true를 반환한다. ', () => {
+    expect(utils.hasChar('')).toEqual(true);
+    expect(utils.hasChar('  ')).toEqual(true);
+    expect(utils.hasChar('    ')).toEqual(true);
+    expect(utils.hasChar('       ')).toEqual(true);
+    expect(utils.hasChar('           ')).toEqual(true);
+  });
+});
+
+describe('숫자와 쉼표 이외의 문자를 잘 잡아내는지 테스트한다.', () => {
+  test('문자열에 쉼표와 숫자 이외의 문자가 있다면 true를 반환한다.', () => {
+    expect(utils.hasCharExceptComma('1,2,3,4w,5')).toEqual(true);
+    expect(utils.hasCharExceptComma('1,2,ww,wer,3,45')).toEqual(true);
+    expect(utils.hasCharExceptComma('a,b,c,d,e,f')).toEqual(true);
+    expect(utils.hasCharExceptComma('one,2,3,4,5,six')).toEqual(true);
+    expect(utils.hasCharExceptComma('one,two,three,four,five,six')).toEqual(true);
+    expect(utils.hasCharExceptComma('1,2,#,4,5,6')).toEqual(true);
+    expect(utils.hasCharExceptComma("1,2,',4,5,6")).toEqual(true);
+    expect(utils.hasCharExceptComma('1,2,3,",5,6')).toEqual(true);
+    expect(utils.hasCharExceptComma('1.2.3.4.5.6')).toEqual(true);
+  });
+});
+
+describe('숫자가 해당 금액으로 나누어 떨어지는 숫자인지 테스트한다.', () => {
   test('금액이 1000원으로 나눠떨어지지 않으면 false를 반환한다.', () => {
     expect(utils.isDivisible('1500', 1000)).toEqual(false);
     expect(utils.isDivisible('2100', 1000)).toEqual(false);
@@ -34,7 +64,7 @@ describe('입력한 구매 금액이 유효한 값인지 검사한다.', () => {
     expect(utils.isDivisible('10000001', 1000)).toEqual(false);
   });
 
-  test('금액이 0일경우', () => {
+  test('금액이 0일경우 false를 반환한다.', () => {
     expect(utils.isDivisible(0, 1000)).toEqual(false);
     expect(utils.isDivisible('0', 1000)).toEqual(false);
     expect(utils.isDivisible('00', 1000)).toEqual(false);
@@ -43,28 +73,9 @@ describe('입력한 구매 금액이 유효한 값인지 검사한다.', () => {
     expect(utils.isDivisible('    00   ', 1000)).toEqual(false);
     expect(utils.isDivisible('    00000', 1000)).toEqual(false);
   });
-
-  test('금액이 공백 문자열일경우', () => {
-    expect(utils.hasChar('')).toEqual(true);
-    expect(utils.hasChar('  ')).toEqual(true);
-    expect(utils.hasChar('       ')).toEqual(true);
-    expect(utils.hasChar('           ')).toEqual(true);
-  });
 });
 
-describe('입력받은 당첨 번호(Winning Number)가 유효한 입력인지 검사한다.', () => {
-  test('문자열에 쉼표와 숫자 이외의 문자가 있다면 true를 반환한다.', () => {
-    expect(utils.hasCharExceptComma('1,2,3,4w,5')).toEqual(true);
-    expect(utils.hasCharExceptComma('1,2,ww,wer,3,45')).toEqual(true);
-    expect(utils.hasCharExceptComma('a,b,c,d,e,f')).toEqual(true);
-    expect(utils.hasCharExceptComma('one,2,3,4,5,six')).toEqual(true);
-    expect(utils.hasCharExceptComma('one,two,three,four,five,six')).toEqual(true);
-    expect(utils.hasCharExceptComma('1,2,#,4,5,6')).toEqual(true);
-    expect(utils.hasCharExceptComma("1,2,',4,5,6")).toEqual(true);
-    expect(utils.hasCharExceptComma('1,2,3,",5,6')).toEqual(true);
-    expect(utils.hasCharExceptComma('1.2.3.4.5.6')).toEqual(true);
-  });
-
+describe('문자열을 쉼표로 구분해 배열로 만드는 기능을 테스트한다.', () => {
   test('문자열에 쉼표가 연속적으로 존재한다면 예외가 발생한다.', () => {
     expect(() => {
       utils.makeSplit('1,,2,3,4,5');
@@ -127,7 +138,9 @@ describe('입력받은 당첨 번호(Winning Number)가 유효한 입력인지 �
       utils.makeSplit('1,2,3,4, ,5');
     }).toThrow(new InvalidWinningNumbersInputError());
   });
+});
 
+describe('문자 배열을 숫자 배열로 바꾸는 기능을 테스트한다.', () => {
   test('숫자와 숫자 사이에 공백이 있다면 예외가 발생한다.', () => {
     expect(() => {
       utils.makeNumberArray(['1', '2 3', '3', '4', '5']);
@@ -161,47 +174,7 @@ describe('입력받은 당첨 번호(Winning Number)가 유효한 입력인지 �
   });
 });
 
-describe('입력받은 보너스 번호가 유효한 입력인지 검사한다.', () => {
-  test('입력에 문자가 있다면 에러가 발생한다.', () => {
-    const app = new App();
-    expect(() => {
-      app.validateBonusNumber('u12');
-    }).toThrow(new InvalidBonusNumberInputError());
-    expect(() => {
-      app.validateBonusNumber('1 2');
-    }).toThrow(new InvalidBonusNumberInputError());
-    expect(() => {
-      app.validateBonusNumber('3ee');
-    }).toThrow(new InvalidBonusNumberInputError());
-    expect(() => {
-      app.validateBonusNumber('asdb');
-    }).toThrow(new InvalidBonusNumberInputError());
-    expect(() => {
-      app.validateBonusNumber('34 5');
-    }).toThrow(new InvalidBonusNumberInputError());
-    expect(() => {
-      app.validateBonusNumber('bcd 123');
-    }).toThrow(new InvalidBonusNumberInputError());
-    expect(() => {
-      app.validateBonusNumber(' 13 0');
-    }).toThrow(new InvalidBonusNumberInputError());
-  });
-
-  test('입력이 빈 또는 공백 문자열이라면 에러가 발생한다.', () => {
-    const app = new App();
-    expect(() => {
-      app.validateBonusNumber('  ');
-    }).toThrow(new InvalidBonusNumberInputError());
-    expect(() => {
-      app.validateBonusNumber('    ');
-    }).toThrow(new InvalidBonusNumberInputError());
-    expect(() => {
-      app.validateBonusNumber('');
-    }).toThrow(new InvalidBonusNumberInputError());
-  });
-});
-
-describe('숫자를 오름차순 정렬하는 기능이 제대로 작동하는지 검사한다.', () => {
+describe('숫자를 오름차순 정렬하는 기능이 제대로 작동하는지 테스트한다.', () => {
   test('배열의 숫자들을 오름차순 정렬하여 반환한다.', () => {
     expect(utils.ascendingSort([1, 2, 3, 4, 5, 6])).toEqual([1, 2, 3, 4, 5, 6]);
     expect(utils.ascendingSort([3, 7, 1, 9, 11, 5])).toEqual([1, 3, 5, 7, 9, 11]);
@@ -212,15 +185,17 @@ describe('숫자를 오름차순 정렬하는 기능이 제대로 작동하는�
 });
 
 describe('소수점 둘째자리에서 반올림 동작을 테스트한다.', () => {
-  expect(utils.roundToTwo(0.0015)).toEqual(0);
-  expect(utils.roundToTwo(0.06115)).toEqual(0.1);
-  expect(utils.roundToTwo(12453425.324)).toEqual(12453425.3);
-  expect(utils.roundToTwo(1.05)).toEqual(1.1);
-  expect(utils.roundToTwo(1.003)).toEqual(1);
-  expect(utils.roundToTwo(62.987)).toEqual(63);
-  expect(utils.roundToTwo(58.9)).toEqual(58.9);
-  expect(utils.roundToTwo(67.0)).toEqual(67);
-  expect(utils.roundToTwo(100.05)).toEqual(100.1);
-  expect(utils.roundToTwo(0.000005)).toEqual(0);
-  expect(utils.roundToTwo(1234.11)).toEqual(1234.1);
+  test('소수점 둘째자리에서 반올림한 값을 반환한다.', () => {
+    expect(utils.roundToTwo(0.0015)).toEqual(0);
+    expect(utils.roundToTwo(0.06115)).toEqual(0.1);
+    expect(utils.roundToTwo(12453425.324)).toEqual(12453425.3);
+    expect(utils.roundToTwo(1.05)).toEqual(1.1);
+    expect(utils.roundToTwo(1.003)).toEqual(1);
+    expect(utils.roundToTwo(62.987)).toEqual(63);
+    expect(utils.roundToTwo(58.9)).toEqual(58.9);
+    expect(utils.roundToTwo(67.0)).toEqual(67);
+    expect(utils.roundToTwo(100.05)).toEqual(100.1);
+    expect(utils.roundToTwo(0.000005)).toEqual(0);
+    expect(utils.roundToTwo(1234.11)).toEqual(1234.1);
+  });
 });
