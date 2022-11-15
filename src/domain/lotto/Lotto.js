@@ -1,7 +1,7 @@
+const LottoNumber = require('./LottoNumber');
 const InstanceException = require('../../exception/InstanceException');
 const LottoHasDuplicatedException = require('../../exception/lotto/LottoHasDuplicatedException');
 const LottoLengthException = require('../../exception/lotto/LottoLengthException');
-const LottoNumber = require('./LottoNumber');
 
 class Lotto {
   static SIZE = 6;
@@ -25,10 +25,6 @@ class Lotto {
 
   static of(numbers) {
     return new Lotto(numbers);
-  }
-
-  static #toLottoNumber(number) {
-    return LottoNumber.of(number);
   }
 
   static validateLotto(lotto) {
