@@ -5,12 +5,9 @@ const Printer = require('../Printer/Printer');
 
 class Lotto5thWinning extends AbstractLottoWinning {
   lottoNumberCount = new LottoNumberCount(3);
+  bonusNumberCount = new LottoNumberCount(null);
   winningMoney = new Money(5_000);
   printer = new Printer();
-
-  isSatisfied(lottoResult) {
-    return lottoResult.isWinning(this.lottoNumberCount);
-  }
 }
 
 module.exports = Lotto5thWinning;

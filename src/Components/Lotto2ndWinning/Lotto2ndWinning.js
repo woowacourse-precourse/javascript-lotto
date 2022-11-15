@@ -8,10 +8,6 @@ class Lotto2ndWinning extends AbstractLottoWinning {
   bonusNumberCount = new LottoNumberCount(1);
   winningMoney = new Money(30_000_000);
   printer = new PrinterWithBonusBall();
-
-  isSatisfied(lottoResult) {
-    return lottoResult.isWinning(this.lottoNumberCount, this.bonusNumberCount);
-  }
 }
 
 module.exports = Lotto2ndWinning;
