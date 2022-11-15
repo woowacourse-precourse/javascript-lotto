@@ -45,9 +45,9 @@ class Game {
     const stringArray = [];
     for (let i = 0; i < numArray.length; i += 1) {
       let newArr = "\"[";
-      const commaSpace = ", ";
+      const COMMA_SPACE = ", ";
       for (let j = 0; j < numArray[i].length; j += 1) {
-          newArr = newArr + String(numArray[i][j]) + commaSpace;
+          newArr = newArr + String(numArray[i][j]) + COMMA_SPACE;
       }
       newArr = newArr.slice(0, -2);
       newArr += "]\"";
