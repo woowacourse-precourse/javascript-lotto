@@ -5,7 +5,7 @@ const {
   winNumberValidate,
   bonusNumberValidate,
 } = require('./Validates');
-const { printLottoAmount } = require('./Print');
+const { printLottoAmount, printWinStatistics } = require('./Print');
 
 class App {
   #amount;
@@ -54,11 +54,9 @@ class App {
     MissionUtils.Console.readLine(
       '\n당첨 번호를 입력해주세요.\n',
       (numbers) => {
-        this.setWinNumbers(
-          numbers.split(',').map((number) => parseInt(number, 10))
-        );
+        this.setWinNumbers(numbers.split(','));
         this.inputBonusNumbers();
-      }
+      },
     );
   }
 
@@ -69,7 +67,8 @@ class App {
         this.setBonusNumber(number);
         const lottosResult = this.makeLottosResult();
         this.setWinHistory(lottosResult);
-      }
+        printWinStatistics(this.getWinHistory());
+      },
     );
   }
 
@@ -104,7 +103,7 @@ class App {
 
   setWinNumbers(numbers) {
     winNumberValidate(numbers);
-    this.#winNumbers = numbers;
+    this.#winNumbers = numbers.map((number) => parseInt(number, 10));
   }
 
   getWinNumbers() {
@@ -113,7 +112,7 @@ class App {
 
   setBonusNumber(number) {
     bonusNumberValidate(number, this.getWinNumbers());
-    this.#bonusNumber = number;
+    this.#bonusNumber = parseInt(number, 10);
   }
 
   getBonusNumber() {
