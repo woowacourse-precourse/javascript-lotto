@@ -10,6 +10,7 @@ class DrawLotto {
       MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (draw_number) => {
         console.log(draw_number);
         this.draw_number = draw_number;
+
         this.inputBounsNumbers();
     });
     }
@@ -27,6 +28,6 @@ class DrawLotto {
     }
 
   }
-  const draw_lotto = new DrawLotto();
+  
   module.exports = DrawLotto;
   

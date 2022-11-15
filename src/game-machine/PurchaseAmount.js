@@ -18,14 +18,11 @@ class PurchaseAmount {
     this.purchase_amount=input_money;
     this.accessPurchaseAmount();
   }
-
+  
   accessPurchaseAmount(){
     let purchase_amount = this.purchase_amount;
     const cal_lotto = new CalculateLotto();
-    cal_lotto.getPurchaseAmount(purchase_amount);
+    return cal_lotto.getPurchaseAmount(purchase_amount);
   }
-  
 }
-
-const amount = new PurchaseAmount();
 module.exports = PurchaseAmount;
