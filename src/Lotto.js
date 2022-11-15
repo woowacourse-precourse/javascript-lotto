@@ -1,5 +1,3 @@
-const { Print } = require("./lib/MissionUtils.js");
-
 class Lotto {
   #numbers;
   constructor(numbers) {
@@ -47,7 +45,7 @@ class Lotto {
       default:
         result = 0;
     }
-    if (result === 2 && correspondObj.bonus === 1) result = 2;
+    if (result === 3 && correspondObj.bonus === 1) result = 2;
     return result;
   }
   // TODO: 추가 기능 구현
