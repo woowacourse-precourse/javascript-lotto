@@ -31,11 +31,11 @@ const INPUT_MESSAGE = {
 
 const RESULT_MESSAGE = {
   title: '\n당첨 통계\n---',
-  first: `${LOTTO_DIGITS}개 일치 (2,000,000,000원) - `,
-  second: `${LOTTO_DIGITS - 1}개 일치, 보너스 볼 일치 (30,000,000원) - `,
-  third: `${LOTTO_DIGITS - 1}개 일치 (1,500,000원) - `,
-  fourth: `${LOTTO_DIGITS - 2}개 일치 (50,000원) - `,
-  fifth: `${LOTTO_DIGITS - 3}개 일치 (5,000원) - `,
+  first: `${LOTTO_DIGITS}개 일치 (2,000,000,000원)`,
+  second: `${LOTTO_DIGITS - 1}개 일치, 보너스 볼 일치 (30,000,000원)`,
+  third: `${LOTTO_DIGITS - 1}개 일치 (1,500,000원)`,
+  fourth: `${LOTTO_DIGITS - 2}개 일치 (50,000원)`,
+  fifth: `${LOTTO_DIGITS - 3}개 일치 (5,000원)`,
 };
 
 const MONEY_ERROR_MESSAGE = {

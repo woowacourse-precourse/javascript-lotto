@@ -1,59 +1,34 @@
-const {
-  LOTTO_DIGITS,
-  NUMBER_RANGE,
-  PRIZE,
-  LOTTO_ERROR_MESSAGE,
-} = require('./Constants');
+const { LOTTO_DIGITS, PRIZE } = require('./Constants');
+const Validater = require('./Validater');
 
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    Lotto.validateLuckyNumber(numbers);
     this.#numbers = numbers;
-    this.bonusNumber;
+    this.bonusNumber = 0;
   }
 
-  validate(numbers) {
-    if (numbers.length !== LOTTO_DIGITS) {
-      throw new Error(LOTTO_ERROR_MESSAGE.digits);
-    }
-    if (numbers.some((number) => !Number.isInteger(number))) {
-      throw new Error(LOTTO_ERROR_MESSAGE.integer);
-    }
-    if (
-      numbers.some(
-        (number) =>
-          !(number >= NUMBER_RANGE.lower && number <= NUMBER_RANGE.upper)
-      )
-    ) {
-      throw new Error(LOTTO_ERROR_MESSAGE.range);
-    }
-    if (numbers.length !== new Set(numbers).size) {
-      throw new Error(LOTTO_ERROR_MESSAGE.duplication);
-    }
+  static validateLuckyNumber(numbers) {
+    Validater.checkNumberOfDigits(numbers);
+    Validater.checkInteger(numbers);
+    Validater.checkRange(numbers);
+    Validater.checkDuplication(numbers);
   }
 
   validateBonusNumber(number) {
-    if (!number) {
-      throw new Error(LOTTO_ERROR_MESSAGE.bonus);
-    }
-    if (!Number.isInteger(number)) {
-      throw new Error(LOTTO_ERROR_MESSAGE.integer);
-    }
-    if (!(number >= NUMBER_RANGE.lower && number <= NUMBER_RANGE.upper)) {
-      throw new Error(LOTTO_ERROR_MESSAGE.range);
-    }
-    if (this.#numbers.includes(number)) {
-      throw new Error(LOTTO_ERROR_MESSAGE.duplication);
-    }
+    Validater.checkSingleDigit(number);
+    Validater.checkInteger(number);
+    Validater.checkRange(number);
+    Validater.checkDuplication(number, this.#numbers);
     this.bonusNumber = number;
   }
 
-  getResult(IssuedLottoes) {
+  getPrizeRecord(issuedLottoes) {
     const prizeRecord = { first: 0, second: 0, third: 0, fourth: 0, fifth: 0 };
-    IssuedLottoes.forEach((IssuedLotto) => {
-      const prize = this.checkPrize(IssuedLotto);
+    issuedLottoes.forEach((issuedLotto) => {
+      const prize = this.checkPrize(issuedLotto);
       if (prize) {
         prizeRecord[prize] += 1;
       }
@@ -61,25 +36,26 @@ class Lotto {
     return prizeRecord;
   }
 
-  checkPrize(IssuedLotto) {
-    const matchingCount = this.countMatchingNumber(IssuedLotto);
-    if (matchingCount === 6) {
+  checkPrize(issuedLotto) {
+    const matchingCount = this.countMatchingNumber(issuedLotto);
+    if (matchingCount === LOTTO_DIGITS) {
       return PRIZE.first;
     }
-    if (matchingCount === 5) {
-      return this.checkBonusNumber(IssuedLotto) ? PRIZE.second : PRIZE.third;
+    if (matchingCount === LOTTO_DIGITS - 1) {
+      return this.checkBonusNumber(issuedLotto) ? PRIZE.second : PRIZE.third;
     }
-    if (matchingCount === 4) {
+    if (matchingCount === LOTTO_DIGITS - 2) {
       return PRIZE.fourth;
     }
-    if (matchingCount === 3) {
+    if (matchingCount === LOTTO_DIGITS - 3) {
       return PRIZE.fifth;
     }
+    return null;
   }
 
-  countMatchingNumber(IssuedLotto) {
+  countMatchingNumber(issuedLotto) {
     let matchingCount = 0;
-    IssuedLotto.forEach((number) => {
+    issuedLotto.forEach((number) => {
       if (this.#numbers.includes(number)) {
         matchingCount += 1;
       }
@@ -87,8 +63,8 @@ class Lotto {
     return matchingCount;
   }
 
-  checkBonusNumber(IssuedLotto) {
-    return IssuedLotto.includes(this.bonusNumber);
+  checkBonusNumber(issuedLotto) {
+    return issuedLotto.includes(this.bonusNumber);
   }
 }
 

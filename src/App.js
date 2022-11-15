@@ -1,62 +1,41 @@
 const { Console } = require('@woowacourse/mission-utils');
+const { PRIZE_MONEY, INPUT_MESSAGE, RESULT_MESSAGE } = require('./Constants');
 const Lotto = require('./Lotto');
 const LottoIssuer = require('./LottoIssuer');
-const {
-  LOTTO_PRICE,
-  PRIZE_MONEY,
-  INPUT_MESSAGE,
-  MONEY_ERROR_MESSAGE,
-  RESULT_MESSAGE,
-} = require('./Constants');
+const Validater = require('./Validater');
 
 class App {
-  play() {
-    this.receiveMoney();
+  #lotto;
+
+  constructor() {
+    this.money = 0;
+    this.issuedLottoes = [];
   }
 
-  receiveMoney() {
+  play() {
+    this.buyLottoes();
+  }
+
+  buyLottoes() {
     Console.readLine(INPUT_MESSAGE.money, (money) => {
       this.money = Number(money);
-      this.checkMoneyValidity(this.money);
-      this.issueLottoes(this.money);
+      Validater.validateMoney(this.money);
+      this.issuedLottoes = LottoIssuer.issueLottoes(this.money);
       this.getLuckyNumbers();
-    });
-  }
-
-  issueLottoes(money) {
-    const lottoIssuer = new LottoIssuer();
-    this.issuedLottoes = lottoIssuer.issue(money);
-    this.printLottoes(this.issuedLottoes);
-  }
-
-  checkMoneyValidity(money) {
-    if (!money) {
-      throw new Error(MONEY_ERROR_MESSAGE.number);
-    }
-    if (money % LOTTO_PRICE !== 0) {
-      throw new Error(MONEY_ERROR_MESSAGE.unit);
-    }
-  }
-
-  printLottoes() {
-    Console.print(`\n${this.issuedLottoes.length}개를 구매했습니다.`);
-    this.issuedLottoes.forEach((issuedLotto) => {
-      const issuedLottoString = issuedLotto.toString();
-      Console.print(`[${issuedLottoString.replace(/,/g, ', ')}]`);
     });
   }
 
   getLuckyNumbers() {
     Console.readLine(INPUT_MESSAGE.lucky, (stringNumbers) => {
       const numbers = [...stringNumbers.split(',')].map(Number);
-      this.lotto = new Lotto(numbers);
+      this.#lotto = new Lotto(numbers);
       this.getBonusNumber();
     });
   }
 
   getBonusNumber() {
     Console.readLine(INPUT_MESSAGE.bonus, (stringNumber) => {
-      this.lotto.validateBonusNumber(Number(stringNumber));
+      this.#lotto.validateBonusNumber(Number(stringNumber));
       this.printResult();
     });
   }
@@ -64,12 +43,12 @@ class App {
   printResult() {
     Console.print(RESULT_MESSAGE.title);
 
-    const prizeRecord = this.lotto.getResult(this.issuedLottoes);
+    const prizeRecord = this.#lotto.getPrizeRecord(this.issuedLottoes);
     Object.entries(prizeRecord)
       .reverse()
-      .forEach(([prize, number]) => {
-        Console.print(`${RESULT_MESSAGE[prize]}${number}개`);
-      });
+      .forEach(([prize, number]) =>
+        Console.print(`${RESULT_MESSAGE[prize]} - ${number}개`)
+      );
 
     const earningRate = this.calculateEarningRate(prizeRecord);
     Console.print(`총 수익률은 ${earningRate.toFixed(1)}%입니다.`);
