@@ -87,6 +87,7 @@ class App {
     this.#rateOfReturn = Math.round(this.#winnings.reduce(function add(a, b) { return a + b }, 0) / this.#purchaseLotto.getPurcahseAmount() * 10000 ) / 100;
     return this.#rateOfReturn
   }
+  
   matchWithWinning(lotto) {
     let matches = 0;
     lotto.map((l) => {
