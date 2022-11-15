@@ -6,12 +6,11 @@ class WinNumbersValidator {
   #numbers;
 
   constructor(numbers) {
-    this.#numbers = this.#toArray(numbers);
-    this.#validate(this.#numbers);
+    this.#validate(this.#toArray(numbers));
   }
 
   #validate(numbers) {
-    if (this.#isNumber(numbers))
+    if (this.#isNotNumber(numbers))
       Exception.throwError(ERROR_MESSAGE.WIN_NUMBERS_NOT_NUMBER);
 
     if (!this.#isRightLength(numbers))
@@ -31,9 +30,8 @@ class WinNumbersValidator {
       .map((str) => parseInt(str));
   }
 
-  #isNumber(numbers) {
-    console.log(numbers);
-    return numbers.filter((num) => !Number.parseInt(num)).length > 0;
+  #isNotNumber(numbers) {
+    return numbers.filter((num) => !Number.isInteger(num)).length > 0;
   }
 
   #isRightLength(numbers) {
@@ -46,7 +44,10 @@ class WinNumbersValidator {
 
   #isNotInLottoNumberBoundary(numbers) {
     return (
-      numbers < LOTTO_NUMBER.START_NUMBER || numbers > LOTTO_NUMBER.END_NUMBER
+      numbers.filter(
+        (num) =>
+          num < LOTTO_NUMBER.START_NUMBER || num > LOTTO_NUMBER.END_NUMBER
+      ).length > 0
     );
   }
 }
