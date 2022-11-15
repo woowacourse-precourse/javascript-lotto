@@ -1,18 +1,13 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
-const Lotto = require("./Lotto");
 const validate = require("./validation/validation");
+const Lotto = require("./Lotto");
 
 class Game {
-  constructor() {
-    this.quantity = null;
+  constructor(money) {
+    this.validateMoney(money);
+    this.quantity = money / 1000;
     this.list = [];
-    this.resultList = [];
-  }
-
-  setGame(input) {
-    this.validateMoney(input);
-    this.quantity = input / 1000;
-    this.generateWinningNumberList(this.quantity);
+    this.generateWinningNumberList();
   }
 
   validateMoney(input) {
@@ -23,8 +18,8 @@ class Game {
     Console.print(`${this.quantity}개를 구매했습니다.\n`);
   }
 
-  generateWinningNumberList(quantity) {
-    for (let i = 0; i < quantity; i++) {
+  generateWinningNumberList() {
+    for (let i = 0; i < this.quantity; i++) {
       const winningNumber = new Lotto(
         Random.pickUniqueNumbersInRange(1, 45, 6)
       );
@@ -38,7 +33,7 @@ class Game {
     });
   }
 
-  printWinningHistory() {
+  printWinningHistory(result) {
     this.getLottoResult();
     const winningHistoryList = [
       "3개 일치 (5,000원)",
@@ -48,33 +43,31 @@ class Game {
       "6개 일치 (2,000,000,000원)",
     ];
     winningHistoryList.forEach((el, i) => {
-      const correctCount = this.getWinningCount(i);
+      const correctCount = this.getWinningCount(result, i);
       Console.print(`${el} - ${correctCount}개`);
     });
   }
 
-  getWinningCount(i) {
-    return this.resultList.filter((result) => result === 5 - i).length;
+  getWinningCount(result, i) {
+    return result.filter((el) => el === 5 - i).length;
   }
 
-  getLottoResult() {
+  getLottoResult(winningNumbers, bonusNumber) {
     let lottoResultList = [];
-    this.list.forEach((lotto) => {
-      lottoResultList.push(
-        lotto.getResult(this.inputLottoList, this.inputBonusNumber)
-      );
+    this.list.forEach((el) => {
+      lottoResultList.push(el.getResult(winningNumbers, bonusNumber));
     });
-    this.resultList = lottoResultList.filter((el) => el);
+    return lottoResultList.filter((el) => el);
   }
 
-  getResultRate() {
+  getResultRate(winningNumbers) {
     const lotto = [5000, 50000, 1500000, 30000000, 2000000000];
     const result = lotto.reduce((acc, cur, i) => {
-      const correctCount = this.getWinningCount(i);
+      const correctCount = this.getWinningCount(winningNumbers, i);
       return acc + cur * correctCount;
     }, 0);
 
-    const rate = (result / (this.quantity * 1000)).toFixed(1);
+    const rate = (result / (this.quantity * 1000) * 100).toFixed(1);
     Console.print(`총 수익률은 ${rate}%입니다.`);
   }
 }

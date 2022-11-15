@@ -6,8 +6,8 @@ class WinningNumbers {
     this.value = winningNumbers;
   }
 
-  validate(winningNumberInput) {
-    validate.winningNumbers(winningNumberInput);
+  validate(winningNumber) {
+    validate.winningNumbers(winningNumber);
   }
 }
 
@@ -17,8 +17,8 @@ class BonusNumber {
     this.value = bonusNumber;
   }
 
-  validate(bonusNumberInput, winningNumbersInput) {
-    validate.bonusNumber(bonusNumberInput, winningNumbersInput);
+  validate(bonusNumber, winningNumbers) {
+    validate.bonusNumber(bonusNumber, winningNumbers);
   }
 }
 
