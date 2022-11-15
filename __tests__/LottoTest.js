@@ -30,4 +30,11 @@ describe("로또 클래스 테스트", () => {
       new Lotto("1, 2, 3/4, 5 6");
     }).toThrow("[ERROR]");
   });
+
+  test("당첨 번호와 중복되는 보너스 번호를 입력하면 예외가 발생한다.", () => {
+    expect(() => {
+      const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+      lotto.validateBonus("3");
+    }).toThrow("[ERROR]");
+  });
 });
