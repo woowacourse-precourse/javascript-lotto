@@ -1,6 +1,11 @@
 const Lotto = require('../src/Lotto');
 const MissionUtils = require('@woowacourse/mission-utils');
 const LottoValidator = require('../src/Lotto.validator');
+const {
+  LottoInputDto,
+  LottoPrizeDto,
+  LottoPurchaseDto,
+} = require('../src/LottoDto');
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();
@@ -48,30 +53,49 @@ describe('Validator 클래스 테스트', () => {
       LottoValidator.splitLottoNumbers('1,2,3,4,5,5');
     }).toThrow('[ERROR]');
   });
-  test('splitLottoNumbers는 6개의 번호가 와야 한다.', () => {
+  test('splitLottoNumbers는 6개의 번호아닐시 예외가 발생한다.', () => {
     expect(() => {
       LottoValidator.splitLottoNumbers('1,2,3,4,5');
     }).toThrow('[ERROR]');
   });
-  test('splitLottoNumbers는 6개의 서로 다른 ","로 나뉠 수 있어야 한다.', () => {
+  test('splitLottoNumbers는 6개의 서로 다른 ","로 나눠지지 못할 시 예외가 발생한다.', () => {
     expect(() => {
       LottoValidator.splitLottoNumbers('1,2,3,4,5,5,');
     }).toThrow('[ERROR]');
   });
-  test('splitLottoNumbers는 6개의 서로 다른 1~45사이의 숫자이어야 한다.', () => {
+  test('splitLottoNumbers는 6개의 서로 다른 1~45사이의 숫자가 아닐 시 예외가 발생한다.', () => {
     expect(() => {
       LottoValidator.splitLottoNumbers('1,2,3,4,5,46');
     }).toThrow('[ERROR]');
   });
 
-  test('additionalNumber는 lotto의 numbers와 겹치면 안된다. ', () => {
+  test('additionalNumber는 lotto의 numbers와 겹칠시 예외가 발생한다. ', () => {
     expect(() => {
       LottoValidator.additionalNumber(6, '1,2,3,4,5,6');
     }).toThrow('[ERROR]');
   });
-  test('additionalNumber는 추가적인 숫자는 숫자이어야 한다. ', () => {
+  test('additionalNumber의 추가 숫자는 숫자가 아닐 시 예외가 발생한다. ', () => {
     expect(() => {
-      LottoValidator.additionalNumber(6, '1,2,3,4,5,6');
+      LottoValidator.additionalNumber('가', '1,2,3,4,5,6');
     }).toThrow('[ERROR]');
   });
+
+  test('checkLottoWin는 등수에 따라 lottoPrizeDto에 숫자가 올라가야 한다', () => {
+    let lottoPrizeDto = new LottoPrizeDto();
+
+    LottoValidator.checkLottoWin(
+      new LottoInputDto([1, 2, 3, 4, 5, 6], 7),
+      { numbers: [1, 2, 3, 4, 8, 9] },
+      lottoPrizeDto,
+    );
+    expect(lottoPrizeDto.prizeCount).toEqual([0, 0, 0, 1, 0]);
+
+    LottoValidator.checkLottoWin(
+      new LottoInputDto([1, 2, 3, 4, 5, 6], 7),
+      { numbers: [1, 2, 3, 4, 5, 7] },
+      lottoPrizeDto,
+    );
+    expect(lottoPrizeDto.prizeCount).toEqual([0, 1, 0, 1, 0]);
+  });
+
 });
