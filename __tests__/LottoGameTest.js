@@ -26,4 +26,27 @@ describe("로또 게임 클래스 테스트", () => {
   });
 });
 
+const getLogSpy = () => {
+  const logSpy = jest.spyOn(MissionUtils.Console, "print");
+  logSpy.mockClear();
+  return logSpy;
+};
+
+describe("LottoGame", () => {
+  test("수익률 출력", () => {
+    const logSpy = getLogSpy();
+    const payment = 7000;
+    const result = {
+      3: 0,
+      4: 1,
+      5: 0,
+      "5+1": 0,
+      6: 0,
+    };
+
+    lottoGame.printProfitRate(payment, result);
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("714.3%"));
+  });
+});
+
 MissionUtils.Console.close();
