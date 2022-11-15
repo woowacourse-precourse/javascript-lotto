@@ -1,6 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const DrawLotto = require("../draw-machine/DrawLotto");
 const Lotto = require("./Lotto");
+const ResultStats = require("./ResultStats");
 class CalculateLotto{
   constructor(){
     this.lotto_quantity;  
@@ -32,13 +33,16 @@ class CalculateLotto{
   }
 
   sendLottoNumbers(){
+    let lotto_numbers;
     for(let i =0;i<this.lotto_quantity;i++){
-      let lotto_numbers = this.calculateLottoNumbers();
+      lotto_numbers = this.calculateLottoNumbers();
       const lotto = new Lotto(lotto_numbers);
+      const result_stats = new ResultStats();
+      result_stats.changeLottoNumbersToArray(lotto_numbers);
     }
     this.callInputDrawNumbers();
   }
-
+  
   callInputDrawNumbers(){
     const draw_lotto = new DrawLotto();
     draw_lotto.inputDrawNumbers();
