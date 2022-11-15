@@ -46,3 +46,22 @@ describe('Utils 클래스 profit() 테스트', () => {
     expect(profit).toEqual(2031500000);
   });
 });
+
+describe('utils클래스의 profitRate() 테스트', () => {
+  test('수익률 소수점이 1자리만 나오는지 확인', () => {
+    const calculator = new Calculator();
+    const profit = calculator.profitRate(1000, 3000);
+    expect(/^(\d*)[\.]?(\d{0,1})?$/g.test(profit)).toBeTruthy();
+  });
+
+  test('수익률이 소수점 2자리일경우 정규표현식에서 false나오는지 확인', () => {
+    const profit = 33.33;
+    expect(/^(\d*)[\.]?(\d{0,1})?$/g.test(profit)).toBeFalsy();
+  });
+
+  test('수익률 맞는지 확인', () => {
+    const calculator = new Calculator();
+    const profit = calculator.profitRate(1000, 3000);
+    expect(profit).toEqual(33.3);
+  });
+});
