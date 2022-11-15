@@ -15,4 +15,18 @@ describe("로또 클래스 테스트", () => {
   });
 
   // 아래에 추가 테스트 작성 가능
+  test("(금액 /1000) 개 만큼의 복권을 발행한다", () => {
+    const lotto = new Lotto();
+    lotto.money = 3000;
+    expect(lotto.calcLottoCount(lotto.money)).toEqual(3);
+  });
+
+  test("복권을 1~45까지의 중복되지 않는 숫자 6개를 발행한다", () => {
+    const lotto = new Lotto();
+    const outOfRange = (num) => {
+      if (num > 45 || num < 1) return true;
+    };
+    expect(lotto.getRandomNumbers()).toHaveLength(6);
+    expect(lotto.getRandomNumbers().some(outOfRange)).toBeFalsy();
+  });
 });
