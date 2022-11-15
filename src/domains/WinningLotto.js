@@ -20,6 +20,13 @@ class WinningLotto {
     this.#lotto = lotto;
     this.#bonusNumber = bonusNumber;
     this.#availableRewards = availableRewards;
+    this.validate();
+  }
+
+  validate() {
+    if (this.#lotto.hasNumber(this.#bonusNumber)) {
+      throw new Error('[ERROR] 로또의 번호와 보너스 번호가 중복됩니다.');
+    }
   }
 
   /**
