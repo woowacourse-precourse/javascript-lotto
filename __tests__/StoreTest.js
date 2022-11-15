@@ -155,4 +155,10 @@ describe("Store 클래스 테스트", () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
+
+  test("종료한다.", () => {
+    MissionUtils.Console.close = jest.fn();
+    store.exit();
+    expect(MissionUtils.Console.close).toHaveBeenCalledTimes(1);
+  });
 });
