@@ -1,4 +1,5 @@
 const { DEFAULT, ERROR } = require("../utils/constant.js");
+const { Console } = require("@woowacourse/mission-utils");
 
 class PurchaseValudate {
   #input;
@@ -20,9 +21,14 @@ class PurchaseValudate {
   }
 
   check() {
-    if (this.checkNumber() || this.checkPositivNumber())
-      throw new Error(ERROR.PURCHASE_ERROR);
-    if (!this.checkUnit()) throw new Error(ERROR.PURCHASE_CHARGE);
+    if (this.checkNumber() || this.checkPositivNumber()) {
+      Console.close();
+      throw ERROR.PURCHASE_ERROR;
+    }
+    if (!this.checkUnit()) {
+      Console.close();
+      throw ERROR.PURCHASE_CHARGE;
+    }
   }
 
   getPurchaceAmount() {
