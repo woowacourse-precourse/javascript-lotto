@@ -42,6 +42,7 @@ class App {
       );
     });
     Console.print(`${GUIDE.TOTAL_PROFIT} ${this.profit}${GUIDE.PERCENT}`);
+    Console.close();
   }
 
   getProfit() {
@@ -51,7 +52,6 @@ class App {
       .map(Number);
     this.profit = `${this.makeWonUnit(integer)}.${decimal}`;
     this.printResult();
-    Console.close();
   }
 
   compareNumber() {
