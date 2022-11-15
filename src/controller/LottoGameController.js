@@ -42,11 +42,11 @@ class LottoGameController {
   }
 
   #notifyMyLottoSize(myLottoNumbers) {
-    this.#view.print.purchasedSize(myLottoNumbers);
+    this.#view.Print.purchasedSize(myLottoNumbers);
   }
 
   #notifyMyLottoList(myLottoNumbers) {
-    this.#view.print.purchasedList(myLottoNumbers);
+    this.#view.Print.purchasedList(myLottoNumbers);
   }
 
   #getWinningNumbersFromUser(myLottoNumbers) {
