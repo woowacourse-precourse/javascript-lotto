@@ -66,7 +66,7 @@ class UserNumber {
   }
 
   validateBonusNumber(bonusNumber) {
-    if (isNaN(bonusNumber)) {
+    if (!/^\d+$/.test(bonusNumber.toString())) {
       throw new Error(BONUS_NUMBER_MESSAGE.NUMBER_ERROR);
     }
     if (1 > bonusNumber || bonusNumber > 45) {

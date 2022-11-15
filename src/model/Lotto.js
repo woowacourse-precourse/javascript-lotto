@@ -14,7 +14,7 @@ class Lotto {
     }
 
     for (const singleElement of userSplitInput) {
-      if (isNaN(singleElement)) {
+      if (!/^\d+$/.test(singleElement.toString())) {
         throw new Error(WINNING_NUMBER_MESSAGE.COMMA_NUMBER_ERROR);
       }
     }
