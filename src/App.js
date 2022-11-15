@@ -3,7 +3,6 @@ const Exception = require("./error");
 const { Console } = require("@woowacourse/mission-utils");
 const { MESSAGE } = require("./constant/constant.js");
 
-
 class App {
   constructor() {
     this.lotto = new Lotto();
