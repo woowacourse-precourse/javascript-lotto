@@ -56,7 +56,7 @@ describe('로또 메시지 출력 테스트', () => {
       ['FIFTH', 3],
       ['SECOND', 1],
     ];
-    const messages = ['3개 일치, (5,000원) - 3개', '5개 일치, 보너스 볼 일치 (30,000,000원) - 1개'];
+    const messages = ['3개 일치 (5,000원) - 3개', '5개 일치, 보너스 볼 일치 (30,000,000원) - 1개'];
 
     inputs.forEach((input, i) => expect(Display.rankingStatistics(...input)).toEqual(messages[i]));
   });
