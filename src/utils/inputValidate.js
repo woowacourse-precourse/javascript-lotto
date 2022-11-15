@@ -23,7 +23,7 @@ const isOutOfVolumeAndThrowError = (input, volume) => {
 };
 
 const validatePayment = (payment) => {
-  if (payment % Display.info('PRICE') !== 0) throwErrorMessage(Display.error('UNACCEPTABLE_PAYMENT'));
+  if (payment === 0 || payment % Display.info('PRICE') !== 0) throwErrorMessage(Display.error('UNACCEPTABLE_PAYMENT'));
 };
 
 const validateWinningNumbersInput = (input) => {
