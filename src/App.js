@@ -16,6 +16,9 @@ class App {
       let numbersOfLotto = numberGenerator.createNumbersOfLotto(amountOfLotto);
       MissionUtils.Console.print(numbersOfLotto);
     }
+
+    MissionUtils.Console.print("당첨 번호를 입력해 주세요.");
+    this.receiveWinningNumbers();
   }
 
   receivePurchaseAmount() {
@@ -33,6 +36,15 @@ class App {
       console.log("[ERROR]");
       throw new Error("[ERROR]");
     }
+  }
+
+  receiveWinningNumbers() {
+    let winningNumbers;
+    MissionUtils.Console.readLine("당첨 번호", (answer) => {
+      console.log(answer);
+      winningNumbers = answer;
+    });
+    return winningNumbers;
   }
 }
 
