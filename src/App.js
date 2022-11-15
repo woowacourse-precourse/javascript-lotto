@@ -9,6 +9,8 @@ class App {
     this.winningNumbers = 0;
     this.bonusNumber = 0;
     this.countOfWinningways = [0, 0, 0, 0, 0];
+    this.totalEarnedMoney = 0;
+    this.ResultPercentage = 0;
   }
 
   play() {
@@ -19,6 +21,7 @@ class App {
     this.inputWinningNumbers();
     this.inputBonusNumbers();
     this.consoleWinningResult();
+    this.calculateResultPercentage();
   }
 
   buyLotto() {
@@ -105,6 +108,14 @@ class App {
       "6개 일치 (2,000,000,000원) - " + this.countOfWinningways[4] + "개"
     );
     this.calculateResultPercentage();
+  }
+
+  calculateResultPercentage(){
+    for(let i=0; i<5; i++){
+      this.totalEarnedMoney += this.countOfWinningways[i] * this.winningMoney[i];
+    }
+    this.ResultPercentage = this.totalEarnedMoney / this.usedMoney*100;
+    Console.print("총 수익률은 "+this.ResultPercentage+"%입니다.");
   }
 }
 
