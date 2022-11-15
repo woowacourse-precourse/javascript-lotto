@@ -1,7 +1,7 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const Budget = require('./input/Budget')
-const Lotto = require('./input/Lotto')
-const Bonus = require('./input/Bonus')
+const Budget = require('./Budget')
+const Lotto = require('./Lotto')
+const Bonus = require('./Bonus')
 const inputObjects = {
   'budget': '',
   'numbers': [],

@@ -7,7 +7,7 @@ class Budget {
   }
 
   validate(budget) {
-    if (budget === isNaN) {
+    if (isNaN(budget)) {
       throw new Error("[ERROR] 금액은 정수 값이어야 합니다.");
     }
     if (budget%1000!==0) {
