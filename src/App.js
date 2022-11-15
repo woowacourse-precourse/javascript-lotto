@@ -12,6 +12,7 @@ class App {
     this.buyLotto();
     this.consoleLottoAmount();
     this.getRandomLottoNumbers();
+    this.consoleRandomLottoNumbers();
   }
 
   buyLotto() {
@@ -37,6 +38,12 @@ class App {
       this.lottoNumbers.push(
         new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6))
       );
+    }
+  }
+
+  consoleRandomLottoNumbers() {
+    for (let i = 0; i < this.lottoAmount; i++) {
+      Console.print(this.lottoNumbers[i].getLottoNumbers());
     }
   }
 }
