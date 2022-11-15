@@ -22,7 +22,7 @@ class LottoNumbers {
       this.sortLotteryNumbers(randomNumbers);
     }
 
-    this.acceptUserNumbers();
+    return this.acceptUserNumbers();
   }
 
   sortLotteryNumbers(randomNumbers) {

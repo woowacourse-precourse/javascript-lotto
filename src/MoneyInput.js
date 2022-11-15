@@ -28,7 +28,7 @@ class MoneyInput {
     }
     this.userMoney = userMoney;
 
-    this.printNumberOfTickets(userMoney);
+    return this.printNumberOfTickets(userMoney);
   }
 
   printNumberOfTickets(userMoney) {
