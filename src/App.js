@@ -1,6 +1,7 @@
 const UI = require("./UI");
 const LottoArray = require("./LottoArray");
 const Stats = require("./Stats");
+const MissionUtils = require("@woowacourse/mission-utils");
 
 class App {
   play() {}
@@ -29,6 +30,10 @@ class App {
 
   publishResults(totalStats) {
     UI.printTotalStats(totalStats);
+  }
+
+  terminate() {
+    MissionUtils.Console.close();
   }
 }
 
