@@ -5,6 +5,7 @@ class Lotto {
     const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 46, 6).sort(
       (a, b) => a - b
     );
+    this.validate(numbers);
     this.#numbers = numbers;
   }
 
