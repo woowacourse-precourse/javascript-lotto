@@ -6,6 +6,7 @@ const { readLine, close } = require("../utils/MissionUtils");
 const View = require("../view/View");
 
 class LottoGameController {
+  #winningCount;
   #winningNumbers;
   #moneyInput;
   #model = {
@@ -59,16 +60,21 @@ class LottoGameController {
   }
 
   #calculateWinningCount(myLottoNumbers) {
-    this.#winningNumbers = this.#model.calculatorModel.getWinningResult(
+    this.#winningCount = this.#model.calculatorModel.getWinningResult(
       myLottoNumbers,
       this.#winningNumbers
     );
-    this.#view.print.rankingResult(this.#winningNumbers);
+
+    this.#view.print.rankingResult(this.#winningCount);
     this.#calculateEarningRate();
   }
 
   #calculateEarningRate() {
-    const earningRate = this.#model.calculatorModel.getEarningRate(this.#moneyInput);
+    const earningRate = this.#model.calculatorModel.getEarningRate(
+      this.#winningCount,
+      this.#moneyInput
+    );
+
     this.#view.print.eariningRate(earningRate);
     close();
   }
