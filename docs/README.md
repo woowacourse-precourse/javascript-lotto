@@ -74,6 +74,7 @@
     * [x] 비교하기 CompareLotto
     * [x] 예외사항 Validation
 * [x] 원시타입 상수화
+* [x] 테스트
 
 
 
