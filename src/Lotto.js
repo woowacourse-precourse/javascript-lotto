@@ -46,10 +46,11 @@ class Lotto {
   }
 
   notNumber(numbers) {
-    const numberSplit = numbers.split(',');
-    if (typeof numberSplit === 'string') {
-      throw new Error('[ERROR] 숫자만 입력해주세요.');
-    }
+    numbers.split(',').map((num) => {
+      if (isNaN(num)) {
+        throw new Error('[ERROR] 숫자만 입력해주세요.');
+      }
+    });
   }
 
   getNumber() {
