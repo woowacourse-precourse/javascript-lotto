@@ -1,5 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const { LOTTO } = require("./constants");
+const { LOTTO, STATISTIC_MESSAGE } = require("./constants");
 
 class LottoGenerator {
   ticketLists;
@@ -25,7 +25,7 @@ class LottoGenerator {
   }
 
   printTicketAmount(ticket) {
-    Console.print(`\n${ticket}개를 구매했습니다.`);
+    Console.print(STATISTIC_MESSAGE.PURCHASE(ticket));
   }
 
   sortAscending(ticketList) {
