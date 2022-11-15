@@ -1,5 +1,6 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
 const { MESSAGE, LOTTERY_PRICE, LOTTERY_RESULT, PRIZE_GRADE, PRIZE_PRICE } = require("./Constant");
+const Money = require("./Money");
 class App {
   #money;
   #numberOfLottery;
@@ -113,9 +114,13 @@ class App {
     this.buyLottery();
   };
 
+  checkIsValidMoney = (money) => {
+    return new Money(money);
+  };
+
   getMoney = () => {
     Console.readLine(MESSAGE.GET_MONEY, (money) => {
-      // TODO: money Validate Test
+      this.checkIsValidMoney(money);
       this.#money = Number(money);
       this.getNumberOfLottery();
     });
