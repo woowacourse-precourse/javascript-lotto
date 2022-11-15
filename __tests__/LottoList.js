@@ -1,4 +1,3 @@
-const Lotto = require("../src/Lotto");
 const LottoList = require("../src/LottoList");
 
 describe("로또 리스트 클래스 테스트", () => {
