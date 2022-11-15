@@ -10,7 +10,6 @@ class App {
   play() {
     this.purchaseLotto();
     this.winningNumbers();
-    this.bonusNumber();
   }
 
   purchaseLotto() {
@@ -44,13 +43,7 @@ class App {
     Console.readLine("당첨 번호를 입력해 주세요", (numbers) => {
       winningnumbers = numbers.split(",").map(Number);
       const lotto = new Lotto(winningnumbers);
-    });
-  }
-
-  bonusNumber() {
-    Console.readLine("보너스 번호를 입력해 주세요", (bonusnumber) => {
-      const lotto = new Lotto();
-      lotto.validateBonusNumber(bonusnumber);
+      lotto.bonusNumber(this.sixlotterynumbers,this.purchasemoney);
     });
   }
 
