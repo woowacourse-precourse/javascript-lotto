@@ -83,7 +83,7 @@ class Result {
   }
 
   printStatistics() {
-    Console.print(`\nMESSAGE.STATISTICS`);
+    Console.print(`\n${MESSAGE.STATISTICS}`);
     this.printHistory();
     this.printReturn();
   }
