@@ -1,4 +1,4 @@
-const { Random } = require("@woowacourse/mission-utils");
+const MissionUtils = require("@woowacourse/mission-utils");
 const keys = require("./utils/key");
 const CustomError = require("./CustomError");
 const ExceptionCheck = require("./ExceptionCheck");
@@ -8,27 +8,21 @@ class Lotto {
 
   constructor() {
     const lottoNumber = this.constructor.createLotteryNumber();
-
     if (this.constructor.validate(lottoNumber)) {
       this.#numbers = lottoNumber;
     }
-  }
-
-  static createLotteryNumber() {
-    const lottoNumber = [];
-    while (lottoNumber.length < 6) {
-      const randomNumber = Random.pickNumberInRange(1, 45);
-      if (lottoNumber.includes(randomNumber)) continue;
-      lottoNumber.push(Number(randomNumber));
-    }
-    return lottoNumber.sort((a, b) => a - b);
+    MissionUtils.Console.print(`[${this.#numbers.join(", ")}]`);
   }
 
   static validate(lottoNumbers) {
-    return new LottoExceptionCheck().check(
-      keys.lotto.lotteryNumber,
-      lottoNumbers
-    );
+    if (new LottoExceptionCheck().check(keys.lotto.lotteryNumber, lottoNumbers))
+      return true;
+    else return false;
+  }
+
+  static createLotteryNumber() {
+    const randomNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    return randomNumber.sort((a, b) => a - b);
   }
 
   winningConfrim(winninglottoNumber) {
@@ -65,6 +59,7 @@ class Lotto {
     for (let number of this.#numbers) {
       if (number === winningBonus) return true;
     }
+    return false;
   }
 }
 
@@ -80,13 +75,21 @@ class LottoExceptionCheck extends ExceptionCheck {
     lottery.forEach((num, i, arr) => {
       super.isNumberInRange(num);
     });
+    return true;
   }
 
   lottoNumber(lottoNumber) {
     const { lottery = [], bonus = 0 } = lottoNumber;
     super.isBonusNumber(lottery, bonus);
     super.isRightLength(lottery, 6);
-    super.isLotteryNumber(lottery);
+
+    super.isArray(lottery);
+    super.isRightLength(lottery, 6);
+    super.isOverLapArray(lottery);
+    super.isSortedArray(lottery);
+    lottery.forEach((num, i, arr) => {
+      super.isNumberInRange(num);
+    });
 
     return true;
   }
