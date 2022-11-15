@@ -6,7 +6,7 @@ const lotteryTicket = {
     inputDataObject.raffle = [...Array(numberOfTicket).keys()].map(() =>
       this.lottoNumber(),
     );
-    return null;
+    return [inputDataObject.raffle.length]
   },
 
   lottoNumber() {

@@ -1,5 +1,7 @@
 const Lotto = require("../src/Lotto");
 const checkError = require('../src/controller/CheckError')
+const lotteryTicket = require('../src/controller/LotteryTicket')
+const inputDataObject = require('../src/model/InputDataObject')
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
@@ -33,5 +35,14 @@ describe('구입 금액 1,000원 단위 확인 테스트', () => {
     expect(() => {
       checkError.isDivideZero('aabb1')
     }).toThrow('[ERROR]')
+  })
+})
+
+describe('로또 발급 테스트', () => {
+  test('발급된 로또 개수 확인', () => {
+    const countMoney = lotteryTicket.countOfLottery(8)
+    const result = inputDataObject.raffle.length
+
+    expect(countMoney[0]).toEqual(result)
   })
 })
