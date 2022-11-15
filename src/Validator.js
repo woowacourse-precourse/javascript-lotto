@@ -1,11 +1,10 @@
-const { Random } = require('@woowacourse/mission-utils');
-const { ERROR_MESSAGE, INPUT_MONEY_UNIT, REWARD } = require('./Constant');
+const { ERROR_MESSAGE, INPUT_MONEY_UNIT } = require('./Constant');
 
 const LOTTO_LENGTH = 6;
 const START_NUMBER = 1;
 const END_NUMBER = 45;
 
-class Function {
+class Validator {
   static validateInputMoney(inputMoney) {
     const input = Number(inputMoney);
     this.validateTypeNumber(input);
@@ -51,38 +50,6 @@ class Function {
   static validateTypeNumber(number) {
     if (Number.isNaN(number)) throw new Error(ERROR_MESSAGE.INPUT_TYPE_ERROR);
   }
-
-  static setRandomNumbers() {
-    return this.sortNumbers(
-      Random.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, LOTTO_LENGTH),
-    );
-  }
-
-  static sortNumbers(numbers) {
-    return numbers.sort((a, b) => a - b);
-  }
-
-  static splitNumbers(inputNumbers) {
-    return inputNumbers.split(',').map(number => +number);
-  }
-
-  static getRateOfReturn(result, lottoCount) {
-    let reward = 0;
-
-    const resultArray = Object.entries(result);
-
-    for (let i = 0; i < resultArray.length; i += 1) {
-      reward += REWARD[resultArray[i][0]] * resultArray[i][1];
-    }
-
-    return Math.round((reward / (lottoCount * 1000)) * 10000) / 100;
-  }
-
-  static getRewardKey() {
-    return Object.keys(REWARD).sort((a, b) => {
-      return Number(a[0]) - Number(b[0]);
-    });
-  }
 }
 
-module.exports = Function;
+module.exports = Validator;

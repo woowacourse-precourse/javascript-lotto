@@ -1,10 +1,11 @@
 const { Console } = require('@woowacourse/mission-utils');
 const { INPUT_MONEY_UNIT, ERROR_MESSAGE } = require('./Constant');
 
-const { getRateOfReturn, splitNumbers } = require('./Function');
+const { getRateOfReturn, splitNumbers } = require('./Utils');
 const { MESSAGE } = require('./Constant');
 
-const Function = require('./Function');
+const Utils = require('./Utils');
+const Validator = require('./Validator');
 const Lotto = require('./Lotto');
 
 class App {
@@ -24,7 +25,7 @@ class App {
 
   play() {
     Console.readLine(MESSAGE.SET_INPUT, inputMoney => {
-      Function.validateInputMoney(inputMoney);
+      Validator.validateInputMoney(inputMoney);
       this.getLottoCount(inputMoney);
       this.issueLottos();
       this.getResult();
@@ -55,7 +56,7 @@ class App {
 
   setLottosRandomNumbers() {
     for (let i = 0; i < this.lottoCount; i += 1) {
-      const numbers = Function.setRandomNumbers();
+      const numbers = Utils.setRandomNumbers();
       const lotto = new Lotto(numbers);
       this.lottos.push(lotto);
     }
@@ -68,7 +69,7 @@ class App {
   }
 
   setBonusNumber(inputBonusNumber) {
-    Function.validateInputNumber(inputBonusNumber);
+    Validator.validateInputNumber(inputBonusNumber);
     this.validateOverLapWithWinningNumbers(inputBonusNumber);
     this.bonusNumber = inputBonusNumber;
   }
@@ -81,7 +82,7 @@ class App {
 
   setWinningNumbers(inputNumbers) {
     const numbers = splitNumbers(inputNumbers);
-    Function.validateInputNumbers(numbers);
+    Validator.validateInputNumbers(numbers);
     this.winningNumbers = numbers;
   }
 
@@ -113,7 +114,7 @@ class App {
   }
 
   printRankResult() {
-    const ranks = Function.getRewardKey();
+    const ranks = Utils.getRewardKey();
 
     for (const rank of ranks) {
       Console.print(MESSAGE[rank](this.result[rank]));
