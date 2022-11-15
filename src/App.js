@@ -32,9 +32,10 @@ class App {
       const numbers = Array.from(input.split(','), Number);
       checkLottoType(numbers);
       this.winLotto = new WinLotto(numbers);
-      MissionUtils.Console.readLine(`${Message.BONUS_MESSAGE}`, input => {
+      MissionUtils.Console.readLine(`\n${Message.BONUS_MESSAGE}`, input => {
         this.winLotto.setBonusNumber(Number(input));
-        MissionUtils.Console.print(Computer.userLottoRankResult(this.userLottoList, this.winLotto));
+        const rankResult = Computer.userLottoRankResult(this.userLottoList, this.winLotto);
+        const userProfit = Computer.getUserProfit(rankResult, this.inputMoney);
       });
     });
   }

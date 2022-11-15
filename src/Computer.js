@@ -1,5 +1,3 @@
-const MissionUtils = require('@woowacourse/mission-utils');
-
 const getUserLottoListResult = (userLottoList, winLotto) => {
   return userLottoList.map(userLotto => winLotto.getLottoResult(userLotto.getNumbers()));
 };
@@ -14,8 +12,11 @@ const getUserLottoRankList = UserLottoMatchList => {
 const Computer = {
   userLottoRankResult(userLottoList, winLotto) {
     const userLottoMatchList = getUserLottoListResult(userLottoList, winLotto);
-    //MissionUtils.Console.print(userLottoMatchList);
     return getUserLottoRankList(userLottoMatchList);
+  },
+  getUserProfit(rankResult, inputMoney) {
+    const profit = rankResult.First * 2000000000 + rankResult.Second * 30000000 + rankResult.Third * 1500000 + rankResult.Fourth * 50000 + rankResult.Fifth * 5000;
+    return ((profit / inputMoney) * 100).toFixed(1);
   },
 };
 
