@@ -3,24 +3,19 @@ const { MESSAGES } = require("./lib/constant");
 const Lotto = require("./Lotto");
 
 class App {
-  play() {
-    this.getAmountPaid((count) => {
-      let lottos = this.issueLottos(count);
-      this.getWinningNumbers((input) => {
-        let winnigNumbers = input;
-        this.getBonusNumbers((input) => {
-          let bonusNumber = input;
-          console.log(winnigNumbers);
-          console.log(bonusNumber);
-          this.appClose();
-        });
-      });
-    });
+  async play() {
+    let lottoCount = await this.getAmountPaid();
+    let lottos = this.issueLottos(lottoCount);
+    let winningNumbers = await this.getWinningNumbers();
+    let bonusNumber = await this.getBonusNumbers();
+    this.appClose();
   }
 
-  getAmountPaid(callback) {
-    Console.readLine(MESSAGES.TAKE_MONEY, (input) => {
-      callback(input / 1000);
+  getAmountPaid() {
+    return new Promise((resolve) => {
+      Console.readLine(MESSAGES.TAKE_MONEY, (input) => {
+        resolve(input / 1000);
+      });
     });
   }
 
@@ -35,16 +30,20 @@ class App {
     return lottos;
   }
 
-  getWinningNumbers(callback) {
-    Console.readLine(MESSAGES.TAKE_WINNING_NUMBERS, (input) => {
-      let winnigNumbers = input.split(",").map((x) => Number(x));
-      callback(winnigNumbers);
+  getWinningNumbers() {
+    return new Promise((resolve) => {
+      Console.readLine(MESSAGES.TAKE_WINNING_NUMBERS, (input) => {
+        let winnigNumbers = input.split(",").map((x) => Number(x));
+        resolve(winnigNumbers);
+      });
     });
   }
 
-  getBonusNumbers(callback) {
-    Console.readLine(MESSAGES.TAKE_BONUS_NUMBERS, (input) => {
-      callback(input);
+  getBonusNumbers() {
+    return new Promise((resolve) => {
+      Console.readLine(MESSAGES.TAKE_BONUS_NUMBERS, (input) => {
+        resolve(input);
+      });
     });
   }
 
