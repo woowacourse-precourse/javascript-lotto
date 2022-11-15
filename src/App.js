@@ -1,7 +1,7 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { MESSAGE, WINNING_RESULT_PRINT } = require("./constants.js");
-const buyingAmountValidator = require("./buyingAmountValidator.js");
-const bonusNumberValidator = require("./bonusNumberValidator.js");
+const buyingAmountValidator = require("./buyingValidate.js");
+const bonusNumberValidator = require("./bonusValidate.js");
 const LottoTicket = require("./LottoTicket.js");
 const Lotto = require("./Lotto.js");
 const WinningResult = require("./WinningResult");
