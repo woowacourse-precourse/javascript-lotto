@@ -1,5 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Calculator = require("./Calculator");
+const Lotto = require("./Lotto");
 const NumberGenerator = require("./NumberGenerator");
 
 class App {
@@ -14,6 +15,9 @@ class App {
     const numberGenerator = new NumberGenerator();
     for (let i = 0; i < amountOfLotto; i++) {
       let numbersOfLotto = numberGenerator.createNumbersOfLotto(amountOfLotto);
+      const lotto = new Lotto(numbersOfLotto);
+      lotto.validate(numbersOfLotto);
+
       MissionUtils.Console.print(numbersOfLotto);
     }
 
