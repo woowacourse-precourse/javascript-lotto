@@ -1,5 +1,6 @@
 class AbstractLottoWinning {
   lottoNumberCount;
+  bonusNumberCount;
   winningMoney;
   printer;
 
@@ -7,15 +8,15 @@ class AbstractLottoWinning {
     this.lottoResults = lottoResults;
   }
 
-  printCount() {
-    this.printer
+  getResult() {
+    return this.printer
       .setLottoNumberCount(String(this.lottoNumberCount.getLottoNumberCount()))
       .setWinningMoney(this.winningMoney.addSeperator())
       .setMatchedLottoCount(String(this.count()))
       .print();
   }
 
-  getTotalWinningMoney() {
+  getWinningMoney() {
     return this.winningMoney.multiply(this.count());
   }
 
@@ -23,7 +24,9 @@ class AbstractLottoWinning {
     return this.lottoResults.filter(this.isSatisfied.bind(this)).length;
   }
 
-  isSatisfied(lottoResult) {}
+  isSatisfied(lottoResult) {
+    return lottoResult.isWinning(this.lottoNumberCount, this.bonusNumberCount);
+  }
 }
 
 module.exports = AbstractLottoWinning;
