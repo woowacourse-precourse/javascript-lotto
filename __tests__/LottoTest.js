@@ -1,3 +1,4 @@
+const { Random } = require("@woowacourse/mission-utils");
 const Lotto = require("../src/Lotto");
 
 describe("로또 클래스 테스트", () => {
@@ -25,5 +26,19 @@ describe("로또 클래스 테스트", () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 999]);
     }).toThrow("[ERROR]");
+  });
+
+  test("당첨로또와 랜덤생성된 개별로또를 비교하여 점수를 생성하는 함수", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    const winningLotto = new Lotto([1, 2, 3, 4, 8, 9]);
+
+    expect(lotto.calculateScore(winningLotto)).toEqual(4);
+  });
+
+  test("랜덤 로또를 생성하는 함수", () => {
+    const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+    const randomLotto = new Lotto(numbers);
+
+    expect(Lotto.createRandomLotto()).toStrictEqual(randomLotto);
   });
 });
