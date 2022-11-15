@@ -32,6 +32,17 @@ class App {
       this.#bonusNumberInputPhase();
     });
   }
+
+  #bonusNumberInputPhase() {
+    BetterConsole.readLine(MESSAGE.PLEASE_INPUT_BONUS_NO, (bonusNumber) => {
+      this.#bonusNumber = new BonusNumber(bonusNumber);
+      Validator.errorIfRegularLottoAndBonusNumberDuplicated(
+        this.#lottos.getLotto(),
+        this.#bonusNumber.getBonusNumber()
+      );
+      this.#showingResultPhase();
+    });
+  }
 }
 
 module.exports = App;
