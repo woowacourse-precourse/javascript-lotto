@@ -33,6 +33,7 @@ const ERROR = Object.freeze({
   COUNT: "[ERROR] 로또 번호는 6개여야 합니다.",
   DUPLICATE: "[ERROR] 입력값에 중복이 있습니다.",
   NUMBER_ONLY: "[ERROR] 숫자만 입력할 수 있습니다.",
+  RANGE : "[ERROR] 로또 번호의 숫자 범위는 1~45입니다.",
 });
 
 module.exports = {
