@@ -1,17 +1,26 @@
+const { MAX_LENGTH, MESSAGE } = require("./utils/Constants");
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    this.validateLength(numbers);
+    this.validateDuplicate(numbers);
     this.#numbers = numbers;
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
+  validateLength(numbers) {
+    if (numbers.length !== MAX_LENGTH) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
   }
 
+  validateDuplicate(numbers) {
+    numbers.map((item, index) => {
+      if (numbers.indexOf(item) !== index)
+        throw new Error("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+    });
+  }
   // TODO: 추가 기능 구현
 }
 
