@@ -1,5 +1,4 @@
 const Lotto = require("../src/domain/lotto/Lotto");
-const LottoNumber = require("../src/domain/lotto/LottoNumber");
 const InstanceException = require("../src/exception/InstanceException");
 const LottoHasDuplicatedException = require("../src/exception/lotto/LottoHasDuplicatedException");
 const LottoLengthException = require("../src/exception/lotto/LottoLengthException");

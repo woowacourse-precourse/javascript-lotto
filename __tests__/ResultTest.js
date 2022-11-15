@@ -1,6 +1,5 @@
 const Lotto = require("../src/domain/lotto/Lotto");
 const LottoTicket = require("../src/domain/lotto/LottoTicket");
-const WinningLotto = require("../src/domain/lotto/WinningLotto");
 const Result = require("../src/domain/result/Result");
 const InstanceException = require("../src/exception/InstanceException");
 
