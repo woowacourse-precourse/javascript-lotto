@@ -4,22 +4,22 @@ const Calculator = require("../src/Calculator");
 const Printer = require("./Printer");
 
 class App {
-  payMoney;
-  winNumbers;
-  bonusNumber;
-  lottos;
-  reward;
-  revenue;
-  printer;
-  calculator;
+  #payMoney;
+  #winNumbers;
+  #bonusNumber;
+  #lottos;
+  rewards;
+  #revenue;
+  #printer;
+  #calculator;
 
   constructor() {
-    this.payMoney = 0;
-    this.winNumbers = [];
+    this.#payMoney = 0;
+    this.#winNumbers = [];
 
-    this.bonusNumber = 0;
+    this.#bonusNumber = 0;
 
-    this.lottos = [];
+    this.#lottos = [];
 
     this.rewards = [
       [3, 5_000, 0], // [번호 일치 개수, 당첨 금액, 당첨 개수]
@@ -28,9 +28,9 @@ class App {
       [5.5, 30_000_000, 0], // [5.5 = "5개 일치, 보너스 번호 일치"]
       [6, 2_000_000_000, 0],
     ];
-    this.revenue = 0;
-    this.printer = new Printer();
-    this.calculator = new Calculator();
+    this.#revenue = 0;
+    this.#printer = new Printer();
+    this.#calculator = new Calculator();
   }
 
   play() {
@@ -42,10 +42,10 @@ class App {
       if (!this.isValidMoney(input)) {
         throw "[ERROR]";
       }
-      this.payMoney = input;
-      this.printer.printMoney(this.payMoney);
-      this.lottos = this.publishLottos(input / 1000);
-      this.printer.printLottosNumbers(this.lottos);
+      this.#payMoney = input;
+      this.#printer.printMoney(this.#payMoney);
+      this.#lottos = this.publishLottos(input / 1000);
+      this.#printer.printLottosNumbers(this.#lottos);
       this.getWinNumbers();
     });
   }
@@ -68,7 +68,7 @@ class App {
       if (!this.isValidWinNumbers(input)) {
         throw "[ERROR]";
       }
-      this.winNumbers = input.split(",").map(Number);
+      this.#winNumbers = input.split(",").map(Number);
       this.getBonusNumber();
     });
   }
@@ -86,14 +86,14 @@ class App {
       if (!this.isValidBonusNumber(input)) {
         throw "[ERROR]";
       }
-      this.bonusNumber = input;
-      this.matchLottos(this.lottos, this.winNumbers, this.bonusNumber);
-      this.printer.printScore(this.rewards);
-      this.revenue = this.calculator.conductRevenue(
+      this.#bonusNumber = input;
+      this.matchLottos(this.#lottos, this.#winNumbers, this.#bonusNumber);
+      this.#printer.printScore(this.rewards);
+      this.#revenue = this.#calculator.conductRevenue(
         this.rewards,
-        this.payMoney
+        this.#payMoney
       );
-      this.printer.printRevenue(this.revenue);
+      this.#printer.printRevenue(this.#revenue);
       this.gameOver();
     });
   }
