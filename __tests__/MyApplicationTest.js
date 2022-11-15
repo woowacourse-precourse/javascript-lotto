@@ -21,4 +21,20 @@ describe("App 클래스 추가 테스트", () => {
       ).state
     ).toBe("exception");
   });
+
+  test("정확하게 당첨 결과가 계산되는지 확인한다.", () => {
+    expect(
+      new App().getWinningDetails(
+        [new Lotto([1, 2, 3, 4, 5, 7])],
+        [1, 2, 3, 4, 5, 6],
+        7
+      )
+    ).toMatchObject({
+      threeMatches: 0,
+      fourMatches: 0,
+      fiveMatches: 0,
+      fiveMatchesWithBonus: 1,
+      sixMatches: 0,
+    });
+  });
 });

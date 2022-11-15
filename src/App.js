@@ -92,7 +92,8 @@ class App {
     }
 
     Console.readLine("보너스 번호를 입력해주세요.", (value) => {
-      this.getBonusNumber(value, winnerNumber, lottos, amountOfPaid);
+      const bonusNumber = parseInt(value, 10);
+      this.getBonusNumber(bonusNumber, winnerNumber, lottos, amountOfPaid);
     });
     return { state: "success" };
   }
@@ -129,8 +130,10 @@ class App {
     if (comparisonResult.winnerCount === 3) winningDetails.threeMatches += 1;
     if (comparisonResult.winnerCount === 4) winningDetails.fourMatches += 1;
     if (comparisonResult.winnerCount === 5) winningDetails.fiveMatches += 1;
-    if (comparisonResult.winnerCount === 5 && comparisonResult.bonusFlag)
+    if (comparisonResult.winnerCount === 5 && comparisonResult.bonusFlag) {
+      winningDetails.fiveMatches = 0;
       winningDetails.fiveMatchesWithBonus += 1;
+    }
 
     if (comparisonResult.winnerCount === 6) winningDetails.sixMatches += 1;
   }
