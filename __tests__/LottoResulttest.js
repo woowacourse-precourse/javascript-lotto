@@ -9,6 +9,13 @@ const getLogSpy = () => {
 };
 
 describe("로또게임 클래스 테스트", () => {
+  test("수익 산출 테스트", () => {
+    const PRIZELIST = [0, 0, 0, 1, 1, 1, 1, 1];
+    const MONEY = 2031555000;
+    const output = new LottoGame().calculateResult(PRIZELIST);
+    expect(output).toEqual(MONEY);
+  });
+
   test("수익률 산출 테스트", () => {
     const PRIZE = 5000;
     const MONEY = 1000;
