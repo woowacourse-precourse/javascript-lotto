@@ -1,5 +1,3 @@
-const { number } = require("prop-types");
-
 class Lotto {
   #numbers;
 
