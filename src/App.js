@@ -20,6 +20,11 @@ class App {
 
     this.printLottoList(count);
   }
+
+  getLottoNumbers() {
+    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    return numbers.sort((a, b) => a - b);
+  }
 }
 
 module.exports = App;
