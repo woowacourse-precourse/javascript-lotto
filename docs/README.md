@@ -78,17 +78,17 @@
 
 # 구현 기능 목록
 
-- 로또 구입 금액 입력받기
-- 당첨 번호 입력받기
-- 보너스 번호 입력받기
-- 발행한 로또 수량 출력하기
-- 로또 번호 발행하기
-- 로또 번호 오름차순 정렬하기
-- 로또 번호 출력하기
-- 당첨 내역 확인하기
-- 당첨 내역 출력하기
-- 수익률 계산하기
-- 수익률 출력하기
+- 로또 구입 금액 입력받기 #Ask.money
+- 당첨 번호 입력받기 #ASK.winningNumber
+- 보너스 번호 입력받기 #ASK.bonus
+- 발행한 로또 수량 출력하기 #Ask.buyLotto
+- 로또 번호 발행하기 #Ask.makeLotto
+- 로또 번호 오름차순 정렬하기 #Ask.makeLotto 내부에서 오름차순 후 발행
+- 로또 번호 출력하기 #Ask.showLottoList
+- 당첨 내역 확인하기 #Lotto.winningConfirm
+- 당첨 내역 출력하기 #Lotto.printResult
+- 수익률 계산하기 #Lotto.calRevenue
+- 수익률 출력하기 #Lotto.calREvenue
 - 에러상황 처리하기
 
 # 예외처리
