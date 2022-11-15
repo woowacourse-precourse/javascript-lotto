@@ -16,11 +16,11 @@ class Lotto {
   
   static purchase(input) {
 
-    if(!isNan(input)) {
-      throw new Error("[Error] 구매금액은 숫자만 입력하세요.");
+    if(!isNaN(input)) {
+      throw new Error("[ERROR] 구매금액은 숫자만 입력하세요.");
     }
     if(input<1000 || input%1000 != 0) {
-      throw new Error("[Error] 구매금액은 1,000원 단위로 입력하세요.");
+      throw new Error("[ERROR] 구매금액은 1,000원 단위로 입력하세요.");
     }
 
     const lotto = [];
