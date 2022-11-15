@@ -23,19 +23,19 @@ class App {
   }
 
   makeLogicOrders() {
-    this.#logicChain.addNextAsyncJob((next) => { getUserInputAsync(INSTRUCTION.GET_MONEY ,next); });
-    this.#logicChain.addNextJob((inputMoney) => { this.#lottoManager.buyLottos(this.#lottoCompany, inputMoney); });
-    this.#logicChain.addNextJob(() => { this.#lottoManager.printLottosStatus(); });
-    this.#logicChain.addNextAsyncJob((next) => { getUserInputAsync(INSTRUCTION.GET_WINNING_NUMBERS ,next);});
-    this.#logicChain.addNextJob((inputNumbers) => this.#lottoCompany.setWinningNumbers(inputNumbers));
-    this.#logicChain.addNextAsyncJob((next) => { getUserInputAsync(INSTRUCTION.GET_BONUSE_NUMBER ,next);});
-    this.#logicChain.addNextJob((inputNumber) => this.#lottoCompany.setBonusNumber(inputNumber));
+    this.#logicChain.pushAsyncJob((next) => { getUserInputAsync(INSTRUCTION.GET_MONEY ,next); });
+    this.#logicChain.pushJob((inputMoney) => { this.#lottoManager.buyLottos(this.#lottoCompany, inputMoney); });
+    this.#logicChain.pushJob(() => { this.#lottoManager.printLottosStatus(); });
+    this.#logicChain.pushAsyncJob((next) => { getUserInputAsync(INSTRUCTION.GET_WINNING_NUMBERS ,next);});
+    this.#logicChain.pushJob((inputNumbers) => this.#lottoCompany.setWinningNumbers(inputNumbers));
+    this.#logicChain.pushAsyncJob((next) => { getUserInputAsync(INSTRUCTION.GET_BONUSE_NUMBER ,next);});
+    this.#logicChain.pushJob((inputNumber) => this.#lottoCompany.setBonusNumber(inputNumber));
     [
       () => { this.#lottoManager.checkResults(this.#lottoCompany); },
       () => { this.#lottoCompany.printReportByRanks(this.#lottoManager.getLottoResults()); },
       () => { this.#lottoManager.printYield(this.#lottoCompany); },
       () => { Console.close(); },
-    ].forEach((job) => this.#logicChain.addNextJob(job));
+    ].forEach((job) => this.#logicChain.pushJob(job));
   }
 
   play() {

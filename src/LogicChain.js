@@ -7,11 +7,11 @@ class LogicChain {
     this.deque = [];
   }
 
-  addNextJob(job) {
+  pushJob(job) {
     this.deque.push([this.#SYNC, job]);
   }
 
-  addNextAsyncJob(job) {
+  pushAsyncJob(job) {
     this.deque.push([this.#ASYNC, job]);
   }
 
