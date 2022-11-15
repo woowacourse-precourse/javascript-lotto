@@ -164,6 +164,7 @@ class App {
     });
 
     MissionUtils.Console.print("당첨 통계");
+    MissionUtils.Console.print("---");
     for (let item in winstatistics) {
       MissionUtils.Console.print(`${item} - ${winstatistics[item]}개`);
     }
