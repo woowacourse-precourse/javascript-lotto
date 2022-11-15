@@ -39,6 +39,16 @@ class App {
       let tempLotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       return tempLotto;
     }
+
+    function issueLottos(){
+      for (let ind = 0; ind < lottoEa; ind++){
+        let lotto = issueLottoNumbers();
+        lotto.sort(function(comp1, comp2){
+          return comp1 - comp2;
+        });
+        lottos.push(lotto);
+      }
+    }
   } //Play() 닫는 닫는 괄호
 }//class App 닫는괄호
 
