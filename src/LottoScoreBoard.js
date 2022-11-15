@@ -19,8 +19,8 @@ class LottoScoreBoard {
       return;
     }
     if (
-      sameCount === LOTTO.PRIZE_REQUIRED_WITH_BONUS &&
-      bonusSameCount === LOTTO.BONUS_REQUIRED_SCORE
+      sameCount === LOTTO.PRIZE_REQUIRED_WITH_BONUS
+      && bonusSameCount === LOTTO.BONUS_REQUIRED_SCORE
     ) {
       this.#drawResult.fiveSameWithBonus += 1;
       this.#profit += PRIZE_AMOUNT.BONUS;
