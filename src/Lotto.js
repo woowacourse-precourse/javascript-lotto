@@ -19,17 +19,14 @@ class Lotto {
       throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 6개의 숫자여야 합니다.");
     }
     for (let i = 0; i < 6; i++) {
-      if ((isNaN(numbers[i])) || (!Number.isInteger(Number(numbers[i])))) {
-        throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 6개의 숫자여야 합니다.");
-      } else if ((parseInt(numbers[i]) < 1) || (46 < parseInt(numbers[i]))) {
+      if ((isNaN(numbers[i])) || (!Number.isInteger(Number(numbers[i]))) || (Number(numbers[i]) === 0) || (parseInt(numbers[i]) < 1) || (45 < parseInt(numbers[i]))) {
         throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 6개의 숫자여야 합니다.");
       }
     }
     let numbers_set = new Set(numbers);
     if (numbers_set.size !== 6) {
-      throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 6개의 숫자여야 합니다.");
+      throw new Error("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
     }
-    return;
   }
 
   // TODO: 추가 기능 구현
