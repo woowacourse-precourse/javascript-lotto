@@ -29,15 +29,15 @@ class App {
     }
     this.user.amount = +amount;
     this.printUserLottos();
-    this.input.readLine(this.handleHitLottos.bind(this));
+    this.input.readLine(this.handleHitNumbers.bind(this));
   }
 
-  handleHitLottos(hitLottos) {
-    hitLottos = TypeConverter.stringToArray(hitLottos, ',').map((e) => +e);
-    if (!Vaildator.isRightLottoNumbers(hitLottos)) {
+  handleHitNumbers(hitNumbers) {
+    hitNumbers = TypeConverter.stringToArray(hitNumbers, ',').map((e) => +e);
+    if (!Vaildator.isRightLottoNumbers(hitNumbers)) {
       throw new Error('[ERROR]');
     }
-    this.hitLotto = new Lotto(hitLottos);
+    this.hitLotto = new Lotto(hitNumbers);
     this.input.readLine(this.handleBonusNumber.bind(this));
   }
 
