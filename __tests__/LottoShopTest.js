@@ -2,7 +2,7 @@ const { Console } = require("@woowacourse/mission-utils");
 const LottoShop = require("../src/LottoShop");
 
 describe("로또 판매 기능 테스트", () => {
-  test("로또 1개당 금액이 1000원인지 확인", () => {
+  test("로또 1개당 금액이 1000원인지 테스트", () => {
     const lottoPrice = new LottoShop(1000).getLottoPrice();
 
     expect(lottoPrice).toEqual(1000);
