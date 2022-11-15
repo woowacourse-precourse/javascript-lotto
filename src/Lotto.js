@@ -11,7 +11,17 @@ class Lotto {
   validate(numbers) {
     for (let i = 0; i < numbers.length; i++) {
       if (numbers[i].length !== 6) {
-        throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+        throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+      }
+
+      for (let j = 0; j < 6; j++) {
+        if (numbers[i].slice(j+1).includes(numbers[i][j])) {
+          throw new Error('[ERROR] 로또 번호는 중복되면 안됩니다.');
+        }
+
+        if (typeof numbers[i][j] !== 'number') {
+          throw new Error('[ERROR] 로또 번호는 숫자로 이루어져야 합니다.');
+        }
       }
     }
   }
