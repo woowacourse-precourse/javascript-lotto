@@ -2,7 +2,6 @@ const { Console } = require('@woowacourse/mission-utils');
 const Messages = require('./Messages');
 const LottoSeller = require('./LottoSeller');
 const LottoManager = require('./LottoManager');
-
 const Lotto = require('./Lotto');
 
 class App {
@@ -72,8 +71,9 @@ class App {
   }
 
   #printRate(profit, count) {
+    const DECIMAL_PLACE = 1;
     const money = count * this.#lottoSeller.getLottoPrice();
-    const rate = ((profit / money) * 100).toFixed(1);
+    const rate = ((profit / money) * 100).toFixed(DECIMAL_PLACE);
     const result = Number(rate).toLocaleString();
 
     Console.print(`총 수익률은 ${result}%입니다.`);
