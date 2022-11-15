@@ -127,4 +127,12 @@ describe('로또 클래스 테스트', () => {
       app.play();
     }).toThrow('[ERROR]');
   });
+
+  test('당첨 입력 예외 테스트 - 중복되는 수가 있을 경우', () => {
+    mockQuestions(['1500', '1,1,2,3,4,5']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
 });
