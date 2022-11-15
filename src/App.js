@@ -2,6 +2,7 @@ class App {
   #myLottoNumbers;
   #winNumbers;
   #bonusNumber;
+  #LOTTO_PRICE = 1000;
   #equalNumber = [0, 0, 0, 0, 0, 0, 0];
   #winMoney = [0, 0, 0, 5000, 50000, 1500000, 2000000000];
   #winBonus = 0;
@@ -14,14 +15,14 @@ class App {
 
   buyLotto() {
     MissionUtils.Console.readLine('구입 금액을 입력해 주세요.\n', (money) => {
-      if(!money || money % 1000) {
+      if(!money || money % this.#LOTTO_PRICE) {
         throw new Error("[ERROR] 구입 금액이 잘못되었습니다.");
       }
       
       if(isNaN(money)) {
         throw new Error("[ERROR] 숫자가 아닙니다.");
       }
-      const count = money / 1000;
+      const count = money / this.#LOTTO_PRICE;
       MissionUtils.Console.print(`${count}개를 구매했습니다.`);
       this.getLottoNumbers(count);
       this.getWinNumbers();
@@ -33,11 +34,10 @@ class App {
     for(let i = 0; i < count; i++) {
       const number = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       const lotto = new Lotto(number);
+      MissionUtils.Console.print(`[${lotto.getNumbers().join(", ")}]`);
       numbers.push(lotto.getNumbers());
     }
-    numbers.forEach(lotto => {
-      MissionUtils.Console.print(lotto);
-    });
+
     
     this.#myLottoNumbers = numbers;
   }
@@ -86,9 +86,9 @@ class App {
     if(this.#winBonus) {
       profit += this.#winBonus * this.#BONUS_PROFIT;
     }
-    // 당첨금액 / 구입금액
-    profit = (profit / (this.#myLottoNumbers.length*1000)) * 100;
-    this.#profitPercent = profit.toFixed(1);
+
+    this.#profitPercent = (profit / (this.#myLottoNumbers.length*this.#LOTTO_PRICE)) * 100;
+    this.#profitPercent = this.#profitPercent.toFixed(1);
     this.printResult();
   }
 
@@ -96,15 +96,14 @@ class App {
   printResult() {
     MissionUtils.Console.print('당첨 통계');
     MissionUtils.Console.print('---');
-    MissionUtils.Console.print(`3개 일치 (5000원) - ${this.#equalNumber[3]}개`);
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.#equalNumber[3]}개`);
     MissionUtils.Console.print(`4개 일치 (50,000원) - ${this.#equalNumber[4]}개`);
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${this.#equalNumber[5]}개`);
     MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.#winBonus}개`);
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${this.#equalNumber[6]}개`);
-    MissionUtils.Console.print(`총 수익률은 - ${this.#profitPercent}%입니다.`);
+    MissionUtils.Console.print(`총 수익률은 ${this.#profitPercent}%입니다.`);
   }
 }
-
 
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto");
