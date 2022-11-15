@@ -77,6 +77,16 @@ class LottoGame {
 
     return [...rankingCountList, ratio];
   }
+
+  // [x]당첨 숫자 갯수 -> 인덱스 변환하는 기능
+  convertToIndex(countMatches) {
+    if (countMatches < 3) return -1;
+    if (countMatches < 4) return 0;
+    if (countMatches < 5) return 1;
+    if (countMatches < 5.5) return 2;
+    if (countMatches < 6) return 3;
+    return 4;
+  }
 }
 
 module.exports = LottoGame;
