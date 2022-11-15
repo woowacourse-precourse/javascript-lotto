@@ -43,7 +43,10 @@ class Validation {
     return new Set(winnerNumber).size === LOTTO_SIZE;
   }
   static isNumberInRange(winnerNumber) {
-    return winnerNumber.every((number) => number >= 1 && number <= 45);
+    const validRange = (number) => {
+      return number >= 1 && number <= 45;
+    };
+    return winnerNumber.map(Number).every(validRange);
   }
   static checkBonusNumber(bonusNumber, winnerNumber) {
     if (bonusNumber.length === 0) {
