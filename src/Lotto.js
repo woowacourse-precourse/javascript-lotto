@@ -21,17 +21,19 @@ class Lotto {
   }
 
   validate(numbers) {
+    if(numbers == " " || numbers == null) throw new Error("[ERROR] 공백이나 null을 입력하실 수 없습니다.");
     let isNumCheck = numbers.join("");
     if (isNaN(isNumCheck)) throw new Error("[ERROR] 문자를 입력하실 수 없습니다.");
+    if (numbers.length !== 6) throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     for (let i = 0; i < 6; ++i) {
       if (numbers[i] < 0 || numbers[i] > 45) throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
-    if (numbers.length !== 6) throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     let numSet = [...new Set(numbers)];
     if (numbers.length != numSet.length) throw new Error("[ERROR] 중복된 숫자가 존재합니다.");
   }
 
   bonusNumberException(bonus) {
+    if(bonus == " " || bonus == null) throw new Error("[ERROR] 공백이나 null을 입력하실 수 없습니다.");
     if (Number(bonus) < 0 || Number(bonus) > 45)
       throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
     if (isNaN(bonus)) throw new Error("[ERROR] 문자를 입력하실 수 없습니다.");
