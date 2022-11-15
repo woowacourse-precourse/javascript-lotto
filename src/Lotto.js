@@ -5,9 +5,8 @@ const { LOTTO_NUM_ERROR_MESSAGE } = require("./constant/message");
 class Lotto {
   #numbers;
 
-  constructor(numbers, bonusNumber) {
+  constructor(numbers) {
     this.#numbers = numbers;
-    this.validate(numbers);
   }
 
   isDuplicated(numbers) {
