@@ -1,4 +1,5 @@
-const { Console, Random } = require("@woowacourse/mission-utils");
+const { Random } = require("@woowacourse/mission-utils");
+
 class Lotto {
   #numbers;
 

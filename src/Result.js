@@ -22,6 +22,10 @@ class Result {
     return lottoResult;
   }
 
+  //   getBonusCnt() {
+  //     return this.#bonusCnt;
+  //   }
+
   createBonusResult() {
     const bonusResult = BONUS_RESULT;
     bonusResult[LOTTO.COUNT] += this.#bonusCnt;
@@ -88,4 +92,5 @@ class Result {
     );
   }
 }
+
 module.exports = Result;
