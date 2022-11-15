@@ -8,11 +8,11 @@ const PRIZE = Object.freeze({
 });
 
 const WIN_MONEY = Object.freeze({
-  [PRIZE.FIRST]: 2000000000,
-  [PRIZE.SECOND]: 30000000,
-  [PRIZE.THIRD]: 1500000,
-  [PRIZE.FOURTH]: 50000,
-  [PRIZE.FIFTH]: 5000,
+  [PRIZE.FIRST]: 2_000_000_000,
+  [PRIZE.SECOND]: 30_000_000,
+  [PRIZE.THIRD]: 1_500_000,
+  [PRIZE.FOURTH]: 50_000,
+  [PRIZE.FIFTH]: 5_000,
 });
 
 module.exports = { PRIZE, WIN_MONEY };
