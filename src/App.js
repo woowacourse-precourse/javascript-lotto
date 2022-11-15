@@ -38,4 +38,5 @@ class App {
     Console.close();
   }
 }
+
 module.exports = App;

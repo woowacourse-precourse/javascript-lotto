@@ -44,7 +44,11 @@ class LottoCalculate {
   }
 
   printWinResult(result) {
-    Console.print(WINNING.MENT(result));
+    const lottoResult = { ...LOTTO_RESULT };
+    Object.keys(lottoResult).forEach((rank) => {
+      Console.print(WINNING.MENT[rank](result[rank]));
+    });
+
     return this;
   }
 
