@@ -42,4 +42,19 @@ describe('게임 클래스 테스트', () => {
     const output = game.parseInput(input);
     expect(output).toStrictEqual(expectedOutput);
   });
+
+  test('로또 번호와 당첨 번호가 몇 개 일치하는지 확인 ', () => {
+    const lottoList = [
+      ['1', '2', '3', '4', '5', '6'],
+      ['1', '2', '3', '4', '5', '7'],
+      ['1', '2', '3', '4', '7', '8']
+    ];
+    const winningNumber = ['1', '2', '3', '4', '5', '6'];
+    const expectedOutput = [6, 5, 4];
+    const game = new Game();
+    lottoList.forEach((lottoNumber, index) => {
+      const output = game.countMatch(lottoNumber, winningNumber);
+      expect(output).toStrictEqual(expectedOutput[index]);
+    });
+  });
 });
