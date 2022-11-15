@@ -3,6 +3,7 @@ const Computer = require('./Computer');
 const { checkRange, checkUnit, checkType, checkLottoType } = require('./Exception');
 const Lotto = require('./Lotto');
 const { Message } = require('./Message');
+const View = require('./View');
 const WinLotto = require('./WinLotto');
 
 class App {
@@ -36,6 +37,8 @@ class App {
         this.winLotto.setBonusNumber(Number(input));
         const rankResult = Computer.userLottoRankResult(this.userLottoList, this.winLotto);
         const userProfit = Computer.getUserProfit(rankResult, this.inputMoney);
+        View.printResult(rankResult, userProfit);
+        MissionUtils.Console.close();
       });
     });
   }
