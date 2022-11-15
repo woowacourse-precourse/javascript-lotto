@@ -4,6 +4,9 @@ const {
   isDuplicatedAndThrowError,
   isOutOfRangeAndThrowError,
   isOutOfVolumeAndThrowError,
+  validatePayment,
+  validateWinningNumbersInput,
+  validateBonusNumberInput,
 } = require('../src/utils/inputValidate');
 
 describe('사용자 입력값 에러 테스트', () => {
@@ -23,5 +26,15 @@ describe('사용자 입력값 에러 테스트', () => {
     expect(() => {
       isOutOfVolumeAndThrowError([1, 2, 3, 4, 5, 6], 5);
     }).toThrow(Display.error('OUT_OF_VOLUME'));
+  });
+
+  test('로또 구매량은 1000단위로 나눠 떨어지지 않으면 예외가 발생한다.', () => {
+    const inputs = [2001, 3300, 800, 960];
+
+    inputs.forEach((input) => {
+      expect(() => {
+        validatePayment(input);
+      }).toThrow(Display.error('UNACCEPTABLE_PAYMENT'));
+    });
   });
 });
