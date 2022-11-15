@@ -29,4 +29,12 @@ describe("Matcher 클래스 테스트", () => {
     test("matchWithWinningNumbers: 낙첨 인덱스 반환 테스트", () => {
         expect(matcher.matchWithWinningNumbers([1, 2, 10, 9, 7, 8])).toEqual(PRIZE_INDEX.NOTHING);
     });
+
+    test("matchWithBonusNumber: 보너스 번호가 들어 있는 배열 테스트", () => {
+        expect(matcher.matchWithBonusNumber([1, 2, 3, 4, 5, 7])).toEqual(PRIZE_INDEX.SECOND);
+    });
+
+    test("matchWithBonusNumber: 보너스 번호가 들어 있지 않은 배열 테스트", () => {
+        expect(matcher.matchWithBonusNumber([1, 2, 3, 4, 5, 8])).toEqual(PRIZE_INDEX.THIRD);
+    });
 })
