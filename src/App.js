@@ -2,9 +2,9 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Bonus = require("./bonus");
 const Calculator = require("./Calculator");
 const Lotto = require("./Lotto");
-const LottoGenerator = require("./LottoGenerator");
 const { INPUT_MESSAGE, OUTPUT_MESSAGE } = require("./constant/message");
-const { Console } = MissionUtils;
+const validatePayment = require("./modules/validatePayment");
+const { Console, Random } = MissionUtils;
 
 class App {
   constructor() {
@@ -19,11 +19,20 @@ class App {
   }
   inputPrice() {
     Console.readLine(INPUT_MESSAGE.PURCHASE, (payment) => {
-      const myLotto = new LottoGenerator(payment).returnMyLotto();
-      this.userLottos = myLotto;
+      validatePayment(payment);
       this.userPurchase = Number(payment);
-      this.printMyLotto(myLotto);
+      this.generateLotto(payment);
     });
+  }
+  generateLotto(payment) {
+    const count = parseInt(payment) / 1000;
+    const myLotto = [];
+    while (myLotto.length < count) {
+      const randomLotto = Random.pickUniqueNumbersInRange(1, 45, 6);
+      myLotto.push(randomLotto);
+    }
+    this.userLottos = myLotto;
+    this.printMyLotto(myLotto);
   }
   printMyLotto(myLotto) {
     Console.print(OUTPUT_MESSAGE.PURCHASE(myLotto.length));
