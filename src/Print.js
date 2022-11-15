@@ -5,20 +5,29 @@ class Print {
     lotto.forEach((v) => MissionUtils.Console.print(v));
   }
   static countLotto(countLotto) {
-    MissionUtils.Console.print(`${countLotto}개를 구매하셨습니다.`);
+    MissionUtils.Console.print(`${countLotto}개를 구매하였습니다.`);
   }
   static result(reward, rinking, money) {
     MissionUtils.Console.print('당첨 통계');
-    MissionUtils.Console.print('-------');
-    let j = 3;
-    for (let i = 5; i >= 1; i--) {
-      MissionUtils.Console.print(
-        `${j}개 일치 (${PRIZES[String(i + '등')]}) - ${
-          rinking[String(i + '등')]
-        }개`
-      );
-      j++;
-    }
+    MissionUtils.Console.print('---');
+
+    MissionUtils.Console.print(
+      `3개 일치 (${PRIZES[String('5등')]}) - ${rinking[String('5등')]}개`
+    );
+    MissionUtils.Console.print(
+      `4개 일치 (${PRIZES[String('4등')]}) - ${rinking[String('4등')]}개`
+    );
+    MissionUtils.Console.print(
+      `5개 일치 (${PRIZES[String('3등')]}) - ${rinking[String('3등')]}개`
+    );
+    MissionUtils.Console.print(
+      `5개 일치, 보너스 볼 일치 (${PRIZES[String('2등')]}) - ${
+        rinking[String('2등')]
+      }개`
+    );
+    MissionUtils.Console.print(
+      `6개 일치 (${PRIZES[String('1등')]}) - ${rinking[String('1등')]}개`
+    );
     const yielRate = (reward / money) * 100;
     MissionUtils.Console.print(`총 수익률은 ${yielRate.toFixed(2)}%입니다.`);
     MissionUtils.Console.close();
