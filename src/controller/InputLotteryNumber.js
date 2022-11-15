@@ -2,6 +2,7 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const inputDataObject = require('../model/InputDataObject')
 const inputMessage = require('../model/InputMessage')
 const checkError = require('../controller/CheckError')
+const Lotto = require('../Lotto')
 
 const lotteryNumbers = {
   inputLotteryNumber(message) {
@@ -14,7 +15,7 @@ const lotteryNumbers = {
   inputBonusNumber(message) {
     MissionUtils.Console.readLine(message, inputValue => {
       inputDataObject.bonusNumber = checkError.isUnique(inputValue);
-      return null
+      return new Lotto(inputDataObject.raffleNumbers)
     });
   },
 };
