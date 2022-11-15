@@ -29,19 +29,7 @@ class MyLotto {
   }
 
   create() {
-    const numbers = [];
-
-    while (numbers.length !== 6) {
-      const number = Random.pickNumberInRange(1, 45);
-
-      if (numbers.includes(number)) {
-        continue;
-      }
-
-      numbers.push(number);
-    }
-
-    return numbers;
+    return Random.pickUniqueNumbersInRange(1, 45, 6);
   }
 
   print() {
