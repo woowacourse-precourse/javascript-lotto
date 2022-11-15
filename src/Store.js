@@ -45,6 +45,16 @@ class Store {
         this.earningRatio = (100 * this.earning / this.purchase).toFixed(1);
     }
 
+    isValidNumber(number) {
+        if (isNaN(number)) {
+            throw new Error("[ERROR] 숫자만 입력 가능합니다.");
+        }
+        if (String(number)[0] === '0') {
+            throw new Error('[ERROR] 입력값은 0일 수 없습니다.');
+        }
+        return true;
+    }
+
     isValidUnit(number) {
         if (number % 1000 !== 0) {
             throw new Error('[ERROR] 구입금액은 1000단위만 입력 가능합니다.');
@@ -52,21 +62,7 @@ class Store {
         return true;
     }
 
-    isValidNumber(number) {
-        if (String(number)[0] === '0') {
-            throw new Error('[ERROR] 입력값은 0으로 시작할 수 없습니다.');
-        }
-        return true;
-    }
-
-    isValidCharacter(number) {
-        if (/[^0-9]/g.test(number)) {
-            throw new Error("[ERROR] 숫자만 입력 가능합니다.");
-        }
-        return true;
-    }
-
-    isValidLotto(numbersArr) {
+    isValidWinning(numbersArr) {
         if (numbersArr.length !== 6) {
             throw new Error("[ERROR] 6개의 숫자가 필요합니다.");
         }
@@ -91,6 +87,9 @@ class Store {
     isValidBonus(number) {
         if (this.winningNumber.includes(number)) {
             throw new Error("[ERROR] 당첨 번호와 중복되는 숫자는 허용되지 않습니다.");
+        }
+        if (number % 1 !== 0) {
+            throw new Error("[ERROR] 소수는 허용되지 않습니다.");
         }
         return true;
     }
