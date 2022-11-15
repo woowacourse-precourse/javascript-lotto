@@ -1,3 +1,5 @@
+const { Console } = require('@woowacourse/mission-utils');
+
 const { validateAmount, validateWinningNumbers, validateBonusNumber } = require('../src/utils/validateInput');
 
 describe('구입 금액이 올바른 입력인지 테스트한다.', () => {
@@ -182,3 +184,5 @@ describe('보너스 숫자가 올바른 입력인지 테스트한다.', () => {
     }).toThrow('[ERROR]');
   });
 });
+
+Console.close();

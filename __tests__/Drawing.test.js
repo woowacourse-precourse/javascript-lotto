@@ -1,3 +1,5 @@
+const { Console } = require('@woowacourse/mission-utils');
+
 const User = require('../src/User');
 const Drawing = require('../src/Drawing');
 
@@ -76,3 +78,5 @@ describe('수익률을 올바르게 계산하는지 테스트한다.', () => {
     expect(drawing.calcRevenue(20000000000)).toEqual(666666666.7);
   });
 });
+
+Console.close();

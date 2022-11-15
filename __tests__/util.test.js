@@ -1,3 +1,5 @@
+const { Console } = require('@woowacourse/mission-utils');
+
 const utils = require('../src/utils/utils');
 const { InvalidWinningNumbersInputError } = require('../src/lib/errors');
 
@@ -199,3 +201,5 @@ describe('소수점 둘째자리에서 반올림 동작을 테스트한다.', ()
     expect(utils.roundToTwo(1234.11)).toEqual(1234.1);
   });
 });
+
+Console.close();
