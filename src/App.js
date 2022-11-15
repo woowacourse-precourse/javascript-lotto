@@ -1,8 +1,10 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const MyLotto = require("./MyLotto");
+
 class App {
   money;
   myLotto;
+
   play() {
     this.inputBuyLottoMoney();
   }
@@ -18,6 +20,10 @@ class App {
     });
   }
 
+  inputLottoNumbers() {
+    MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (numbersString) => {
+    });
+  }
 
   validateIsNumber(money) {
     if (isNaN(money)) {
