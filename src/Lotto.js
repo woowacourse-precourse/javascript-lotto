@@ -1,3 +1,5 @@
+const { ERROR } = require('./constants/constants.js');
+
 class Lotto {
   #numbers;
 
@@ -14,27 +16,26 @@ class Lotto {
 
   validateNumbersLength(numbers) {
     if (numbers.length !== 6) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+      throw new Error(ERROR.LOTTO.NOT_SIX_NUMBER);
     }
   }
 
   validateUniqueNumbers(numbers) {
     const setNumbers = new Set(numbers);
     if (numbers.length !== setNumbers.size) {
-      throw new Error('[ERROR] 로또 번호는 중복될 수 없습니다');
+      throw new Error(ERROR.LOTTO.DUPLICATE_NUMBER);
     }
   }
 
   validateNumbersRange(numbers) {
     if (!numbers.every((e) => e >= 1 && e <= 45)) {
-      throw new Error('[ERROR] 로또 번호는 1에서 45 사이의 숫자만 가능합니다.');
+      throw new Error(ERROR.LOTTO.OUT_OF_RANGE);
     }
   }
 
   getNumbers() {
     return this.#numbers;
   }
-
 }
 
 module.exports = Lotto;

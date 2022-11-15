@@ -1,5 +1,5 @@
 const Bonus = require("../src/Bonus");
-const Lotto = require("../src/Lotto")
+const Lotto = require("../src/Lotto");
 
 describe("보너스 번호 클래스 테스트", () => {
   test("번호가 숫자가 아니면 예외가 발생한다.", () => {
