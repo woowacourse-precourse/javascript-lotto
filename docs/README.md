@@ -70,3 +70,22 @@
 6개 일치 (2,000,000,000원) - 0개
 총 수익률은 62.5%입니다.
 <!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+## 📁디렉토리 구조
+
+├─ README.md                                 - 기능 목록 및 프로젝트 설명         
+├─ **tests** 
+│ ├─ ApplicationTest.js                      - 가이드 테스트
+│ └─ LottoTest.js                            - 추가한 단위 테스트
+├─ docs
+│ └─ README.md                               - 3주차 과제 진행 가이드
+└─ src
+├─ constants.js                              - 상수, 문자열 관리
+├─ App.js                                    - UI 로직 
+├─ Lotto.js                                  - 로또 당첨 번호 유효성 평가
+├─ LottoTicket.js                            - 발행 로또 번호 구현 파일
+├─ bonusValidate.js                          - 보너스 번호 유효성 평가
+├─ buyingValidate.js                         - 구매 금액 유효성 평가
+└─ WinningResult.js                          - 당첨 확인 로직
+<!-- prettier-ignore-end -->
