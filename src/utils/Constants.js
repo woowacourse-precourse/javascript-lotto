@@ -39,18 +39,15 @@ const NUMBERS = Object.freeze({
 
 const RESULT_MESSAGES = Object.freeze({
   WINNING_STATISTICS: "\n당첨 통계\n---",
+  MATCH_THREE_RESULT: (count) => `3개 일치 (5,000원) - ${count}개 일치`,
+  MATCH_FOUR_RESULT: (count) => `4개 일치 (50,000원) - ${count}개 일치`,
+  MATCH_FIVE_RESULT: (count) => `5개 일치 (1,500,000원) - ${count}개 일치`,
+  MATCH_FIVE_BONUS_RESULT: (count) => `5개 일치, 보너스 볼 일치 (30,000,000원) - ${count}개 일치`,
+  MATCH_SIX_RESULT: (count) => `6개 일치 (2,000,000,000원) - ${count}개 일치`,
+  TOTAL_PROFIT_ZERO: "총 수익률은 0.0%입니다.",
   TOTAL_PROFIT_RATE: (profit, payment) => {
-    if (profit === 0) {
-      return "총 수익률은 0.0%입니다.";
-    }
     return `총 수익률은 ${((profit / payment) * 100).toFixed(1)}%입니다.`;
   },
-  PRINT_RESULT: (count, match) =>
-    `${count[0]}개 일치 (5,000원) - ${match[0]}개
-${count[1]}개 일치 (50,000원) - ${match[1]}개
-${count[2]}개 일치 (1,500,000원) - ${match[2]}개
-${count[3]}개 일치, 보너스 볼 일치 (30,000,000원) - ${match[3]}개
-${count[4]}개 일치 (2,000,000,000원) - ${match[4]}개`,
 });
 
 module.exports = {
