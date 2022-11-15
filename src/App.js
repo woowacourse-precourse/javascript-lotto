@@ -8,6 +8,8 @@ class App {
   play() {
     let amount;
     let LottoList;
+    let WinningNum;
+    let BonusNum;
 
     this.purchase = this.Input('구입금액을 입력해 주세요.\n');
     if (this.purchase === undefined) return 0;
@@ -16,6 +18,10 @@ class App {
     amount = this.getQuantity();
     LottoList = this.LottoNum(amount);
     this.PrintLottoList(amount);
+
+    WinningNum = this.Input('당첨 번호를 입력해 주세요.');
+    WinningNum = this.InputArrangment(WinningNum);
+    BonusNum = this.Input('보너스 번호를 입력해 주세요.');
   }
 
   Input(text) {
@@ -73,6 +79,13 @@ class App {
       str += `]`;
       MissionUtils.Console.print(str);
     });
+  }
+
+  InputArrangment(WinningNum) {
+    let result = WinningNum.split(',').map(function (value) {
+      return parseInt(value, 10);
+    });
+    return result;
   }
 }
 
