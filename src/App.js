@@ -1,18 +1,18 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const {
   INPUT_MESSAGE,
-  ERROR_MESSAGE,
   UNIT,
   RESULT_MEESAGE,
   PRIZE_MONEY,
   NEW_LINE,
 } = require("./constant/constant");
 const Lotto = require("./Lotto");
+const Validation = require("./Validation");
 
 class App {
   #money;
   #lottos;
-  #winningNumber;
+  #winningNumbers;
   #bonusNumber;
   #result;
   #profitRatio;
@@ -28,17 +28,11 @@ class App {
   getMoney() {
     Console.readLine(INPUT_MESSAGE.money, (money) => {
       this.#money = +money;
-      this.validateMoney(this.#money);
+      Validation.validateMoney(this.#money);
       this.#lottos = this.exchangeLotto(this.#money / UNIT.money);
       this.printLottos(this.#lottos);
       this.getWinningNumbers();
     });
-  }
-
-  validateMoney(money) {
-    if (money % 1000 !== 0) {
-      throw new Error(ERROR_MESSAGE.wrongQuantity);
-    }
   }
 
   exchangeLotto(quantity) {
@@ -59,54 +53,28 @@ class App {
 
   getWinningNumbers() {
     Console.readLine(INPUT_MESSAGE.winningNumber, (numbers) => {
-      this.#winningNumber = numbers.split(",").map((number) => +number);
-      this.validateWinningNumbers(this.#winningNumber);
+      this.#winningNumbers = numbers.split(",").map((number) => +number);
+      Validation.validateWinningNumbers(this.#winningNumbers);
       this.getBonusNumber();
     });
   }
 
-  validateWinningNumbers(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error(ERROR_MESSAGE.wrongQuantity);
-    }
-
-    if (!numbers.every((number) => number >= 1 && number <= 45)) {
-      throw new Error(ERROR_MESSAGE.notInRange);
-    }
-
-    if (numbers.length !== new Set(numbers).size) {
-      throw new Error(ERROR_MESSAGE.hasRepeat);
-    }
-  }
-
   getBonusNumber() {
     Console.readLine(INPUT_MESSAGE.bonusNumber, (number) => {
-      this.validateBonusNumber(number);
+      Validation.validateBonusNumber(this.#winningNumbers, number);
       this.#bonusNumber = +number;
-      this.compare(this.#lottos, this.#winningNumber, this.#bonusNumber);
+      this.compare(this.#lottos, this.#winningNumbers, this.#bonusNumber);
     });
   }
 
-  validateBonusNumber(number) {
-    if (number < 1 || number > 45) {
-      throw new Error(ERROR_MESSAGE.notInRange);
-    }
-
-    if (this.#winningNumber.includes(number)) {
-      throw new Error(ERROR_MESSAGE.hasRepeat);
-    }
-  }
-
-  compare(lottos, winningNumber, bonusNumber) {
+  compare(lottos, winningNumbers, bonusNumber) {
     lottos.forEach((lotto) => {
-      const match = lotto.compare(winningNumber, bonusNumber);
+      const match = lotto.compare(winningNumbers, bonusNumber);
       this.#result[match] += 1;
     });
 
-    this.#profitRatio = this.caculateProfitRatio(
-      this.#money,
-      this.getTotalPrize(this.#result)
-    );
+    const totalPrize = this.getTotalPrize(this.#result);
+    this.#profitRatio = this.caculateProfitRatio(this.#money, totalPrize);
     this.printResult();
   }
 
