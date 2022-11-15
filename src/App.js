@@ -44,6 +44,17 @@ class App {
     });
     Console.close();
   }
+
+  compareLottoNumber(userLottoInput,computerRandomNumber) {
+    const countRank = [];
+    let sameCount = 0;
+    userLottoInput.forEach((element) => {
+     if (computerRandomNumber.includes(element)) {
+      ++sameCount;
+     }});
+     countRank.push(sameCount);
+     sameCount = 0;
+  }
 }
 
 module.exports = App;
