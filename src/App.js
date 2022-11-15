@@ -1,22 +1,23 @@
 const Lotto = require('./Lotto');
-const BuyLotto = require('./BuyLotto');
 const LottoGenerator = require('./LottoGenerator');
+const CheckWinner = require('./CheckWinner');
 const MissionUtils = require('@woowacourse/mission-utils');
 class App {
-  #Lotto;
   constructor() {
     this.winningLotto = [];
     this.myLotto = [];
     this.lottoCount = 0;
+    this.bouns = 0;
   }
   getBuyLottoMoney() {
     let buyMoney = 0;
-    const moneyInput = (money) => {
+    const moneyInput = async (money) => {
       this.isValidMoney(money);
       buyMoney = money;
       this.lottoCount = buyMoney / 1000;
       const lottoGenerator = new LottoGenerator(buyMoney / 1000);
       this.myLotto = lottoGenerator.getLottoNumber();
+      MissionUtils.Console.print(this.myLotto);
       this.winningNum();
     };
     MissionUtils.Console.readLine(
@@ -24,12 +25,22 @@ class App {
       moneyInput
     );
   }
+
   winningNum() {
-    MissionUtils.Console.print(`${this.lottoCount}개를 구매했습니다.`);
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.\n', (winning) => {
       this.winningLotto = winning.split(',').map(Number);
-      this.#Lotto = new Lotto(this.winningLotto);
-      MissionUtils.Console.print(`${this.winningLotto}입니다.`);
+      this.bonusNum();
+    });
+  }
+  bonusNum() {
+    MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.\n', (bouns) => {
+      this.bouns = parseInt(bouns);
+
+      const count = new CheckWinner(
+        this.winningLotto,
+        this.bouns,
+        this.myLotto
+      );
     });
   }
   isValidMoney(money) {
@@ -46,6 +57,7 @@ class App {
       throw `[ERROR] 로또 한장의 가격은 1000원입니다. 1000원 보다 높은 금액을 입력하세요. 입력한 금액: ${money}`;
     }
   }
+
   play() {
     this.getBuyLottoMoney();
   }
