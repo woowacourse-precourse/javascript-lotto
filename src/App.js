@@ -43,7 +43,7 @@ class App {
       const purchaseLottoString = `[${purchaseLottoList[lottoNumber].sort(
         (a, b) => a - b,
       )}]`.replace(/,/g, ', ');
-      Console.print(purchaseLottoString);
+      this.printer(purchaseLottoString);
     }
   }
 
