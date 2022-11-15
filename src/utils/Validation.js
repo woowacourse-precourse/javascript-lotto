@@ -9,6 +9,12 @@ class Validation {
     }
     return this.#state;
   }
+
+  isDuplicate(array, item, index) {
+    if (array.indexOf(item) !== index)
+      throw new Error("[ERROR] 중복된 번호가 있습니다.");
+    return this.#state;
+  }
 }
 
 module.exports = Validation;
