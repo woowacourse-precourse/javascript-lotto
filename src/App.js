@@ -11,27 +11,36 @@ class App {
       lotto : 0,
       bonus : false,
     }
+    this.result2 = {
+      3: 0,
+      4: 0,
+      5: 0,
+      '5bonus': 0,
+      6: 0,
+    }
     this.winLotto=0;
     this.lottoCount=0;
   }
 
+  // statistics(){
+  // }
+
   statistics(){ // 두개 비교
     // console.log(`통계: ${this.winLotto.getNumbers().includes(this.lottos)}`);
 
-
-
-
     for(const lottoNum of this.lottos){
       // 여러개의 사용자 로또 번호 중 하나의 로또에서 당첨 로또 번호 있는지 비교
-      // console.log(lottoNum.getNumbers());
-      // console.log(this.winLotto.getNumbers());
+
       lottoNum.setLottoResult(this.winLotto.getNumbers());
       lottoNum.setBonusResult(this.bonus);
-      this.result = lottoNum.getResult();
-      // if(this.lottos.includes(lotto)){
-      //   this.result.lotto++;
-      // }
-      console.log(this.result);
+      const winningCount = lottoNum.getResult();
+
+      if(winningCount.lotto === 5 && winningCount.bonus == true){
+        this.result2['5bonus']++;
+      } else if(winningCount.lotto >= 3){
+        this.result2[winningCount.lotto]++;
+      }
+      console.log(this.result2);
       console.log(`==============================`);
 
     }
