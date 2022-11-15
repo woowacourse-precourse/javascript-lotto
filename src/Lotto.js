@@ -1,5 +1,11 @@
 const Validator = require('./Validator');
-const { RANK, LOTTO, PRIZE_MONEY, PLACES_OF_DECIMALS } = require('./constants');
+const {
+  RANK,
+  LOTTO,
+  PRIZE_MONEY,
+  PLACES_OF_DECIMALS,
+  RATIO,
+} = require('./constants');
 
 class Lotto {
   #numbers;
@@ -61,7 +67,7 @@ class Lotto {
   }
 
   calcRateOfReturn(totalPrize, countOfLottos) {
-    const rateOfReturn = (totalPrize / (countOfLottos * LOTTO.PRICE)) * 100;
+    const rateOfReturn = (totalPrize / (countOfLottos * LOTTO.PRICE)) * RATIO;
 
     return rateOfReturn.toFixed(PLACES_OF_DECIMALS);
   }

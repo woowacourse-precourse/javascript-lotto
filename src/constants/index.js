@@ -62,6 +62,8 @@ const INPUT = {
 
 const DELIMITER = ',';
 
+const RATIO = 100;
+
 const PLACES_OF_DECIMALS = 1;
 
 module.exports = {
@@ -74,5 +76,6 @@ module.exports = {
   RENDER_MESSAGE,
   INPUT,
   DELIMITER,
+  RATIO,
   PLACES_OF_DECIMALS,
 };
