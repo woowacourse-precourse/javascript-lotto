@@ -1,11 +1,20 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const { MESSAGE, SENTANCE,CORRECT, CORRECT_MONEY, ERROR } = require("./constant/constant.js");
+const Exception = require("./error");
+const {
+  MESSAGE,
+  SENTANCE,
+  CORRECT,
+  CORRECT_MONEY,
+} = require("./constant/constant.js");
+
+let exception = new Exception();
+
+
 
 class Lotto {
   #numbers;
-  
+
   constructor(numbers) {
-    // this.validate(numbers);
     this.cost = 0;
     this.#numbers = numbers;
     this.mylotto = [];
@@ -15,40 +24,32 @@ class Lotto {
     this.rankCountArray = [];
     this.earningProfit = 0;
     this.result = {
-      [CORRECT_MONEY.FIRST] : 0,
-      [CORRECT_MONEY.SECOND] : 0,
-      [CORRECT_MONEY.THIRD] : 0,
-      [CORRECT_MONEY.FOURTH] : 0,
-      [CORRECT_MONEY.FIFTH] : 0,
+      [CORRECT_MONEY.FIRST]: 0,
+      [CORRECT_MONEY.SECOND]: 0,
+      [CORRECT_MONEY.THIRD]: 0,
+      [CORRECT_MONEY.FOURTH]: 0,
+      [CORRECT_MONEY.FIFTH]: 0,
     };
 
     this.match = {
-      "FIRST" : 0,
-      "SECOND" : 0,
-      "THIRD" : 0,
-      "FOURTH" : 0,
-      "FIFTH" : 0,
-    }
-  }
-  
-  askLottoCost(){
-    Console.readLine(`${MESSAGE.START}\n`,(cost) => {
-      this.cost = Number(cost);
-      this.lottoCount = parseInt(this.cost / 1000);
-      this.printMylotto(this.lottoCount);
-    })
+      FIRST: 0,
+      SECOND: 0,
+      THIRD: 0,
+      FOURTH: 0,
+      FIFTH: 0,
+    };
   }
 
-  sortLotto(lotto){
-    lotto.sort((a,b) => {
-      if (a>b) return 1;
+  sortLotto(lotto) {
+    lotto.sort((a, b) => {
+      if (a > b) return 1;
       if (a === b) return 0;
-      if (a < b) return -1 ;
+      if (a < b) return -1;
     });
     return lotto;
   }
 
-  printMylotto(lottoCount){
+  printMylotto(lottoCount) {
     Console.print(`\n${lottoCount}${SENTANCE.BUY}`);
     this.makeLottoNumber(lottoCount);
     this.mylotto.forEach((mylottoArray) => {
@@ -57,65 +58,69 @@ class Lotto {
     this.enterWinningNumber();
   }
 
-  makeLottoNumber(lottoCount){
-    for(let i = 0; i<lottoCount; i++){
-      let lotto = Random.pickUniqueNumbersInRange(1,45,6);
+  makeLottoNumber(lottoCount) {
+    for (let i = 0; i < lottoCount; i++) {
+      let lotto = Random.pickUniqueNumbersInRange(1, 45, 6);
       lotto = this.sortLotto(lotto);
-      this.validate(lotto);
+      exception.checkCount(lotto);
+      lotto.forEach((number) => exception.checkString(number));
       this.mylotto.push(lotto);
     }
   }
 
-  enterWinningNumber(){
-    Console.readLine(`\n${MESSAGE.WINNING}\n`,(winningNumber) => {
-      this.#numbers = winningNumber.split(",").map(Number)
-      this.validate(this.#numbers);
-      this.checkDuplicate(this.#numbers);
+  enterWinningNumber() {
+    Console.readLine(`\n${MESSAGE.WINNING}\n`, (winningNumber) => {
+      this.#numbers = winningNumber.split(",").map(Number);
+      exception.checkCount(this.#numbers);
+      exception.checkDuplicate(this.#numbers);
+      this.#numbers.map((number) => exception.checkString(number));
       this.enterBonusNumber();
-    })
+    });
   }
 
-  enterBonusNumber(){
-    Console.readLine(`\n${MESSAGE.BONUS}\n`,(bonusNumber) => {
+  enterBonusNumber() {
+    Console.readLine(`\n${MESSAGE.BONUS}\n`, (bonusNumber) => {
       this.bonusNumber = parseInt(bonusNumber);
+      exception.checkString(this.bonusNumber);
       this.calcResults();
-    })
+    });
   }
 
-  calcResults(){
+  calcResults() {
     this.mylotto.forEach((mylottoArray) => {
       this.compareNumbers(mylottoArray);
-    })
+    });
     this.printResults();
   }
 
-  compareBonusNumber(mylottoArray){
-    if(mylottoArray.includes(this.bonusNumber)) return 7;
+  compareBonusNumber(mylottoArray) {
+    if (mylottoArray.includes(this.bonusNumber)) return 7;
     return 5;
   }
 
-  compareNumbers(mylottoArray){
+  compareNumbers(mylottoArray) {
     this.rankCount = 0;
     mylottoArray.forEach((number) => {
-      if(this.#numbers.includes(number)){
+      if (this.#numbers.includes(number)) {
         this.rankCount += 1;
       }
-    }) 
-    if(this.rankCount === 5){
+    });
+    if (this.rankCount === 5) {
       this.rankCount = this.compareBonusNumber(mylottoArray);
     }
     this.rankCountArray.push(this.rankCount);
   }
 
-  printResults(){
+  printResults() {
     Console.print(`\n${SENTANCE.STATICS}`);
     Console.print(`${SENTANCE.LINE}`);
-    this.matchRank(this.rankCountArray); 
-    this.printWinnningResult()
+    this.matchRank(this.rankCountArray);
+    this.printWinnningResult();
     this.printEarningRate();
+    Console.close();
   }
 
-  printWinnningResult(){
+  printWinnningResult() {
     Console.print(`${CORRECT[5]}${this.match.FIFTH}${SENTANCE.UNIT}`);
     Console.print(`${CORRECT[4]}${this.match.FOURTH}${SENTANCE.UNIT}`);
     Console.print(`${CORRECT[3]}${this.match.THIRD}${SENTANCE.UNIT}`);
@@ -123,43 +128,30 @@ class Lotto {
     Console.print(`${CORRECT[1]}${this.match.FIRST}${SENTANCE.UNIT}`);
   }
 
-  // 일치하는 개수 
-  matchRank(rankCountArray){
+  // 일치하는 개수
+  matchRank(rankCountArray) {
     rankCountArray.forEach((count) => {
       if (count === 3) this.match.FIFTH += 1;
       if (count === 4) this.match.FOURTH += 1;
       if (count === 5) this.match.THIRD += 1;
       if (count === 7) this.match.SECOND += 1;
       if (count === 6) this.match.FIRST += 1;
-    })
-
+    });
   }
 
-  printEarningRate(){
-    Console.print(`${SENTANCE.PROFIT_HEAD} ${this.calEarningRate()}${SENTANCE.PROFIT_REAR}`);
+  printEarningRate() {
+    Console.print(
+      `${SENTANCE.PROFIT_HEAD} ${this.calEarningRate()}${SENTANCE.PROFIT_REAR}`
+    );
   }
 
-  calEarningRate(){
-    Object.keys(this.match).forEach((key)=>{
-      this.earningProfit += CORRECT_MONEY[key]*this.match[key]
-    })
-    const EARNING_RATE = ((this.earningProfit/this.cost)*100).toFixed(1);
+  calEarningRate() {
+    Object.keys(this.match).forEach((key) => {
+      this.earningProfit += CORRECT_MONEY[key] * this.match[key];
+    });
+    const EARNING_RATE = ((this.earningProfit / this.cost) * 100).toFixed(1);
 
     return EARNING_RATE;
   }
-
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error(ERROR.COUNT);
-    }
-  }
-
-  checkDuplicate(numbers){
-    let uniqueNumbers = [...new Set(numbers)];
-    if(uniqueNumbers.length !== numbers.length){
-      throw new Error(ERROR.DUPLICATE);
-    }
-  }
 }
-
 module.exports = Lotto;
