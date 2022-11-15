@@ -35,8 +35,14 @@ class Lotto {
     if (numbers.length !== new Set(numbers).size)
       throw new Error(ERROR_MESSATE.DUPLICATED);
   }
-  
+
+  sortedLottos(){
+    const sorted = this.#numbers.sort((a, b) => a - b).join(', ');
+    Console.print(`[${sorted}]`);
+  }
+
 // TODO: 추가 기능 구현 
+
 }
 module.exports = Lotto;
 

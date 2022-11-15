@@ -41,3 +41,5 @@ class GetLotto {
   };
     
 }
+
+module.exports = GetLotto;
