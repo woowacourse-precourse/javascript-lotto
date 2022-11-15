@@ -40,6 +40,11 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
-
+  test("보너스 숫자가 당첨번호와 중복 되는지 확인하고 맞다면 예외가 발생한다.", () => {
+    expect(() => {
+      new BonusExceptionHandling(7,[1,2,3,4,5,7]);
+    }).toThrow("[ERROR]");
+  });
+  
   // 아래에 추가 테스트 작성 가능
 });
