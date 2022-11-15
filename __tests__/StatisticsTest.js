@@ -6,10 +6,28 @@ describe("통계 관련 테스트", () => {
   test("번호 일치 개수 테스트", () => {
     expect(
       statistics.getCorrectNumberFromSingleLotto(
+        [1, 2, 3, 4, 5, 6],
+        [1, 2, 3, 4, 5, 6],
+      ),
+    ).toEqual(6);
+    expect(
+      statistics.getCorrectNumberFromSingleLotto(
+        [1, 2, 3, 4, 5, 6],
+        [1, 2, 3, 4, 5, 7],
+      ),
+    ).toEqual(5);
+    expect(
+      statistics.getCorrectNumberFromSingleLotto(
         [3, 4, 5, 6, 7, 8],
         [1, 2, 3, 4, 5, 6],
       ),
     ).toEqual(4);
+    expect(
+      statistics.getCorrectNumberFromSingleLotto(
+        [1, 2, 3, 4, 5, 6],
+        [1, 2, 7, 8, 8, 6],
+      ),
+    ).toEqual(3);
   });
 
   test("등수 반환 테스트", () => {
