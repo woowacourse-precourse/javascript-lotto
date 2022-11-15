@@ -11,7 +11,7 @@ class ComparisonOfWinningNumbers {
     this.price = price;
   }
 
-  Comparison() {
+  comparison() {
     let numberComparison = this.lottoNumber.filter(number => this.winningNumber.includes(number));
     return numberComparison;
   }
