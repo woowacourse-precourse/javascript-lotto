@@ -2,9 +2,9 @@ const { Console, Random } = require("@woowacourse/mission-utils/");
 const NUMBER_COUNT_PER_LOTTO = 6;
 
 class User {
-  #money
-  #lottoAmount
-  #lottoList
+  #money;
+  #lottoAmount;
+  #lottoList;
 
   constructor(money) {
     if (!this.isValid(money)) {

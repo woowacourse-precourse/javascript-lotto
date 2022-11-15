@@ -38,7 +38,7 @@ class Util {
   }
 
   compareUserNumberWithWinNumber(userLotto, winNumbers, bonusNumber) {
-    const matchingWinNumber = this.countUserNumberMatchingWithWinNumber(userLotto, winNumbers)
+    const matchingWinNumber = this.countUserNumberMatchingWithWinNumber(userLotto, winNumbers);
     const matchingBonusNumber = this.countUserNumberMatchingWithBonusNumber(userLotto, bonusNumber);
     return [matchingWinNumber, matchingBonusNumber];
   }

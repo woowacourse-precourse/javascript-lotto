@@ -1,8 +1,7 @@
-const { Console, Random } = require("@woowacourse/mission-utils/");
-const User = require("./User")
+const { Console } = require("@woowacourse/mission-utils/");
+const User = require("./User");
 const Lotto = require("./Lotto");
 const Util = require("./Util");
-const { lookup } = require("dns");
 
 class App {
   #User;
@@ -47,7 +46,7 @@ class App {
         throw new Error("[ERROR] 보너스 번호는 로또 번호와 중복되지 않는 1과 45 사이의 수여야 합니다.");
       }
       this.#bonusNumber = answer;
-    })
+    });
   }
 
   isValidBonusNumberInput(answer) {
