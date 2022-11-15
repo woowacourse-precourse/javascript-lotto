@@ -141,7 +141,7 @@ class Lotto {
     Object.keys(this.match).forEach((key)=>{
       this.earningProfit += CORRECT_MONEY[key]*this.match[key]
     })
-    const EARNING_RATE = (this.earningProfit/this.cost)*100;
+    const EARNING_RATE = ((this.earningProfit/this.cost)*100).toFixed(1);
 
     return EARNING_RATE;
   }
