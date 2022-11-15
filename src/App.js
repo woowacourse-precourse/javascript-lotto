@@ -1,9 +1,11 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const { REQUEST_MESSAGE } = require("./constans/message");
 const Lotto = require("./Lotto");
 const Purchase = require("./Purchase");
 const Winning = require("./Winning");
 const Bonus = require("./Bonus");
 const Validation = require("./Validation");
+
 class App {
   constructor() {
     this.PurchaseInput = null;
@@ -11,6 +13,7 @@ class App {
     this.WinningData = null;
     this.BonusData = null;
   }
+
   rateOfReturnPrint(rate) {
     const totalRate = ((rate / this.PurchaseInput.getPurchase()) * 100).toFixed(
       1
@@ -35,6 +38,7 @@ class App {
     );
     this.rateOfReturnPrint(hitsNumber.money);
   }
+
   lottoMatch(winningAndBonustNumber) {
     let lottoMatch = [];
     this.LottoNumber.forEach((num) => {
@@ -46,6 +50,7 @@ class App {
     });
     return lottoMatch;
   }
+
   lottoDraw(winningAndBonustNumber) {
     const lottoMatch = this.lottoMatch(winningAndBonustNumber);
     let hitsNumber = {
@@ -88,34 +93,37 @@ class App {
     });
     this.resultPrint(hitsNumber);
   }
+
   numberCombine() {
     let winningAndBonustNumber =
       this.WinningData.getWinning() + "," + this.BonusData.getBonus();
-
     winningAndBonustNumber = winningAndBonustNumber
       .split(",")
       .map((num) => parseInt(num, 10));
     Validation.validWinningAndBonus(winningAndBonustNumber);
     this.lottoDraw(winningAndBonustNumber);
   }
+
   bonusNumber() {
     MissionUtils.Console.readLine(
-      "보너스 번호를 입력해 주세요.",
+      REQUEST_MESSAGE.BONUS_NUMBER,
       (BonusInput) => {
         this.BonusData = new Bonus(BonusInput);
       }
     );
     this.numberCombine();
   }
+
   winningNumber() {
     MissionUtils.Console.readLine(
-      "당첨 번호를 입력해 주세요.",
+      REQUEST_MESSAGE.WINNING_NUMBER,
       (winningInput) => {
         this.WinningData = new Winning(winningInput);
       }
     );
     this.bonusNumber();
   }
+
   lottoIssuance(count) {
     MissionUtils.Console.print(`${count}개를 구매했습니다.`);
     this.LottoNumber = Array.from({ length: count }, () => {
@@ -132,12 +140,17 @@ class App {
 
     this.winningNumber();
   }
+
   lottoPurchase() {
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (purchase) => {
-      this.PurchaseInput = new Purchase(purchase);
-      this.lottoIssuance(parseInt(purchase, 10) / 1000);
-    });
+    MissionUtils.Console.readLine(
+      REQUEST_MESSAGE.LOTTO_PURCHASE,
+      (purchase) => {
+        this.PurchaseInput = new Purchase(purchase);
+        this.lottoIssuance(parseInt(purchase, 10) / 1000);
+      }
+    );
   }
+
   play() {
     this.lottoPurchase();
   }
