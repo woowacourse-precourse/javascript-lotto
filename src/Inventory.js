@@ -11,6 +11,10 @@ class Inventory {
     const lottoCount = money / 1000;
     this.#lottos = [...LottoPicker.pickMultipleSortedLotto(lottoCount)];
   }
+
+  getLottosData() {
+    return this.#lottos;
+  }
 }
 
 module.exports = Inventory;
