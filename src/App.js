@@ -37,6 +37,19 @@ class App {
     let output = "[" + strList + "]";
     return output;
   }
+
+  inputLottoWinningNumbers() {
+    MissionUtils.Console.readLine(
+      Message.REQUEST.WINNING_NUMBER+"\n",
+      (winningNumbers) => {
+        this.#winningNumbersList = winningNumbers.split(',');
+        Helper.checkValidLength(this.#winningNumbersList);
+        Helper.checkDuplicatedNumber(this.#winningNumbersList);
+        Helper.checkIsRangedNumber(this.#winningNumbersList);
+      }
+    );
+  }
+
 }
 
 module.exports = App;
