@@ -6,6 +6,13 @@ function validateMoney(number) {
   }
 }
 
+function validateLength(numbers) {
+  if (numbers.length !== 6) {
+    throw new Error(LOTTO_ERROR_MESSAGE.LOTTO_NUMBER_LENGTH_ERROR);
+  }
+}
+
 module.exports = {
   validateMoney,
+  validateLength,
 };
