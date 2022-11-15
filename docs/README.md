@@ -16,7 +16,7 @@
 - [x] 당첨 번호를 입력 받는다. | #receiveWinningNumbers()
 - [x] 보너스 번호를 입력 받는다. | #receiveBonusNumber()
 - [x] 당첨 번호와 구매자 번호를 비교할 수 있다. | Comparator#compare()
-  - [ ] 당첨 내역을 출력한다. | #printDetialsOfLotto()
+  - [x] 당첨 내역을 출력한다. | #printWinningList()
 - [ ] 수익률을 알 수 있다. | Calculator#calculateRateOfReturn()
   - [ ] 수익률을 출력한다. | #printRateOfReturn()
 

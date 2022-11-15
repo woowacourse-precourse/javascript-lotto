@@ -30,8 +30,8 @@ class App {
     const bonusNumber = this.receiveBonusNumber();
 
     MissionUtils.Console.print("당첨 통계");
-    const comparator = new Comparator();
-    comparator.compare(listOfNumbers, winningNumbers, bonusNumber);
+    MissionUtils.Console.print("---");
+    this.printWinningList(listOfNumbers, winningNumbers, bonusNumber);
   }
 
   receivePurchaseAmount() {
@@ -67,6 +67,26 @@ class App {
       bonusNumber = answer;
     });
     return bonusNumber;
+  }
+
+  printWinningList(listOfNumbers, winningNumbers, bonusNumber) {
+    const comparator = new Comparator();
+    const winningList = comparator.compare(
+      listOfNumbers,
+      winningNumbers,
+      bonusNumber
+    );
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${winningList.three}개`);
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${winningList.four}개`);
+    MissionUtils.Console.print(
+      `5개 일치 (1,500,000원) - ${winningList.five}개`
+    );
+    MissionUtils.Console.print(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${winningList.fivePlusBonus}개`
+    );
+    MissionUtils.Console.print(
+      `6개 일치 (2,000,000,000원) - ${winningList.six}개`
+    );
   }
 }
 
