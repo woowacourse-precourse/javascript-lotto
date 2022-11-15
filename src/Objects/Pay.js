@@ -1,8 +1,11 @@
 const { Messages } = require('../Constants');
 
 class Pay {
+	#pay;
+
 	constructor(pay) {
 		this.validate(pay);
+		this.#pay = pay;
 	}
 
 	validate(pay) {
@@ -15,6 +18,10 @@ class Pay {
 		if (pay % 1000 !== 0) {
 			throw new Error(Messages.ERROR.BUY_PRICE.NOT_ZERO_REMAIN);
 		}
+	}
+
+	getters() {
+		return this.#pay;
 	}
 }
 
