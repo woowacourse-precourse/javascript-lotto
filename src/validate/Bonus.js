@@ -4,7 +4,7 @@ class Bonus {
   #number;
   #luckyNumbers;
   constructor(number, luckyNumbers) {
-    this.#number = Number(number);
+    this.#number = number;
     this.#luckyNumbers = luckyNumbers;
     this.check();
   }
@@ -26,6 +26,10 @@ class Bonus {
     if (!this.checkRange(this.#number)) throw new Error(ERROR.RANGE_ERROR);
     if (this.checkDuplicate(this.#number, this.#luckyNumbers))
       throw new Error(ERROR.DUPLICATE_ERROR);
+  }
+
+  getBonusNumber() {
+    return this.#number;
   }
 }
 

@@ -41,6 +41,10 @@ class Lotto {
     if (!this.checkDuplicate(this.#numbers))
       throw new Error(ERROR.DUPLICATE_ERROR);
   }
+
+  getLuckyNumber() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;

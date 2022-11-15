@@ -2,14 +2,20 @@ const { DEFAULT } = require("../utils/constant.js");
 const { Console, Random } = require("@woowacourse/mission-utils");
 
 class PurchaseLotto {
+  #input;
+  #randomLottoNums;
+  #lottoCount;
+
   constructor(input) {
-    this.input = input;
-    this.randomLottoNums = DEFAULT.INITIAL_ARRAY;
-    this.lottoCount = DEFAULT.ZERO;
+    this.#input = input;
+    this.#randomLottoNums = DEFAULT.INITIAL_ARRAY;
+    this.#lottoCount = DEFAULT.ZERO;
+
+    this.start();
   }
 
   getLottoCount() {
-    return Number(this.input / DEFAULT.MONEY_UNIT);
+    return Number(this.#input / DEFAULT.MONEY_UNIT);
   }
 
   getRandomLottoNums(lottoCount) {
@@ -27,13 +33,17 @@ class PurchaseLotto {
   }
 
   start() {
-    this.lottoCount = this.getLottoCount();
-    Console.print(`${this.lottoCount}개를 구매했습니다.`);
-    this.randomLottoNums = this.getRandomLottoNums(this.lottoCount);
-    this.randomLottoNums.forEach((lottoNums) =>
+    this.#lottoCount = this.getLottoCount();
+    Console.print(`${this.#lottoCount}개를 구매했습니다.`);
+    this.#randomLottoNums = this.getRandomLottoNums(this.#lottoCount);
+
+    this.#randomLottoNums.forEach((lottoNums) =>
       Console.print(`[${lottoNums.join(", ")}]`),
     );
-    return this.randomLottoNums;
+  }
+
+  getLottos() {
+    return this.#randomLottoNums;
   }
 }
 

@@ -3,7 +3,7 @@ const { DEFAULT, ERROR } = require("../utils/constant.js");
 class PurchaseValudate {
   #input;
   constructor(input) {
-    this.#input = Number(input);
+    this.#input = input;
     this.check();
   }
 
@@ -23,6 +23,10 @@ class PurchaseValudate {
     if (this.checkNumber() || this.checkPositivNumber())
       throw new Error(ERROR.PURCHASE_ERROR);
     if (!this.checkUnit()) throw new Error(ERROR.PURCHASE_CHARGE);
+  }
+
+  getPurchaceAmount() {
+    return this.#input;
   }
 }
 
