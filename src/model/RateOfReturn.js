@@ -1,9 +1,11 @@
-class RateOfReturnCalculator {
+class RateOfReturn {
+  #rateOfReturn;
+
   constructor(winningLottosQuantity, lottosQuantity) {
     this.winningLottosQuantity = winningLottosQuantity;
     this.lottosQuantity = lottosQuantity;
-    this.rateOfReturn = this.calculateRateOfReturn();
-    this.rateOfReturn = this.addThousandsComma(this.rateOfReturn);
+    this.#rateOfReturn = this.calculateRateOfReturn();
+    this.#rateOfReturn = this.addThousandsComma(this.#rateOfReturn);
   }
 
   calculateRateOfReturn() {
@@ -24,8 +26,8 @@ class RateOfReturnCalculator {
   }
 
   getRateOfReturn() {
-    return this.rateOfReturn;
+    return this.#rateOfReturn;
   }
 }
 
-module.exports = RateOfReturnCalculator;
+module.exports = RateOfReturn;

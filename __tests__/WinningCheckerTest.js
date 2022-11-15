@@ -1,4 +1,4 @@
-const WinningChecker = require('../src/WinningChecker');
+const WinningRank = require('../src/model/WinningRank');
 
 describe('WinningChecker 클래스 테스트', () => {
   test('기능 테스트: 6개의 번호가 일치하면 1등을 출력한다.', () => {
@@ -7,7 +7,7 @@ describe('WinningChecker 클래스 테스트', () => {
     let bonusNumber = 8;
     let rank = 1;
     expect(
-      new WinningChecker(
+      new WinningRank(
         lottoNumbers,
         winningNumbers,
         bonusNumber
@@ -21,7 +21,7 @@ describe('WinningChecker 클래스 테스트', () => {
     let bonusNumber = 31;
     let rank = 2;
     expect(
-      new WinningChecker(
+      new WinningRank(
         lottoNumbers,
         winningNumbers,
         bonusNumber
@@ -35,7 +35,7 @@ describe('WinningChecker 클래스 테스트', () => {
     let bonusNumber = 8;
     let rank = 3;
     expect(
-      new WinningChecker(
+      new WinningRank(
         lottoNumbers,
         winningNumbers,
         bonusNumber
@@ -49,7 +49,7 @@ describe('WinningChecker 클래스 테스트', () => {
     let bonusNumber = 8;
     let rank = 4;
     expect(
-      new WinningChecker(
+      new WinningRank(
         lottoNumbers,
         winningNumbers,
         bonusNumber
@@ -63,7 +63,7 @@ describe('WinningChecker 클래스 테스트', () => {
     let bonusNumber = 9;
     let rank = 5;
     expect(
-      new WinningChecker(
+      new WinningRank(
         lottoNumbers,
         winningNumbers,
         bonusNumber
@@ -76,7 +76,7 @@ describe('WinningChecker 클래스 테스트', () => {
     let winningNumbers = [1, 2, 3, 22, 24, 45];
     let bonusNumber = 8;
     expect(
-      new WinningChecker(
+      new WinningRank(
         lottoNumbers,
         winningNumbers,
         bonusNumber

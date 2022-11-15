@@ -1,4 +1,4 @@
-const Validation = require('./utils/Validation');
+const Validation = require('../utils/Validation');
 
 class Lotto {
   #numbers;

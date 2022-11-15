@@ -1,10 +1,10 @@
-const LottoCounter = require('../src/LottoCounter');
+const LottoQuantity = require('../src/model/LottoQuantity');
 
 const getLottoQuantity = (cash) => {
-  return new LottoCounter(Number(cash)).getLottosQuantity();
+  return new LottoQuantity(Number(cash)).getLottosQuantity();
 };
 
-describe('LottoCounter 클래스 테스트', () => {
+describe('LottoQuantity 클래스 테스트', () => {
   test('기능 테스트: 입력한 구입 금액에 해당하는 로또 개수를 구한다.', () => {
     let inputtedCash = '8000';
     expect(getLottoQuantity(inputtedCash)).toEqual(8);

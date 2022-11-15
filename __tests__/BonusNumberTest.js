@@ -1,4 +1,4 @@
-const BonusNumber = require('../src/BonusNumber');
+const BonusNumber = require('../src/model/BonusNumber');
 
 describe('BonusNumber 클래스 테스트', () => {
   test('기능 테스트: 보너스 번호를 생성한다.', () => {

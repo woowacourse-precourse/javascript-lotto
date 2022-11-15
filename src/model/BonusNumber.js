@@ -1,19 +1,21 @@
-const Validation = require('./utils/Validation');
+const Validation = require('../utils/Validation');
 
 class BonusNumber {
+  #bonusNumber;
+
   constructor(bonusNumber, winningNumbers) {
-    this.valid(bonusNumber, winningNumbers);
-    this.bonusNumber = bonusNumber;
+    this.validate(bonusNumber, winningNumbers);
+    this.#bonusNumber = bonusNumber;
   }
 
-  valid(bonusNum, winningNums) {
+  validate(bonusNum, winningNums) {
     Validation.isNumber(bonusNum);
     Validation.beInRange(bonusNum);
     Validation.notIncludedInWinningNums(bonusNum, winningNums);
   }
 
   getBonusNumber() {
-    return this.bonusNumber;
+    return this.#bonusNumber;
   }
 }
 

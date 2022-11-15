@@ -1,4 +1,4 @@
-const NumberCreator = require('../src/NumberCreator');
+const NumberCreator = require('../src/controller/NumberCreator');
 
 describe('NumberCreator 클래스 테스트', () => {
   test('기능 테스트: 서로 중복되지 않는 6개의 랜덤 숫자를 생성한다.', () => {
