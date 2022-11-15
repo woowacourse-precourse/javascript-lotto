@@ -1,4 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
+const { QUERY, STATISTICS_MESSAGE } = require("../constants");
 
 class View {
   constructor() {
@@ -14,7 +15,10 @@ class View {
     Console.print(`${lottoCount}개를 구매했습니다.`);
   }
 
-  printQuicPick(quickPick) {
+  printQuickPick(quickPicks) {
+    quickPicks.forEach(quickPick => {
+      Console.print(`[${quickPick.join(', ')}]`);
+    });
   }
 }
 
