@@ -32,7 +32,7 @@ class Lotto {
     isDuplicate(this.#numbers);
   }
   getNumber() {
-    return this.#numbers;
+    return this.#numbers.map((number) => Number(number));
   }
 }
 
