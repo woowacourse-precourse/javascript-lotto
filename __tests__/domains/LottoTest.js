@@ -11,6 +11,11 @@ const mockRandoms = (numbers) => {
   );
 };
 
+const mockLottos = (lottos) => {
+  Lotto.fromRandom = jest.fn();
+  lottos.reduce((acc, lotto) => acc.mockReturnValueOnce(lotto), Lotto.fromRandom);
+};
+
 describe('로또 도메인 테스트', () => {
   test(`로또 번호의 개수가 ${Lotto.NUMBER_COUNT}개가 넘어가면 예외가 발생한다.`, () => {
     const numbers = Array(Lotto.NUMBER_COUNT + 1)
@@ -96,5 +101,28 @@ describe('로또 도메인 테스트', () => {
       .sort(() => 0.5 - Math.random());
 
     expect(new Lotto(numbers).hasNumber(numbers[0])).toBe(true);
+  });
+
+  test('로또를 정상적으로 구매할 수 있어야 한다.', () => {
+    const createRandomNumbers = () =>
+      Array(Lotto.NUMBER_COUNT)
+        .fill()
+        .map((_, index) => Lotto.NUMBER_MIN + index)
+        .sort(() => 0.5 - Math.random());
+
+    const lottos = [
+      new Lotto(createRandomNumbers()),
+      new Lotto(createRandomNumbers()),
+      new Lotto(createRandomNumbers()),
+    ];
+    mockLottos(lottos);
+
+    expect(Lotto.buyLottos(Lotto.PRICE * 3)).toEqual(lottos);
+  });
+
+  test('로또를 1장도 사지 못할 돈으로 로또를 구매할 시 예외가 발생해야 한다.', () => {
+    expect(() => {
+      Lotto.buyLottos(Lotto.PRICE - 1);
+    }).toThrow('[ERROR]');
   });
 });
