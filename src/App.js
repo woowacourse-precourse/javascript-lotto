@@ -73,11 +73,25 @@ class App {
 
   getBonusNumber() {
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (number) => {
+      this.validtaeBonusNumber(number);
       this.bonusNumber = number;
+
       this.compareNumbers();
       this.computeProfit();
       this.printResult();
     });
+  }
+
+  validtaeBonusNumber(number) {
+    if (!Number(number)) {
+      throw new Error('[ERROR] 보너스 번호는 숫자여야 합니다.');
+    }
+    if (this.winningLotteryNumbers.includes(number)) {
+      throw new Error('[ERROR] 당첨번호와 중복되면 안됩니다.');
+    }
+    if (number < 1 || number > 45) {
+      throw new Error('[ERROR] 보너스 번호는 1에서 45사이어야 합니다.');
+    }
   }
 
   printPurchaseList() {
