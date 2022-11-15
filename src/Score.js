@@ -40,6 +40,19 @@ class Score {
         return this.profit;
     }
     
+    calculateMatchCount (userOneLotto) {
+        let count = 0;
+        for(let userOneLottoNumber of userOneLotto) {
+            if (this.correctNumber.includes(userOneLottoNumber)) {
+                count++;
+            }
+        }
+        if (count === 5 && this.isBonus(userOneLotto)) {
+            count = 7;
+        }
+        return count;
+    }
+
 }
 
 module.exports = Score;
