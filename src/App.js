@@ -57,6 +57,4 @@ class App {
 
 }
 
-new App().play();
-
 module.exports = App;
