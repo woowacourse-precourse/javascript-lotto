@@ -23,6 +23,7 @@ class App {
       this.printLottos();
       this.getWinNumbers();
       this.getBonusNumber();
+      Lotto.getResult(this.lotto, this.winLottos, this.bonus);
     });
   }
 
@@ -51,7 +52,7 @@ class App {
     })
   }
 
-  
+
 }
 
 module.exports = App;

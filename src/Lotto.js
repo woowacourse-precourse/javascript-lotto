@@ -40,12 +40,35 @@ class Lotto {
     return MissionUtils.Random.pickUniqueNumbersInRange(1,45,6).sort();
   }
 
-  
+  static getmatch(lottos, winLottos, bonus) {
 
-  static getResult() {
+    let total_match = 0;
+
+    var result = {
+      3: {match:0, prize:'5,000'},
+      4: {match:0, prize:'50,000'},
+      5: {match:0, prize:'1,500,000'},
+      BONUS: {match:0, prize: '30,000,000'},
+      6: {match:0, prize:'2,000,000,000'},
+    }
+
+    lottos.forEach(lotto => {
+      if(winLottos.include(lotto)) {
+        total_match++;
+      }
+      if(winLottos.include(bonus)) {
+        
+      }
+    });
+
+    this.printResult(result);
+  }
+
+  printResult(result) {
     
 
   }
+
 
   // TODO: 추가 기능 구현
 }
