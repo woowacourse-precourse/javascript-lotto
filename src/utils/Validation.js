@@ -30,6 +30,10 @@ class Validation {
       if (userInput.indexOf(v) !== i) throw new Error(ERROR.IS_OVERLAP);
     });
   }
+
+  static isIncludeNumberInArr(number, arr) {
+    if (arr.includes(number)) throw new Error(ERROR.is_INCLUDE_NUMBER_IN_ARR);
+  }
 }
 
 module.exports = Validation;

@@ -11,6 +11,8 @@ module.exports = {
     IS_LOTTO_NUMBER: "[ERROR] 1부터 45사이의 값을 입력해 주세요.",
     IS_LOTTO_INPUT: "[ERROR] 로또 번호 6개와 구분자 ,를 다 넣어주세요.",
     IS_OVERLAP: "[ERROR] 중복되지 않은 숫자를 입력해주세요.",
+    is_INCLUDE_NUMBER_IN_ARR:
+      "[ERROR] 보너스 번호는 로또 번호와 다른 숫자여야합니다.",
   }),
 
   LOTTO: Object.freeze({
