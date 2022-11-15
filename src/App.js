@@ -1,5 +1,11 @@
+"use strict";
+
+const Game = require("./Game");
+
 class App {
-  play() {}
+  play() {
+    new Game();
+  }
 }
 
 module.exports = App;
