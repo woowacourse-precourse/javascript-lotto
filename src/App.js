@@ -33,6 +33,5 @@ class App {
     this.lotto.inputBonus(myLotto);
   }
 }
-const app = new App();
-app.play();
+
 module.exports = App;
