@@ -1,44 +1,51 @@
-const { PRICE_PER_SHEET, ROUNDING_DIGIT } = require('../constants');
+const { LOTTO_BASIC_CONDITION, ROUNDING_DIGIT } = require('../constants');
 
 class GameUtils {
   static removeMarkingStandardMoney(input) {
-    input = GameUtils.#removeBlank(input);
-    input = GameUtils.#removeComma(input);
-    return input;
+    let result = GameUtils.#removeBlank(input);
+    result = GameUtils.#removeMarkingStandard(input);
+    return result;
   }
+
   static toArray(input) {
-    input = GameUtils.#removeBlank(input).split(',');
-    input = input.map(item => Number(item));
-    return input;
+    let result = GameUtils.#removeBlank(input).split(',');
+    result = result.map(item => Number(item));
+    return result;
   }
+
   static getSheets(amount) {
-    return amount / PRICE_PER_SHEET;
+    const result = amount / LOTTO_BASIC_CONDITION.price;
+    return result;
   }
+
   static getRevenueRate(amount, total) {
     if(total === 0) return 0;
     const decimalValue = (total / amount) * 100;
     const revenueRate = decimalValue.toFixed(ROUNDING_DIGIT);
     return revenueRate;
   }
+
   static addComma(value) {
-    let addedComma = '';
-    value = Array.from(value.toString());
+    const convertedValue = [...value.toString()];
+    let result = '';
     let digit = 0;
-    for(let i = value.length - 1; i >= 0; i--) {
+    for(let i = convertedValue.length - 1; i >= 0; i--) {
       if(digit === 3) {
-        addedComma = ',' + addedComma;
+        result = ',' + result;
         digit = 0;
       }
-      addedComma = value[i] + addedComma;
+      result = convertedValue[i] + result;
       digit += 1;
     }
-    return addedComma;
+    return result;
   }
-  static #removeComma(value) {
+
+  static #removeMarkingStandard(value) {
     const regex = /[,'원']/g;
-    value = value.replace(regex, '');
-    return value;
+    const result = value.replace(regex, '');
+    return result;
   }
+
   static #removeBlank(value) {
     const regex = /\s/g;
     const nonBlank = value.replace(regex, '');

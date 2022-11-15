@@ -3,7 +3,7 @@ const GameUtils = require('../src/Utils/GameUtils');
 const GamePrint = require('./GamePrint');
 const Validator = require('../src/Utils/Validator');
 const Lotto = require('./Lotto');
-const { MESSAGES, PRIZE_TABLE, LOTTO_LENGTH, LOTTO_RANGE } = require('./constants');
+const { MESSAGES, PRIZE_TABLE, LOTTO_BASIC_CONDITION } = require('./constants');
 
 class App {
   constructor() {
@@ -15,9 +15,11 @@ class App {
     this.revenue = 0;
     this.revenueRate = 0;
   }
+
   play() {
     this.submitAmount();
   }
+
   submitAmount() {
     MissionUtils.Console.readLine(MESSAGES.GAME.REQUIRE_PURCHASE_AMOUNT, (amount) => {
       this.amount = GameUtils.removeMarkingStandardMoney(amount);
@@ -30,30 +32,34 @@ class App {
       this.submitWinningLotto();
     });
   }
+
   submitWinningLotto() {    
     MissionUtils.Console.readLine(MESSAGES.GAME.REQUIRE_WINNING_LOTTO_NUMBER, (input) => {
-      input = GameUtils.toArray(input);
-      this.winningLotto = new Lotto(input);
+      const submittedNumbers = GameUtils.toArray(input);
+      this.winningLotto = new Lotto(submittedNumbers);
       this.submitBonus();
     });
   }
+
   submitBonus() {    
     MissionUtils.Console.readLine(MESSAGES.GAME.REQUIRE_BONUS, (input) => {
-      input = GameUtils.toArray(input);
-      this.winningLotto.setBonus(input);
+      const submittedBonus = GameUtils.toArray(input);
+      this.winningLotto.setBonus(submittedBonus);
       this.getResult();
       GamePrint.result(this.prize, this.revenueRate);
       MissionUtils.Console.close();
     });
   }
+
   getResult() {
     this.userLottos.forEach(lotto => {
       const result = this.winningLotto.compare(lotto);
-      this.getRevenue(result);      
+      this.setRevenue(result);      
     });
     this.revenueRate = GameUtils.getRevenueRate(this.amount, this.revenue);
   }
-  getRevenue(matched) {
+
+  setRevenue(matched) {
     const matchedNumber = this.prize[matched.lotto];
     if(matched.lotto === '5' && matched.bonus === false) {
       this.revenue += matchedNumber.nonBonus.winningAmount;
@@ -68,10 +74,11 @@ class App {
       return matchedNumber.ea += 1;
     }
   }
+
   getUserLottos(sheets) {
     const lottos = [];
     while(lottos.length < sheets) {
-      const lotto = MissionUtils.Random.pickUniqueNumbersInRange(LOTTO_RANGE.start, LOTTO_RANGE.end, LOTTO_LENGTH);
+      const lotto = MissionUtils.Random.pickUniqueNumbersInRange(LOTTO_BASIC_CONDITION.start, LOTTO_BASIC_CONDITION.end, LOTTO_BASIC_CONDITION.length);
       lotto.sort((a,b) => a - b);
       lottos.push(lotto);
     }

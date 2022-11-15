@@ -1,4 +1,4 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const MissionUtils = require('@woowacourse/mission-utils');
 const { MESSAGES } = require('./constants');
 const GameUtils = require('./Utils/GameUtils');
 
@@ -6,6 +6,7 @@ class GamePrint {
   static sheets(sheets) {
     MissionUtils.Console.print(`${sheets}${MESSAGES.GAME.BUY_SHEET}`);
   }
+  
   static lottoList(lottos) {
     lottos.forEach(lotto => {
       lotto = lotto.join(', ');
@@ -13,6 +14,7 @@ class GamePrint {
       MissionUtils.Console.print(lotto);
     });    
   }
+  
   static result(prize, profitRate) {
     MissionUtils.Console.print(MESSAGES.GAME.RESULT_HEADER);
     for(let rank in prize) {
