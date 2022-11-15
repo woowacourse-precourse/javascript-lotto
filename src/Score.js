@@ -36,6 +36,10 @@ class Score {
         return this.score;
     }
 
+    getProfit () {
+        return this.profit;
+    }
+    
 }
 
 module.exports = Score;
