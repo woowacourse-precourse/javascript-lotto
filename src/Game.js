@@ -83,6 +83,14 @@ class Game {
         this.calculateStatics();
     }
 
+    calculateStatics () {
+        this.score.calculateCount();
+        this.printScore();
+        this.score.calculateProfit();
+        this.printProfit();
+        InputOutput.close();
+    }
+
 }
 
 module.exports = Game;
