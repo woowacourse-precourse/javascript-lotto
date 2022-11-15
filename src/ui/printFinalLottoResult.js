@@ -13,7 +13,13 @@ function printFinalLottoResult() {
   for (let message in RESULT_MESSAGE) {
     Console.print(`${RESULT_MESSAGE[message]} - ${LottoRanking[message]}개`);
   }
-  Console.print(`총 수익률은 ${LottoNumberData['RateOfReturn']}%입니다.`);
+  Console.print(
+    `총 수익률은 ${
+      LottoNumberData['RateOfReturn'] === '0.0'
+        ? 0
+        : LottoNumberData['RateOfReturn']
+    }%입니다.`
+  );
   Console.close();
 }
 
