@@ -23,8 +23,13 @@ class App {
   }
   inputNumber() {
     MissionUtils.Console.readLine(Messages.INPUT_NUMBER, (numbers) => {
-
+      this.winNumber(numbers)
     });
+  }
+  winNumbers(numbers) {
+    numbers = numbers.split(',')
+    this.Lotto.validate(numbers)
+    this.winNumber = numbers
   }
   createRandomNumber(number) {
     const lottoLength = money / 1000;
