@@ -1,6 +1,7 @@
 const { Console } = require('@woowacourse/mission-utils');
 
 class Lotto {
+  
   #numbers;
 
   constructor(numbers) {

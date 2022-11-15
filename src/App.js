@@ -15,7 +15,7 @@ class App {
   purchaseLotto() {
     Console.readLine("구입금액을 입력해 주세요.", (money) => {
       this.purchasemoney = money;
-      this.numberoflotto = (money / 1000);
+      this.numberoflotto = money / 1000;
       this.validatePrice();
       this.countingLotto();
       this.printingLotto();
