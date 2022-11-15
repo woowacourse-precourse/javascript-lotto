@@ -1,7 +1,7 @@
 const Lotto = require("./Lotto");
 const { CONDITION, ERR_MESSAGE } = require("./constant/constant");
 
-class validate {
+class Validate {
   check(number) {
     this.checkLength(number);
     this.checkNumber(number);
@@ -52,4 +52,4 @@ class validate {
     }
   }
 }
-module.exports = validate;
+module.exports = Validate;

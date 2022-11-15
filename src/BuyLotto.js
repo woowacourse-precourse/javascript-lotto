@@ -73,6 +73,7 @@ class BuyLotto {
     this.makeNumbers = makeNumbers;
     Console.print(this.howMany + MESSAGE.BUYING_RESULT);
     Console.print(this.makeNumbers);
+
     this.userInputNumber();
   }
 
