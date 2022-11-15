@@ -89,6 +89,21 @@ class Store {
       prize += winMoney * winCount;
     });
     this.prizeMoney = prize;
+    this.printReport();
+  }
+
+  getEarningRate() {
+    return ((100 * this.prizeMoney) / this.price).toFixed(1);
+  }
+
+  printReport() {
+    MissionUtils.Console.print("당첨 통계\n---");
+    this.result.forEach(([winMoney, winCount], winMessage) => {
+      MissionUtils.Console.print(
+        `${winMessage} (${winMoney.toLocaleString("kr")}원) - ${winCount}개`
+      );
+    });
+    MissionUtils.Console.print(`총 수익률은 ${this.getEarningRate()}%입니다.`);
   }
 }
 
