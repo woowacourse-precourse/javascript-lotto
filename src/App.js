@@ -68,6 +68,9 @@ class App {
       rewards += history.totalReward();
       Console.print(history.getMessage());
     });
+    const profit = ((rewards / money) * 100).toFixed(1);
+    Console.print(PRINT.STATISTICS_YIELD(profit));
+    Console.close();
   }
 }
 
