@@ -10,7 +10,10 @@ const VALIDATION_VALUE = Object.freeze({
 const LOTTO_VALUE = Object.freeze({
     zero: 0,
     thousand: 1000,
-    plus: 1
+    plus: 1,
+    min: 1,
+    max: 45,
+    digit: 6,
 });
 
 

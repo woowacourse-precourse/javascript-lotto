@@ -16,7 +16,7 @@ class Lotto {
     this.printHowManyLotto();
 
     for (let i = LOTTO_VALUE.zero; i < this.#numbers; i += LOTTO_VALUE.plus) {
-      const lottoNumber = this.sortLottoNumber(Random.pickUniqueNumbersInRange(1, 45, 6));
+      const lottoNumber = this.sortLottoNumber(Random.pickUniqueNumbersInRange(LOTTO_VALUE.min, LOTTO_VALUE.max, LOTTO_VALUE.digit));
       Console.print(`[${lottoNumber.join(', ')}]`);
       this.lottoList.push(lottoNumber);
     }
