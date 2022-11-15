@@ -1,5 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { ERROR } = require('../data/constants');
+const { ERROR, NUMBER } = require('../data/constants');
+
 const {
   isNotUnique,
   isMatchLength,
@@ -15,11 +16,16 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (!isMatchLength(numbers, 6)) {
+    if (!isMatchLength(numbers, NUMBER.LENGTH_LOTTO)) {
       throw new Error(ERROR.LENGTH);
     }
     if (!isNotUnique(numbers)) throw new Error(ERROR.NOT_UNIQUE);
-    if (!isAllExceedRange(numbers)) throw new Error(ERROR.RANGE);
+    if (!isAllExceedRange(numbers, NUMBER.START_LOTTO, NUMBER.END_LOTTO))
+      throw new Error(ERROR.RANGE);
+  }
+
+  getLottoNum() {
+    return this.#numbers;
   }
 
   print() {

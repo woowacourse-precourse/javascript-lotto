@@ -19,8 +19,8 @@ function isExceedRange(value, from, to) {
   return true;
 }
 
-function isAllExceedRange(array) {
-  return array.every(isExceedRange);
+function isAllExceedRange(array, from, to) {
+  return array.every(value => isExceedRange(value, from, to));
 }
 
 function isMatchForm(string) {
