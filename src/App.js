@@ -12,6 +12,7 @@ class App {
   winLotto;
 
   constructor() {
+    this.inputMoney = 0;
     this.userLottoList = [];
     this.winLotto = [];
   }
@@ -47,8 +48,8 @@ class App {
     MissionUtils.Console.readLine(`${Message.COST_MESSAGE}`, input => {
       this.validate(input);
       this.buyLottos(this.inputMoney / 1000);
-      MissionUtils.Console.print(`\n${this.userLottoList.length}개를 구매했습니다.`);
-      this.userLottoList.forEach(lotto => MissionUtils.Console.print(`[${lotto.getNumbers().join(', ')}]`));
+      View.printUserLottoNum(this.userLottoList.length);
+      this.userLottoList.forEach(lotto => View.printUserLotto(lotto.getNumbers()));
       this.createWinLotto();
     });
   }

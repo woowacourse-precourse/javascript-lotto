@@ -1,6 +1,12 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 
 const View = {
+  printUserLottoNum(lottoNum) {
+    MissionUtils.Console.print(`\n${lottoNum}개를 구매했습니다.`);
+  },
+  printUserLotto(userLotto) {
+    MissionUtils.Console.print(`[${userLotto.join(', ')}]`);
+  },
   printResult(rankList, userProfit) {
     MissionUtils.Console.print('\n당첨통계');
     MissionUtils.Console.print('---');
