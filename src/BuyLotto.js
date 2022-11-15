@@ -36,7 +36,6 @@ class BuyLotto {
     this.makeNumbers = makeNumbers;
     Console.print(this.howMany + MESSAGE.BUYING_RESULT);
     Console.print(this.makeNumbers);
-
     this.userInputNumber();
   }
 
@@ -81,16 +80,24 @@ class BuyLotto {
 
   getResult() {
     let count = 0;
-    for (let i = 0; i < this.howMany - 1; i++) {
-      // if (this.userInputNum.includes(this.makeNumbers[i])) {
-      if (this.makeNumbers[i].includes(this.userInputNum)) {
-        count++;
-      }
-    }
+    // for (let i = 0; i < this.howMany - 1; i++) {
+    //   // if (this.userInputNum.includes(this.makeNumbers[i])) {
+    //   if (this.makeNumbers[i].includes(this.userInputNum)) {
+    //     count++;
+    //   }
+    // }
+    const hey = this.makeNumbers[0].filter((x) =>
+      this.userInputNum.includes(x)
+    );
+    console.log(hey.length);
+
+    console.log(
+      this.makeNumbers[0].filter((x) => this.userInputNum.includes(x))
+    );
+
     Console.print(this.makeNumbers[0]);
     Console.print(this.userInputNum);
     Console.print(this.userInputBonusNum);
-    Console.print(count);
 
     const result = new Array(5).fill(0);
   }
