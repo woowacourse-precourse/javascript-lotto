@@ -12,7 +12,6 @@ class Store {
   }
 
   getBuyLottoCount() {
-    console.log(this.#money.inputMoney);
     return Number(this.#money.inputMoney / PRICE);
   }
 

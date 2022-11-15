@@ -46,7 +46,6 @@ class App {
 
   showResult() {
     const winningLotto = this.lotteryMachine.getLottos();
-    console.log(winningLotto);
     const correctPoints = this.store.getCorrectCount(winningLotto);
     const winningRate = this.store.getWinningRate(correctPoints);
 
