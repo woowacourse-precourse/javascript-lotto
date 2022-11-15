@@ -1,18 +1,40 @@
+const { PRIZE } = require('./Constants/number');
+const { SECOND, THIRD, FIFTH, NONEPRIZE } = PRIZE;
+const validate = require('./Utils/validate');
+
+/**
+ * @classdesc User가 소유한 로또
+ */
 class Lotto {
   #numbers;
 
-  constructor(numbers) {
-    this.validate(numbers);
-    this.#numbers = numbers;
+  constructor(number) {
+    validate.Length(number, 6);
+    validate.Overlap(number);
+    validate.ArrOnlyInputNum(number);
+    this.#numbers = number;
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+  /**
+   * @description 로또 번호를 반환
+   */
+  getLotto() {
+    return this.#numbers;
   }
 
-  // TODO: 추가 기능 구현
+  /**
+   * @param {Six Number Array}winNums
+   * @param {Number} bonusNum
+   * @returns 3,4,5,5.5,6 순으로 1등부터 꼴등까지의 등수를 반터
+   */
+  isPrize(winNums, bonusNum) {
+    let count = 0;
+    winNums.forEach((num) => {
+      this.#numbers.includes(num) ? count++ : count;
+    });
+    if (count === THIRD && this.#numbers.includes(bonusNum)) count = SECOND;
+    return count >= FIFTH ? count : NONEPRIZE;
+  }
 }
 
 module.exports = Lotto;
