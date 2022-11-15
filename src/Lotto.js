@@ -1,3 +1,9 @@
+const {
+  isOutOfRangeAndThrowError,
+  isDuplicatedAndThrowError,
+  isOutOfVolumeAndThrowError,
+} = require('./utils/inputValidate');
+
 class Lotto {
   #numbers;
 
@@ -7,12 +13,10 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+    isOutOfVolumeAndThrowError(numbers, 6);
+    isDuplicatedAndThrowError(numbers);
+    isOutOfRangeAndThrowError(numbers);
   }
-
-  // TODO: 추가 기능 구현
 }
 
 module.exports = Lotto;
