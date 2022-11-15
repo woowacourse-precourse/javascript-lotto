@@ -1,18 +1,34 @@
+const { isCorrectLength, isOnlyNumber, isDuplicate, isOverFlow } = require("./Validation");
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    this.validateWinningNumber(numbers);
     this.#numbers = numbers;
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+  validateWinningNumber(numbers) {
+    isCorrectLength(numbers);
+    numbers.forEach((number) => {
+      isOnlyNumber(number);
+    });
+    isDuplicate(numbers);
+    isOverFlow(numbers);
   }
 
-  // TODO: 추가 기능 구현
+  validateBonusNumber(number) {
+    isOnlyNumber([number]);
+    isOverFlow([number]);
+  }
+
+  setBonusNumber(number) {
+    this.validateBonusNumber(number);
+    this.#numbers.push(number);
+    isDuplicate(this.#numbers);
+  }
+  getNumber() {
+    return this.#numbers.map((number) => Number(number));
+  }
 }
 
-module.exports = Lotto;
+module.exports = { Lotto };
