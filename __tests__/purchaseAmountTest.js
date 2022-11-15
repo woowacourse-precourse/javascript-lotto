@@ -10,4 +10,14 @@ describe('로또 입력 금액 테스트', () => {
       }).toThrow('[ERROR]');
     });
   });
+
+  test('입력 금액이 1000원 이하면 예외가 발생한다', () => {
+    const wrongInputAmounts = ['1', '100', '999'];
+
+    wrongInputAmounts.map(wrongInputAmount => {
+      expect(() => {
+        new purchaseAmountValidator(wrongInputAmount);
+      }).toThrow('[ERROR]');
+    });
+  });
 });
