@@ -90,6 +90,7 @@ class App {
     }
     if (count === 6) this.result[MONEY.FristPlaceMoney] += 1;
   }
+  
   printResult() {
     Console.print(MESSAGE.RESULT_STATISTICS);
     Console.print(`3개 일치 (5,000원) - ${this.result[MONEY.FifthPlaceMoney]}개`);
