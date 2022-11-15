@@ -4,7 +4,6 @@ const Lotto = require('./Lotto')
 class App {
   play() {
     purchaseLotto()
-
   }
 }
 function purchaseLotto() {
@@ -24,9 +23,7 @@ function makeLottoList(money) {
     })
     MissionUtils.Console.print(`[${numbers[0]}, ${numbers[1]}, ${numbers[2]}, ${numbers[3]}, ${numbers[4]}, ${numbers[5]}]`)
     LOTTO_LIST.push(numbers)
-  }
-  MissionUtils.Console.close()
-  
+  }  
   return winningList(LOTTO_LIST)
 }
 
@@ -78,6 +75,7 @@ function countcheck(COUNT, BONUS, winningPoint){
     winningPoint[3]++
   }
 }
+
 function resultPrint(LOTTO_LIST, winningPoint) {
   let value = 5000*winningPoint[0] + 50000*winningPoint[1] + 1500000*winningPoint[2] + 30000000*winningPoint[3] + 2000000000*winningPoint[4]
   let dummy = LOTTO_LIST.length*1000
