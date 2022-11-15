@@ -9,12 +9,15 @@ function createLottoNumbers(qauntity) {
   }
 
   printCreateLottoNumbers(purchaseLottoNumbers);
+
+  return purchaseLottoNumbers;
 }
 
 function printCreateLottoNumbers(lottoNumbers) {
   Console.print(`\n${lottoNumbers.length}${LOTTO_OUTPUT.LOTTO_QUANTITY}`);
   lottoNumbers.forEach((lotto) => {
-    Console.print(lotto.sort((a, b) => a - b));
+    const lottoNumbers = lotto.sort((a, b) => a - b);
+    Console.print(`[${lottoNumbers.join(', ')}]`);
   });
 }
 
