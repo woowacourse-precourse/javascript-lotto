@@ -7,12 +7,12 @@ const INPUT_MESSAGE = {
   winning: "당첨 번호를 입력해 주세요.",
 };
 const MONEY_ERROR = {
-  number: "[ERROR] 숫자를 입력해 주세요",
-  amount: "[ERROR] 1000원 단위로 입력해 주세요",
+  number: "[ERROR] 숫자를 입력해 주세요.",
+  amount: "[ERROR] 1000원 단위로 입력해 주세요.",
 };
 const BONUS_ERROR = {
-  number: "[ERROR] 보너스 번호는 숫자여야 합니다",
-  range: "[ERROR] 로또 번호는 1~45 사이여야 합니다",
+  number: "[ERROR] 보너스 번호는 숫자여야 합니다.",
+  range: "[ERROR] 보너스 번호는 1~45 사이여야 합니다.",
 };
 const NUMBER_ERROR = "[ERROR] 잘못된 입력입니다.";
 
@@ -99,5 +99,8 @@ class App {
     }
   }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
