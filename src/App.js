@@ -14,19 +14,18 @@ class App {
     this.#totalLotto = [];
   }
 
-  progressLotto() {
+  play() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (userEnterAmount) => {
       this.createUser(userEnterAmount);
       this.generateLotto();
       this.printLotto();
       this.enterUserNumber();
-      this.printStatatics();
     });
   }
 
   createUser(userEnterAmount) {
     this.#user = new User(userEnterAmount);
-    this.#user.userAmountException();
+    this.#user.amountException();
   }
 
   generateLotto() {
@@ -49,7 +48,7 @@ class App {
     MissionUtils.Console.readLine('\n당첨 번호를 입력해 주세요.\n', (userNumber) => {
       const parsedWinningNumber = this.#user.parsingWinningNumber(userNumber);
       this.#user.winningNumber = parsedWinningNumber;
-      this.#user.userWinningNumberException();
+      this.#user.winningNumberException();
 
       this.#calc = new Calculator();
       this.#calc.winningNumber = parsedWinningNumber;
@@ -67,6 +66,8 @@ class App {
       this.#calc.bonusNumber = Number(bonusNumber);
       this.#calc.calculateRank();
       this.#calc.calcYield(); 
+
+      this.printStatatics();
     });
   }
 
@@ -85,10 +86,6 @@ class App {
 
   get totalLotto() {
     return this.#totalLotto;
-  }
-
-  play() {
-    this.progressLotto();
   }
 }
 

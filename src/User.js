@@ -12,12 +12,12 @@ class User {
         this.#lottoCount = parseInt(parseInt(Number(amount) / 1000));
     }
 
-    userAmountException() {
+    amountException() {
         userException.isInDivisible(this.#amount);
         userException.isNotNumber(this.#amount);
     }
 
-    userWinningNumberException() {
+    winningNumberException() {
         numberException.isNotSix(this.#winningNumber);
         numberException.includeNotNumber(this.#winningNumber);
         numberException.isDuplicated(this.#winningNumber);

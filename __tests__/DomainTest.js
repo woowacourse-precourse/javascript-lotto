@@ -19,7 +19,7 @@ describe('1. 사용자의 구입 금액 입력', () => {
     for(let a of amount) {
       const user = new User(a);
 
-      expect(() => user.userAmountException())
+      expect(() => user.amountException())
       .toThrow("[ERROR]");
     }
   });
