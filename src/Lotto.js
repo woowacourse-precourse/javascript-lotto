@@ -1,8 +1,8 @@
 const { Console } = require("@woowacourse/mission-utils");
 
 const LOTTO_ERROR = {
-  range: "[ERROR] 로또 번호는 1~45 사이여야 합니다",
-  number: "[ERROR] 로또 번호는 숫자여야 합니다",
+  range: "[ERROR] 로또 번호는 1~45 사이여야 합니다.",
+  number: "[ERROR] 로또 번호는 숫자여야 합니다.",
   length: "[ERROR] 로또 번호는 6개여야 합니다.",
   duplicate: "[ERROR] 로또 번호는 중복되지 않아야 합니다.",
 };
@@ -25,7 +25,7 @@ class Lotto {
   printResult(numbersArray, bonusNum) {
     const winningCnt = this.getWinningCount(numbersArray, bonusNum);
     const winningReultString = this.getWinningStatistics(winningCnt);
-    const rateResultString = this.getRateOfReturn(
+    const rateResultString = this.getRateOfReturnString(
       winningCnt,
       numbersArray.length
     );
@@ -78,7 +78,7 @@ class Lotto {
     );
   }
 
-  getRateOfReturn(winningCnt, length) {
+  getRateOfReturnString(winningCnt, length) {
     const rateofReturn = this.calculateRate(winningCnt, length);
     return `총 수익률은 ${rateofReturn.toFixed(1)}%입니다.`;
   }
