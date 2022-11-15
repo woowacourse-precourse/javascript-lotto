@@ -3,10 +3,16 @@ const { Console, Random } = MissionUtils;
 const InpuVal = require('./InputVal');
 const LottoVal = require('./Lotto');
 const BonusVal = require('./BonusVal');
-
+const MESSAGE = ['3개 일치',
+'4개 일치',
+'5개 일치',
+'5개 일치, 보너스 볼 일치',
+'6개 일치',];
+const MONEY = [5000, 50000, 1500000, 30000000, 2000000000];
 class App {
   play() {
     this.inputMoney();
+    this.lottoArr =[];
     this.winningNum = [];
   }
   inputMoney(){
@@ -18,6 +24,9 @@ class App {
       this.buyLotto(cnt);
       this.InputWinninglotteryNum();
       this.InputBonusNum();
+      const result = this.getStatistics();
+      this.printStatistics(result);
+      Console.close();
     });
   }
 
@@ -26,12 +35,12 @@ class App {
   return lotto;
  } 
   buyLotto(cnt){
-    let lottoArr = [];
+    this.lottoArr = [];
     for(let i=0; i<cnt;i++){
       let lotto = this.createLottoNum();
-      lottoArr.push(lotto);
+      this.lottoArr.push(lotto);
     }
-    for (const lotto of lottoArr) {
+    for (const lotto of this.lottoArr) {
       Console.print('[' + lotto + ']');
     }
  }
@@ -52,6 +61,45 @@ class App {
       console.log(bonus);
       let num = Number(bonus);
       new BonusVal(num, this.winningNum)
+    });
+  }
+
+  Ranking(lottos) {
+    const matchingNums = lottos.filter((number) => this.winningNum.includes(number));
+    const matchingCnt = matchingNums.length;
+    const isBonus = lottos.includes(this.bonus);
+
+    switch(matchingCnt) {
+
+      case 6:
+        return 1;
+      case 5:
+        if(isBonus) return 2;
+        else return 3;
+      case 4:
+        return 4;
+      case 3:
+        return 5;
+      default:
+        return 6;
+
+    }
+  }
+  getStatistics() {
+    const res = new Array(6).fill(0);
+    this.lottoArr.map((lotto) => {
+      const ranking = this.Ranking(lotto);
+      res[ranking] += 1;
+    });
+    return res.slice(1, 6).reverse();
+  }
+  printStatistics(result) {
+    Console.print('당첨 통계');
+    Console.print('---');
+    result.map((cnt, idx) => {
+      const matchingMessage = MESSAGE[idx];
+      const winningMoney = MONEY[idx].toLocaleString();
+      Console.print(`${matchingMessage} (${winningMoney}원) - ` + cnt + '개');
     });
   }
 }
