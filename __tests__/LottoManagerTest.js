@@ -46,9 +46,11 @@ describe('로또 관리자 클래스 테스트', () => {
       [2, 13, 22, 32, 38, 45],
       [1, 3, 5, 14, 22, 45],
     ]);
+
     const lottoManager = new LottoManager();
     lottoManager.initLottos('8000');
     const result = lottoManager.lottos.length;
+
     expect(result).toEqual(8000 / LOTTO.UNIT_PRICE);
   });
 });

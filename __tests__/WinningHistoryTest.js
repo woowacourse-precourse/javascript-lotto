@@ -63,10 +63,11 @@ describe('당첨 내역 클래스 테스트', () => {
     );
     const winningNumbers = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 7;
-    const winningHistory = new WinningHistory();
 
+    const winningHistory = new WinningHistory();
     winningHistory.initWinningList({ lottos, winningNumbers, bonusNumber });
     const result = winningHistory.winningList;
+
     expect(result).toEqual([0, 0, 0, 0, 1]);
   });
 
@@ -76,10 +77,11 @@ describe('당첨 내역 클래스 테스트', () => {
     );
     const winningNumbers = [1, 2, 3, 4, 5, 6];
     const bonusNumber = 7;
-    const winningHistory = new WinningHistory();
 
+    const winningHistory = new WinningHistory();
     winningHistory.initWinningList({ lottos, winningNumbers, bonusNumber });
     const result = winningHistory.calcTotalProfit();
+
     expect(result).toEqual(5000);
   });
 
