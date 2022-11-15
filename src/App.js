@@ -1,4 +1,5 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
+const Lotto = require('./Lotto');
 
 class App {
   static lottoPurchaser() {
@@ -42,6 +43,8 @@ class App {
 
   static winningNumberDecider(purchaseLottoList, purchaseAmount) {
     Console.readLine('\n당첨 번호를 입력해 주세요.\n', winningNumber => {
+      const lotto = new Lotto(winningNumber.split(','));
+      console.log(lotto);
       Console.readLine('\n보너스 번호를 입력해 주세요.\n', bonusNumber => {
         const winningList = this.totalWinningCounter(
           purchaseLottoList,
@@ -63,7 +66,7 @@ class App {
   }
 
   static totalWinningCounter(purchaseLottoList, winningNumber, bonusNumber) {
-    let winningList = {
+    const winningList = {
       threeMatches: 0,
       fourMatches: 0,
       fiveMatches: 0,
@@ -124,5 +127,8 @@ class App {
     App.lottoPurchaser();
   }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
