@@ -1,18 +1,28 @@
+const { ERROR_MESSAGE } = require('./constant/constantOfLotto');
+
+const { DIFFERENT_NUMBER_MESSAGE, NOT_SIX_NUMBERS_MESSAGE } = ERROR_MESSAGE;
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    Lotto.validate(numbers);
     this.#numbers = numbers;
   }
-
-  validate(numbers) {
+  // 유효성 검사
+  static validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error(NOT_SIX_NUMBERS_MESSAGE);
+    }
+
+    if (new Set(numbers).size !== 6) {
+      throw new Error(DIFFERENT_NUMBER_MESSAGE);
     }
   }
 
-  // TODO: 추가 기능 구현
+  getNumbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
