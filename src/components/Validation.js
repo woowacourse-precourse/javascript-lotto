@@ -26,6 +26,15 @@ class Validation {
       }
     });
   }
+
+  static validateBonus(number) {
+    if (Number.isNaN(number)) {
+      throw new Error('[ERROR] 보너스 번호는 숫자만 입력할 수 있습니다.');
+    }
+    if (number > 45 || number < 1) {
+      throw new Error('[ERROR] 보너스 번호는 1에서 45사이 값이어야 합니다.');
+    }
+  }
 }
 
 module.exports = Validation;
