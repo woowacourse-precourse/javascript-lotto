@@ -15,6 +15,10 @@ class Validator {
     }
     return Number.isInteger(+target) && +target > 0;
   }
+
+  static isRightFee(fee) {
+    return fee % config.FEE_PER_GAME === 0;
+  }
 }
 
 module.exports = Validator;
