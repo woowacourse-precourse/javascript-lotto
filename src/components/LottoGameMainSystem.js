@@ -1,16 +1,21 @@
-const Lotto = require('../Lotto');
+//library
 const { Console } = require('@woowacourse/mission-utils');
-const { LottoNumberData } = require('./lotto-data/LottoNumberData');
-const { INPUT_CONSOLE_MESSAGE } = require('../components/lotto-data/Constant');
+// util
 const matchLottoNumberWithWinningNumber = require('./util/matchLottoNumberWithWinningNumber');
-const printFinalLottoResult = require('../ui/printFinalLottoResult');
 const calculateRateOfReturn = require('./util/calculateRateOfReturn');
+const saveConfirmedInputValueToLottoNumberData = require('./util/saveConfirmedInputValueToLottoNumberData');
+// input-check
+const Lotto = require('../Lotto');
+// UI
+const printFinalLottoResult = require('../ui/printFinalLottoResult');
 const printLottoNumberIssuedFromComputer = require('../ui/printLottoNumberIssuedFromComputer');
+// constant
+const { INPUT_CONSOLE_MESSAGE } = require('../components/lotto-data/Constant');
 
 class LottoGameMainSystem {
   getUserPurchaseAmountFromInputFiled() {
-    Console.readLine(`${INPUT_CONSOLE_MESSAGE.purchaseAmount}`, (input) => {
-      return this.processFirstInput(input);
+    Console.readLine(`${INPUT_CONSOLE_MESSAGE.purchaseAmount}`, (money) => {
+      return this.processFirstInput(money);
     });
   }
 
@@ -29,22 +34,22 @@ class LottoGameMainSystem {
     });
   }
 
-  processFirstInput(input) {
-    const lotto = new Lotto(input);
+  processFirstInput(money) {
+    const lotto = new Lotto(money);
     printLottoNumberIssuedFromComputer(lotto.checkUserInputMoney());
-    LottoNumberData.AmountPaid = +input;
+    saveConfirmedInputValueToLottoNumberData(+money);
     this.getWinningNumberFromInputFiled();
   }
 
   processSecondInput(winningNumber) {
     const lotto = new Lotto(winningNumber);
-    LottoNumberData.Winning = lotto.checkUserWinningNumber();
+    saveConfirmedInputValueToLottoNumberData(lotto.checkUserWinningNumber());
     this.getBonusNumberFromInputFiled();
   }
 
   processThirdInput(bonusNumber) {
     const lotto = new Lotto(bonusNumber);
-    LottoNumberData.Bonus = lotto.checkUserBonusNumber();
+    saveConfirmedInputValueToLottoNumberData(lotto.checkUserBonusNumber());
     matchLottoNumberWithWinningNumber();
     calculateRateOfReturn();
     printFinalLottoResult();
