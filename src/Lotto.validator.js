@@ -11,9 +11,7 @@ class LottoValidator {
     if (isNaN(+number)) {
       throw new Error(ERROR.MONEY_UNIT);
     }
-    if (+number % LOTTO.LOTTO_COST != 0) {
-      throw new Error(ERROR.MONEY_UNIT);
-    }
+    this.#checkDevideCost(number);
   }
 
   static getLottoPuchaseNumber(money) {

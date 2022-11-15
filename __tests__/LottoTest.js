@@ -36,5 +36,9 @@ describe('Validator 클래스 테스트', () => {
       LottoValidator.checkMoney('1002');
     }).toThrow('[ERROR]');
   });
-
+  test('getLottoPurchasenumber는 1000으로 나뉘지 못하면 예외가 발생한다.', () => {
+    expect(() => {
+      LottoValidator.getLottoPuchaseNumber(1002);
+    }).toThrow('[ERROR]');
+  });
 });
