@@ -1,4 +1,4 @@
-const { ERROR } = require("./message");
+const { ERROR } = require("./constant");
 
 class Lotto {
   #numbers;

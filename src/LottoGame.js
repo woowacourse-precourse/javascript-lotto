@@ -1,6 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
-const { ERROR, TEXT, MATCHES } = require("./message");
+const { ERROR, TEXT, MATCHES } = require("./constant");
 const Lotto = require("./Lotto");
 
 class LottoGame {
