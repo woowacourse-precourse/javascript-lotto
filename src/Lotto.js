@@ -1,5 +1,7 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+
 class Lotto {
-  #numbers;
+  #numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
 
   constructor(numbers) {
     this.validate(numbers);
