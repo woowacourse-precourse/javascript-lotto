@@ -4,7 +4,7 @@ class Calculation {
     return this.roundToTwo(num);
   }
   static roundToTwo(num) {
-    return +(Math.round(num + 'e+2') + 'e-2');
+    return (+(Math.round(num + 'e+2') + 'e-2')).toFixed(1);
   }
 }
 
