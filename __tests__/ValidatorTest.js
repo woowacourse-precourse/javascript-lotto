@@ -29,4 +29,14 @@ describe('입력 공통 예외 테스트', () => {
     });
   });
 
+  describe('당첨번호 입력 예외 테스트', () => {
+    test('당첨번호 입력 범위 예외 테스트', () => {
+      const input = [1, 2, 3, 5, 11, 47];
+  
+      expect(() => {
+        Validator.inputWinNumber(input);
+      }).toThrow('[ERROR] 1-45사이의 수를 입력하세요.');
+    });
+  });
+
 });
