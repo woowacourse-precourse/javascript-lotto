@@ -8,11 +8,13 @@
 ---
 
 ## 실행 화면
-<img src='./lotto.jpg'/><br/><br/>
+프로그램 실행 시 콘솔을 통해 입출력을 진행한다. <br/><br/>
+<img src='./lotto.jpg' style='width: 300px'/><br/><br/>
 
 ---
 
 ## 기능 목록
+프로그램의 주요 기능 목록이다. 큰 글씨가 프로그램의 주요 흐름을 나타낸다.
 
 ### 1. 사용자의 구입 금액 입력 (Test ✅)
     [✅] 사용자의 구입 금액 입력 기능
@@ -49,15 +51,17 @@
 ---
 
 ## 클래스 설계
+클래스의 필드와 메서드를 표로 나타낸 것이다.
 ||App|User|Lotto|Calculator|
 |---|------|---|---|---|
 |field|totalLotto|amount<br/>lottoCount<br/>winningNumber<br/>bonusNumber|numbers|totalLotto<br/>yield<br/>winningNumber<br/>bonusNumber<br/>totalScore<br/>
-|method|play<br/>createUser<br/>generateLotto<br/>printLotto<br/>enterUserNumber<br/>enterBonusNumber<br/>printStatatics|userAmountException<br/>userWinningNumberException<br/>bonusNumberException<br/>parsingWinningNumber||calculateRank<br/>extractScore<br/>calcYield
+|method|play<br/>createUser<br/>generateLotto<br/>printLotto<br/>enterUserNumber<br/>enterBonusNumber<br/>printStatatics|userAmountException<br/>userWinningNumberException<br/>bonusNumberException<br/>parsingWinningNumber||calcCount<br/>calculateRank<br/>calcScore<br/>extractScore<br/>calcYield
 ---
 <br/>
 
 ## 클래스 상세 설명
 
+총 4개의 클래스로 분리하였다. 다음은 각각의 메서드에 대한 상세 기능 설명이다. 
 #### 1. App
         play(): 프로그램의 전체 흐름을 담고 있다.
         createUser(): 입력받은 값을 가지고 사용자를 생성한다.
@@ -74,26 +78,28 @@
         parsingWinningNumber(): 당첨 번호를 , 기준으로 파싱한다.
 
 #### 3. Calculator
-        calculateRank(): 당첨번호와 로또를 비교하여 점수를 계산한다.
-        extractScore(): 점수를 객체 형태로 변환한다.
+        calcCount(), calculateRank(): 당첨번호와 로또를 비교하여 점수를 계산한다.
+        calcScore(), extractScore(): 점수를 객체 형태로 변환한다.
         calcYield(): 전체 수익금을 계산한다.
 <br/>
 
 ---
-## 환경
-Node.js <code>v14.20.1</code><br/><br/>
-
----
 ## 파일 목록
+프로그램을 구성하는 파일 목록이다. const 폴더를 통해 상수를 관리하고, utils 폴더를 통해 따로 분리 가능한 함수들을 저장하였다. root와 동일한 계층에는 Class파일들을 두었다.
 
-    C:. 
+
+    C:.
     │  📁 App.js
     │  📁 Calculator.js
-    │  📁 index.js
     │  📁 Lotto.js
     │  📁 User.js
-    │
-    └─ 📁 utils
+    │  
+    ├─📁 const
+    │      📁 lotto.js
+    │      📁 text.js
+    │      
+    └─📁 utils
             📁 lottoException.js
             📁 numberException.js
             📁 userException.js
+                
