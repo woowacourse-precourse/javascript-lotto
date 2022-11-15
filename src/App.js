@@ -67,7 +67,8 @@ class App {
   }
 
   getWinNumbers() {
-    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (input) => {
+    Console.print("\n");
+    Console.readLine("당첨 번호를 입력해 주세요.\n", (input) => {
       let wins = new Set(input.split(",").map(Number));
       if (!this.isValidWinNumbers(wins)) {
         throw "[ERROR]";
