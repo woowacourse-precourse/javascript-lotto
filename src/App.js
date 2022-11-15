@@ -36,22 +36,23 @@ class App {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (bonusNum) => {
       this.bonusNum = Number(bonusNum);
       this.validateLotto.validateBonus(bonusNum);
-      this.makeMatchList();
+      this.countWinningNumsInLottoLists();
     });
   }
 
-  makeMatchList() {
+  countWinningNumsInLottoLists() {
+    const WINNING_LOTTO_NUM = 6;
     this.match = Array(this.total).fill(0);
     this.bonusMatch = Array(this.total).fill(0);
-    for(let i = 0; i < 6; i++) {
-      this.compareWinningAndLists(this.winningList[i]);
+    for(let i = 0; i < WINNING_LOTTO_NUM; i++) {
+      this.isWinningNumInLottoLists(this.winningList[i]);
     }
-    this.makeMatchResult();
+    this.makeMatchedResultList();
   }
 
-  compareWinningAndLists(num) {
+  isWinningNumInLottoLists(winningNum) {
     for(let i = 0; i < this.total; i++) {
-      if(this.lottoLists[i].includes(num)) {
+      if(this.lottoLists[i].includes(winningNum)) {
         this.match[i] += 1;
       }
       if(this.lottoLists[i].includes(this.bonusNum)) {
@@ -60,7 +61,7 @@ class App {
     }
   }
 
-  makeMatchResult() {
+  makeMatchedResultList() {
     let list = Array(8).fill(0);
     for(let i = 0; i < this.total; i++) {
       list[this.match[i]] += 1;
