@@ -23,7 +23,7 @@ class App {
   }
 
   amountException(input) {
-    if(input == " " || input == null) throw new Error("[ERROR] 공백이나 null을 입력하실 수 없습니다.");
+    if (input == " " || input == null) throw new Error("[ERROR] 공백이나 null을 입력하실 수 없습니다.");
     if (input % LOTTO_PRICE != 0) throw "[ERROR] 올바르지 않은 입력입니다.";
     if (input < LOTTO_PRICE) throw "[ERROR] 로또는 1000원부터 구매 가능합니다.";
     return;
@@ -34,7 +34,7 @@ class App {
     while (cnt) {
       const randomNums = Random.pickUniqueNumbersInRange(1, 45, 6);
       let sortLottoNums = this.sortLottoNums(randomNums);
-      Console.print('[' + sortLottoNums.join(', ') + ']');
+      Console.print("[" + sortLottoNums.join(", ") + "]");
       myNumbers.push(sortLottoNums);
       cnt--;
     }
@@ -42,7 +42,9 @@ class App {
   }
 
   sortLottoNums(numbers) {
-    numbers.sort((a, b) => { return a - b });
+    numbers.sort((a, b) => {
+      return a - b;
+    });
     return numbers;
   }
 
