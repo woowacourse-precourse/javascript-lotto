@@ -1,9 +1,11 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const { Helper } = require("./lib/Helper");
 
 class PurchaseLotto {
   #purchasedCount;
 
   constructor(money) {
+    Helper.checkValidPrice(money);
     this.#purchasedCount = money / 1000;
   }
 
