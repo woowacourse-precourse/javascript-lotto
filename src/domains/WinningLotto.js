@@ -26,12 +26,8 @@ class WinningLotto {
   }
 
   validate() {
-    if (typeof this.#bonusNumber !== 'number' || Number.isNaN(this.#bonusNumber)) {
-      throw new LottoError(Messages.WINNING_LOTTO_VALIDATE_TYPE_MUST_NUMBER);
-    }
-    if (this.#lotto.hasNumber(this.#bonusNumber)) {
-      throw new LottoError(Messages.WINNING_LOTTO_VALIDATE_NO_DUPLICATE);
-    }
+    this.#validateBonusNumberType();
+    this.#validateBonusNumberDuplication();
   }
 
   /**
@@ -77,6 +73,18 @@ class WinningLotto {
     const [integerPart, fractionPart] = rateOfReturn.split('.');
 
     return `${Number(integerPart).toLocaleString()}.${fractionPart}`;
+  }
+
+  #validateBonusNumberType() {
+    if (typeof this.#bonusNumber !== 'number' || Number.isNaN(this.#bonusNumber)) {
+      throw new LottoError(Messages.WINNING_LOTTO_VALIDATE_TYPE_MUST_NUMBER);
+    }
+  }
+
+  #validateBonusNumberDuplication() {
+    if (this.#lotto.hasNumber(this.#bonusNumber)) {
+      throw new LottoError(Messages.WINNING_LOTTO_VALIDATE_NO_DUPLICATE);
+    }
   }
 }
 

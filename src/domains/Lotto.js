@@ -62,24 +62,10 @@ class Lotto {
    * @param {number[]} numbers
    */
   validate() {
-    if (!this.#numbers.every((number) => typeof number === 'number' && !Number.isNaN(number))) {
-      throw new LottoError(Messages.LOTTO_VALIDATE_TYPE_MUST_NUMBER);
-    }
-    if (this.#numbers.length !== Lotto.NUMBER_COUNT) {
-      throw new LottoError(Messages.LOTTO_VALIDATE_NUMBER_COUNT_MUST, Lotto.NUMBER_COUNT);
-    }
-    if (
-      !this.#numbers.every((number) => Lotto.NUMBER_MIN <= number && number <= Lotto.NUMBER_MAX)
-    ) {
-      throw new LottoError(
-        Messages.LOTTO_VALIDATE_NUMBER_RANGE_MUST,
-        Lotto.NUMBER_MIN,
-        Lotto.NUMBER_MAX,
-      );
-    }
-    if (new Set(this.#numbers).size !== this.#numbers.length) {
-      throw new LottoError(Messages.LOTTO_VALIDATE_NO_DUPLICATE);
-    }
+    this.#validateType();
+    this.#validateNumberCount();
+    this.#validateNumberRange();
+    this.#validateDuplication();
   }
 
   hasNumber(number) {
@@ -92,6 +78,36 @@ class Lotto {
 
   toString() {
     return `[${this.#numbers.join(', ')}]`;
+  }
+
+  #validateType() {
+    if (!this.#numbers.every((number) => typeof number === 'number' && !Number.isNaN(number))) {
+      throw new LottoError(Messages.LOTTO_VALIDATE_TYPE_MUST_NUMBER);
+    }
+  }
+
+  #validateNumberCount() {
+    if (this.#numbers.length !== Lotto.NUMBER_COUNT) {
+      throw new LottoError(Messages.LOTTO_VALIDATE_NUMBER_COUNT_MUST, Lotto.NUMBER_COUNT);
+    }
+  }
+
+  #validateNumberRange() {
+    if (
+      !this.#numbers.every((number) => Lotto.NUMBER_MIN <= number && number <= Lotto.NUMBER_MAX)
+    ) {
+      throw new LottoError(
+        Messages.LOTTO_VALIDATE_NUMBER_RANGE_MUST,
+        Lotto.NUMBER_MIN,
+        Lotto.NUMBER_MAX,
+      );
+    }
+  }
+
+  #validateDuplication() {
+    if (new Set(this.#numbers).size !== this.#numbers.length) {
+      throw new LottoError(Messages.LOTTO_VALIDATE_NO_DUPLICATE);
+    }
   }
 }
 
