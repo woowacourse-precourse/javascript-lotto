@@ -48,7 +48,9 @@ class State {
 
     for (let count = 1; count <= buyLottoCount; count++) {
       const lotto = this.lottoNumberGenerator.createRandomNumbers();
-      MissionUtils.Console.print(lotto);
+      MissionUtils.Console.print(
+        "[" + lotto.toString().replaceAll(",", ", ").trim() + "]"
+      );
       lottos.push(lotto);
     }
     // this.messageOutput.printMesage("");
@@ -96,7 +98,6 @@ class State {
     // this.messageOutput.printMesage("---");
 
     messageArr.map((arr) => {
-      console.log(arr);
       const message = `${arr.condition} (${arr.price}원) - ${arr.count}개`;
       this.messageOutput.printMesage(message);
       this.lottomoneyOutput += arr.count
