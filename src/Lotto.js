@@ -29,7 +29,7 @@ class Lotto {
   checkHowManyCorrect(winningNumber, bonusNumber) {
     const { length: matchCount } = this.#numbers.filter((number) => winningNumber.includes(number));
 
-    if (matchCount === 5 && this.#numbers.includes(bonusNumber)) {
+    if (matchCount === 5 && this.#numbers.includes(Number(bonusNumber))) {
       return '5+bonus';
     }
 
