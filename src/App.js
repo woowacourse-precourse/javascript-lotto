@@ -96,6 +96,12 @@ class App {
       throw new Error("[ERROR] 로또 번호는 중복되지 않는 값이어야 합니다.");
     }
   }
+  
+  inputExceptionLottoLength(userLottoList) {
+    if(userLottoList.length !== 6) {
+      throw new Error("[ERROR] 서로 다른 6개의 로또 번호를 입력해 주세요.");
+    }
+  }
 }
 
 module.exports = App;
