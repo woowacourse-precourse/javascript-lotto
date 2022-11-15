@@ -22,6 +22,7 @@ class App {
     this.inputWinningNumbers();
     this.inputBonusNumbers();
     this.consoleWinningResult();
+    this.calculateResultPercentage();
     Console.close();
   }
 
@@ -102,7 +103,6 @@ class App {
         this.countOfWinningways[4] +
         "개\n"
     );
-    this.calculateResultPercentage();
   }
 
   checkWinningMoney(eachLotto) {
