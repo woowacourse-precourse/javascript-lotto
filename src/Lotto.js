@@ -1,4 +1,4 @@
-const { ERROR } = require("./constant");
+const { ERROR, MIN_NUMBER, MAX_NUBER } = require("./constant");
 class Lotto {
   #numbers;
 
@@ -14,7 +14,7 @@ class Lotto {
     if (setNumbers.size !== numbers.length) {
       throw new Error(ERROR.NUMBERS_DUPLICATION);
     }
-    if (numbers.filter((x) => +x < 1 || +x > 45).length > 0) {
+    if (numbers.filter((x) => +x < MIN_NUMBER || +x > MAX_NUBER).length > 0) {
       throw new Error(ERROR.NUMBERS_RANGE);
     }
     if (numbers.filter((x) => isNaN(x)).length > 0) {
