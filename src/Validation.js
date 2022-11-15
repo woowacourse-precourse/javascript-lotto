@@ -16,6 +16,10 @@ class Validation {
       throw new Error(ERROR_MESSAGE.notInRange);
     }
 
+    if (!numbers.every((number) => Number.isInteger(number))) {
+      throw new Error(ERROR_MESSAGE.notInteger);
+    }
+
     if (numbers.length !== new Set(numbers).size) {
       throw new Error(ERROR_MESSAGE.hasRepeat);
     }

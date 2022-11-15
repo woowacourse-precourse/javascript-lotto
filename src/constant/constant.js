@@ -6,6 +6,7 @@ const ERROR_MESSAGE = Object.freeze({
   wrongQuantity: `${ERROR} 로또 번호는 6개여야 합니다.`,
   notInRange: `${ERROR} 로또 번호는 1부터 45사이의 수여야 합니다.`,
   wrongUnit: `${ERROR} 1000원 단위로 입력해야 합니다.`,
+  notInteger: `${ERROR} 로또 번호는 정수여야 합니다.`,
 });
 
 const INPUT_MESSAGE = Object.freeze({
