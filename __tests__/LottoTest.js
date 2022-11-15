@@ -24,7 +24,7 @@ describe("로또 클래스 테스트", () => {
     expect(lotto.compareBetween(randomLottoNumbers)).toBe(3);
   });
 
-  test("로또 번호와 사용자가 입력한 로또번호를 비교해서 총 몇개가 같은지 배열에 담아준다..", () => {
+  test("로또 번호와 사용자가 입력한 로또번호를 비교해서 총 몇개가 당첨됐는지 Constant.PRICE를 업데이트한다.", () => {
     //given
     const randomLottoNumbers = [
       [1, 4, 5, 8, 9, 12],
@@ -35,20 +35,12 @@ describe("로또 클래스 테스트", () => {
     //when
     const lotto = new Lotto(userInputNumbers);
     //then
-    expect(lotto.compare(randomLottoNumbers, bonusNumber)).toStrictEqual([
-      { countSameNumber: 3 },
-      { countSameNumber: 5, bonusNumber: true },
-    ]);
-  });
-
-  test("계산된 로또번호가 몇개가 당첨됐는지 object형태로 만든다..", () => {
-    //given
-    const countArr = [3, 1, 3];
-
-    const userInputNumbers = [1, 4, 5, 6, 10, 15];
-    //when
-    const lotto = new Lotto(userInputNumbers);
-    //then
-    expect(lotto.makeCountObject(countArr)).toStrictEqual({ 1: 1, 3: 2 });
+    expect(lotto.compare(randomLottoNumbers, bonusNumber)).toStrictEqual({
+      3: { text: "3개 일치", price: 5000, count: 1 },
+      4: { text: "4개 일치", price: 50000, count: 0 },
+      5: { text: "5개 일치", price: 1500000, count: 0 },
+      6: { text: "5개 일치, 보너스 볼 일치", price: 30000000, count: 1 },
+      7: { text: "6개 일치", price: 2000000000, count: 0 },
+    });
   });
 });

@@ -8,22 +8,22 @@ class UI {
   #arrUserInputLottoNumbers;
   #bonusNumber;
   #countSameNumberObject;
-  #numberUserInputMoney;
+  _numberUserInputMoney;
 
   askMoney() {
-    Console.readLine(Constant.INPUT_MONEY, (userInputMoney) => {
-      this.#numberUserInputMoney = Number(userInputMoney) ?? NaN;
-      if (Validate.validateMoney(this.#numberUserInputMoney)) {
-        this.#countLotto = this.#numberUserInputMoney / Constant.MINIMUM_AMOUNT;
-        this.showLottosCount();
-        this.showLottoNumber();
+    Console.readLine(Constant.INPUT_MONEY, async (userInputMoney) => {
+      this._numberUserInputMoney = Number(userInputMoney) ?? NaN;
+      if (Validate.validateMoney(this._numberUserInputMoney)) {
+        this.#countLotto = this._numberUserInputMoney / Constant.MINIMUM_AMOUNT;
+        await this.showLottosCount();
+        await this.showLottoNumber();
         this.inputUserLottoNumber();
       }
     });
   }
 
   get numberUserInputMoney() {
-    return this.#numberUserInputMoney;
+    return this._numberUserInputMoney;
   }
 
   get countLotto() {
@@ -93,7 +93,7 @@ class UI {
 
   printWin(countObject) {
     Console.print(Constant.STATS_WIN);
-    Console.print(Constant.Line);
+    Console.print(Constant.LINE);
 
     for (let key in countObject) {
       Console.print(
@@ -107,13 +107,10 @@ class UI {
   }
 
   printPrizeRate(resultObject) {
-    let allPrice = 0;
-    for (const resultObjectKey in resultObject) {
-      allPrice +=
-        resultObject[resultObjectKey].price *
-        resultObject[resultObjectKey].count;
-    }
-    let rate = Number((allPrice / this.#numberUserInputMoney) * 100).toFixed(1);
+    let rate = this.lotto.caculatePriceRate(
+      resultObject,
+      this._numberUserInputMoney
+    );
     Console.print(Constant.SHOW_RATE(rate));
   }
 }

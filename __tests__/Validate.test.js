@@ -39,7 +39,7 @@ describe("유효성 검사 테스트", () => {
       //then
       expect(() =>
         Validate.validateUserInputLottoNumbers(userInputLottoNumbers)
-      ).toThrow("당첨번호 사이에 ','를 입력하세요.");
+      ).toThrow(Constant.INPUT_NUMBER_BETWEEN_COMMA);
     });
 
     test("당첨번호에는 숫자만 입력해야 한다.", () => {
@@ -49,7 +49,7 @@ describe("유효성 검사 테스트", () => {
       //then
       expect(() =>
         Validate.validateUserInputLottoNumbers(userInputLottoNumbers)
-      ).toThrow("당첨번호는 숫자만 입력하세요.");
+      ).toThrow(Constant.INPUT_ONLY_NUMBER);
     });
   });
 
@@ -57,20 +57,23 @@ describe("유효성 검사 테스트", () => {
     test("보너스 넘버는 숫자만 입력해야한다.", () => {
       //given
       const bonusNumber = "d";
+      const arrUserInput = [1, 2, 3, 4, 5];
+
       //when
       //then
-      expect(() => Validate.validateBonusNumber(bonusNumber)).toThrow(
-        Constant.INPUT_ONLY_NUMBER
-      );
+      expect(() =>
+        Validate.validateBonusNumber(arrUserInput, bonusNumber)
+      ).toThrow(Constant.INPUT_ONLY_NUMBER);
     });
     test("보너스 넘버는 1~45까지만 입력해야 한다.", () => {
       //given
-      const bonusNumber = "46";
+      const bonusNumber = 46;
+      const arrUserInput = [1, 2, 3, 4, 5];
       //when
       //then
-      expect(() => Validate.validateBonusNumber(bonusNumber)).toThrow(
-        Constant.INPUT_ONLY_1_TO_45
-      );
+      expect(() =>
+        Validate.validateBonusNumber(arrUserInput, bonusNumber)
+      ).toThrow(Constant.INPUT_ONLY_1_TO_45);
     });
   });
 });

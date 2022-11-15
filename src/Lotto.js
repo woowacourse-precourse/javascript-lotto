@@ -1,4 +1,5 @@
 const Constant = require("./Constant");
+const UI = require("./utils/UI");
 class Lotto {
   #numbers;
 
@@ -56,20 +57,14 @@ class Lotto {
     return !!lottoNumber.includes(bonusNumber);
   }
 
-  sumAllcountNumber(winObject) {
-    let sumAllcountNumber = winObject.reduce((countObject, now) => {
-      if (now?.bonusNumber === true) {
-        let count = (countObject[now.countSameNumber] || 0) + 1;
-        countObject[now.countSameNumber] = { bonusNumber: true, count };
-        return countObject;
-      }
-      countObject[now.countSameNumber] =
-        (countObject[now.countSameNumber] || 0) + 1;
-      return countObject;
-    }, {});
-    return Object.fromEntries(
-      Object.entries(sumAllcountNumber).filter((item) => item[0] >= 3)
-    );
+  caculatePriceRate(resultObject, userInputMoney) {
+    let allPrice = 0;
+    for (const resultObjectKey in resultObject) {
+      allPrice +=
+        resultObject[resultObjectKey].price *
+        resultObject[resultObjectKey].count;
+    }
+    return Number((allPrice / userInputMoney) * 100).toFixed(1);
   }
 }
 
