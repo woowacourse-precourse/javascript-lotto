@@ -10,7 +10,7 @@ class Lotto {
 
   constructor(numbers) {
     this.validate(numbers);
-    this.#numbers = numbers;
+    this.#numbers = this.sortLottery(numbers);
   }
 
   validate(numbers) {
@@ -18,6 +18,11 @@ class Lotto {
     if (validCheck !== true) {
       throw new Error(EXCEPTION_MESSAGE[validCheck]);
     }
+  }
+
+  sortLottery(numbers) {
+    const sortedNumbers = numbers.slice().sort((a, b) => a - b);
+    return sortedNumbers;
   }
 
   returnMyLottery() {
