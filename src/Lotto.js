@@ -1,3 +1,5 @@
+const { Console } = require('@woowacourse/mission-utils');
+const Bonus = require('./Bonus');
 const { LOTTO_ERROR } = require('./constants/constants');
 
 class Lotto {
@@ -6,6 +8,14 @@ class Lotto {
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
+  }
+
+  inputBonus(myLotto) {
+    Console.readLine(BONUS_NUMBER_MESSAGE, (answer) => {
+      const bonus = new Bonus(answer, this.#numbers);
+      this.result(myLotto, bonus.number);
+      Console.close();
+    });
   }
 
   validate(numbers) {
