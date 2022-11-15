@@ -36,8 +36,11 @@ class Validator {
     if (
       lottoNumbers.some(
         (lottoNumber) =>
-          !this.isRange(1, 45, lottoNumber) ||
-          !this.isPositiveNumber(lottoNumber)
+          !this.isRange(
+            config.LOTTO_RANGE_MIX_NUMBER,
+            config.LOTTO_RANGE_MAX_NUMBER,
+            lottoNumber
+          ) || !this.isPositiveNumber(lottoNumber)
       )
     ) {
       return false;
