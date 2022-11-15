@@ -51,7 +51,7 @@ class Lottos {
     this.ranks = this.ranks.filter((rank) => rank !== 0);
   }
 
-  printResult(winningNumber, bonusNum) {
+  getResult(winningNumber, bonusNum) {
     this.createRanks(winningNumber, bonusNum);
 
     const result = this.ranks.reduce((accu, curr) => {
@@ -59,18 +59,25 @@ class Lottos {
       return accu;
     }, new Map());
 
-    const statisticsMsg = [
-      "6개 일치 (2,000,000,000원) - ",
-      "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
-      "5개 일치 (1,500,000원) - ",
-      "4개 일치 (50,000원) - ",
-      "3개 일치 (5,000원) - ",
-    ];
+    return result;
+  }
 
-    const winningMoney = [2000000000, 30000000, 1500000, 50000, 5000];
+  printResult(winningNumber, bonusNum) {
+    const result = this.getResult(winningNumber, bonusNum);
+    let { userWinningMoney, userWinningCount } =
+      this.createUserWinningData(result);
 
     MissionUtils.Console.print("당첨 통계\n---");
+
+    this.printWinningStatistics(userWinningCount.reverse());
+    this.printRevenueRate(userWinningMoney);
+  }
+
+  createUserWinningData(result) {
+    const winningMoney = [2000000000, 30000000, 1500000, 50000, 5000];
+
     let userWinningMoney = 0;
+    const userWinningCount = [];
 
     for (let rank = RANK.FIFTH; rank >= RANK.FIRST; rank--) {
       let cnt = 0;
@@ -80,10 +87,25 @@ class Lottos {
         userWinningMoney += winningMoney[rank - 1] * result.get(rank);
       }
 
-      MissionUtils.Console.print(`${statisticsMsg[rank - 1]}${cnt}개`);
+      userWinningCount.push(cnt);
     }
 
-    this.printRevenueRate(userWinningMoney);
+    return { userWinningMoney, userWinningCount };
+  }
+
+  printWinningStatistics(userWinningCount) {
+    const statisticsMsg = [
+      "6개 일치 (2,000,000,000원) - ",
+      "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
+      "5개 일치 (1,500,000원) - ",
+      "4개 일치 (50,000원) - ",
+      "3개 일치 (5,000원) - ",
+    ];
+
+    for (let rank = RANK.FIFTH; rank >= RANK.FIRST; rank--)
+      MissionUtils.Console.print(
+        `${statisticsMsg[rank - 1]}${userWinningCount[rank - 1]}개`
+      );
   }
 
   calculateRevenueRate(userWinningMoney) {
