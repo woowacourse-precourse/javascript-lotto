@@ -94,14 +94,14 @@ class Game {
 
   priceEarning() {
     const lotto = new Lotto(this.winningNumber);
-    this.countArr = lotto.compareNumbers(this.publishNumbers, this.bonusNumber);
+    this.countArr = lotto.getMatchCountArr(this.publishNumbers, this.bonusNumber);
 
     let total = 0;
     this.countArr.forEach((count, idx) => {
       const winMoney = this.static[idx].prize;
       total += winMoney * count;
     });
-    
+
     this.earningPercent = ((total / this.price) * 100).toFixed(1);
   }
 

@@ -18,7 +18,7 @@ class Lotto {
     
   }
 
-  compareNumbers(publishNumbers, bonusNumber) {
+  getMatchCountArr(publishNumbers, bonusNumber) {
     let matchCountArr = [0,0,0,0,0];
 
     publishNumbers.forEach(element => {
