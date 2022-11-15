@@ -1,14 +1,16 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const { checkRange, checkUnit, checkType } = require('./Exception');
+const { checkRange, checkUnit, checkType, checkLottoType } = require('./Exception');
 const Lotto = require('./Lotto');
 const { Message } = require('./Message');
 
 class App {
   inputMoney;
   userLottoList;
+  winNumber;
 
   constructor() {
     this.userLottoList = [];
+    this.winNumber = [];
   }
 
   validate(money) {
@@ -23,14 +25,20 @@ class App {
       this.userLottoList.push(new Lotto(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6)));
     }
   }
+  createWinLotto() {
+    MissionUtils.Console.readLine(`${Message.LOTTO_MESSAGE}`, input => {
+      const numbers = Array.from(input.split(','), Number);
+      checkLottoType(numbers);
+      this.winNumber = new Lotto(numbers);
+    });
+  }
   play() {
-    let money;
     MissionUtils.Console.readLine(`${Message.COST_MESSAGE}`, input => {
-      money = input;
-      this.validate(money);
+      this.validate(input);
       this.buyLottos(this.inputMoney / 1000);
       MissionUtils.Console.print(`${this.userLottoList.length}개를 구매했습니다.`);
       this.userLottoList.forEach(lotto => MissionUtils.Console.print(`[${lotto.getNumbers().join(', ')}]`));
+      this.createWinLotto();
     });
   }
 }
