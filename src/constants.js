@@ -15,4 +15,12 @@ const ERROR = {
   OUT_OF_RANGE: PREFIX + '당첨번호는 1부터 45까지의 숫자여야 합니다.',
 };
 
-module.exports = { INPUT_QUERY, ERROR };
+const prizeCount = {
+  first: 0,
+  second: 0,
+  third: 0,
+  fourth: 0,
+  fifth: 0,
+}
+
+module.exports = { INPUT_QUERY, ERROR, prizeCount };
