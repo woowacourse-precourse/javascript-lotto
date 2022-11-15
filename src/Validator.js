@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { LOTTO } = require('./constants');
+const { LOTTO_BASE } = require('./constants');
 
 class Validator {
   static #ERROR_MESSAGE = Object.freeze({
@@ -19,14 +19,16 @@ class Validator {
 
   static isPurchaseInput(input) {
     const NUMBER_INPUT_PATTERN = /^[^0]\d+$/;
-    return NUMBER_INPUT_PATTERN.test(input) && !(Number(input) % LOTTO.PRICE);
+    return (
+      NUMBER_INPUT_PATTERN.test(input) && !(Number(input) % LOTTO_BASE.PRICE)
+    );
   }
 
   static areLottoNumbers(numbers) {
     const lottoNumbers = numbers.filter(
       number => Validator.isInteger(number) && Validator.isLottoNumber(number),
     );
-    return new Set(lottoNumbers).size === LOTTO.SIZE;
+    return new Set(lottoNumbers).size === LOTTO_BASE.SIZE;
   }
 
   static isInteger(number) {
@@ -34,7 +36,7 @@ class Validator {
   }
 
   static isLottoNumber(number) {
-    return LOTTO.MIN_NUMBER <= number && number <= LOTTO.MAX_NUMBER;
+    return LOTTO_BASE.MIN_NUMBER <= number && number <= LOTTO_BASE.MAX_NUMBER;
   }
 
   static areWinningNumbers(input) {

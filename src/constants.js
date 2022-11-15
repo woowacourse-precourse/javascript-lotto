@@ -5,7 +5,7 @@ const MESSAGE = Object.freeze({
   BONUS_QUESTION: '보너스 번호를 입력해 주세요.',
 });
 
-const LOTTO = Object.freeze({
+const LOTTO_BASE = Object.freeze({
   PRICE: 1000,
   MIN_NUMBER: 1,
   MAX_NUMBER: 45,
@@ -14,5 +14,5 @@ const LOTTO = Object.freeze({
 
 module.exports = {
   MESSAGE,
-  LOTTO,
+  LOTTO_BASE,
 };

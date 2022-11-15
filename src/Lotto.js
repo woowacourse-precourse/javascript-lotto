@@ -1,6 +1,6 @@
 const { Random } = require('@woowacourse/mission-utils');
 const { validate, areLottoNumbers } = require('./Validator');
-const { LOTTO } = require('./constants');
+const { LOTTO_BASE } = require('./constants');
 
 class Lotto {
   #numbers;
@@ -11,7 +11,7 @@ class Lotto {
   }
 
   static generateTicket() {
-    const { MIN_NUMBER, MAX_NUMBER, SIZE } = LOTTO;
+    const { MIN_NUMBER, MAX_NUMBER, SIZE } = LOTTO_BASE;
     return new Lotto(
       Random.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, SIZE),
     );

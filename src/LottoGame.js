@@ -1,29 +1,18 @@
-const { Console, Random } = require('@woowacourse/mission-utils');
-const { PURCHASE } = require('./constants');
-const { validate, isPurchaseInput } = require('./Validator');
-const Lotto = require('./Lotto');
+const { validate, areWinningNumbers, isBonusNumber } = require('./Validator');
 
 class LottoGame {
-  #purchaseAmout = 0;
+  #winningNumbers = [];
 
-  #lotteries = [];
+  #bonusNumber = 0;
 
-  start() {
-    Console.readLine(PURCHASE.INPUT, answer => {
-      validate(answer, isPurchaseInput);
-
-      this.#purchaseAmout = answer;
-      this.publishLotteries();
-    });
+  setWinningNumbers(numbers) {
+    validate(numbers, areWinningNumbers);
+    this.#winningNumbers = numbers.split(',').map(Number);
   }
 
-  publishLotteries() {
-    const count = this.#purchaseAmout / PURCHASE.UNIT;
-    const lotteries = Array.from(
-      { length: count },
-      () => new Lotto(Random.pickUniqueNumbersInRange(1, 45, 6)),
-    );
-    this.#lotteries = lotteries;
+  setBonusNumber(number) {
+    validate(number, isBonusNumber(this.#winningNumbers));
+    this.#bonusNumber = Number(number);
   }
 }
 
