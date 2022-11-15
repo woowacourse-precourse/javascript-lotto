@@ -2,12 +2,15 @@ const { Console } = require('@woowacourse/mission-utils');
 const ValidatePay = require('./ValidatePay');
 const ValidateWinnigNumber = require('./ValidateWinningNumber');
 const Lotto = require('./Lotto');
+const ValidateBonusNumber = require('./ValidateBonusNumber');
 const makeLotto = require('./makeLotto');
 
 class App {
 
   play() {
     this.buyLottoArray = [];
+    this.winningNumber = [];
+    this.bonusNumber = 0;
     this.inputPay();
   };
 
@@ -34,8 +37,17 @@ class App {
     Console.readLine('\n당첨 번호를 입력해 주세요.\n', answer => {
       const validateWinningNumber = new ValidateWinnigNumber(answer);
       new Lotto(validateWinningNumber.winningNumber);
-      Console.close();
+      this.winningNumber = validateWinningNumber.winningNumber
+      this.inputBonusNumber();
     });
+  }
+
+  inputBonusNumber() {
+    Console.readLine('\n보너스 번호를 입력해 주세요.\n', answer => {
+      new ValidateBonusNumber(answer, this.winningNumber);
+      this.bonusNumber = Number(answer);
+      Console.close();
+    })
   }
 }
 
