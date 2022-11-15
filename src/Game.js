@@ -104,11 +104,12 @@ class Game {
   }
 
   getEarningRate(winStats, numOfTickets) {
-    const earnings = (winStats.get(MESSAGES.THREE_MATCHED) * PRIZE_UNITS.FIVE_THOUSAND
-      + winStats.get(MESSAGES.FOUR_MATCHED) * PRIZE_UNITS.FIFTY_THOUSAND
-      + winStats.get(MESSAGES.FIVE_MATCHED) * PRIZE_UNITS.ONE_POINT_FIVE_MILLION
-      + winStats.get(MESSAGES.FIVE_PLUS_BONUS_MATCHED) * PRIZE_UNITS.THIRTY_MILLION
-      + winStats.get(MESSAGES.SIX_MATCHED) * PRIZE_UNITS.TWO_BILLION);
+    const earnings =
+      winStats.get(MESSAGES.THREE_MATCHED) * PRIZE_UNITS.FIVE_THOUSAND +
+      winStats.get(MESSAGES.FOUR_MATCHED) * PRIZE_UNITS.FIFTY_THOUSAND +
+      winStats.get(MESSAGES.FIVE_MATCHED) * PRIZE_UNITS.ONE_POINT_FIVE_MILLION +
+      winStats.get(MESSAGES.FIVE_PLUS_BONUS_MATCHED) * PRIZE_UNITS.THIRTY_MILLION +
+      winStats.get(MESSAGES.SIX_MATCHED) * PRIZE_UNITS.TWO_BILLION;
     const earningRate = this.roundOffToNearestTenth((earnings / (numOfTickets * 1000)) * 100);
     this.printWinStats(winStats, earningRate);
   }
