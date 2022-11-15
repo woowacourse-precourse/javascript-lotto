@@ -16,6 +16,7 @@ class LotteryMachine {
       const money = Number(input);
       LotteryMachine.#validateMoney(money);
       lottos = LotteryMachine.generateLottos(money);
+      LotteryMachine.printTicket(lottos);
     });
 
     return lottos;
@@ -42,6 +43,15 @@ class LotteryMachine {
         COUNT.LOTTO_NUMBER,
       );
       return new Lotto(lottoNumbers);
+    });
+  }
+
+  static printTicket(lottos) {
+    Console.print(MESSAGE.LOTTERY_MACHINE.BUY_LOTTO(lottos.length));
+
+    lottos.forEach((lotto) => {
+      const qrCode = lotto.getQrCode();
+      Console.print(`"[${[qrCode.join(', ')]}]"`);
     });
   }
 }
