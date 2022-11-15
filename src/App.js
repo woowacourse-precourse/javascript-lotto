@@ -57,6 +57,17 @@ class App {
 
       LottoValidator.validateWinningNumbers(winningNumbers);
       this.#winningNumbers = winningNumbers;
+
+      this.#queryBonusNumber(winningNumbers);
+    });
+  }
+
+  #queryBonusNumber() {
+    this.#console.readLine('\n보너스 번호를 입력해 주세요.\n', (input) => {
+      const bonusNumber = Number(input);
+
+      LottoValidator.validateBonusNumber(bonusNumber, this.#winningNumbers);
+      this.#bonusNumber = bonusNumber;
     });
   }
 }
