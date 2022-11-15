@@ -63,5 +63,20 @@ describe("로또 클래스 테스트", () => {
     expect(lotto.calculate(bonus, mockArr)).toEqual(winningBoard);
   });
 
+  test("로또 넘버에서 구분자외에 숫자가 아닌값을 입력받으면 예외가 발생한다.", () => {
+    const winningBoard = {
+      FIFTH: 1,
+      FORTH: 0,
+      THIRD: 1,
+      SECOND: 0,
+      FIRST: 0,
+    };
+
+    const userLottoArr = Array.from({ length: 9 });
+
+    const lotto = new Lotto("1,2,3,4,5,6", [1, 2, 3, 4, 5, 6]);
+    expect(lotto.getProfit(winningBoard, userLottoArr)).toBe(16722.2);
+  });
+
   // 아래에 추가 테스트 작성 가능
 });
