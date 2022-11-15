@@ -1,10 +1,9 @@
 const {
-  GUIDE_MESSAGES,
   LOTTO_PRICE,
   RANGE_OF_LOTTO_NUMBER,
   TOTAL_COUNTS,
-  ERROR_MESSAGES,
 } = require("./utils/constants");
+const { GUIDE_MESSAGES, ERROR_MESSAGES } = require("./utils/messages");
 
 const Lotto = require("./Lotto");
 const { Console, Random } = require("@woowacourse/mission-utils");
@@ -91,10 +90,10 @@ class App {
 총 수익률은 ${earningsRate}입니다.
 `;
 
-    this.endGame(resultMessage);
+    this.#endGame(resultMessage);
   }
 
-  endGame(resultMessage) {
+  #endGame(resultMessage) {
     Console.print(resultMessage);
     Console.close();
   }
@@ -105,7 +104,7 @@ class App {
       Number.isNaN(+price) ||
       price % LOTTO_PRICE !== 0
     ) {
-      throw new Error(ERROR_MESSAGES.PRICE);
+      throw new Error(ERROR_MESSAGES.WRONG_PRICE);
     }
   }
 }

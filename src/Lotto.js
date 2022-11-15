@@ -3,9 +3,9 @@ const {
   INITIAL_STATICS,
   FIVE_AND_BONUS,
   WINNING_PRICES,
-  ERROR_MESSAGES,
   ADD_COMMA_EXP,
 } = require("./utils/constants");
+const { ERROR_MESSAGES } = require("./utils/messages");
 const { validateType } = require("./utils/functions");
 
 class Lotto {
@@ -70,23 +70,24 @@ class Lotto {
   }
 
   validateWinningNums(winningNums) {
-    const { WINNING_NUMS } = ERROR_MESSAGES;
+    const { WRONG_WINNING_NUMS } = ERROR_MESSAGES;
+    console.log(WRONG_WINNING_NUMS);
 
-    winningNums.forEach((num) => validateType(num, WINNING_NUMS));
+    winningNums.forEach((num) => validateType(num, WRONG_WINNING_NUMS));
 
     if (
       winningNums.length !== 6 ||
       winningNums.length !== new Set(winningNums).size
     )
-      throw new Error(WINNING_NUMS);
+      throw new Error(WRONG_WINNING_NUMS);
   }
 
   validateBonusNum(bonusNum) {
-    const { BOUNS_NUM } = ERROR_MESSAGES;
+    const { WRONG_BOUNS_NUM } = ERROR_MESSAGES;
 
-    validateType(bonusNum, BOUNS_NUM);
+    validateType(bonusNum, WRONG_BOUNS_NUM);
 
-    if (this.#winningNums.includes(bonusNum)) throw new Error(BOUNS_NUM);
+    if (this.#winningNums.includes(bonusNum)) throw new Error(WRONG_BOUNS_NUM);
   }
 }
 
