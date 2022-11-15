@@ -16,7 +16,7 @@ class Lotto {
     }
     this.validateRange(numbers);
     if (this.rangeBoolean) {
-      throw "[ERROR] 범위에 맞는 수를 입력하세요";
+      throw "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     }
   }
 
