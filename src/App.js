@@ -4,6 +4,8 @@ class App {
   constructor() {
     this.userAmount;
     this.lottoNumbers;
+    this.winningNums;
+    this.bonusNumber;
   }
 
   play() {}
@@ -36,6 +38,19 @@ class App {
         JSON.stringify(lottoNumbers[index]).replace(/,/g, ", ")
       );
     }
+
+    this.getWinningNumber();
+  }
+
+  getWinningNumber() {
+    MissionUtils.Console.readLine(
+      "당첨 번호를 입력해 주세요.\n",
+      (winningNumber) => {
+        this.winningNums = winningNumber.split(",").map((number) => +number);
+        winningNumber;
+        this.getBonusNumber();
+      }
+    );
   }
 }
 
