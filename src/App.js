@@ -1,5 +1,6 @@
 const UI = require("./UI");
 const LottoArray = require("./LottoArray");
+const Stats = require("./Stats");
 
 class App {
   play() {}
@@ -24,6 +25,10 @@ class App {
   processInformation(information) {
     const totalStats = new Stats(information);
     return totalStats;
+  }
+
+  publishResults(totalStats) {
+    UI.printTotalStats(totalStats);
   }
 }
 
