@@ -1,5 +1,10 @@
 const { Random, Console } = require("@woowacourse/mission-utils");
-const { MESSAGE, CONDITION, PRIZE_MONEY } = require("./constant/constant");
+const {
+  MESSAGE,
+  CONDITION,
+  PRIZE_MONEY,
+  ERR_MESSAGE,
+} = require("./constant/constant");
 const validate = require("./Validate");
 
 class BuyLotto {
@@ -35,7 +40,9 @@ class BuyLotto {
   amount() {
     this.validate = new validate();
     Console.readLine(MESSAGE.BUYING_AMOUNT, (inputValue) => {
-      this.validate.checkInputValue(inputValue);
+      if (inputValue % CONDITION.BASE_PRICE !== 0) {
+        throw new Error(ERR_MESSAGE.ERR_LOTTO_INPUT_VALUE);
+      }
       this.howMany = inputValue / CONDITION.BASE_PRICE;
       this.getAutoNumber();
     });
@@ -85,6 +92,10 @@ class BuyLotto {
       userInputBonusNum.push(input);
       this.validate.bonusCheck(userInputBonusNum);
       this.userInputBonusNum = userInputBonusNum;
+      this.validate.checkIncludeBonus(this.userInputNum, input);
+      console.log(this.userInputNum);
+      console.log(input);
+
       this.getResult();
     });
   }

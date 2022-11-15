@@ -7,13 +7,6 @@ class validate {
     this.checkNumber(number);
     this.checkDuplication(number);
     this.checkRange(number);
-    this.checkInputValue(number);
-  }
-
-  checkInputValue(number) {
-    if (number % CONDITION.BASE_PRICE !== 0) {
-      throw new Error(ERR_MESSAGE.ERR_LOTTO_INPUT_VALUE);
-    }
   }
 
   bonusCheck(bonusNumber) {
@@ -46,7 +39,15 @@ class validate {
     for (let i = 0; i < number.length; i++) {
       const check = /^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$/;
       if (!check.test(number[i])) {
-        throw new Error(ERR_MESSAGE.ERR_LOTTO_VALID_VALUE);
+        // throw new Error(ERR_MESSAGE.ERR_LOTTO_VALID_VALUE);
+      }
+    }
+  }
+
+  checkIncludeBonus(number, bonus) {
+    for (let i = 0; i < number.length; i++) {
+      if (number[i].includes(String(bonus))) {
+        throw new Error(ERR_MESSAGE.ERR_LOTTO_CHECK_INCLUDE_BONUS);
       }
     }
   }
