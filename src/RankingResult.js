@@ -7,7 +7,7 @@ const {
 
 class RankingResult {
   rankingResult;
-  earningsRate;
+  earningsRate=0;
 
   constructor() {
     this.rankingResult = [

@@ -1,5 +1,6 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { INPUT, RANKING } = require("./utils/Constants");
+const {getNumberWithCommas} = require("./utils/Utils")
 
 const printAskLottoPayment = () => {
   Console.print(INPUT.LOTTO_PAYMENT);
@@ -32,7 +33,7 @@ const printRankingResult = (rankingResult) => {
 };
 
 const printEarningsRate = (earningsRate) => {
-  Console.print(`총 수익률은 ${earningsRate}%입니다.`);
+  Console.print(`총 수익률은 ${getNumberWithCommas(earningsRate)}%입니다.`);
 };
 
 module.exports = {

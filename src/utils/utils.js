@@ -31,10 +31,15 @@ const getEarningsRate = (rankingResult, lottoPayment) => {
   return ((totalReward / lottoPayment) * 100).toFixed(1);
 };
 
+const getNumberWithCommas = (string) => {
+  return string.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
+
 module.exports = {
   makeLottoNumber,
   sortLottoNumberInAscendignOrder,
   getMatchedinWinningNumberCount,
   hasBounsNumber,
-  getEarningsRate
+  getEarningsRate,
+  getNumberWithCommas
 };
