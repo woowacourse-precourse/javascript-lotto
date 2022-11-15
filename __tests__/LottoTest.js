@@ -2,6 +2,7 @@
 const Lotto = require('../src/Lotto');
 const App = require('../src/App');
 const ErrorInfo = require('../src/ErrorInfo');
+const { PRIZE_MONEY } = require('../src/constants');
 
 describe('로또 클래스 테스트', () => {
   test('로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.', () => {
@@ -120,6 +121,24 @@ describe('checkWinResult 테스트 코드', () => {
       app.bonusNumber = 7;
       app.checkWinResult(LottoArray, testCnt);
       expect(app.winResult).toEqual(testOutput[idx]);
+    });
+  });
+});
+
+describe('getRateOfReturn 함수 구현', () => {
+  test('최종 수익률 구하는 getRateOfReturn 테스트 코드', () => {
+    const testInput = [
+      [2, 3, 0, 0, 0],
+      [1, 0, 0, 0, 0],
+      [1, 2, 0, 0, 0],
+    ];
+    const testOutput = ['160.0', '5.0', '105.0'];
+    testInput.forEach((element, idx) => {
+      const app = new App();
+      app.winResult = element;
+      app.userCost = 100000;
+      app.getRateOfReturn();
+      expect(app.rateOfReturn).toEqual(testOutput[idx]);
     });
   });
 });
