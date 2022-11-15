@@ -16,13 +16,7 @@ class Exception {
       throw new Error(ERROR_MESSAGE.duplicateWinningNumber);
     }
 
-    if (input.length === 1) {
-      throw new Error(ERROR_MESSAGE.inValidSeperation);
-    }
-
-    if (input.length !== 6) {
-      throw new Error(ERROR_MESSAGE.inValidInputCount);
-    }
+    this.checkWinningNumberInputFormat(input);
 
     input.forEach((number) => {
       this.checkIsDigit(number);
@@ -36,6 +30,16 @@ class Exception {
 
     if (winningNumber.includes(input)) {
       throw new Error(ERROR_MESSAGE.duplicateBonusNumber);
+    }
+  }
+
+  checkWinningNumberInputFormat(input) {
+    if (input.length === 1) {
+      throw new Error(ERROR_MESSAGE.inValidSeperation);
+    }
+
+    if (input.length !== 6) {
+      throw new Error(ERROR_MESSAGE.inValidInputCount);
     }
   }
 
