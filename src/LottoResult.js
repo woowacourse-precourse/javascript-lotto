@@ -16,6 +16,7 @@ class LottoResult {
     this.calculateLotto(userLotto, wonLotto, bonusNumber);
     this.#score = this.score;
     this.calculateProfit(userLotto.length);
+    this.printResult();
   }
 
   calculateLotto(userLotto, wonLotto, bonusNumber) {
@@ -28,7 +29,6 @@ class LottoResult {
     let won = 0;
     let bonusWon = false;
     for (let index = 0; index < 6; index++) {
-      console.log(typeof wonLotto);
       if (wonLotto.includes(userLotto[index])) {
         won += 1;
       }
@@ -61,12 +61,18 @@ class LottoResult {
     }
   }
 
-  //   printResult(){
-  //     MissionUtils.Console.print(
-
-  //     )
-
-  //   }
+  printResult() {
+    MissionUtils.Console.print(
+      `\n당첨 통계
+---
+3개 일치 (5,000원) - ${this.score[3]}개
+4개 일치 (50,000원) - ${this.score[4]}개
+5개 일치 (1,500,000원) - ${this.score[5]}개
+5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.score[7]}개
+6개 일치 (2,000,000,000원) - ${this.score[6]}개
+총 수익률은 ${this.profit}%입니다.`
+    );
+  }
 }
 
 module.exports = LottoResult;
