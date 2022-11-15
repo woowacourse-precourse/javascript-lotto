@@ -67,7 +67,7 @@ class Lotto {
     MissionUtils.Console.print(`${Constant.OUTPUT_MESSAGE.lottoCount(this.calcLottoCount())}`);
     for (let i = 0; i < this.calcLottoCount(); i++) {
       const lotto = this.getRandomNumbers();
-      Console.print(lotto);
+      Console.print(`[${lotto.join(", ")}]`);
       this.lottos.push(lotto);
     }
     this.getUserNumbers();
@@ -80,17 +80,15 @@ class Lotto {
   }
 
   getUserNumbers() {
-    Console.readLine(`\n${Constant.INPUT_MESSAGE.userNumbers}\n`, (answer) => {
+    Console.readLine(`${Constant.INPUT_MESSAGE.userNumbers}\n`, (answer) => {
       this.validate(answer);
       this.userNumbers = answer.split(",");
-      Console.print(this.userNumbers);
-
       this.getUserBonusNumber();
     });
   }
 
   getUserBonusNumber() {
-    Console.readLine(`\n${Constant.INPUT_MESSAGE.bonusNumber}\n`, (answer) => {
+    Console.readLine(`${Constant.INPUT_MESSAGE.bonusNumber}\n`, (answer) => {
       this.bonusNum = answer;
       this.validate(this.bonusNum);
       this.winLottoCount();
@@ -98,11 +96,11 @@ class Lotto {
   }
 
   winLottoCount() {
-    for (let i = 0; i < this.userNumbers; i++) {
-      const matchCount = this.lottos.filter((numb) => this.userNumbers[i].includes(numb));
+    for (let i = 0; i < this.lottos.length; i++) {
+      const matchCount = this.userNumbers.filter((numb) => this.lottos[i].includes(parseInt(numb)));
 
       if (matchCount.length >= 3) {
-        this.calcWinPoint(matchCount, i);
+        this.calcWinPoint(matchCount.length, i);
       }
     }
     this.lottoResult();
@@ -110,42 +108,43 @@ class Lotto {
 
   calcWinPoint(matchCount, i) {
     switch (matchCount) {
-      case "3":
+      case 3:
         this.winPoint.fifth++;
         break;
-      case "4":
+      case 4:
         this.winPoint.fourth++;
         break;
-      case "5":
+      case 5:
         if (this.lottos[i].includes(this.bonusNum)) {
           this.winPoint.second++;
         } else {
           this.winPoint.third++;
         }
         break;
-      case "6":
+      case 6:
         this.winPoint.first++;
     }
   }
 
   lottoResult() {
-    this.calcLottoCount();
-    Console.print(Constant.OUTPUT_MESSAGE.result);
+    this.calcRateOfReturn();
+    Console.print(`${Constant.OUTPUT_MESSAGE.result}`);
     Console.print(`${Constant.OUTPUT_MESSAGE.threeMatch(this.winPoint.fifth)}`);
     Console.print(`${Constant.OUTPUT_MESSAGE.fourMatch(this.winPoint.fourth)}`);
     Console.print(`${Constant.OUTPUT_MESSAGE.fiveMatch(this.winPoint.third)}`);
     Console.print(`${Constant.OUTPUT_MESSAGE.fiveBonusMatch(this.winPoint.second)}`);
     Console.print(`${Constant.OUTPUT_MESSAGE.sixMatch(this.winPoint.first)}`);
     Console.print(`${Constant.OUTPUT_MESSAGE.rateOfReturn(this.winPoint.rateOfReturn)}`);
+    Console.close();
   }
 
   calcRateOfReturn() {
     const rateOfReturn =
-      this.winLotto.first * Constant.REWADR.first +
-      this.winLotto.second * Constant.REWADR.second +
-      this.winLotto.third * Constant.REWADR.third +
-      this.winLotto.fourth * Constant.REWADR.fourth +
-      this.winLotto.fifth * Constant.REWADR.fifth;
+      this.winPoint.first * Constant.REWADR.first +
+      this.winPoint.second * Constant.REWADR.second +
+      this.winPoint.third * Constant.REWADR.third +
+      this.winPoint.fourth * Constant.REWADR.fourth +
+      this.winPoint.fifth * Constant.REWADR.fifth;
 
     const result = ((rateOfReturn / this.money) * 100).toFixed(1);
     this.winPoint.rateOfReturn = result;
