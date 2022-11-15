@@ -1,13 +1,15 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
-const { ERROR, MESSAGE } = require('./Contants.js');
+const { ERROR, MESSAGE, RESULT } = require('./Contants.js');
+
 
 class Lotto {
   #countLotto;
-  #winningLottoNumber;
-  #bonusNumber;
-
+  winningLottoNumber;
+  bonusNumber;
+  compareLotto = [];
+  
   inputMoney() {
-    Console.readLine(MESSAGE.INPUT_MONEY, inputMoney => {
+    Console.readLine(MESSAGE.INPUT_MONEY+('\n'), inputMoney => {
       this.validate(inputMoney);
       this.buyLotto(inputMoney);
     });
@@ -17,6 +19,7 @@ class Lotto {
     this.#countLotto = Number(inputMoney) / 1000
     this.printCountLotto(this.#countLotto);
     this.makeLotto();
+    this.inputWinningLottoNumber(); // 당첨 번호 입력
   }
 
 
@@ -46,7 +49,9 @@ class Lotto {
     for (let i = 0; i < this.#countLotto; i++) {
       let lottoNumber = this.ascendingLottoArray(this.makeRandomLottoNumber());
       this.printRandomLottoNumber(lottoNumber);
-    }
+      this.compareLotto.push(lottoNumber);
+    };
+    
   }
 
   makeRandomLottoNumber() {
@@ -62,12 +67,14 @@ class Lotto {
   }
 
 
+
+
   inputWinningLottoNumber() {
     Console.readLine(MESSAGE.INPUT_WINNING_NUMBER+'\n', number => {
       const inputValue = number.split(",").map(Number);
       this.isValidWinningLottoNumber(inputValue);
-      this.#winningLottoNumber = inputValue;
-      this.inputBonusNumber();
+      this.winningLottoNumber = inputValue;
+      this.inputBonusNumber(); //보너스 번호 입력
     });
   }
 
@@ -94,10 +101,14 @@ class Lotto {
     });
   }
 
+
+
+
   inputBonusNumber() {
     Console.readLine(MESSAGE.INPUT_BONUS_NUMBER+('\n'), (number) => {
       this.isValidBonusNumber(number);
-      this.#bonusNumber = Number(number);
+      this.bonusNumber = Number(number);
+      this.rankResult(this.compareLotto, this.winningLottoNumber, this.bonusNumber);
     });
   }
 
@@ -120,17 +131,54 @@ class Lotto {
   }
 
   checkBonusOverlap(number){
-    if (this.#winningLottoNumber.includes(+number)) {
+    if (this.winningLottoNumber.includes(+number)) {
       throw new Error(ERROR.CHECK_BONUS_OVERLAP);
     }
   }
 
-  play() {
-    // this.inputMoney();
-    this.inputWinningLottoNumber();
-    // this.inputBonusNumber();
+
+
+  rankResult (compareLotto, winningLottoNumber, bonusNumber) {
+    let rankArray = [0,0,0,0,0];
+    compareLotto.forEach((lottoArray) => {
+      let matchCount = this.matchingNumber(lottoArray,winningLottoNumber);
+      if (matchCount == 6) rankArray[0] +=1;
+      if (matchCount == 5 && this.checkBonusNumber(lottoArray, bonusNumber)) rankArray[1] +=1;
+      if (matchCount == 5 && !this.checkBonusNumber(lottoArray, bonusNumber)) rankArray[2] +=1;
+      if (matchCount == 4) rankArray[3] +=1;
+      if (matchCount == 3) rankArray[4] +=1;
+    });
+    this.printRankResult(rankArray);
   }
 
+  matchingNumber(lottoNumber, winningLottoNumber) {
+    return lottoNumber.reduce((sum, number) => {
+      winningLottoNumber.includes(number) ? (sum += 1) : null;
+      return sum;
+    }, 0);
+  }
+
+  checkBonusNumber(lottoNumber,bonusNumber) {
+    return lottoNumber.includes(bonusNumber);
+  }
+
+  printRankResult(results){
+    Console.print(RESULT.RESULT_MESSAGE);
+    Console.print(RESULT.RESULT_RANK_6 + `${results[0]}개`);
+    Console.print(RESULT.RESULT_RANK_5_BONUS + `${results[1]}개`);
+    Console.print(RESULT.RESULT_RANK_5 + `${results[2]}개`);
+    Console.print(RESULT.RESULT_RANK_4 + `${results[3]}개`);
+    Console.print(RESULT.RESULT_RANK_3 + `${results[4]}개`);
+    Console.close();
+  }
+
+
+  play() {
+    this.inputMoney();
+  }
 }
+
+const lotto = new Lotto();
+lotto.play();
 
 module.exports = Lotto;
