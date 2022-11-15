@@ -14,12 +14,12 @@ buyLotto() {
     countLotto = Number(num) / 1000;
     throwInput = Number(num) % 1000;
     Console.print(`${countLotto}개를 구매했습니다.`);
-    this.showLottoNumber(countLotto, throwInput);
   });
+  this.showLottoNumber(countLotto, throwInput);
 }
 
 setLottoNumbers(){
-  const lottoNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+  const lottoNumber = Random.pickUniqueNumbersInRange(1, 45, 6);
   const checkLotto = new Lotto(lottoNumber);
   checkLotto.checkNum();
   lottoNumber.sort(function (a, b) {
@@ -32,7 +32,7 @@ setLottoNumbers(){
 
 showLottoNumber(countLotto, throwInput){
   let lottos = [];
-  if (throwInput > 0) throw '[ERROR] 금액은 1,000원 단위로 입력해주세요';
+  if (throwInput > 0) throw '[ERROR] 금액은 1,000원 단위로 입력해주세요.';
   for (let i = 0; i < countLotto; i++) {
     lottos[i] = this.setLottoNumbers();
     Console.print(lottos[i]);
@@ -44,16 +44,15 @@ inputLottoNumber(lottos){
   let inputSixNumber;
   Console.readLine('당첨 번호를 입력해 주세요.\n', (num) => {
     inputSixNumber = num.toString().split(",").map((str) => Number(str));
-    console.log(inputSixNumber);
-    const lottoCheck = new Lotto(inputSixNumber);
-    lottoCheck.checkNum();
-    lottoCheck.checkOther(inputSixNumber);
     // const lengthThrow = new Set(inputSixNumber);
     // const uniqueNumber = [...lengthThrow];
     // if(uniqueNumber.length != inputSixNumber.length) throw '[ERROR] 중복된 로또 번호가 있습니다.';
     // console.log(uniqueNumber);
-    this.inputBonusLotto(inputSixNumber, lottos);
   });
+  const lottoCheck = new Lotto(inputSixNumber);
+  lottoCheck.checkNum();
+  lottoCheck.checkOther(inputSixNumber);
+  this.inputBonusLotto(inputSixNumber, lottos);
 }
 
 inputBonusLotto(inputSixNumber, lottos){
@@ -61,15 +60,13 @@ inputBonusLotto(inputSixNumber, lottos){
   Console.readLine('보너스 번호를 입력해 주세요.\n', (num) => {
     inputBonusNumber = Number(num);
     inputSixNumber.push(inputBonusNumber);
-    console.log(inputSixNumber);
-    this.compareLotto(inputSixNumber, lottos);
   });
+  this.compareLotto(inputSixNumber, lottos);
 }
 
 compareLotto(inputSixNumber, lottos){
   let checkLength = [];
   let last = inputSixNumber.pop();
-  console.log(last);
   for (let i = 0; i < lottos.length; i++) {
     checkLength[i] = inputSixNumber.filter(num => lottos[i].includes(num)).length;
   }
@@ -78,13 +75,15 @@ compareLotto(inputSixNumber, lottos){
 
 countScore(checkLength,lottos,last){
   let second = 0;
+  let third = 0;
   for(let i = 0; i < lottos.length; i++){
-    if (lottos[i].includes(last) && checkLength[i] === 4) {
+    if (lottos[i].includes(last) && checkLength[i] === 5) {
       second++;
+    } else if(!lottos[i].includes(last) && checkLength[i] === 5) {
+      third++;
     }
   }
   let first = checkLength.filter(num => 6 === num).length;
-  let third = checkLength.filter(num => 5 === num).length;
   let fourth = checkLength.filter(num => 4 === num).length;
   let fiveth = checkLength.filter(num => 3 === num).length;
   this.showCount(first,second,third,fourth,fiveth,lottos);
@@ -110,6 +109,7 @@ plusRate(first, second, third, fourth, fiveth,lottos){
   let lottoLength = lottos.length;
   let returnRate = (allPlus/lottoLength)/10;
   Console.print(`총 수익률은 ${returnRate.toFixed(1)}%입니다.`);
+  Console.close();
 }
 
 
@@ -117,5 +117,8 @@ play() {
     this.buyLotto();
   }
 }
+
+// const app = new App();
+// app.play();
 
 module.exports = App;
