@@ -67,17 +67,17 @@ class App {
   }
 
   matchBonus(user) {
-    if (user.indexOf(Bonus) !== -1) {
+    if (user.indexOf(this.#bonus) !== -1) {
       return true;
     }
-    false;
+    return false;
   }
 
   getResult() {
     this.#numbers.map((userLotto) => {
       let count = this.#lotto.matchNumber(userLotto);
-      let bonusCheck = this.matchBonus(userLotto, bonusCheck);
-      this.calculateCount(count);
+      let bonusCheck = this.matchBonus(userLotto);
+      this.calculateCount(count, bonusCheck);
     });
   }
 
