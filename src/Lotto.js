@@ -1,18 +1,57 @@
+const { Console } = require('@woowacourse/mission-utils');
+const Utils = require('./Utils');
+const HandleException = require('./HandleException');
+
 class Lotto {
-  #numbers;
+    #numbers;
 
-  constructor(numbers) {
-    this.validate(numbers);
-    this.#numbers = numbers;
-  }
-
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    constructor(numbers) {
+        this.setNumbers(numbers);
+        this.validate();
     }
-  }
 
-  // TODO: 추가 기능 구현
+    setNumbers(numbers) {
+        if (typeof numbers === 'string') {
+            this.#numbers = Utils.convertToNumberArray(numbers);
+            return;
+        }
+
+        this.#numbers = numbers;
+    }
+
+    getNumbers() {
+        return this.#numbers;
+    }
+
+    validate() {
+        const numbers = this.getNumbers();
+        const handleException = new HandleException();
+        handleException.tryValidate(numbers, 'WinningLotto');
+    }
+
+    compareLotto(winningLotto) {
+        const numbers = this.getNumbers();
+        const matchCount = numbers.filter((number) => winningLotto.hasNumber(number)).length;
+
+        return matchCount;
+    }
+
+    hasNumber(number) {
+        if (typeof number !== 'number') {
+            number = Utils.convertToNumber(number);
+        }
+
+        const numbers = this.getNumbers();
+        return numbers.includes(number);
+    }
+
+    printLotto() {
+        Console.print(`[${this.#numbers.join(', ')}]`);
+    }
+
+    get [Symbol.toStringTag]() {
+        return 'Lotto';
+    }
 }
 
 module.exports = Lotto;
