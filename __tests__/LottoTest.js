@@ -39,5 +39,11 @@ describe("로또 클래스 테스트", () => {
       new MoneyExceptionHandling("1000j");
     }).toThrow("[ERROR]");
   });
+
+  test("금액이 1,000 단위로 나뉘는지 확인하고 아니라면 예외가 발생한다.", () => {
+    expect(() => {
+      new MoneyExceptionHandling(1200);
+    }).toThrow("[ERROR]");
+  });
   // 아래에 추가 테스트 작성 가능
 });
