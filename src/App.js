@@ -5,7 +5,7 @@ class App {
 }
 
 class Promptor {
-  receiveMoney() {
+  acceptMoney() {
     const query = "구입금액을 입력해 주세요.";
     const err =
       "천의 배수의 양의 정수만 입력할 수 있습니다. ( 예: 135000 (O); -2342 (X) )";
@@ -14,7 +14,7 @@ class Promptor {
       if (!this.#validateMoney(userInput)) {
         MyErrorHandler(err);
       }
-      this.money = userInput;
+      this.money = Number(userInput);
     });
   }
 
@@ -26,6 +26,7 @@ class Promptor {
     if (!/^\+?\d+000$/.test(money)) {
       return false;
     }
+
     return true;
   }
 
