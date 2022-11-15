@@ -1,6 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { ERROR_MESSAGE } = require("./constants");
 const Lotto = require("./Lotto");
+const LottoMachineValidator = require("./validator/LottoMachineValidator");
 
 class LottoMachine {
   #lottoList;
@@ -11,8 +11,9 @@ class LottoMachine {
   }
 
   validate(purchaseMoney) {
-    this.validateMoney(purchaseMoney);
-    this.validateIsNaN(purchaseMoney);
+    const validator = new LottoMachineValidator();
+    validator.validateMoney(purchaseMoney);
+    validator.validateIsNaN(purchaseMoney);
   }
 
   getLottoList() {
@@ -26,18 +27,6 @@ class LottoMachine {
   purchaseLotto(purchaseMoney) {
     const purchasedLottoNumber = parseInt(purchaseMoney / 1000);
     return Array.from(Array(purchasedLottoNumber),() => new Lotto(this.makeLotto()));
-  }
-
-  validateMoney(purchaseMoney) {
-    if(Number(purchaseMoney) < 1000) {
-      throw ERROR_MESSAGE.PURCHASE_MONEY_ERROR;
-    }
-  }
-
-  validateIsNaN(purchaseMoney) {
-    if(isNaN(Number(purchaseMoney))) {
-      throw ERROR_MESSAGE.PURCHASE_IS_NAN_ERROR;
-    }
   }
 }
 

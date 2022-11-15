@@ -1,4 +1,4 @@
-const { ERROR_MESSAGE } = require("./constants");
+const LottoValidator = require("./validator/LottoValidator");
 
 class Lotto {
   #numbers;
@@ -9,36 +9,14 @@ class Lotto {
   }
 
   validate(numbers) {
-    this.validateDuplication(numbers);
-    this.validateIsNaN(numbers);
-    this.validateRange(numbers);
+    const validator = new LottoValidator();
+    validator.validateDuplication(numbers);
+    validator.validateIsNaN(numbers);
+    validator.validateRange(numbers);
   }
 
   getNumbers() {
     return this.#numbers;
-  }
-  
-  validateDuplication(numbers) {
-    const numbersSet = new Set(numbers);
-    if(numbersSet.size !== 6) {
-      throw ERROR_MESSAGE.LOTTO_DUPLCATION_ERROR;
-    }
-  }
-
-  validateIsNaN(numbers) {
-    numbers.forEach((number) => {
-      if(isNaN(number)){
-        throw ERROR_MESSAGE.LOTTO_IS_NAN_ERROR;
-      }
-    });
-  }
-
-  validateRange(numbers) {
-    numbers.forEach((number) => {
-      if(number < 1 || number > 45){
-        throw ERROR_MESSAGE.LOTTO_RANGE_ERROR;
-      }
-    });
   }
 }
 
