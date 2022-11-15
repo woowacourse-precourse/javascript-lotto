@@ -6,7 +6,6 @@ const { WINNING_TEXT, INPUT_TEXT } = require('./Constant');
 
 class App {
   play() {
-    //todo. 숫자 하드코딩 없애기
     this.purchase();
   }
 
@@ -78,6 +77,4 @@ class App {
     Console.close();
   }
 }
-const app = new App();
-app.play();
 module.exports = App;
