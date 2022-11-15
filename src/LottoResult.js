@@ -26,6 +26,14 @@ class LottoResult {
       this.lottoMatchCounter[count] += 1;
     });
   }
+
+  static getMatchCount({ winning, bonus }, lottery) {
+    const count = winning.filter((number) => lottery.has(number)).length;
+    if (count === FIVE && lottery.has(bonus)) {
+      return LOTTO_MATCHES.fiveWithBonus;
+    }
+    return LOTTO_MATCHES[count];
+  }
 }
 
 module.exports = LottoResult;
