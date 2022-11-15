@@ -3,7 +3,9 @@ class App {
   #winNumbers;
   #bonusNumber;
   #equalNumber = [0, 0, 0, 0, 0, 0, 0];
+  #winMoney = [0, 0, 0, 5000, 50000, 1500000, 2000000000];
   #winBonus = 0;
+  #BONUS_PROFIT = 30000000;
 
   play() {
     this.buyLotto();
@@ -49,7 +51,35 @@ class App {
         this.#equalNumber[myWinNumbers.length+bonus]++;
       }
     }
+    this.calculateProfit();
   }
+
+  calculateProfit() {
+    let profit = 0;
+    for(let i = 3; i < 7; i++) {
+      profit += this.#winMoney*this.#equalNumber[i];
+    }
+    if(this.#winBonus) {
+      profit += this.#winBonus * this.#BONUS_PROFIT
+    }
+    
+    this.printResult();
+  }
+
+
+  printResult() {
+    MissionUtils.Console.print('당첨 통계');
+    MissionUtils.Console.print('---');
+    MissionUtils.Console.print(`3개 일치 (5000원) - ${this.#equalNumber[3]}개`);
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${this.#equalNumber[4]}개`);
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${this.#equalNumber[5]}개`);
+    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.#winBonus}개`);
+    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${this.#equalNumber[6]}개`);
+    MissionUtils.Console.print(`총 수익률은 - ${this.#equalNumber[6]}개입니다.`);
+  }
+
+
+
 
   getLottoNumbers(count) {
     const numbers = [];
