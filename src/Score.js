@@ -32,6 +32,10 @@ class Score {
         return this.correctNumber;
     }
 
+    getScore () {
+        return this.score;
+    }
+
 }
 
 module.exports = Score;
