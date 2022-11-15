@@ -20,27 +20,37 @@ class ScoreMachine {
     this.#winningNumber = winningNumber;
     this.#bonusNumber = bonusNumber;
 
-    ScoreMachine.lottoList.forEach((lotto) => {
-      const lottoNumber = lotto.getLottoNumber();
-      this.#lottoNumberList.push(lottoNumber);
-    });
-
-    this.#lottoNumberList.forEach((lottoNumber) => {
-      this.compareWinningNumber(lottoNumber);
-    });
-
+    this.generateLottoNumberList();
+    this.compareNumbers();
     this.calculateRateOfReturn();
     this.printResult();
     this.endGame();
   }
 
+  generateLottoNumberList() {
+    ScoreMachine.lottoList.forEach((lotto) => {
+      const lottoNumber = lotto.getLottoNumber();
+      this.#lottoNumberList.push(lottoNumber);
+    });
+  }
+
+  compareNumbers() {
+    this.#lottoNumberList.forEach((lottoNumber) => {
+      this.compareWinningNumber(lottoNumber);
+    });
+  }
+
   compareWinningNumber(lottoNumber) {
+    const matchCount = this.getMatchCount(lottoNumber);
+    this.rank(matchCount, lottoNumber);
+  }
+
+  getMatchCount(lottoNumber) {
     let matchCount = 0;
     this.#winningNumber.forEach((number) => {
       if (lottoNumber.includes(number)) matchCount += 1;
     });
-
-    this.rank(matchCount, lottoNumber);
+    return matchCount;
   }
 
   rank(matchCount, lottoNumber) {
@@ -69,10 +79,17 @@ class ScoreMachine {
   }
 
   printResult() {
+    this.printRanking();
+    this.printRateOfReturn();
+  }
+
+  printRanking() {
     Object.keys(RANKING).forEach((ranking) => {
       Console.print(RESULT[ranking](this.#result[RANKING[ranking]]));
     });
+  }
 
+  printRateOfReturn() {
     Console.print(RESULT.RATE_OF_RETURN(this.#result[RATE_OF_RETURN]));
   }
 
