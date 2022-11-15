@@ -36,4 +36,10 @@ const LOTTERY_ERROR = {
   RANGE: "[ERROR] 로또 번호의 범위는 1 ~ 45 까지입니다.",
 };
 
-module.exports = { MESSAGE, LOTTERY_PRICE, LOTTERY_RESULT, PRIZE_GRADE, PRIZE_PRICE, LOTTERY_ERROR };
+const BONUS_NUMBER_ERROR = {
+  DUPLICATED: "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.",
+  INTEGER: "[ERROR] 보너스 번호는 정수입니다.",
+  RANGE: "[ERROR] 보너스 번호의 범위는 1 ~ 45 까지입니다.",
+};
+
+module.exports = { MESSAGE, LOTTERY_PRICE, LOTTERY_RESULT, PRIZE_GRADE, PRIZE_PRICE, LOTTERY_ERROR, BONUS_NUMBER_ERROR };
