@@ -7,6 +7,7 @@ const { stringToNumberArray } = require("./utils");
 class App {
   #result;
   #lottoMachine;
+  #money;
 
   play() {
     this.inputPurchaseMoney();
@@ -15,6 +16,7 @@ class App {
   inputPurchaseMoney() {
     MissionUtils.Console.readLine(CONSOLE_MESSAGE.INPUT_PURCHASE_MONEY,(inputMoney)=>{
       this.#lottoMachine = new LottoMachine(inputMoney);
+      this.#money = Number(inputMoney);
       this.showPurchasedLotto();
     });
   }
