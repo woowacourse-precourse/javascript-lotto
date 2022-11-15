@@ -6,10 +6,11 @@ const message = {
   PRIZE_STAT: '당첨 통계',
   LINE: '---',
   hitStat(number, amount, lotto, isBonus) {
+    const prize = amount.toLocaleString('ko-KR');
     if (isBonus && number === 5) {
-      return `${number}개 일치, 보너스 볼 일치 (${amount}원) - ${lotto}개`;
+      return `${number}개 일치, 보너스 볼 일치 (${prize}원) - ${lotto}개`;
     }
-    return `${number}개 일치 (${amount}원) - ${lotto}개`;
+    return `${number}개 일치 (${prize}원) - ${lotto}개`;
   },
   returnOfInvestment(percent) {
     return `총 수익률은 ${percent}%입니다.`;
