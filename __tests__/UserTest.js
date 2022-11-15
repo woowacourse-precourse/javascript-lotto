@@ -85,7 +85,7 @@ describe("유저 클래스 테스트", () => {
   });
 
   test("보너스 번호가 당첨 번호와 중복되었다면 예외가 발생한다", () => {
-    Lotto.prototype.winNumbers = [1, 2, 3, 4, 5, 6];
+    Lotto.setWinNumbers([1, 2, 3, 4, 5, 6]);
     mockQuestions(["6"]);
 
     expect(() => {
