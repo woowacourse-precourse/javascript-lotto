@@ -56,7 +56,39 @@ class App {
   getBonusNumber() {
     MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.\n", (bonus) => {
       this.bonusNumber = +bonus;
+      this.matchLottoNumbers();
     });
+  }
+
+  matchLottoNumbers() {
+    for (let index = 0; index < this.lottoNumbers.length; index++) {
+      let count = this.lottoNumbers[index].filter((number) =>
+        this.winningNums.includes(number)
+      ).length;
+
+      if (count === 6) {
+        this.matchCount.first += 1;
+        count = 0;
+      }
+      if (count === 5) {
+        if (this.lottoNumbers[index].includes(this.bonusNumber)) {
+          this.matchCount.second += 1;
+          count = 0;
+        } else {
+          this.matchCount.third += 1;
+          count = 0;
+        }
+      }
+      if (count === 4) {
+        this.matchCount.fourth += 1;
+        count = 0;
+      }
+      if (count === 3) {
+        this.matchCount.fifth += 1;
+        count = 0;
+      }
+    }
+    MissionUtils.Console.print(this.matchCount);
   }
 }
 
