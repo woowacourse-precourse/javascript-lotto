@@ -2,6 +2,7 @@ const { Console } = require('@woowacourse/mission-utils');
 const { Random } = require('@woowacourse/mission-utils');
 
 const Lotto = require('./Lotto');
+const Bonus = require('./Bonus');
 
 class App {
   play() {}
@@ -48,13 +49,20 @@ class App {
       Console.print(lottoNumbers);
     });
     
-    this.getUserInputNumbers();
+    this.getUserLottoNumbers();
   }
 
   getUserLottoNumbers() {
     Console.readLine('당첨 번호를 입력해 주세요. \n', (userInput) => {
       const userInputArr = userInput.split(',');
       new Lotto(userInputArr);
+      this.getUserBonusNumbers(userInputArr);
+    });
+  }
+
+  getUserBonusNumbers(userLottoNumbers) {
+    Console.readLine('보너스 번호를 입력해 주세요. \n', (userInput) => {
+      new Bonus(userInput, userLottoNumbers);
     });
   }
 }
