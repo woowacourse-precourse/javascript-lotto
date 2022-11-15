@@ -25,4 +25,10 @@ describe('로또 클래스 테스트', () => {
     const lotto = new Lotto([6, 5, 4, 3, 2, 1]);
     expect(lotto.numbers).toEqual([1, 2, 3, 4, 5, 6]);
   });
+
+  test('당첨 번호 및 보너스 번호에 해당하는 숫자를 계산한다.', () => {
+    const lotto = new Lotto([1, 2, 3, 41, 42, 43]);
+    const target = lotto.countWinningBonusNumbers({ winning: [1, 2, 3, 4, 5, 6], bonus: 7 });
+    expect(target).toEqual({ winningCount: 3, bonusCount: 0 });
+  });
 });
