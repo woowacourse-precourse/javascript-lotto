@@ -1,3 +1,6 @@
+const Validator = require('./Validator');
+const { TYPE } = require('./constants');
+
 class Lotto {
   #numbers;
 
@@ -7,12 +10,15 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+    Validator.isNum(numbers, TYPE.LOTTO);
+    Validator.isEnoughNumbers(numbers, TYPE.LOTTO);
+    Validator.isNumsInRange(numbers, TYPE.LOTTO);
+    Validator.isDuplicated(numbers, TYPE.LOTTO);
   }
 
-  // TODO: 추가 기능 구현
+  getLotto() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
