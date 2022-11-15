@@ -75,7 +75,7 @@ class Result {
       this.#scoreBoard["matchSix"] * LOTTO_INFO.FIRST_PRIZE;
   }
 
-  calculateScore() {
+  printEachScore() {
     Console.print(RESULT_MESSAGES.MATCH_THREE_RESULT(this.#scoreBoard["matchThree"]));
     Console.print(RESULT_MESSAGES.MATCH_FOUR_RESULT(this.#scoreBoard["matchFour"]));
     Console.print(RESULT_MESSAGES.MATCH_FIVE_RESULT(this.#scoreBoard["matchFive"]));
@@ -92,7 +92,7 @@ class Result {
 
   announceScore() {
     Console.print(RESULT_MESSAGES.WINNING_STATISTICS);
-    this.calculateScore();
+    this.printEachScore();
     Console.print(this.#totalProfitRate);
   }
 }
