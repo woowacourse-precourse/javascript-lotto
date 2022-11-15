@@ -1,6 +1,7 @@
 const App = require('../src/App');
 const ExceptionCheck = require('../src/ExceptionCheck');
 const { Console } = require('@woowacourse/mission-utils');
+const Lotto = require('../src/Lotto');
 
 afterEach(() => {
   Console.close();
@@ -34,21 +35,22 @@ describe('ExeptionCheck 클래스의 userInputWinNumbers() 테스트', () => {
   });
 });
 
-describe('ExeptionCheck 클래스의 userInputWinNumberRange() 테스트', () => {
+describe('app 클래스의 userInputWinNumberRange() 테스트', () => {
   test('입력 범위 외인 46이 입력됐을때 에러 throw확인', () => {
-    const exceptionCheck = new ExceptionCheck();
-    const input = [1, 2, 3, 4, 5, 0];
-
+    const input = [1, 2, 3, 4, 5, 6];
+    const lotto = new Lotto(input);
+    const wrong = [1, 2, 3, 4, 5, 46];
     expect(() => {
-      exceptionCheck.userInputWinNumberRange(input);
+      lotto.checkNumberRange(wrong);
     }).toThrowError('[ERROR]');
   });
   test('입력 범위 외인 46이 입력됐을때 에러 throw확인', () => {
-    const exceptionCheck = new ExceptionCheck();
-    const input = [1, 2, 3, 4, 5, 46];
+    const input = [1, 2, 3, 4, 5, 6];
+    const lotto = new Lotto(input);
+    const wrong = [1, 2, 3, 4, 5, 0];
 
     expect(() => {
-      exceptionCheck.userInputWinNumberRange(input);
-    }).toThrowError('[ERROR]');
+      lotto.checkNumberRange(wrong);
+    }).toThrow();
   });
 });
