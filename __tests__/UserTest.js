@@ -20,4 +20,19 @@ describe("사용자 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
+  test("구입금액만큼 구입할 로또의 개수를 정한다.", () => {
+    const user = new User(6000);
+    expect(
+      user.getLottoAmount()
+    ).toBe(6);
+  });
+
+  test("1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 선택한다.", () => {
+    const user = new User(6000);
+    const lotto = user.createLotto()
+    expect(
+      new Set(lotto).size
+    ).toBe(6);
+  });
+
 });

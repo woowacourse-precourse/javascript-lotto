@@ -6,6 +6,7 @@ class App {
 
   play() {
     this.getPerchaseAmount();
+    this.#User.createLottoList();
   }
 
   getPerchaseAmount() {
