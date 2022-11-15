@@ -32,4 +32,12 @@ describe("로또 클래스 테스트", () => {
       app.play();
     }).toThrow("[ERROR] 로또 번호는 6개여야 합니다.");
   })
+
+  test("입력한 로또 번호가 중복되면 예외 발생",()=>{
+    mockQuestions(["3000","1,2,3,4,5,5"]);
+    expect(()=>{
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR] 입력값에 중복이 있습니다.");
+  })
 });
