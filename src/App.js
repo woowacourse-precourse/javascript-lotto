@@ -15,6 +15,7 @@ class App {
       Console.print(cnt + "개를 구매했습니다.");
       this.buyLotto(cnt);
       this.InputWinninglotteryNum();
+      this.InputBonusNum();
     });
   }
 
@@ -42,6 +43,12 @@ class App {
   winningNumToNumArr(nums) {
     const replaceNum= nums.replace(/,/g, '');
     return replaceNum
+  }
+
+  InputBonusNum() {
+    Console.readLine('보너스 번호를 입력해 주세요.', (bonus) => {
+      console.log(bonus);
+    });
   }
 }
   
