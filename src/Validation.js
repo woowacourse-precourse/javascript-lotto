@@ -12,10 +12,10 @@ class Validation {
     if (purchaseAmount.length === 0) {
       throw new Error(ERROR_MESSAGE.NOT_EMPTY_INPUT);
     }
-    if (!this.isOnlyNumber(purchaseAmountArr)) {
+    if (!Validation.isOnlyNumber(purchaseAmountArr)) {
       throw new Error(ERROR_MESSAGE.NOT_ONLY_NUMBER);
     }
-    if (!this.isDivided(purchaseAmount)) {
+    if (!Validation.isDivided(purchaseAmount)) {
       throw new Error(ERROR_MESSAGE.PURCHASEAMOUNT_UNDIVIDED);
     }
   }
@@ -32,16 +32,16 @@ class Validation {
     if (winnerNumber.length === 0) {
       throw new Error(ERROR_MESSAGE.NOT_EMPTY_INPUT);
     }
-    if (!this.isLottoSize(winnerNumber)) {
+    if (!Validation.isLottoSize(winnerNumber)) {
       throw new Error(ERROR_MESSAGE.SIZE_INVALID);
     }
-    if (!this.isOnlyNumber(winnerNumber)) {
+    if (!Validation.isOnlyNumber(winnerNumber)) {
       throw new Error(ERROR_MESSAGE.NOT_ONLY_NUMBER);
     }
-    if (!this.isUniqueWinnerNumber(winnerNumber)) {
+    if (!Validation.isUniqueWinnerNumber(winnerNumber)) {
       throw new Error(ERROR_MESSAGE.NOT_UNIQUE_NUMBER);
     }
-    if (!this.isNumberInRange(winnerNumber)) {
+    if (!Validation.isNumberInRange(winnerNumber)) {
       throw new Error(ERROR_MESSAGE.NOT_IN_RANGE);
     }
   }
@@ -63,13 +63,13 @@ class Validation {
     if (bonusNumber.length === 0) {
       throw new Error(ERROR_MESSAGE.NOT_EMPTY_INPUT);
     }
-    if (!this.isOnlyNumber(splitBonusNumber)) {
+    if (!Validation.isOnlyNumber(splitBonusNumber)) {
       throw new Error(ERROR_MESSAGE.NOT_ONLY_NUMBER);
     }
-    if (!this.isNumberInRange(bonusNumberArr)) {
+    if (!Validation.isNumberInRange(bonusNumberArr)) {
       throw new Error(ERROR_MESSAGE.NOT_IN_RANGE);
     }
-    if (this.isUniqueBonusNumber(bonusNumber, winnerNumber)) {
+    if (Validation.isUniqueBonusNumber(bonusNumber, winnerNumber)) {
       throw new Error(ERROR_MESSAGE.NOT_UNIQUE_NUMBER);
     }
   }
@@ -80,16 +80,16 @@ class Validation {
     if (lottoNumber.length === 0) {
       throw new Error(ERROR_MESSAGE.SIZE_INVALID);
     }
-    if (!this.isOnlyNumber(lottoNumber)) {
+    if (!Validation.isOnlyNumber(lottoNumber)) {
       throw new Error(ERROR_MESSAGE.NOT_ONLY_NUMBER);
     }
-    if (!this.isLottoSize(lottoNumber)) {
+    if (!Validation.isLottoSize(lottoNumber)) {
       throw new Error(ERROR_MESSAGE.SIZE_INVALID);
     }
-    if (!this.isNumberInRange(lottoNumber)) {
+    if (!Validation.isNumberInRange(lottoNumber)) {
       throw new Error(ERROR_MESSAGE.NOT_IN_RANGE);
     }
-    if (!this.isUniqueLottoNumber(lottoNumber)) {
+    if (!Validation.isUniqueLottoNumber(lottoNumber)) {
       throw new Error(ERROR_MESSAGE.NOT_UNIQUE_NUMBER);
     }
   }
