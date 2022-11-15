@@ -71,7 +71,6 @@ class App {
     });
   }
   printNumbers() {
-    // TODO : 형태 바꾸기 // [1, 2, 3, 4, 5, 6]
     this.#randomNumbers.forEach((element) => {
       Console.print(`[${element.join(", ")}]`);
     });

@@ -20,7 +20,7 @@ class Money {
       throw new Error("[ERROR] 금액은 1000원으로 나누어져야 합니다.");
     }
     if (money < 0) {
-      throw new Error("[ERROR] 금액은 음수면 안됩니다.");
+      throw new Error("[ERROR] 금액은 음수가 되면 안됩니다.");
     }
   }
 
