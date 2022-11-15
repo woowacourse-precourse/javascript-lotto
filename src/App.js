@@ -72,7 +72,7 @@ class App {
 
   validInput(input) {
     for (let word of input) {
-      if (isNaN(word) && word !== ",") {
+      if (isNaN(word) || word !== ",") {
         throw new Error(NUMBER_ERROR);
       }
     }
