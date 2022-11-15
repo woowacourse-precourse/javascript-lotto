@@ -1,4 +1,5 @@
 const { checkValidLotto } = require('./utils/validator');
+const { Console } = require('@woowacourse/mission-utils');
 
 class Lotto {
   #numbers;
@@ -6,6 +7,10 @@ class Lotto {
   constructor(numbers) {
     checkValidLotto(numbers);
     this.#numbers = numbers;
+  }
+
+  printLotto() {
+    Console.print(this.#numbers);
   }
 }
 
