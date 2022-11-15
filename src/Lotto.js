@@ -18,6 +18,17 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
+
+    numbers.forEach(number =>{
+      if (number < 0 || number > 45){
+        throw new Error("[ERROR] 로또 번호는 1과 45 사이여야 합니다.");
+      }
+    });
+
+    let delete_overlab = [...new Set(numbers)];
+    if (delete_overlab.length != 6){
+      throw new Error("[ERROR] 중복된 값이 입력되었습니다.");
+    }
   }
 
   checkWinning(userArray, bonus){
