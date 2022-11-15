@@ -52,5 +52,4 @@ function checkDuplicateNumber(numbers) {
 
 module.exports.checkValiPrice = checkValiPrice;
 module.exports.checkValidNumbers = checkValidNumbers;
-module.exports.getTotalRevenue = getTotalRevenue;
 module.exports.getRevenuePrecent = getRevenuePrecent;
