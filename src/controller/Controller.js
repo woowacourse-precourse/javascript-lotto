@@ -17,7 +17,22 @@ class Controller {
       const lottoCount = this.calcLottoCount(payment);
       this.paymentModel = new Payment(payment);
       this.view.printLottoCount(lottoCount);
+      this.createQuickPickList(lottoCount);
     });
+  }
+
+  createQuickPickList(lottoCount) {
+    const quickPickList = [];
+
+    while (quickPickList.length < lottoCount) {
+      const lottoNumbers = this.createQuickPick();
+      if (quickPickList.indexOf(lottoNumbers) === -1) {
+        quickPickList.push(lottoNumbers);
+      }
+    }
+
+    this.quickPickModel = new QuickPick(quickPickList);
+    this.view.printQuickPick(quickPickList);
   }
 }
 
