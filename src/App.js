@@ -34,7 +34,7 @@ class App {
   }
 
   printPurchaseLottoList() {
-    this.purchaseLottoSet.forEach(lotto => Console.print(lotto));
+    this.purchaseLottoSet.forEach(lotto => Console.print(`[${JSON.parse(lotto).join(', ')}]`));
     return this.printWinningNumberInputMessage();
   }
 
