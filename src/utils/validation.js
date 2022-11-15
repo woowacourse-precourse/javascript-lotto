@@ -11,7 +11,7 @@ const isNumberInRange = (number) => {
   return true;
 };
 const isSixNumbers = (numbers) => numbers.length !== 6;
-const isNumbersUnique = (numbers) => Array.from(new Set(numbers)).length !== 6;
+const isNumbersUnique = (numbers) => Array.from(new Set(numbers)).length === 6;
 const isNumbersInRange = (numbers) => {
   let result = true;
   numbers.forEach((number) => {
@@ -38,7 +38,7 @@ const validateNumbers = (numbers) => {
   if (isSixNumbers(numbers)) {
     throw new Error(`[ERROR] ${ERROR_MESSAGE.isSixNumbers}`);
   }
-  if (isNumbersUnique(numbers)) {
+  if (!isNumbersUnique(numbers)) {
     throw new Error(`[ERROR] ${ERROR_MESSAGE.isNumbersUnique}`);
   }
   if (!isNumbersInRange(numbers)) {
@@ -65,5 +65,5 @@ const validateMoney = (money) => {
 };
 
 module.exports = {
-  validateNumbers, validateMoney, validateNumber, isNumberSorted,
+  validateNumbers, validateMoney, validateNumber, isNumberSorted, isNumbersUnique,
 };
