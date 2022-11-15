@@ -30,6 +30,13 @@ class App {
       MissionUtils.Console.print(`[${lottoNumbers}]`);
     })
   }
+
+  inputWinningNumber() {
+    MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (numbers) => {
+      numbers = numbers.split(",").map(number => parseInt(number));
+      this.inputBonusNumber(numbers);
+    })
+  }
 }
 
 const app = new App;
