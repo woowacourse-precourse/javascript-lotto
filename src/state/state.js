@@ -1,16 +1,24 @@
 const {
   PURCHACE_MESSAGE,
   REQUIRE_WIN_NUMBER_MESSAGE,
+  RESULT_RANK,
+  THIRD,
+  FORTH,
+  FIFTH,
+  FIFTHBONUS,
+  SIX,
 } = require("../constants/constant");
 const LottoNumberGenerator = require("../domain/LottoNumberGenerator");
 const MessageOutput = require("../domain/MessageOutput");
 const UserInput = require("../domain/UserInput");
+const Compare = require("../domain/Compare");
 
 const MissionUtils = require("@woowacourse/mission-utils");
 
 class State {
   lottoInput = 0;
   winNumbers = [];
+  bonusNumber = 0;
   moneyInput = 0;
   buyLottoCount = 0;
   buyLottoNumbers = [];
@@ -56,13 +64,28 @@ class State {
 
   setBonusNumbersInput(userInput) {
     const number = parseInt(userInput);
-    this.isValidate(number);
-    this.isNotInWinNumbers(number);
-  }
-  isNotInWinNumbers(userInput) {
-    if (!this.winNumbers.includes(userInput)) {
-      console.log(`중복 아님`);
+    if (this.isValidate(number) && this.isNotInWinNumbers(number)) {
+      this.bonusNumber = userInput;
+      const compare = new Compare();
+      const resultArray = compare.setResult(
+        this.buyLottoNumbers,
+        this.winNumbers,
+        this.bonusNumber
+      );
+      this.makeResultMessage();
     }
+  }
+
+  makeResultMessage() {
+    const messageArr = [THIRD, FORTH, FIFTH, FIFTHBONUS, SIX];
+    messageArr.map((arr) => {
+      const message = `${arr.condition} (${arr.price}원) - ${arr.count}개`;
+      this.messageOutput.printMesage(message);
+    });
+  }
+
+  isNotInWinNumbers(userInput) {
+    return !this.winNumbers.includes(userInput) ? true : false;
   }
   isValidate(userInput) {
     return 0 < userInput <= 45 ? true : false;
@@ -86,7 +109,6 @@ class State {
   }
   isNotNumberDuplicate(numberArr) {
     const setNumberArr = new Set(numberArr);
-    console.log(setNumberArr.size);
     return setNumberArr.size === 6 ? true : false;
   }
 
@@ -98,7 +120,6 @@ class State {
         return;
       }
     });
-    console.log(flag);
     return flag;
   }
 }

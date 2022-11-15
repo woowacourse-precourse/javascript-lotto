@@ -35,13 +35,13 @@
   - [x] 보너스 번호를 입력 받는다 ('보너스 번호를 입력해 주세요.') UserInput # bonusNumberInput()
 
   - 당첨 번호와 로또 번호 비교
-    - [] 당첨 통계 객체에 결과를 저장한다 Judgement # saveResult()
+    - [x] 당첨 통계 객체에 결과를 저장한다 Compare # saveResult()
 
 <br/>
 
-- [] **게임 결과**
+- [x] **게임 결과**
 
-  - [] 사용자에게 실행 결과를 안내한다 MessageOutput # printMessage()
+  - [x] 사용자에게 실행 결과를 안내한다 MessageOutput # printMessage()
 
   ```
   당첨 통계
@@ -49,7 +49,7 @@
   ```
 
   - 당첨 내역 출력 MessageOutput # printMessage()
-  - [] 당첨 기준과 금액에 맞춰 당첨 내역을 출력한다 MessageOutput # printMessage()
+  - [x] 당첨 기준과 금액에 맞춰 당첨 내역을 출력한다 MessageOutput # printMessage()
 
     - 1등: 6개 번호 일치 / 2,000,000,000원
     - 2등: 5개 번호 + 보너스 번호 일치 / 30,000,000원
