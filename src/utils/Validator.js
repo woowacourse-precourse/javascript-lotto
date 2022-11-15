@@ -28,8 +28,8 @@ class Validator {
   }
 
   validateDoubled(numbers) {
-    const set = Array.from(new Set(numbers));
-    if (numbers.length !== set.length) throw new Error(ERROR_MESSAGES.overlap);
+    if (numbers.length !== new Set(numbers).size)
+      throw new Error(ERROR_MESSAGES.overlap);
   }
 }
 

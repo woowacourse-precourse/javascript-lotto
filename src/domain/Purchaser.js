@@ -27,7 +27,7 @@ class Purchaser {
   }
 
   countMatchedNumber(lottos, winnerNumber, bonusNumber) {
-    let matchedCountList = [0, 0, 0, 0, 0, 0, 0, 0];
+    let matchedCountList = Array(8).fill(0);
     lottos.forEach((lotto) => {
       const { count, bonus } = this.compare(
         lotto.getNumbers(),
@@ -42,12 +42,12 @@ class Purchaser {
   }
 
   compare(lottoToken, winnerNumber, bonusNumber) {
-    let count = 0;
-    const bonus = lottoToken.includes(bonusNumber) ? 1 : 0;
-    count = winnerNumber.reduce(
+    const count = winnerNumber.reduce(
       (acc, cur) => (acc += lottoToken.includes(cur) ? 1 : 0),
       0
     );
+    const bonus = lottoToken.includes(bonusNumber) ? 1 : 0;
+
     return { count, bonus };
   }
 
