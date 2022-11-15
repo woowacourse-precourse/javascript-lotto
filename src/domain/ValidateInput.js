@@ -1,9 +1,13 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { PURCHACE_MESSAGE } = require("../constants/constant");
+const {
+  PURCHACE_MESSAGE,
+  ERROR,
+  ERROR_MESSAGE_INPUT_MONEY,
+} = require("../constants/constant");
 const LottoNumberGenerator = require("./LottoNumberGenerator");
 const MessageOutput = require("./MessageOutput");
 
-class UserInput {
+class ValidateInput {
   #message;
   userLottoCount = 0;
 
@@ -16,7 +20,10 @@ class UserInput {
 
   checkExceptCaseInMoney(money) {
     const remains = money % 1000;
-    return remains > 0 ? false : true;
+    if (remains > 0) {
+      throw new Error(`${ERROR} ${ERROR_MESSAGE_INPUT_MONEY}`);
+    }
+    return true;
   }
 
   makeUserLottoNumbers(userLottoCount) {
@@ -27,4 +34,4 @@ class UserInput {
   }
 }
 
-module.exports = UserInput;
+module.exports = ValidateInput;

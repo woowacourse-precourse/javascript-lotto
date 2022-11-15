@@ -13,7 +13,7 @@
 
 <br/>
 
-- [] **게임 진행**
+- [x] **게임 진행**
 
   - 로또 구매 금액 입력
   - [x] 사용자가 구입금액을 입력한다 UserInput # moneyInput()
@@ -72,18 +72,18 @@
 
 <br/>
 
-- [] **예외 상황**
+- [x] **예외 상황**
 
   - [x] 구입 금액에 대한 예외
     - [x] 입력받은 구입 금액이 1000으로 나누어 떨어지지 않는다 UserInput # moneyInput() - checkExceptCaseInMoney()
-    - [] 구입 금액이 공백일 경우 UserInput # moneyInput() - isInputBlank()
-    - [] 구입 금액이 0일 경우 UserInput # moneyInput() - isInputZero()
-  - [] 당첨 번호에 대한 예외
-    - [] 입력받은 당첨 번호에 중복이 존재할 경우 UserInput # isNotNumberDuplicate()
-    - [] 당첨 번호가 쉼표(',')로 구분되지 않을 경우 UserInput # isUsingRestMark()
-    - [] 로또 번호가 1부터 45 사이의 숫자가 아닐 경우 UserInput # isValidateNumberRange()
+    - [x] 구입 금액이 공백일 경우 UserInput # moneyInput() - isInputBlank()
+    - [x] 구입 금액이 0일 경우 UserInput # moneyInput() - isInputZero()
+  - [x] 당첨 번호에 대한 예외
+    - [x] 입력받은 당첨 번호에 중복이 존재할 경우 UserInput # isNotNumberDuplicate()
+    - [x] 당첨 번호가 쉼표(',')로 구분되지 않을 경우 UserInput # isUsingRestMark()
+    - [x] 로또 번호가 1부터 45 사이의 숫자가 아닐 경우 UserInput # isValidateNumberRange()
 
 <br/>
 
-- [] **예외 상황 메세지 출력**
-  - [] [ERROR]으로 시작한다 ('[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다')
+- [x] **예외 상황 메세지 출력**
+  - [x] [ERROR]으로 시작한다 ('[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다')

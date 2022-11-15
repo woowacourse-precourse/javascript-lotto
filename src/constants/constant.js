@@ -14,6 +14,7 @@ const ERROR_MESSAGE_ONLY_SIX_NUMBER = "로또 번호는 6개만 입력할 수 �
 
 const MAX_LOTTO_VALUE = 45;
 const MIN_LOTTO_VALUE = 1;
+const LOTTO_NUMBER_COUNT = 6;
 
 const WON = "원";
 const COUNT = "개";
@@ -77,4 +78,5 @@ module.exports = {
   MAX_LOTTO_VALUE,
   ERROR_MESSAGE_BETWEEN_ONE_TO_FORTYFIVE,
   ERROR_MESSAGE_ONLY_SIX_NUMBER,
+  LOTTO_NUMBER_COUNT,
 };

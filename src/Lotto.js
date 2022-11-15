@@ -1,6 +1,8 @@
 const {
   ERROR_MESSAGE_ONLY_SIX_NUMBER,
   ERROR,
+  MIN_LOTTO_VALUE,
+  MAX_LOTTO_VALUE,
 } = require("./constants/constant");
 
 class Lotto {
@@ -9,7 +11,7 @@ class Lotto {
   constructor(numbers) {
     this.validate(numbers);
     this.isNotNumberDuplicate(numbers);
-    this.isValidateRange(numbers);
+    this.isValidateNumberRange(numbers);
     this.#numbers = numbers;
   }
 
@@ -27,11 +29,14 @@ class Lotto {
     }
   }
 
-  isValidateRange(numbers) {
-    if (0 < numbers <= 45) {
-      return true;
-    }
-    throw new Error(`${ERROR} ${ERROR_MESSAGE_BETWEEN_ONE_TO_FORTYFIVE}`);
+  isValidateNumberRange(numbers) {
+    let flag = true;
+    numbers.map((number) => {
+      if (number < MIN_LOTTO_VALUE || number > MAX_LOTTO_VALUE) {
+        flag = false;
+        throw new Error(`${ERROR} ${ERROR_MESSAGE_BETWEEN_ONE_TO_FORTYFIVE}`);
+      }
+    });
   }
 }
 

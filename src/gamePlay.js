@@ -16,18 +16,20 @@ const {
   MIN_LOTTO_VALUE,
   MAX_LOTTO_VALUE,
   ERROR_MESSAGE_BETWEEN_ONE_TO_FORTYFIVE,
+  GAME_START_MESSAGE,
 } = require("./constants/constant");
 const LottoNumberGenerator = require("./domain/LottoNumberGenerator");
 const MessageOutput = require("./domain/MessageOutput");
-const UserInput = require("./domain/UserInput");
+const ValidateInput = require("./domain/ValidateInput");
 const Compare = require("./domain/Compare");
 
 const MissionUtils = require("@woowacourse/mission-utils");
 const Calculator = require("./domain/Calculator");
 const Lotto = require("./Lotto");
 const { ONLY_NUMBER } = require("./utils/validator");
+const BackLogic = require("./utils/BackLogic");
 
-class State {
+class gamePlay {
   winNumbers = [];
   bonusNumber = 0;
 
@@ -37,10 +39,26 @@ class State {
   buyLottoCount = 0;
   buyLottoNumbers = [];
 
+  validateInput = new ValidateInput();
   messageOutput = new MessageOutput();
   lottoNumberGenerator = new LottoNumberGenerator();
   calculator = new Calculator();
   compare = new Compare();
+  backLogic = new BackLogic();
+
+  gameStart() {
+    this.registMoney(GAME_START_MESSAGE);
+  }
+
+  registMoney(message) {
+    MissionUtils.Console.readLine(message, (userInput) => {
+      if (this.validateInput.checkExceptCaseInMoney(userInput)) {
+        this.setMoneyInput(userInput);
+        return;
+      }
+      throw new Error(`${ERROR} ${ERROR_MESSAGE_INPUT_MONEY}`);
+    });
+  }
 
   setMoneyInput(userInput) {
     if (!ONLY_NUMBER.test(userInput)) {
@@ -120,29 +138,12 @@ class State {
   }
 
   setWinNumbersInput(userInput) {
-    const splitedNumbers = this.splitNumber(userInput, ",");
+    const splitedNumbers = this.backLogic.splitNumber(userInput, ",");
 
     new Lotto(splitedNumbers);
     this.winNumbers = splitedNumbers;
     this.bonusNumbersInput(REQUIRE_BONUS_NUMBER_MESSAGE);
   }
-
-  splitNumber(number, flag) {
-    return number.split(flag).map((item) => {
-      return parseInt(item);
-    });
-  }
-
-  isValidateNumberRange(numberArr) {
-    let flag = true;
-    numberArr.map((number) => {
-      if (number < MIN_LOTTO_VALUE || number > MAX_LOTTO_VALUE) {
-        flag = false;
-        return;
-      }
-    });
-    return flag;
-  }
 }
 
-module.exports = State;
+module.exports = gamePlay;

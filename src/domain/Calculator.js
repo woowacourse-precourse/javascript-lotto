@@ -2,8 +2,6 @@ const { REGEXP_KOREAN_MONEY_COMMA_LOCATION } = require("../utils/validator");
 const MessageOutput = require("./MessageOutput");
 
 class Calculator {
-  messageOutput = new MessageOutput();
-
   calcReturnMoney(lottoMoneyOutput, moneyInput) {
     const returnMoney = ((lottoMoneyOutput / moneyInput) * 100).toFixed(2);
     const koreanMoney = returnMoney.replace(
@@ -11,9 +9,6 @@ class Calculator {
       ","
     );
     return parseFloat(koreanMoney);
-    // this.messageOutput.printMessage(
-    //   `총 수익률은 ${parseFloat(koreanMoney)}%입니다.`
-    // );
   }
 
   plusLottoMoney(count, price) {
