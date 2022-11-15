@@ -27,15 +27,31 @@ class Money {
   }
 
   validateMoney(money) {
-    if(isNaN(money) || money === "" || money === " "){
+    this.checkMoneyIsNumber(money);
+    this.checkMoneyIsInt(money);
+    this.checkMoneyIsOverLottoCost(money);
+    this.checkMoneyHasNoLeftover(money);
+  }
+
+  checkMoneyIsNumber(money) {
+    if(isNaN(money) || money === "" || money === " ") {
       throw new Error(ERROR_MONEY_IS_NUMBER_MESSAGE);
     }
+  } 
+
+  checkMoneyIsInt(money) {
     if(Number(money) % 1 !== 0){
       throw new Error(ERROR_MONEY_IS_INT_MESSAGE);
     }
+  }
+
+  checkMoneyIsOverLottoCost(money) {
     if(Number(money) < ONE_LOTTO_COST){
-         throw new Error(ERROR_MONEY_OVER_MESSAGE);
+      throw new Error(ERROR_MONEY_OVER_MESSAGE);
     }
+  }
+
+  checkMoneyHasNoLeftover(money) {
     if(Number(money) % ONE_LOTTO_COST !== 0){
       throw new Error(ERROR_MONEY_DIVIDE_MESSAGE);
     }
