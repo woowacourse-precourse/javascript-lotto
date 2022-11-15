@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Lotto = require('./Lotto');
 
 class App {
   constructor() {
@@ -34,11 +35,8 @@ class App {
     for (let index = 0; index < num; index++) {
       const newLottoArray = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       newLottoArray.sort(function compare(a, b) {return a-b;});
-      this.totalLottoArray.push(newLottoArray);
-      console.log(`newLottoArray:`);
-      console.log(newLottoArray);
-      console.log(`totalLottoArray:`);
-      console.log(this.totalLottoArray);
+      this.totalLottoArray.push(new Lotto(newLottoArray).getNumbers());
+      MissionUtils.Console.print(`[${new Lotto(newLottoArray).getNumbers().join(", ")}]`);
     }
     return this.getWinningLotto();
   }
@@ -65,7 +63,6 @@ class App {
   getWinningLotto() {
     MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.\n", (answer) => {
       this.winningLotto = answer.split(",").map(Number);
-      console.log(this.winningLotto);
       return this.getBonusLotto();
     });
   }
@@ -74,7 +71,6 @@ class App {
   getBonusLotto() {
     MissionUtils.Console.readLine("보너스 번호를 입력해 주세요.\n", (answer) => {
       this.bonusLotto = parseInt(answer);
-      console.log(this.bonusLotto);
       if(this.validateNumbers(this.winningLotto, this.bonusLotto)){
         return this.checkLotto();
       };
@@ -110,7 +106,7 @@ class App {
 
   // 8. 로또 당첨 여부 출력
   printLottoResult() {
-    MissionUtils.Console.print('당첨 통계\n---\n');
+    MissionUtils.Console.print('당첨 통계\n---');
     MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.result[0]}개`);
     MissionUtils.Console.print(`4개 일치 (50,000원) - ${this.result[1]}개`);
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${this.result[2]}개`);
@@ -125,7 +121,7 @@ class App {
     for (let index = 0; index < MONEYARRAY.length; index++) {
       this.totalProfit += MONEYARRAY[index] * this.result[index];
     }
-    MissionUtils.Console.print(`총 수익률은 ${this.totalProfit/this.money}%입니다.`);
+    MissionUtils.Console.print(`총 수익률은 ${Math.round(this.totalProfit/this.money*1000)/10}%입니다.`);
     MissionUtils.Console.close();
   }
 
