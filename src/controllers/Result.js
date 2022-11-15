@@ -11,10 +11,10 @@ class Result {
   };
   #revenue;
 
-  constructor(lottoArray, winningNumbers, bonusNumbers, money) {
+  constructor(lottoArray, winningNumbers, bonusNumber, money) {
     this.lottoArray = lottoArray;
     this.winningNumbers = winningNumbers;
-    this.bonusNumbers = bonusNumbers;
+    this.bonusNumber = bonusNumber;
     this.money = money;
     this.getScore();
     this.getRevenue();
@@ -31,7 +31,7 @@ class Result {
   getScore() {
     this.lottoArray.forEach((item) => {
       const lottoNumber = item.lottoNumber;
-      const game = new LottoGame(lottoNumber, this.winningNumbers, this.bonusNumbers);
+      const game = new LottoGame(lottoNumber, this.winningNumbers, this.bonusNumber);
 
       if (game.matchedWinningNumberCount === 3) this.#score.three += 1;
       if (game.matchedWinningNumberCount === 4) this.#score.four += 1;
