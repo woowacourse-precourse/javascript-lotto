@@ -10,6 +10,16 @@ class GenerateLotto {
   static printLottoCount(lottoCount) {
     Console.print(lottoCount + LOTTO_COUNT_MESSAGE);
   }
+
+  static generateLottoNumber(lottoCount) {
+    let lottos = [];
+    for (let i = 0; i < lottoCount; i++) {
+      let lotto = Random.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_PICK_COUNT);
+      lottos.push(lotto.sort((a, b) => (a > b ? 1 : -1)));
+    }
+
+    return lottos;
+  }
 }
 
 module.exports = GenerateLotto;
