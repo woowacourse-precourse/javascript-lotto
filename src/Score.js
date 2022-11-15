@@ -53,6 +53,13 @@ class Score {
         return count;
     }
 
+    calculateCount () {
+        for(let userOneLotto of this.userLotto) {
+            const count = this.calculateMatchCount(userOneLotto);
+            this.calculateGrade(count);
+        }
+    }
+
 }
 
 module.exports = Score;
