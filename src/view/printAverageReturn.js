@@ -10,7 +10,7 @@ const printAverageReturn = {
     MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${Object.values(value)[3][0]}개`);
     MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${Object.values(value)[4][0]}개`);
     MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${Object.values(value)[2][0]}개`);
-    MissionUtils.Console.print(`총 수익률은 ${(profit / inputDataObject.principal) * 100}%입니다.`);
+    MissionUtils.Console.print(`총 수익률은 ${(profit / inputDataObject.inputMoney) * 100}%입니다.`);
     return MissionUtils.Console.close();
   },
 };
