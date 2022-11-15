@@ -7,6 +7,24 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
+  test("로또 번호의 개수가 6개 미만이라면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5,]);
+    }).toThrow("[ERROR]");
+  });
+
+  test("로또 번호에 null이 입력되면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto(null);
+    }).toThrow("[ERROR]");
+  });
+
+  test("로또 번호에 공백이 입력되면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto(" ");
+    }).toThrow("[ERROR]");
+  });
+
   test("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.", () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 5]);
@@ -41,6 +59,12 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
     expect(() => {
       lotto.bonusNumberException("1");
+    }).toThrow("[ERROR]");
+    expect(() => {
+      lotto.bonusNumberException(" ");
+    }).toThrow("[ERROR]");
+    expect(() => {
+      lotto.bonusNumberException(null);
     }).toThrow("[ERROR]");
   });
 
