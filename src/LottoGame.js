@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { MESSAGE, RANK } = require('./utils/constant');
+const { MESSAGE, RANK, PRIZE } = require('./utils/constant');
 const LottoShop = require('./LottoShop');
 const Lotto = require('./Lotto');
 const Bonus = require('./Bonus');
@@ -67,5 +67,16 @@ class LottoGame {
         return RANK.SIXTH;
     }
   }
+
+  calcTotalPrize(totalRank) {
+    let totalPrize = 0;
+
+    for (let rank = RANK.FIRST; rank <= RANK.FIFTH; rank++) {
+      totalPrize += totalRank[rank] * PRIZE[rank];
+    }
+
+    return totalPrize;
+  }
 }
+
 module.exports = LottoGame;
