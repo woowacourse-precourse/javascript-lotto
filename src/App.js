@@ -1,6 +1,12 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
 class App {
+  MIN_NUMBER = 1;
+  MAX_NUMBER = 45;
+  LOTTO_LENGTH = 6;
+  STANDARD_AMOUNT = 1000;
+  REWARD_AMOUNT = [2000000000, 30000000, 1500000, 50000, 5000];
+
   constructor() {
     this.userAmount;
     this.lottoNumbers;
@@ -28,14 +34,18 @@ class App {
   }
 
   howManyBuyLotto(amount) {
-    const count = parseInt(amount / 1000);
+    const count = parseInt(amount / this.STANDARD_AMOUNT);
     MissionUtils.Console.print(`${Number(count)}개를 구매했습니다.`);
 
     this.printLottoList(count);
   }
 
   getLottoNumbers() {
-    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(
+      this.MIN_NUMBER,
+      this.MAX_NUMBER,
+      this.LOTTO_LENGTH
+    );
     return numbers.sort((a, b) => a - b);
   }
 
@@ -126,11 +136,11 @@ class App {
   printReward() {
     let reward;
     reward =
-      2000000000 * this.matchCount.first +
-      30000000 * this.matchCount.second +
-      1500000 * this.matchCount.third +
-      50000 * this.matchCount.fourth +
-      5000 * this.matchCount.fifth;
+      this.REWARD_AMOUNT[0] * this.matchCount.first +
+      this.REWARD_AMOUNT[1] * this.matchCount.second +
+      this.REWARD_AMOUNT[2] * this.matchCount.third +
+      this.REWARD_AMOUNT[3] * this.matchCount.fourth +
+      this.REWARD_AMOUNT[4] * this.matchCount.fifth;
     this.rateOfReturn = (reward / this.userAmount) * 100;
     this.rateOfReturn = Math.round(this.rateOfReturn * 100) / 100;
 
