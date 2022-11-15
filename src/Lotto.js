@@ -35,7 +35,7 @@ class Lotto {
       if (this.#purchaseLottoList[i].includes(Number(this.#bonusNumber))) matchBonus = true;
     }
     
-    this.printLottoResult(matchNumber, matchBonus);
+    this.rankLottoResult(matchNumber, matchBonus);
   }
 
   rankLottoResult(matchNumber, matchBonus) {
@@ -51,6 +51,19 @@ class Lotto {
       if (matchNumber[i] === 4) fourthCount++;
       if (matchNumber[i] === 3) fifthCount++;
     }
+
+    this.printLottoResult(firstCount, secondCount, thirdCount, fourthCount, fifthCount);
+  }
+
+  printLottoResult(firstCount, secondCount, thirdCount, fourthCount, fifthCount) {
+    Console.print(LOTTO_OUTPUT.SUMMARY_LOTTO);
+    Console.print(LOTTO_OUTPUT.HYPHEN);
+    Console.print(`${LOTTO_OUTPUT.FIFTH_PLACE}${fifthCount}개`);
+    Console.print(`${LOTTO_OUTPUT.FOURTH_PLACE}${fourthCount}개`);
+    Console.print(`${LOTTO_OUTPUT.THIRD_PLACE}${thirdCount}개`);
+    Console.print(`${LOTTO_OUTPUT.SECOND_PLACE}${secondCount}개`);
+    Console.print(`${LOTTO_OUTPUT.FIRST_PLACE}${firstCount}개`);
+    Console.close();
   }
 }
 
