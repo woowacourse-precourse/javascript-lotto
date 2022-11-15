@@ -21,6 +21,7 @@ class Lotto {
     const duplicate = numbers.some(function(x) {
       return numbers.indexOf(x) !== numbers.lastIndexOf(x);
     });
+    
     return duplicate;
   }
 }
