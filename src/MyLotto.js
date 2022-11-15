@@ -30,6 +30,7 @@ class MyLotto {
             MY_LOTTO_NUM.sort();
             this.MY_LOTTO_LIST.push(MY_LOTTO_NUM);
         }
+        MissionUtils.Console.print(this.MY_LOTTO_LIST);
     }
 
     validate(money) {

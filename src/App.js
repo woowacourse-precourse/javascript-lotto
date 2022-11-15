@@ -4,7 +4,12 @@ const Lotto = require("./Lotto");
 const Statistics = require("./Statistics");
 
 class App {
-  play() {}
+  play() {
+    this.getInputAmount();
+    this.getMyLottoNum();
+    this.getInputLottoNum();
+    this.winCost();
+  }
 }
 
 module.exports = App;
