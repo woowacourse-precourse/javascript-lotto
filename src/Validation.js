@@ -17,6 +17,7 @@ class Validation {
     if ([...userPurchase].length === 0) {
       throw new Error(`${Text.ERROR_TEXT.BLANK}`);
     }
+    this.isNumberString([...userPurchase]);
   }
 
   validLottoNumber(lotto) {
