@@ -83,6 +83,12 @@ class Lotto {
   printLotto(number) {
     MissionUtils.Console.print(`[${this.myLottoNumbers[number].join(", ")}]`);
   }
+  inputWinNumbers() {
+    MissionUtils.Console.print(`${Data.INPUT_MESSAGES.inputWinNumbers}`);
+    MissionUtils.Console.readLine("", (answer) => {
+      this.winNumbers = answer.split(",");
+    });
+  }
 
   // TODO: 추가 기능 구현
 }
