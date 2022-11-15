@@ -57,4 +57,10 @@ describe("Validator 클래스 테스트", () => {
     expect(Validator.isUniqueArray([1, 1, 2, 3, 4, 5])).toEqual(false);
     expect(Validator.isUniqueArray([6, 6, 3, 4, 5, 1])).toEqual(false);
   });
+
+  test("isRightLottoNumbers: 올바른 로또 번호인지 테스트", () => {
+    expect(Validator.isRightLottoNumbers('1,2,3,4,5,6,7')).toEqual(false);
+    expect(Validator.isRightLottoNumbers('1,2,3,4,5,5')).toEqual(false);
+    expect(Validator.isRightLottoNumbers('1,2c,3,4b,5,5a')).toEqual(false);
+  });
 });
