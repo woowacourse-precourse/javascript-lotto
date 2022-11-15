@@ -52,7 +52,8 @@ class Lotto {
   }
 
   resultPrint(){
-    Console.print(`[${this.#numbers}]`)
+    //출력 형식에 맞추기 위해 문자열 처리
+    Console.print(`[${String(this.#numbers).split(',').join(', ')}]`)
   }
 
   showLottoNum(){
