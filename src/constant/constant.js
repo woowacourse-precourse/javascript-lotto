@@ -58,7 +58,7 @@ const FORMAT = {
 };
 
 const ERROR = {
-  NOT_NUMBER: "[ERROR] 로또 번호는 숫자만 입력 가능합니다.",
+  NOT_NUMBER: "[ERROR] 숫자만 입력 가능합니다.",
   NOT_UNIT_OF_LOTTO_PRICE: `[ERROR] 구입 금액은 ${LOTTO.PRICE}원 단위로만 입력 가능합니다.`,
   NOT_WINNING_NUMBER_INPUT_FORMAT: "[ERROR] 숫자를 쉼표로 구분하여 입력해주세요.",
   NOT_RANGE_OF_LOTTO_NUMBER: `[ERROR] 로또 번호는 ${LOTTO.MIN}부터 ${LOTTO.MAX} 사이의 숫자여야 합니다.`,
