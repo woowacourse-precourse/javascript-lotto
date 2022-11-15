@@ -1,5 +1,6 @@
-const Statistic = require("../src/Statistic");
-const { LOTTO_RANK, LOTTO_RANK_HASH } = require("../src/constants/index");
+const Statistic = require("../src/Statistic.js");
+const Io = require("../src/utils/Io.js");
+const { LOTTO_RANK, LOTTO_RANK_HASH } = require("../src/constants/index.js");
 
 describe("Statistic 클래스 테스트", () => {
   const lottos = [
@@ -16,6 +17,10 @@ describe("Statistic 클래스 테스트", () => {
   const bonusNumber = 7;
   const ranks = Object.values(LOTTO_RANK.NAME);
   const matchCounts = [6, 5, 5, 4, 3];
+
+  afterEach(() => {
+    Io.close();
+  });
 
   test("등수와 당첨 수에 따라 수익 금액을 리턴하는 기능", () => {
     const calcYields = Object.values(LOTTO_RANK_HASH.AMOUNT);

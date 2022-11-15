@@ -1,4 +1,4 @@
-const Validator = require("../src/utils/Validator");
+const Validator = require("../src/utils/Checker.js");
 
 describe("Validator Util Class", () => {
   test("인풋 값이 숫자가 아니라면 예외가 발생한다.", () => {

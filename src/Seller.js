@@ -1,9 +1,9 @@
-const Lotto = require("./Lotto");
-const Buyer = require("./Buyer");
-const Statistic = require("./Statistic");
-const Io = require("./utils/Io");
-const Validator = require("./utils/Validator");
-const { LOTTO_AMOUNT, LOTTO_NUMBER, MESSAGE } = require("./constants/index");
+const Lotto = require("./Lotto.js");
+const Buyer = require("./Buyer.js");
+const Statistic = require("./Statistic.js");
+const Io = require("./utils/Io.js");
+const Validator = require("./utils/Checker.js");
+const { LOTTO_AMOUNT, LOTTO_NUMBER, MESSAGE } = require("./constants/index.js");
 const MissionUtils = require("@woowacourse/mission-utils");
 
 const Seller = ((_) => {

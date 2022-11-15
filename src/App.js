@@ -1,4 +1,4 @@
-const Seller = require("./Seller");
+const Seller = require("./Seller.js");
 
 class App {
   #seller;

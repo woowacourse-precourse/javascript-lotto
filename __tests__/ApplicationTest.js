@@ -1,5 +1,5 @@
-const App = require("../src/App");
-const Seller = require("../src/Seller");
+const App = require("../src/App.js");
+const Seller = require("../src/Seller.js");
 const MissionUtils = require("@woowacourse/mission-utils");
 
 const mockQuestions = (answers) => {

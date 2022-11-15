@@ -1,4 +1,4 @@
-const Io = require("./utils/Io");
+const Io = require("./utils/Io.js");
 
 const Buyer = class {
   #io;

@@ -1,5 +1,5 @@
-const Io = require("./utils/Io");
-const { LOTTO_RANK, LOTTO_AMOUNT, LOTTO_RANK_HASH, MESSAGE } = require("./constants/index");
+const Io = require("./utils/Io.js");
+const { LOTTO_RANK, LOTTO_AMOUNT, LOTTO_RANK_HASH, MESSAGE } = require("./constants/index.js");
 
 const Statistic = class {
   #io;
