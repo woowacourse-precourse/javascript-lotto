@@ -8,7 +8,7 @@ const {
   IS_RANGE,
   IS_NOT_IN_WINNER_NUMBER,
 } = require("../src/const/ErrorMessages");
-const PRICES = require("./const/Prices");
+const WINNING = require("./const/Winning");
 const Lotto = require("./Lotto");
 class App {
   #amount;
@@ -115,8 +115,8 @@ class App {
     let earned = 0;
 
     for (const [key, value] of Object.entries(resultList)) {
-      if (PRICES[key]) {
-        earned += PRICES[key] * value;
+      if (WINNING[key]) {
+        earned += WINNING[key] * value;
       }
     }
 
@@ -146,7 +146,6 @@ class App {
     if (!/^\d+$/.test(number)) throw Error(IS_NUMBER);
     if (!Number.isInteger(+number) || number < 1 || number >= 46)
       throw Error(IS_RANGE);
-    console.log(this.#winnerNumbers);
     if (this.#winnerNumbers.includes(+number))
       throw Error(IS_NOT_IN_WINNER_NUMBER);
   }
@@ -156,7 +155,7 @@ class App {
   }
 }
 
-// const app = new App();
-// app.play();
+const app = new App();
+app.play();
 
 module.exports = App;
