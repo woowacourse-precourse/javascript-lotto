@@ -3,7 +3,7 @@ const CustomError = require('./CustomError');
 class PriceError extends CustomError {
   constructor(message) {
     super(message);
-    this.name = 'PriceError';
+    this.name = this.constructor.name;
   }
 }
 

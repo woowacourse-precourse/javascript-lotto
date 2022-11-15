@@ -3,7 +3,7 @@ const CustomError = require('./CustomError');
 class BonusNumberError extends CustomError {
   constructor(message) {
     super(message);
-    this.name = 'BonusNumberError';
+    this.name = this.constructor.name;
   }
 }
 
