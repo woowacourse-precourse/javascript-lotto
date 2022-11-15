@@ -45,11 +45,7 @@ class User {
   }
 
   createLotto() {
-    const pickedRandomNumberSet = new Set();
-    while(pickedRandomNumberSet.size < NUMBER_COUNT_PER_LOTTO) {
-      pickedRandomNumberSet.add(Random.pickNumberInRange(1, 45));
-    }
-    return [...pickedRandomNumberSet];
+    return Random.pickUniqueNumbersInRange(1, 45, 6);
   }
 }
 
