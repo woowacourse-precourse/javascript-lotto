@@ -7,6 +7,8 @@ class App {
   constructor() {
     this.lottoCount = null;
     this.lottos = [];
+    this.hitLottoNumber = [];
+    this.bonusNumber = null;
   }
   play() {
     Console.readLine(Const.BUY_LOTTO_MESSAGE, price => {
@@ -15,6 +17,13 @@ class App {
       GenerateLotto.printLottoCount(this.lottoCount);
       this.lottos = GenerateLotto.generateLottoNumber(this.lottoCount);
     });
+    GenerateLotto.printLottoNumber(this.lottos);
+    this.hitLottoNumber = HitLottoNumber.inputHitLottoNumber();
+    this.bonusNumber = HitLottoNumber.inputBonusNumber();
+  }
+
+  countSameNumber(lotto, hitLottoNumber) {
+    return lotto.filter(number => hitLottoNumber.includes(number)).length;
   }
 }
 
