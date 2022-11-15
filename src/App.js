@@ -80,7 +80,10 @@ class App {
         this.#winningTicket.getBonusNumber(),
       );
 
-      if (matchCount >= LOTTO.MINIMUM_MATCH_COUNT || matchCount === '5B') {
+      if (
+        matchCount >= LOTTO.MINIMUM_MATCH_COUNT ||
+        matchCount === PRIZE['5B']
+      ) {
         this.#result[matchCount] += 1;
       }
     });
