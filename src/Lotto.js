@@ -24,6 +24,12 @@ class Lotto {
       if (winNumbers.includes(lottoNumber)) this.matchedNumberCount += 1;
     });
   }
+
+  checkMatching(bonusNumber) {
+    if (this.matchedNumberCount === 5 && this.#numbers.includes(bonusNumber)) {
+      this.hasBonusNumber = true;
+    }
+  }
 }
 
 module.exports = Lotto;
