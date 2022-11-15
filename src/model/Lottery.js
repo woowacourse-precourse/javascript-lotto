@@ -14,7 +14,7 @@ class Lotto {
     else if (numbers.length !== [...new Set(numbers)].length)
       throw new Error("[ERROR] 로또 번호는 중복되면 안됩니다.");
     else if (numbers.some((number) => number <= 0 || number > 45))
-      throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+      throw new Error("[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다.");
   }
 
   hasNumber(number) {
@@ -37,6 +37,8 @@ class Lottery extends Lotto {
   #validate(bonus) {
     if (super.hasNumber(bonus))
       throw new Error("[ERROR] 보너스 번호는 6개 번호에 포함되어선 안됩니다.");
+    else if (bonus <= 0 || bonus > 45)
+      throw new Error("[ERROR] 보너스 번호는 1부터 45사이의 숫자여야 합니다.");
   }
 
   getBonus() {
