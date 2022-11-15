@@ -68,6 +68,7 @@ class Machine {
         bonus: this.#bonusNumber,
       });
       this.#computeRankingCountMap(winningBonusCounts);
+      this.#displayResult();
     });
   }
 
@@ -90,6 +91,16 @@ class Machine {
       default:
         return null;
     }
+  }
+
+  #displayResult() {
+    Console.print(Display.guidance('RESULT'));
+
+    const rankings = ['FIFTH', 'FOURTH', 'THIRD', 'SECOND', 'FIRST'];
+
+    rankings.forEach((ranking) => {
+      Console.print(Display.rankingStatistics(ranking, this.rankingCountMap.get(ranking) || 0));
+    });
   }
 }
 
