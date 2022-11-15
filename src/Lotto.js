@@ -1,3 +1,5 @@
+const { NUMBER, ERROR } = require('./Constant');
+
 class Lotto {
   #numbers;
 
@@ -7,12 +9,47 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    if (numbers.length !== NUMBER.LOTTO_NUMBER) {
+      throw new Error(ERROR.LOTTO_COUNT);
+    }
+
+    if (new Set(numbers).size !== NUMBER.LOTTO_NUMBER) {
+      throw new Error(ERROR.LOTTO_OVERLAP);
+    }
+
+    numbers.map((number) => {
+      if (/[^0-9]/g.test(number)) {
+        throw new Error(ERROR.LOTTO_NUMBER);
+      }
+
+      if (number < 1 || number > 45) {
+        throw new Error(ERROR.LOTTO_RANGE);
+      }
+    });
+  }
+
+  setBonus(number) {
+    this.validateBonus(number);
+    this.#numbers.push(number);
+  }
+
+  validateBonus(number) {
+    if (/[^0-9]/g.test(number)) {
+      throw new Error(ERROR.BONUS_NUMBER);
+    }
+
+    if (number < 1 || number > 45) {
+      throw new Error(ERROR.BONUS_RANGE);
+    }
+
+    if (this.#numbers.includes(number)) {
+      throw new Error(ERROR.BONUS_OVERLAP);
     }
   }
 
-  // TODO: 추가 기능 구현
+  getLotto() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
