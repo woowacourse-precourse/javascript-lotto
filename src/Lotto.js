@@ -11,11 +11,11 @@ class Lotto extends LottoSystem {
   }
 
   get numbers() {
-    return this.#numbers.slice(0, this.lottoLength);
+    return this.#numbers.slice(0, this.LOTTO_LENGTH);
   }
 
   get bonusNumber() {
-    if (this.#numbers.length === this.lottoLength + 1) {
+    if (this.#numbers.length === this.LOTTO_LENGTH + 1) {
       return this.#numbers[this.#numbers.length - 1];
     }
     return null;
@@ -34,7 +34,7 @@ class Lotto extends LottoSystem {
   }
 
   checkLength(numbers) {
-    if (numbers.length !== this.lottoLength) {
+    if (numbers.length !== this.LOTTO_LENGTH) {
       throw new Error(ERROR_MESSAGES.LOTTO_LENGTH);
     }
   }
@@ -54,8 +54,8 @@ class Lotto extends LottoSystem {
     if (
       typeof number !== "number" ||
       Number.isNaN(Number(number)) ||
-      number < this.minNumber ||
-      number > this.maxNumber
+      number < this.LOTTO_MIN_NUMBER ||
+      number > this.LOTTO_MAX_NUMBER
     ) {
       throw new Error(ERROR_MESSAGES.LOTTO_RANGE);
     }

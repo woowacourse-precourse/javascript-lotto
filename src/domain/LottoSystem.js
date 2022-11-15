@@ -1,19 +1,19 @@
 const Utils = require("../Utils");
 
 class LottoSystem {
-  get minNumber() {
+  get LOTTO_MIN_NUMBER() {
     return 1;
   }
 
-  get maxNumber() {
+  get LOTTO_MAX_NUMBER() {
     return 45;
   }
 
-  get lottoLength() {
+  get LOTTO_LENGTH() {
     return 6;
   }
 
-  get moneyUnit() {
+  get LOTTO_PRICE() {
     return 1000;
   }
 

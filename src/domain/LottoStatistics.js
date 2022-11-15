@@ -40,7 +40,7 @@ class LottoStatistics extends LottoSystem {
 
   getProfit(buyingLottos) {
     const totalReward = this.getTotalReward(buyingLottos);
-    const cost = buyingLottos.length * this.moneyUnit;
+    const cost = buyingLottos.length * this.LOTTO_PRICE;
     return (totalReward / cost) * 100;
   }
 }
