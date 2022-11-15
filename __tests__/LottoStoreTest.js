@@ -1,13 +1,6 @@
 const LottoStore = require("../src/LottoStore");
 const MissionUtils = require("@woowacourse/mission-utils");
 
-// dummy test codes
-// describe("", () => {
-//   test("", () => {
-//     expect()
-//   });
-// });
-
 const mockRandoms = (numbers) => {
   MissionUtils.Random.pickUniqueNumbersInRange = jest
     .fn()

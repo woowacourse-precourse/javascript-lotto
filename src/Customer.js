@@ -7,11 +7,11 @@ class Customer {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
       this.lottoStore = new LottoStore();
       const lottos = this.lottoStore.makeLotto(money);
-      this.requestLottoAnalysis(lottos);
+      this.requestDrawLottoNumber(lottos);
     });
   }
 
-  requestLottoAnalysis(lottos) {
+  requestDrawLottoNumber(lottos) {
     this.lottoCompany = new LottoCompany();
     this.lottoCompany.drawLottoNumber(lottos);
   }

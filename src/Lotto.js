@@ -13,6 +13,10 @@ class Lotto {
     }
   }
 
+  get getLottos() {
+    return this.#numbers;
+  }
+
   // TODO: 추가 기능 구현
   isUniqueNumberValidate(numbers) {
     numbers.forEach((element) => {

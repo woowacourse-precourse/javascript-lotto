@@ -1,6 +1,6 @@
 # 우아한테크코스 3주차 미션 - 로또
 
-## 출력을 이용해 기능 분리하기
+## 1. 출력을 이용해 기능 분리하기
 
 - Customer.buyLotto(), readLine 함수를 이용해 구입 금액을 입력받고 콜백 -> 로또 생성까지
 
@@ -50,11 +50,11 @@
 총 수익률은 62.5%입니다.
 ```
 
-## 분리한 기능을 구체화시키기
+## 2. 분리한 기능을 구체화시키기
 
 ### not use callback
 
-- [x] 1. Customer.buyLotto()
+- [x] 1. Customer.payMoney()
 
   - get money : readLine() >> mock fn
   - transfer type : string -> int
@@ -81,7 +81,8 @@
 
 - [ ] LottoCampany.setWinningLottoNumbers(winning lotto numbers);
 
-- [x] 4. Customer.winLottoStatistic( {winning numbers, winning bonus number, generate lottos} )
+- [x] 4. Customer.getLottoStatistic(
+     {winning numbers, winning bonus number, generate lottos})
 
   - find winning numbers in generate lottos(lotto object)
   - print lotto statistic(statistics object)
@@ -108,7 +109,7 @@
               - print lotto statistic(statistic)
               - close
 
-## 객체 분리하기
+## 3. 객체 설계
 
 1. Customer
    1. property
@@ -137,13 +138,25 @@
 - 기능 설계 고민
   - [v] 콜백 사용 X
     - 단위 테스트에서나 다른 면에서 콜백을 사용하지 않는 것이 좋다고 판단했습니다. 다만, 테스트를 어떻게 통과할지는 고민을 조금 더 해야할 듯 싶습니다.
-- isNaN 검증 관련 고민
-  - 숫자 검증 시 어떤 값을 설정해야 할 지 고민했습니다.
-    - NaN의 타입이 number라는 것을 알았습니다.
-    - isNaN으로 값을 비교해야 된다는 것을 알았습니다.
-- 궁금한 점
-  - TDD를 하면서 테스트 코드를 작성하고, 테스트를 통과하는 코드를 짜는 것은 실제 기능을 만드는 것과는 다르다는 생각이 들었습니다. 이를 의도하고 이러한 미션을 짜신 건지 궁금합니다.
-- truthy, falsy
-  - -1은 truthy한 값이며 0은 falsy한 값이다
+    - (추가) 콜백은 사용할 수 밖에 없었습니다. 테스트와 rl.question 함수 이해가 부족했었습니다.
+  - 당첨 결과 분석은 LottoCompany에서 하지 않기를 바랬지만, 콘솔 입력값을 받는 곳에서 처리할 수 밖에 없었습니다..
+- TDD
+  - 테스트 코드를 작성하고, 테스트를 통과하는 코드를 짜는 것은 실제 기능을 만드는 것과는 다르다는 생각이 들었습니다.
+  - (추가) 다만 위 생각은 제가 코드를 잘못 설계한 탓인듯 합니다.
+- string to number
+  - 1000j를 parseInt 함수를 통해 변환하면 1000이 반환된다.
+- array to string
+  - number array를 출력할 때 string으로 변환하면 array 형태와 원소 간 띄어쓰기가 남아있지 않아, 형태를 유지하면서 출력하는 방법을 고민했습니다.
 
 ### 배운점
+
+1. truthy, falsy
+
+- -1은 truthy한 값이며 0은 falsy한 값이다
+
+2. 클래스 간 상호 참조는 불가능
+3. isNaN 검증 관련 고민
+
+- 숫자 검증 시 어떤 값을 설정해야 할 지 고민했습니다.
+  - NaN의 타입이 number라는 것을 알았습니다.
+  - isNaN으로 값을 비교해야 된다는 것을 알았습니다.
