@@ -36,6 +36,9 @@ class Statistic {
     }
     return false;
   }
+  getTotalCount() {
+    return this.#totalCount;
+  }
 }
 
 module.exports = { Statistic };
