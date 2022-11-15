@@ -54,15 +54,15 @@ class App {
   getWinningNumbers() {
     Console.readLine(INPUT_MESSAGE.winningNumber, (numbers) => {
       this.#winningNumbers = numbers.split(",").map((number) => +number);
-      Validation.validateWinningNumbers(this.#winningNumbers);
+      Validation.validateNumbers(this.#winningNumbers);
       this.getBonusNumber();
     });
   }
 
   getBonusNumber() {
     Console.readLine(INPUT_MESSAGE.bonusNumber, (number) => {
-      Validation.validateBonusNumber(this.#winningNumbers, number);
       this.#bonusNumber = +number;
+      Validation.validateBonusNumber(this.#winningNumbers, this.#bonusNumber);
       this.compare(this.#lottos, this.#winningNumbers, this.#bonusNumber);
     });
   }
@@ -99,10 +99,8 @@ class App {
 
   getTotalPrize(result) {
     return Object.entries(result).reduce(
-      (total, [match, prize]) =>
-        PRIZE_MONEY[match]
-          ? (total += PRIZE_MONEY[match] * prize)
-          : (total += 0),
+      (total, [match, number]) =>
+        (total += PRIZE_MONEY[match] ? PRIZE_MONEY[match] * number : 0),
       0
     );
   }

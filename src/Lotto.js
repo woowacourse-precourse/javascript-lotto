@@ -1,18 +1,13 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { ERROR_MESSAGE } = require("./constant/constant");
+const Validation = require("./Validation");
 
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    Validation.validateNumbers(numbers);
     this.#numbers = numbers;
-  }
-
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error(ERROR_MESSAGE.wrongQuantity);
-    }
   }
 
   printNumbers() {

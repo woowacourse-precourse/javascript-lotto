@@ -7,7 +7,7 @@ class Validation {
     }
   }
 
-  static validateWinningNumbers(numbers) {
+  static validateNumbers(numbers) {
     if (numbers.length !== 6) {
       throw new Error(ERROR_MESSAGE.wrongQuantity);
     }
