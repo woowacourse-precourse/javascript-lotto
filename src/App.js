@@ -74,9 +74,10 @@ class App {
     var lottoResult = new LottoResult();
     lottoResult.compareLotto(this.lottoArr, winningNumber);
     this.print(lottoResult);
+    Console.close();
   }
 
-  //** 8.통계값 출력 */
+  /** 8.통계값 출력 */
   print(lottoResult) {
     lottoResult.printResult(this.amount);
   }

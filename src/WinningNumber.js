@@ -1,3 +1,5 @@
+const { ERROR_MESSAGE } = require("./Constant");
+
 class WinningNumber {
   #winningNumbers;
   #bonusNumber;
@@ -22,14 +24,14 @@ class WinningNumber {
   validate(winningArr) {
     var isOverlap = new Set(winningArr).size != winningArr.length;   
     if(winningArr.length !== 6 || isOverlap) {
-      throw new Error('[ERROR]당첨 입력값이 잘못되어, 게임을 종료합니다.');
+      throw new Error(ERROR_MESSAGE.WINNING_WRONG_INPUT);
     }
   }
 
   validateBonusNumber(bonusNumber) {
     var bonus = Number(bonusNumber);
     if(isNaN(bonus) || (bonus < 0 || bonus > 45)) {
-      throw new Error('[ERROR]보너스 입력값이 잘못되어, 게임을 종료합니다.');
+      throw new Error(ERROR_MESSAGE.BONUS_WRONG_INPUT);
     } 
   }
 

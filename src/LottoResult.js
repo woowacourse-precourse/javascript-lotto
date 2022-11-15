@@ -1,4 +1,6 @@
 const {Console}  = require("@woowacourse/mission-utils");
+const { WINNING_PRICE } = require("./Constant");
+
 
 class LottoResult {
   #rank1;
@@ -32,24 +34,24 @@ class LottoResult {
     switch(count) {
       case 3:
         this.#rank5++;
-        this.#totalMoney += 5000;
+        this.#totalMoney += WINNING_PRICE.RANK5;
         break;
       case 4:
         this.#rank4++;
-        this.#totalMoney += 50000;
+        this.#totalMoney += WINNING_PRICE.RANK4;
         break;
       case 5:
         this.#rank3++;
-        this.#totalMoney += 1500000;
+        this.#totalMoney += WINNING_PRICE.RANK3;
         break;
       case 6:
         this.#rank1++;
-        this.#totalMoney += 2000000000;
+        this.#totalMoney += WINNING_PRICE.RANK2;
         break;
     }
     if(isBonus = true && count === 5) {
       this.#rank2++;
-      this.#totalMoney +=30000000;
+      this.#totalMoney += WINNING_PRICE.RANK1;
     }
   }
 
@@ -57,12 +59,16 @@ class LottoResult {
   printResult(amount) {
     Console.print('');
     Console.print('당첨 통계 \n---');
-    Console.print(`3개 일치 (5,000원) - ${this.#rank5}개`);
-    Console.print(`4개 일치 (50,000원) - ${this.#rank4}개`);
-    Console.print(`5개 일치 (1,500,000원) - ${this.#rank3}개`);
-    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.#rank2}개`);
-    Console.print(`6개 일치 (2,000,000,000원) - ${this.#rank1}개`);
+    Console.print(`3개 일치 (${this.convertKr(WINNING_PRICE.RANK5)}원) - ${this.#rank5}개`);
+    Console.print(`4개 일치 (${this.convertKr(WINNING_PRICE.RANK4)}원) - ${this.#rank4}개`);
+    Console.print(`5개 일치 (${this.convertKr(WINNING_PRICE.RANK3)}원) - ${this.#rank3}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (${this.convertKr(WINNING_PRICE.RANK2)}원) - ${this.#rank2}개`);
+    Console.print(`6개 일치 (${this.convertKr(WINNING_PRICE.RANK1)}원) - ${this.#rank1}개`);
     this.printRate(amount);
+  }
+
+  convertKr(price) {
+    return price.toLocaleString('ko-KR');
   }
   
   printRate(amount) {
