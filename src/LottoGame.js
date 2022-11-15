@@ -38,5 +38,15 @@ class LottoGame {
       this.bonusNumber = bonus.getBonusNumber();
     });
   }
+
+  countCorrectNumbers(purchasedNumber) {
+    let correctNumbers = 0;
+
+    purchasedNumber.forEach((number) => {
+      if (this.winningNumbers.includes(number)) correctNumbers += 1;
+    });
+
+    return correctNumbers;
+  }
 }
 module.exports = LottoGame;
