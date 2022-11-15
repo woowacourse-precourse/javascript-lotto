@@ -5,16 +5,14 @@ class LottoQuantity {
   #lottosQuantity;
 
   constructor(cash) {
-    this.validate(cash);
+    LottoQuantity.validate(cash);
     this.#lottosQuantity = cash / LOTTO_PRICE;
   }
 
-  validate(cash) {
-    Validation.isNumber(cash);
-    Validation.isMoreThanLottoPrice(cash);
-    Validation.has1000Unit(cash);
-
-    return true;
+  static validate(cash) {
+    Validation.checkType(cash);
+    Validation.checkAmountOfPrice(cash);
+    Validation.checkUnitOfPrice(cash);
   }
 
   getLottosQuantity() {

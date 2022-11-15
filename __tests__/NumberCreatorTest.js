@@ -2,7 +2,7 @@ const NumberCreator = require('../src/controller/NumberCreator');
 
 describe('NumberCreator 클래스 테스트', () => {
   test('기능 테스트: 서로 중복되지 않는 6개의 랜덤 숫자를 생성한다.', () => {
-    let numbers = new NumberCreator().getRandomSixNumbers();
+    let numbers = NumberCreator.getRandomSixNumbers();
 
     expect(numbers).toHaveLength(6);
     expect(numbers.length).toEqual(new Set(numbers).size);

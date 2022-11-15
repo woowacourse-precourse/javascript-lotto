@@ -4,15 +4,15 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    Lotto.validate(numbers);
     this.#numbers = this.sortNumbersInAscendingOrder(numbers);
   }
 
-  validate(numbers) {
-    numbers.forEach((number) => Validation.isNumber(number));
-    Validation.hasSixLength(numbers);
-    numbers.forEach((number) => Validation.beInRange(number));
-    Validation.hasNoRepeatedNum(numbers);
+  static validate(numbers) {
+    numbers.forEach((number) => Validation.checkType(number));
+    Validation.checkLength(numbers);
+    numbers.forEach((number) => Validation.checkRange(number));
+    Validation.checkRepeatedNum(numbers);
   }
 
   sortNumbersInAscendingOrder(numbers) {

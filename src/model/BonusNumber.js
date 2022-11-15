@@ -4,14 +4,14 @@ class BonusNumber {
   #bonusNumber;
 
   constructor(bonusNumber, winningNumbers) {
-    this.validate(bonusNumber, winningNumbers);
+    BonusNumber.validate(bonusNumber, winningNumbers);
     this.#bonusNumber = bonusNumber;
   }
 
-  validate(bonusNum, winningNums) {
-    Validation.isNumber(bonusNum);
-    Validation.beInRange(bonusNum);
-    Validation.notIncludedInWinningNums(bonusNum, winningNums);
+  static validate(bonusNum, winningNums) {
+    Validation.checkType(bonusNum);
+    Validation.checkRange(bonusNum);
+    Validation.checkIncludedInWinningNums(bonusNum, winningNums);
   }
 
   getBonusNumber() {

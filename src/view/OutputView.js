@@ -8,20 +8,21 @@ const {
 } = require('../utils/constants');
 
 class OutputView {
-  printLottosQuantity(lottosQuantity) {
+  static printLottosQuantity(lottosQuantity) {
     print('');
     print(lottosQuantity + MESSAGE.PURCHASED_LOTTOS_QUANTITY);
   }
 
-  printPurchasedLottos(purchasedLottos) {
+  static printPurchasedLottos(purchasedLottos) {
     purchasedLottos.forEach((lotto) => {
       const LOTTO_NUMBERS = `[${lotto[0]}, ${lotto[1]}, ${lotto[2]}, ${lotto[3]}, ${lotto[4]}, ${lotto[5]}]`;
       print(LOTTO_NUMBERS);
     });
+
     print('');
   }
 
-  printWinningResult(winningLottosQuantity) {
+  static printWinningResult(winningLottosQuantity) {
     print(MESSAGE.WINNING_HISTORY);
 
     for (let rank = FIFTH_PLACE.NUMBER; rank >= FIRST_PLACE.NUMBER; rank -= 1) {
@@ -30,12 +31,13 @@ class OutputView {
         print(RESULT);
         continue;
       }
+
       const RESULT = `${WINNING_RESULT[rank].LOTTO_COUNT}개 일치 (${WINNING_RESULT[rank].PRIZE}) - ${winningLottosQuantity[rank]}개`;
       print(RESULT);
     }
   }
 
-  printRateOfReturn(rateOfReturn) {
+  static printRateOfReturn(rateOfReturn) {
     const RATE_OF_RETURN = `총 수익률은 ${rateOfReturn}%입니다.`;
     print(RATE_OF_RETURN);
   }

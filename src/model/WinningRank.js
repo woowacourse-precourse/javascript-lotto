@@ -4,6 +4,7 @@ const {
   THIRD_PLACE,
   FOURTH_PLACE,
   FIFTH_PLACE,
+  WINNING_RESULT,
 } = require('../utils/constants');
 
 class WinningRank {
@@ -23,6 +24,7 @@ class WinningRank {
     this.lottoNumbers.forEach((number) => {
       if (this.winningNumbers.includes(number)) sum += 1;
     });
+
     return sum;
   }
 
@@ -30,6 +32,7 @@ class WinningRank {
     if (this.lottoNumbers.includes(this.bonusNumber)) {
       return true;
     }
+
     return false;
   }
 
@@ -47,6 +50,7 @@ class WinningRank {
     if (this.countOfSameNum === FIFTH_PLACE.LOTTO_COUNT) {
       return FIFTH_PLACE.NUMBER;
     }
+
     return null;
   }
 
