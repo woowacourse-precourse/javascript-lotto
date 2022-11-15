@@ -28,7 +28,6 @@ class App {
     Console.readLine(MESSAGE.USER_ENTER_PURCHASE, (money) => {
       this.#amount = money;
       if (validation.isValidateMoney(money)) this.countLotto(money);
-      // this.#count = money / 1000;
     });
   }
 
@@ -81,11 +80,34 @@ class App {
     });
   }
 
+  getTotalProfit() {
+    return (
+      this.#winList.three * 5000 +
+      this.#winList.four * 50000 +
+      this.#winList.five * 1500000 +
+      this.#winList.bonus * 30000000 +
+      this.#winList.six * 2000000000
+    );
+  }
+
+  printResult() {
+    Console.print(MESSAGE.WINNING_STATISTICS);
+    Console.print(MESSAGE.MATCH_THREE + `${this.#winList.three}개`);
+    Console.print(MESSAGE.MATCH_FOUR + `${this.#winList.four}개`);
+    Console.print(MESSAGE.MATCH_FIVE + `${this.#winList.five}개`);
+    Console.print(MESSAGE.MATCH_BONUS + `${this.#winList.bonus}개`);
+    Console.print(MESSAGE.MATCH_ALL + `${this.#winList.six}개`);
+    Console.print(
+      `총 수익률은 ${(this.getTotalProfit() / this.#amount) * 100}%입니다.`
+    );
+  }
+
   play() {
     this.inputPurchase();
     this.inputWinNumber();
     this.createLottos();
     this.getResult();
+    this.printResult();
   }
 }
 
