@@ -127,7 +127,7 @@ class Statistics {
    */
   updateRateOfReturn(userPurchasingAmount, totalMoneyEarned) {
     this.setRateOfReturn(
-      (+(totalMoneyEarned / userPurchasingAmount) * 100).toFixed(1),
+      +((totalMoneyEarned / userPurchasingAmount) * 100).toFixed(1),
     );
   }
 
