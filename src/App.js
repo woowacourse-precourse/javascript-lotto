@@ -13,6 +13,17 @@ class App {
     winningSixArr = [];
     lottoWinningAmountArr = [5000, 50000, 1500000, 30000000, 2000000000];
 
+
+    winningStats(rateOfReturn) {
+        MissionUtils.Console.print("\n당첨통계\n---")
+        MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.winningThreeArr[0]}개`)
+        MissionUtils.Console.print(`4개 일치 (50,000원) - ${this.winningFourArr[0]}개`)
+        MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${this.winningFiveArr[0]}개`)
+        MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.winningFivePlusBonusArr[0]}개`)
+        MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${this.winningSixArr[0]}개`)
+        MissionUtils.Console.print(`총 수익률은 ${rateOfReturn}%입니다.`)
+    }
+
     rateOfReturn() {
         let lottoWinnings = this.lottoWinningAmountArr[0] * this.winningThreeArr[0] +
             this.lottoWinningAmountArr[1] * this.winningFourArr[0] +
@@ -20,6 +31,7 @@ class App {
             this.lottoWinningAmountArr[3] * this.winningFivePlusBonusArr[0] +
             this.lottoWinningAmountArr[4] * this.winningSixArr[0]
         let rateOfReturn = lottoWinnings / this.purchaseAmountArr[0] * 100
+        this.winningStats(rateOfReturn);
     }
 
     contrastSix() {
