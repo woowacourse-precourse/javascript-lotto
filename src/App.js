@@ -25,7 +25,7 @@ class App {
   printUserLottoList() {
     UI.print(`${this.userLottoArr.length}${BUY_LOTTO.PURCHASE}`);
     this.userLottoArr.forEach((currentLotto) => {
-      UI.print(currentLotto);
+      UI.print(`"[${currentLotto.join(", ")}]"`);
     });
   }
 

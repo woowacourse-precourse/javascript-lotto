@@ -1,4 +1,4 @@
-const { BUY_LOTTO, LOTTO_DETAILS, ERROR } = require("./constant/constant");
+const { LOTTO_DETAILS } = require("./constant/constant");
 const { Random } = require("@woowacourse/mission-utils");
 const Validation = require("./utils/Validation");
 
