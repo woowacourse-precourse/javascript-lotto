@@ -13,7 +13,7 @@ class App {
       let cnt = money / 1000;
       Console.print(cnt + "개를 구매했습니다.");
       this.buyLotto(cnt);
-    
+      this.InputWinninglotteryNum();
     });
   }
 
@@ -31,8 +31,13 @@ class App {
       Console.print('[' + lotto + ']');
     }
  }
-
+  InputWinninglotteryNum() {
+    Console.readLine('당첨 번호를 입력해 주세요.', (nums) => {
+    Console.print(nums);
+    });
+  }
 }
+  
 
 const app = new App();
 app.play();
