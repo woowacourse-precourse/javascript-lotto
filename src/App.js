@@ -35,12 +35,15 @@ class App {
         this.publishedLottos.push(lotto);
       }
 
-      Console.print(`${MESSAGE.CONFIRM_BUY(countOfLotto)}`);
-      this.publishedLottos.forEach((publishedLotto) => {
-        publishedLotto.publishLotto();
-      });
-
+      this.printLotto(countOfLotto);
       this.getWinNumber();
+    });
+  }
+
+  printLotto(countOfLotto) {
+    Console.print(`${MESSAGE.CONFIRM_BUY(countOfLotto)}`);
+    this.publishedLottos.forEach((publishedLotto) => {
+      publishedLotto.publishLotto();
     });
   }
 
