@@ -35,10 +35,6 @@ class App {
     });
   }
 
-  validateIsNumber(money) {
-    if (isNaN(money)) {
-      throw new Error("[ERROR] 숫자만 입력 가능합니다.");
-    }
   inputBonusNumber() {
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.\n', (number) => {
     });
@@ -51,6 +47,11 @@ class App {
     }
   }
 
+  validateIsNumber(money) {
+    if (isNaN(money)) {
+      throw new Error("[ERROR] 숫자만 입력 가능합니다.");
+    }
+  }
 }
 
 module.exports = App;
