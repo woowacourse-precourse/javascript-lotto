@@ -42,6 +42,14 @@ class UserError {
       }
     }
   }
+
+  validateBonusNumber(winning, bonus) {
+    if (winning.includes(+bonus)) {
+      throw new Error(
+        "[ERROR] 당첨 번호와 중복되지 않는 보너스 번호를 입력해 주세요."
+      );
+    }
+  }
 }
 
 module.exports = UserError;
