@@ -15,11 +15,13 @@ class App {
   manageInputPurchaseAmount(price) {
     const numberOfTickets = this.calculateNumberOfTickets(price);
     MissionUtils.Console.print(`${numberOfTickets}개를 구매했습니다.`);
-    // this.generateTickets(numberOfTickets);
   }
 
   getInputPurchaseAmount(callback) {
-    MissionUtils.Console.readLine(Constant.PURCHASE_AMOUT_QUESTION_MESSAGE, callback);
+    MissionUtils.Console.readLine(
+      Constant.PURCHASE_AMOUT_QUESTION_MESSAGE,
+      callback
+    );
   }
 
   calculateNumberOfTickets(price) {
@@ -38,6 +40,10 @@ class App {
     if (price < 0) {
       throw new Error(PURCHASE_AMOUNT_ERROR_MESSAGE3);
     }
+  }
+
+  createTicketNumbers() {
+    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
   }
 }
 
