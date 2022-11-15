@@ -26,11 +26,15 @@ class LottoStore {
     return this.#count;
   }
 
-  getAutoLotto() {
+  setAutoLotto() {
     for(let index = 0; index < this.#count; index++){
       const numbers = pickUniqueNumbersInRange(NUMBER.LOTTO_MINIMUM, NUMBER.LOTTO_MAXIMUM, NUMBER.LOTTO_NUMBER);
       this.#autoLotto.push(numbers.sort((a, b) => a - b));
     }
+    return this.#autoLotto;
+  }
+
+  getAutoLotto() {
     return this.#autoLotto;
   }
 

@@ -1,3 +1,5 @@
+const { NUMBER } = require('./Constants');
+
 class LottoResult {
   #lotto;
   #bonus;
@@ -42,6 +44,17 @@ class LottoResult {
     });
 
     return result;
+  }
+
+  getRate(result) {
+    let total = 0;
+    total += result[0] * NUMBER.LOTTO_FIFTH_PLACE;
+    total += result[1] * NUMBER.LOTTO_FOURTH_PLACE;
+    total += result[2] * NUMBER.LOTTO_THIRD_PLACE;
+    total += result[3] * NUMBER.LOTTO_SECOND_PLACE;
+    total += result[4] * NUMBER.LOTTO_FIRST_PLACE;
+
+    return (total / (this.#autoLotto.length * 10)).toFixed(1); 
   }
 
 }

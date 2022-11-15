@@ -1,4 +1,4 @@
-const { readLine, print } = require('@woowacourse/mission-utils').Console;
+const { readLine, print, close } = require('@woowacourse/mission-utils').Console;
 const { INPUT, OUTPUT, LOTTO } = require('./Constants');
 const LottoStore = require('./LottoStore');
 const LottoResult = require('./LottoResult');
@@ -11,11 +11,6 @@ class Lottery {
 
   progress() {
     this.getPrice();
-
-    /*
-    const LOTTO = this.#lotto.getLotto();
-    console.log(LOTTO)
-    */
   }
   
   getPrice() {
@@ -27,7 +22,7 @@ class Lottery {
 
   printAutoLotto() {
     print(OUTPUT.NEW_LINE + this.#lottoStore.getCount() + OUTPUT.COUNT);
-    this.#lottoStore.getAutoLotto().map((numbers) => {
+    this.#lottoStore.setAutoLotto().map((numbers) => {
       print(numbers);
     });
     this.getLottoNumber();
@@ -57,6 +52,8 @@ class Lottery {
     print(LOTTO.SECOND_PLACE + result[3] + LOTTO.COUNT);
     print(LOTTO.FIRST_PLACE + result[4] + LOTTO.COUNT);
 
+    print(LOTTO.RATE_RETURN + this.#lottoResult.getRate(result) + LOTTO.PREDICATIVE_PARTICLE);
+    close();
   }
 
 }
