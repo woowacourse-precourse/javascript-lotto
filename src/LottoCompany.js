@@ -39,9 +39,9 @@ class LottoCompany {
     }
   }
 
-  setWinningNumbers(numbers) {
-    this.validateWinningNumbers(numbers);
-    const winningNumbers = numbers.split(",").map((elem) => Number(elem));
+  setWinningNumbers(numbersStr) {
+    this.validateWinningNumbers(numbersStr);
+    const winningNumbers = numbersStr.split(",").map((elem) => Number(elem));
     winningNumbers.sort((a, b) => a - b);
     this.#winningNumbers = winningNumbers;
   }
@@ -52,9 +52,9 @@ class LottoCompany {
     Lotto.validate(numbers);
   }
 
-  setBonusNumber(number) {
-    this.validateBonusNumber(number);
-    this.#bonusNumber = Number(number);
+  setBonusNumber(numberStr) {
+    this.validateBonusNumber(numberStr);
+    this.#bonusNumber = Number(numberStr);
   }
 
   // eslint-disable-next-line class-methods-use-this

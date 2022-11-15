@@ -7,8 +7,8 @@ class LottoManager {
 
   #money;
 
-  buyLottos(lottoCompany, money) {
-    this.#money = Number(money);
+  buyLottos(lottoCompany, moneyStr) {
+    this.#money = Number(moneyStr);
     this.#lottos = lottoCompany.publishLottos(this.#money);
   }
 
