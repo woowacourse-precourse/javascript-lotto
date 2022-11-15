@@ -7,7 +7,11 @@ class MessagePrinter {
     }
 
     static printAllLottos(lottoWallet) {
-        lottoWallet.forEach(lotto => MissionUtils.Console.print(lotto.numbers));
+        lottoWallet.forEach(lotto => { this.printTemplate(lotto.numbers) });
+    }
+
+    static printTemplate(lotto) {
+        MissionUtils.Console.print(`[${lotto[0]}, ${lotto[1]}, ${lotto[2]}, ${lotto[3]}, ${lotto[4]}, ${lotto[5]}]`)
     }
 
     static printResultStatistics(result) {
