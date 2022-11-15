@@ -48,6 +48,7 @@ class App {
   }
   inputWinningNumbers(winningNumbers) {
     this.#winningNumberList = winningNumbers.split(",").map((number) => {
+      if (number < 1 || number > 45) throw new Error(ERROR_MESSAGE.RANGE);
       return +number;
     });
   }
