@@ -29,6 +29,25 @@ class Validator {
 
     return set.size === array.length;
   }
+
+  static isRightLottoNumbers(target) {
+    const lottoNumbers = target.split(",").map((v) => +v);
+
+    if (
+      lottoNumbers.some(
+        (lottoNumber) =>
+          !this.isRange(1, 45, lottoNumber) ||
+          !this.isPositiveNumber(lottoNumber)
+      )
+    ) {
+      return false;
+    }
+
+    return (
+      this.isUniqueArray(lottoNumbers) &&
+      this.isLottoLength(lottoNumbers.length)
+    );
+  }
 }
 
 module.exports = Validator;
