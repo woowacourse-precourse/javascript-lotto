@@ -1,4 +1,3 @@
-//예제테스트
 const { Console } = require('@woowacourse/mission-utils');
 const LottoNumberIssuedFromComputer = require('../components/util/LottoNumberIssuedFromComputer');
 const { LottoNumberData } = require('../components/lotto-data/LottoNumberData');

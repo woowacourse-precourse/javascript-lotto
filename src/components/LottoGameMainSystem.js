@@ -1,4 +1,3 @@
-//예제테스트
 //library
 const { Console } = require('@woowacourse/mission-utils');
 // util
@@ -10,7 +9,7 @@ const Lotto = require('../Lotto');
 // UI
 const printFinalLottoResult = require('../ui/printFinalLottoResult');
 const printLottoNumberIssuedFromComputer = require('../ui/printLottoNumberIssuedFromComputer');
-// const
+// constant
 const { INPUT_CONSOLE_MESSAGE } = require('../components/lotto-data/Constant');
 
 class LottoGameMainSystem {

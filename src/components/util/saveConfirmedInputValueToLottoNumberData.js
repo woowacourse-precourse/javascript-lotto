@@ -1,4 +1,3 @@
-//예제테스트
 const { LottoNumberData } = require('../lotto-data/LottoNumberData');
 
 const MONEY = 1000;
