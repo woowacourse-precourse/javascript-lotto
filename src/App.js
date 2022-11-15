@@ -9,7 +9,7 @@ class App {
       this.showIssuedLotto(myLotto);
       MissionUtils.Console.readLine('\n당첨 번호를 입력해 주세요 : ', (winningNumbers) => {
         this.verificateWinningNumbers(winningNumbers);
-        MissionUtils.Console.readLine('\n보너스번호를 입력해 주세요 : ', (bonusNumber) => {
+        MissionUtils.Console.readLine('\n보너스 번호를 입력해 주세요 : ', (bonusNumber) => {
           this.verificateBonusNumber(winningNumbers,bonusNumber);
           let result = this.isJackpot(myLotto,winningNumbers,bonusNumber);
           this.showResult(money,result);
