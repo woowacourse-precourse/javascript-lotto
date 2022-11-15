@@ -2,6 +2,7 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const { Console, Random } = MissionUtils;
 const Validation = require('./Validation');
 const GenerateLotto = require('./GenerateLotto');
+const HitLottoNumber = require('./HitLottoNumber');
 const Const = require('./Const');
 class App {
   constructor() {

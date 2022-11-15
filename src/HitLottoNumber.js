@@ -31,3 +31,5 @@ class HitLottoNumber {
     return bonusNumber;
   }
 }
+
+module.exports = HitLottoNumber;
