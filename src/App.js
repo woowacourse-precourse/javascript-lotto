@@ -13,10 +13,25 @@ class App {
 
   InputMoney(){
     MissionUtils.Console.readLine('구입 금액을 입력해주세요 : ', (money) => {
+      this.checkInputMoney(getMoney);
       this.money = parseInt(money);
       let amount = money/1000;
       this.getUsersLottoArray(amount);
     });
+  }
+
+  checkInputMoney(money){
+    if (isNaN(+money)) {
+      throw new Error("[ERROR] 금액은 숫자만 입력해주세요.");
+    }
+
+    if (money < 1000){
+      throw new Error("[ERROR] 금액은 1000원 이상이어야 합니다.");
+    }
+    
+    if (money % 1000 !== 0){
+      throw new Error("[ERROR] 금액은 1000원 단위여야 합니다.");
+    }
   }
 
   getUsersLottoArray(amount){
