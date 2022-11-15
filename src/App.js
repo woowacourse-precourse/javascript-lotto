@@ -51,8 +51,7 @@ class App {
     MissionUtils.Console.readLine(`${Message.COST_MESSAGE}`, input => {
       this.validate(input);
       this.buyLottos(this.inputMoney / 1000);
-      View.printUserLottoNum(this.userLottoList.length);
-      this.userLottoList.forEach(lotto => View.printUserLotto(lotto.getNumbers()));
+      View.printUserLotto(this.userLottoList);
       this.createWinLotto();
     });
   }
