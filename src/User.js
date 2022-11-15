@@ -107,7 +107,7 @@ class User {
     return this.#earns;
   }
   showEarningRate() {
-    const earningRate = (this.#earns * 100) / this.#money;
+    const earningRate = ((this.#earns * 100) / this.#money).toFixed(1);
     Console.print(`총 수익률은 ${earningRate}%입니다.`);
   }
 }
