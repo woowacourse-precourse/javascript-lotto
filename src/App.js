@@ -11,8 +11,7 @@ class App {
   }
 
   getPurchaseAmount() {
-    Console.print('구매금액을 입력해 주세요.');
-    Console.readLine('', (userInput) => {
+    Console.readLine('구매금액을 입력해 주세요. \n', (userInput) => {
       this.checkPurchaseAmount(userInput);
     });
   }
@@ -49,22 +48,38 @@ class App {
       Console.print(lottoNumbers);
     });
     
-    this.getUserLottoNumbers();
+    this.getUserLottoNumbers(lottoList);
   }
 
-  getUserLottoNumbers() {
-    Console.readLine('당첨 번호를 입력해 주세요. \n', (userInput) => {
-      const userInputArr = userInput.split(',');
-      new Lotto(userInputArr);
-      this.getUserBonusNumbers(userInputArr);
+  getUserLottoNumbers(lottoList) {
+    Console.readLine('당첨 번호를 입력해 주세요. \n', (lottoNumbers) => {
+      const userLottoNumbers = lottoNumbers.split(',');
+      new Lotto(userLottoNumbers);
+      this.getUserBonusNumbers(userLottoNumbers, lottoList);
     });
   }
 
-  getUserBonusNumbers(userLottoNumbers) {
-    Console.readLine('보너스 번호를 입력해 주세요. \n', (userInput) => {
-      new Bonus(userInput, userLottoNumbers);
+  getUserBonusNumbers(userLottoNumbers, lottoList) {
+    Console.readLine('보너스 번호를 입력해 주세요. \n', (bonusNumber) => {
+      new Bonus(bonusNumber, userLottoNumbers);
+      this.getCountOfMatchingNumber(lottoList, userLottoNumbers, bonusNumber);
     });
   }
+  getCountOfMatchingNumber(lottoList, userLottoNumber, userBonusNumber) {
+    lottoList.forEach((list) => {
+      let count = { normal: 0, bonus: 0 }
+      list.forEach((number) => {
+        if (userLottoNumber.map(Number).includes(number) === true) {
+          count.normal++;
+        }
+
+        if (userBonusNumber.includes(number) === true) {
+          count.bonus++;
+        }
+      });
+    });
+  }
+
 }
 const app = new App();
 app.play();
