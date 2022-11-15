@@ -33,7 +33,7 @@ class Lotto {
     });
   }
 
-  output() {
+  getLottoWinningNumber() {
     return this.#numbers;
   }
 }
