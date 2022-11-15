@@ -8,8 +8,9 @@ const Statistic = class {
   }
 
   outputView({ lottos, winNumber, bonusNumber }) {
+    const rank = this.getRankResult({ lottos, winNumber, bonusNumber });
     const messages = this.generateMessage({
-      rank: this.getRankResult({ lottos, winNumber, bonusNumber }),
+      rank,
       totalYield: this.getYield({ rank, lottos }),
     });
     this.#io.print("\n당첨 통계");

@@ -69,8 +69,9 @@ outputView({ buyLottoNumber, lottos }) {
 ```javascript
 // Seller로 부터 상태를 넘겨받아 당첨 결과 통계 뷰를 그려준다.
 outputView({ lottos, winNumber, bonusNumber }) {
+  const rank = this.getRankResult({ lottos, winNumber, bonusNumber });
   const messages = this.generateMessage({
-    rank: this.getRankResult({ lottos, winNumber, bonusNumber }),
+    rank,
     totalYield: this.getYield({ rank, lottos }),
   });
   this.#io.print("\n당첨 통계");
