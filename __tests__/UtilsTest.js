@@ -31,12 +31,6 @@ describe('유틸 클래스 테스트', () => {
     }).toThrow('[ERROR]');
   });
 
-  test('보너스 번호가 당첨 번호와 중복될 경우 예외가 발생한다.', () => {
-    expect(() => {
-      validateBonusNumber('3', [1, 2, 3, 4, 5, 6]);
-    }).toThrow('[ERROR]');
-  });
-
   test('getLottoRanking 테스트', () => {
     const lottos = [
       [1, 3, 13, 24, 25, 36],
