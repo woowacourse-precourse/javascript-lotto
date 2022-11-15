@@ -60,8 +60,11 @@ class App {
     if (numbers.length !== 6) {
       throw new Error('[ERROR] 당첨번호는 6개여야 합니다.');
     }
+    if (numbers.filter((number) => !Number(number)).length > 0) {
+      throw new Error('[ERROR] 당첨번호는 숫자여야 합니다.');
+    }
     if (numbers.filter((number) => number < 1 || number > 45).length > 0) {
-      throw new Error('[ERROR] 번호는 1에서 45사이어야 합니다.');
+      throw new Error('[ERROR] 당첨번호는 1에서 45사이어야 합니다.');
     }
     if ([...new Set(numbers)].length !== 6) {
       throw new Error('[ERROR] 당첨번호가 중복되면 안됩니다.');
