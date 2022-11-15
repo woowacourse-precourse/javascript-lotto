@@ -66,6 +66,7 @@ class App {
   static enterBonusNumber() {
     IO.readLine(NEW_LINE + pleaseEnterBonusNumber + NEW_LINE, (input) => {
       App.bonusNumber = +input;
+      Validator.validateNumber(App.bonusNumber);
       App.calcResult();
     });
   }
