@@ -1,4 +1,5 @@
 const Vaildator = require('./Vaildator');
+const error = require('./util/error');
 
 class Lotto {
   #numbers;
@@ -10,7 +11,7 @@ class Lotto {
 
   validate(numbers) {
     if (!Vaildator.isRightLottoNumbers(numbers)) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+      throw new Error(error.INVALID_LOTTO_LENGTH);
     }
   }
 
