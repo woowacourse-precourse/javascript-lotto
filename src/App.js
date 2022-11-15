@@ -55,7 +55,7 @@ class App {
       this.startBonusInput(number);
       const ranks = Ranker.getPriceRank(this.lottos, [this.win, this.bonus]);
       LottoAdmin.printWinStatistics(ranks);
-      const margin = LottoAdmin.getMargin(price, [this.lottos, ranks]);
+      const margin = LottoAdmin.getMargin(price, [this.lottos.length, ranks]);
       Console.print(`총 수익률은 ${margin}%입니다.`);
       Console.close();
     });

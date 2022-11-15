@@ -30,9 +30,9 @@ class LottoAdmin {
     return ranks.reduce((acc, value, idx) => acc + value * price[idx], 0);
   }
 
-  static getMargin(price, [lottos, ranks]) {
+  static getMargin(price, [lottoLen, ranks]) {
     const margin = this.#getStatisticsPriceSum(price, ranks);
-    const totalLottoPrice = lottos.length * 1000;
+    const totalLottoPrice = lottoLen * 1000;
     const middle = (margin / totalLottoPrice) * 100;
     return Math.round(middle * 100) / 100;
   }
