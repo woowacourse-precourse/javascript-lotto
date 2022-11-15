@@ -18,38 +18,45 @@ class LottoGame {
     this.setNumberPurchase(input);
     this.drawNumber(this.#money / LOTTO_PRICE);
   }
+
   setNumberPurchase(input) {
     this.#money = this.validateMoney(input);
   }
+
   validateMoney(input) {
     checkIsNumber(input);
     checkZero(input);
     isUnit(input, LOTTO_PRICE);
     return input;
   }
+
   drawNumber(number) {
     this.#number_Purchase = this.#money / LOTTO_PRICE;
     this.#lotteries = this.draw(number);
     this.printDrawNumber();
     this.setWinningNumber();
   }
+
   draw(number) {
     return Array(number)
       .fill(0)
       .map(() => Random.pickUniqueNumbersInRange(1, 45, 6).sort((current, next) => current - next));
   }
+
   printDrawNumber() {
     Console.print(RESULT_MESSAGE.PURCHASE(this.#number_Purchase));
     this.#lotteries.forEach((lottoNumbers) => {
       Console.print(`[${lottoNumbers.join(", ")}]`);
     });
   }
+
   setWinningNumber() {
     Console.readLine(SET_WINNGNUMBER.INPUT_NUMBER, (winningNumbers) => {
       this.#winningNumber = new Lotto(winningNumbers.split(","));
       this.setBonusNumber();
     });
   }
+
   setBonusNumber() {
     Console.readLine(SET_WINNGNUMBER.INPUT_BONUS_NUMBER, (bonusNumber) => {
       this.#winningNumber.setBonusNumber(bonusNumber);
