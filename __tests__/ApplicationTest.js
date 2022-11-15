@@ -1,5 +1,8 @@
-const App = require("../src/App");
+const App = require("../src/App.js");
 const MissionUtils = require("@woowacourse/mission-utils");
+const ERROR_MESSAGES = require("../src/const/ErrorMessages");
+const { Console, Random } = MissionUtils;
+const { IS_NUMBER } = ERROR_MESSAGES;
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLine = jest.fn();
@@ -66,6 +69,6 @@ describe("로또 테스트", () => {
     expect(() => {
       const app = new App();
       app.play();
-    }).toThrow("[ERROR]");
+    }).toThrow(IS_NUMBER);
   });
 });
