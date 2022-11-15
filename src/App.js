@@ -3,18 +3,26 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("./Lotto.js");
 const PurchaseLotto = require("./PurchaseLotto.js");
 const UserLotto = require("./UserLotto.js");
+const LottoResult = require("./LottoResult.js");
 
 class App {
   constructor() {
     this.wonLotto = [];
     this.userLottoNumber = [];
-    this.totalLotto = 0;
+    this.totalLotto = null;
+    this.bonusNumber = null;
   }
+
   play() {
     this.inputPurchase();
     this.userLotto = new UserLotto(this.totalLotto);
     this.userLottoNumber = this.userLotto.getUserLotto();
     this.inputWonLotto();
+    this.lottoResult = new LottoResult(
+      this.userLottoNumber,
+      this.wonLotto,
+      this.bonusNumber
+    );
   }
 
   inputPurchase() {
@@ -38,6 +46,8 @@ class App {
         const winLotto = lottoNumber.split(",");
         const validatedLotto = this.wonLottoValidate(winLotto);
         this.lotto = new Lotto(validatedLotto);
+        this.wonLotto = this.lotto.getWonLotto;
+        this.bonusNumber = this.lotto.getBonus();
       }
     );
   }

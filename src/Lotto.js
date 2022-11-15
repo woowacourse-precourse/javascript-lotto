@@ -3,10 +3,9 @@ const MissionUtils = require("@woowacourse/mission-utils");
 class Lotto {
   #numbers;
   #bonusNumber;
+  #result;
 
   constructor(numbers) {
-    // console.log(numbers);
-    // console.log(typeof numbers[0]);
     this.validate(numbers);
     this.isCorrectNumber(numbers);
     this.#numbers = numbers;
@@ -46,6 +45,11 @@ class Lotto {
   }
 
   validateBonusNumber(number) {
+    if (this.#numbers.includes(number)) {
+      throw new Error(
+        "[ERROR] 보너스 번호는 당첨 번호와 중복되어서는 안됩니다."
+      );
+    }
     if (number.includes(".")) {
       throw new Error("[ERROR] 보너스 번호는 자연수이어야합니다.");
     }
@@ -54,6 +58,14 @@ class Lotto {
       throw new Error("[ERROR] 보너스 번호는 1~45까지만 입력할 수 있습니다.");
     }
     return bonusNumber;
+  }
+
+  getBonus() {
+    return this.#bonusNumber;
+  }
+
+  getWonLotto() {
+    return this.#numbers;
   }
 }
 
