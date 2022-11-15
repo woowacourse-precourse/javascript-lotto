@@ -6,6 +6,14 @@ const INPUT_MESSAGE = Object.freeze({
 
 const OUTPUT_MESSAGE = Object.freeze({
   BUY: (num) => `${num}개를 구매했습니다.`,
+  START_STATICS: `당첨 통계\n ---\n`,
+  THREE_MATCH: (num) => `3개 일치 (5,000원) - ${num}개`,
+  FOUR_MATCH: (num) => `4개 일치 (50,000원) - ${num}개`,
+  FIVE_MATCH: (num) => `5개 일치 (1,500,000원) - ${num}개`,
+  FIVE_BONUS_MATCH: (num) =>
+    `5개 일치, 보너스 볼 일치 (30,000,000원) - ${num}개`,
+  SIX_MATCH: (num) => `6개 일치 (2,000,000,000원) - ${num}개`,
+  TOTAL_INCOME: (percent) => `총 수익률은 ${percent}%입니다.`,
 });
 
 const ERROR_MESSAGE = Object.freeze({

@@ -38,15 +38,13 @@ class InputView {
   #inputBonus() {
     Console.readLine(INPUT_MESSAGE.BONUS_NUMBER, (numbers) => {
       this.#lottoGameController.inputBonus(numbers);
-      // this.#showStatics();
+      this.#showStatics();
     });
   }
 
-  // #showStatics() {
-  //   Console.print(OUTPUT_MESSAGE.STATIC_STATUS);
-  //   Console.print("---");
-  //   Console.print("컨트롤러한테 물어봐서 가져오셈");
-  // }
+  #showStatics() {
+    Console.print(OUTPUT_MESSAGE.START_STATICS);
+  }
 }
 
 module.exports = InputView;
