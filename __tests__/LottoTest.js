@@ -1,5 +1,6 @@
 const Lotto = require("../src/Lotto");
 const Comparison = require("../src/ComparisonOfWinningNumbers");
+const ComparisonOfWinningNumbers = require("../src/ComparisonOfWinningNumbers");
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
@@ -31,5 +32,10 @@ describe("로또 클래스 테스트", () => {
       answer.push(comparison.countAndSave(comparison.checkTheNumber(comparison.Comparison())));
     }
     expect(answer).toEqual(result);
+  });
+
+  test("당첨 내역", () => {
+    const comparison = new Comparison();
+    expect(comparison.checkTheRank([4, 5, 6])).toEqual(undefined);
   });
 });
