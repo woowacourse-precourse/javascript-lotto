@@ -24,6 +24,10 @@ class Score {
         this.bonusNumber = bonusNumber;
     }
 
+    setProfit (profit) {
+        this.profit = profit;
+    }
+
 }
 
 module.exports = Score;
