@@ -13,7 +13,7 @@ describe("LottoGenerator 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
-  test("구입 금액에 맞게 로또를 구매한다.", () => {
+  test("구입 금액에 맞게 로또를 생성한다.", () => {
     const lottoGenerator = new LottoGenerator("3000");
     const result = lottoGenerator.createLottos();
     expect(result.length).toBe(3);
