@@ -92,6 +92,14 @@ class Lotto {
     return prize;
   }
 
+  calculateProfit(len){
+    let profit = parseFloat(this.countPrize());
+    let used = parseFloat(len*1000);
+    let res = profit/used*100;
+    res = Math.round(res * 100) / 100;
+    MissionUtils.Console.print(`총 수익률은 ${res}%입니다.`);
+  }
+
   // TODO: 추가 기능 구현
 }
 
