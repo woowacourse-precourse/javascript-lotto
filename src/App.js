@@ -1,4 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const Ticket = require("./Ticket");
 const Constant = {
   PURCHASE_AMOUNT_QUESTION_MESSAGE: "구입금액을 입력해 주세요.",
   PURCHASE_AMOUNT_ERROR_MESSAGE: "구입 금액은 숫자여야 합니다.",
@@ -41,17 +42,21 @@ class App {
       throw new Error(PURCHASE_AMOUNT_ERROR_MESSAGE3);
     }
   }
-  
+
   manageTickets(numberOfTickets) {
     for (let i = 0; i < numberOfTickets; i++) {
       const ticketNumbers = this.createTicketNumbers();
-      MissionUtils.Console.print(ticketNumbers);
+      this.printTickets(ticketNumbers);
       this.tickets.push(new Ticket(randomTicketNumbers));
     }
   }
-  
+
   createTicketNumbers() {
     return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+  }
+
+  printTickets(ticketNumbers) {
+    MissionUtils.Console.print(ticketNumbers);
   }
 }
 
