@@ -1,5 +1,6 @@
-const LottoBonus = require('./LottoBonus');
 const { checkLottoRange, checkDuplicate, checkLength } = require('./LottoValidation');
+
+const LottoBonus = require('./LottoBonus');
 
 class Lotto {
   #numbers = {

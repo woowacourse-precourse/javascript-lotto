@@ -29,6 +29,7 @@ class LottoResult {
 
   static getMatchCount({ winning, bonus }, lottery) {
     const count = winning.filter((number) => lottery.has(number)).length;
+
     if (count === FIVE && lottery.has(bonus)) {
       return LOTTO_MATCHES.fiveWithBonus;
     }

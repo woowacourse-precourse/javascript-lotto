@@ -27,6 +27,12 @@ const LOTTO_PRIZE = Object.freeze({
   out: 0,
 });
 
+const INPUT_MESSAGE = Object.freeze({
+  purchase: '구입금액을 입력해 주세요.\n',
+  winning: '\n당첨 번호를 입력해 주세요.\n',
+  bonus: '\n보너스 번호를 입력해 주세요.\n',
+});
+
 const RESULT_MESSAGE = Object.freeze({
   beginning: '\n당첨 통계\n---',
   three: (number) => `3개 일치 (5,000원) - ${number}개`,
@@ -36,12 +42,6 @@ const RESULT_MESSAGE = Object.freeze({
   six: (number) => `6개 일치 (2,000,000,000원) - ${number}개`,
   purchase: (number) => `\n${number}개를 구매했습니다.`,
   profitRate: (profitRate) => `총 수익률은 ${profitRate}%입니다.`,
-});
-
-const INPUT_MESSAGE = Object.freeze({
-  purchase: '구입금액을 입력해 주세요.\n',
-  winning: '\n당첨 번호를 입력해 주세요.\n',
-  bonus: '\n보너스 번호를 입력해 주세요.\n',
 });
 
 const ERROR_MESSAGE = Object.freeze({
@@ -61,7 +61,7 @@ module.exports = {
   LOTTO_RANGE,
   LOTTO_MATCHES,
   LOTTO_PRIZE,
-  RESULT_MESSAGE,
   INPUT_MESSAGE,
+  RESULT_MESSAGE,
   ERROR_MESSAGE,
 };
