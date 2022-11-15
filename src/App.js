@@ -1,5 +1,16 @@
+const LottoView = require('./LottoView');
+
 class App {
-  play() {}
+  constructor() {
+    this.LottoView = new LottoView();
+  }
+
+  play() {
+    this.LottoView.progress();
+  }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
