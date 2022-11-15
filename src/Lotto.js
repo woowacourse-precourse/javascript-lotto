@@ -1,9 +1,24 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
+    this.printNumbers();
+  }
+
+  printNumbers() {
+    let result = "[";
+    for (let index = 0; index < this.#numbers.length; index++) {
+      result += this.#numbers[index];
+      if (index !== this.#numbers.length - 1) {
+        result += ", ";
+      }
+    }
+    result += "]";
+    MissionUtils.Console.print(result);
   }
 
   validate(numbers) {
@@ -33,7 +48,6 @@ class Lotto {
 
   isWinLottery(winningNumbers, bonusNumber) {
     let winningNumberCount = 0;
-
     for (let index = 0; index < winningNumbers.length; index++) {
       if (this.#numbers.includes(winningNumbers[index])) {
         winningNumberCount++;
@@ -52,14 +66,14 @@ class Lotto {
     return 3;
   }
 
-  finalResult(rightNumber) {
-    if (rightNumber === 3) {
+  finalResult(winningNumberCount) {
+    if (winningNumberCount === 3) {
       return 5;
     }
-    if (rightNumber === 4) {
+    if (winningNumberCount === 4) {
       return 4;
     }
-    if (rightNumber === 6) {
+    if (winningNumberCount === 6) {
       return 1;
     }
     return 0;
