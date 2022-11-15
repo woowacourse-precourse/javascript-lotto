@@ -23,7 +23,7 @@ describe("로또 게임 테스트", () => {
     mockRandoms(expectedLottos);
 
     const lottoGame = new LottoGame();
-    lottoGame.createLottosOfUser(5);
+    lottoGame.setLottosOfUser(5);
 
     const lottos = lottoGame.lottosOfUser;
 
@@ -81,7 +81,7 @@ describe("로또 게임 테스트", () => {
 
     const lottoGame = new LottoGame();
     lottoGame.boughtAmount = boughtAmount;
-    lottoGame.createLottosOfUser(lottosOfUser.length);
+    lottoGame.setLottosOfUser(lottosOfUser.length);
     lottoGame.setWinningLotto(winningNumbers);
     lottoGame.setBonusNumber(bonusNumber);
     lottoGame.calculateResult();
@@ -89,7 +89,7 @@ describe("로또 게임 테스트", () => {
     expect(lottoGame.numberOfEachRanking).toEqual(
       expect.objectContaining(expectedNumberOfEachRanking),
     );
-    expect(lottoGame.calculateTotalProfit()).toEqual(expectedTotalProfit);
+
     expect(lottoGame.totalProfitRate).toEqual(expectedTotalProfitRate);
   });
 });

@@ -1,8 +1,8 @@
 const Lotto = require("./Lotto");
 const WinningLotto = require("./WinningLotto");
 const UI = require("./UI");
+const Calculater = require("./Calculater");
 const { pickUniqueNumbersInRange } = require("./Utils");
-const { PRIZE_MONEY, RANKING } = require("./Constant");
 
 class LottoGame {
   constructor() {
@@ -21,7 +21,7 @@ class LottoGame {
     UI.askHowMuchBuy((answer) => {
       this.setBoughtAmount(answer);
 
-      this.createLottosOfUser(answer / 1000);
+      this.setLottosOfUser(answer / 1000);
 
       UI.showBoughtLottos(this.lottosOfUser);
 
@@ -53,7 +53,7 @@ class LottoGame {
     this.boughtAmount = parseInt(amount, 10);
   }
 
-  createLottosOfUser(amount) {
+  setLottosOfUser(amount) {
     for (let i = 0; i < amount; i += 1)
       this.lottosOfUser.push(new Lotto(pickUniqueNumbersInRange(1, 45, 6)));
   }
@@ -73,35 +73,17 @@ class LottoGame {
   }
 
   calculateNumberOfEachRanking() {
-    const rankingOfEachLotto = this.calculateRankingOfEachLotto();
-
-    Object.keys(RANKING).forEach((rankingKey) => {
-      this.numberOfEachRanking[rankingKey] = rankingOfEachLotto.filter(
-        (ranking) => ranking === rankingKey,
-      ).length;
-    });
-  }
-
-  calculateTotalProfitRate() {
-    const totalProfit = this.calculateTotalProfit();
-
-    this.totalProfitRate = ((totalProfit / this.boughtAmount) * 100).toFixed(1);
-  }
-
-  calculateRankingOfEachLotto() {
-    return this.lottosOfUser.map((lotto) =>
-      this.winningLotto.calculateLottoRanking(lotto.getNumbers()),
+    this.numberOfEachRanking = Calculater.numberOfEachRanking(
+      this.lottosOfUser,
+      this.winningLotto,
     );
   }
 
-  calculateTotalProfit() {
-    let profit = 0;
-
-    Object.keys(RANKING).forEach((rankingKey) => {
-      profit += this.numberOfEachRanking[rankingKey] * PRIZE_MONEY[rankingKey];
-    });
-
-    return profit;
+  calculateTotalProfitRate() {
+    this.totalProfitRate = Calculater.totalProfitRate(
+      this.numberOfEachRanking,
+      this.boughtAmount,
+    );
   }
 }
 
