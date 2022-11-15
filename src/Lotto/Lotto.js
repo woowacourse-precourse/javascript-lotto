@@ -1,6 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 
 class Lotto {
+  #numbers;
   constructor() {
     const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 46, 6).sort(
       (a, b) => a - b
@@ -33,6 +34,9 @@ class Lotto {
       throw new Error("[ERROR] 로또는 중복이 있어선 안됩니다.");
   }
 
+  getLotto() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
