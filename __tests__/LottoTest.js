@@ -79,4 +79,52 @@ describe('로또 클래스 테스트', () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
+
+  test('당첨 입력 예외 테스트 - ,로 구분되지 않은 경우1', () => {
+    mockQuestions(['1500', '1 2 3 4 5 6']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
+
+  test('당첨 입력 예외 테스트 - ,로 구분되지 않은 경우2', () => {
+    mockQuestions(['1500', '123456']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
+
+  test('당첨 입력 예외 테스트 - 범위를 벗어난 수가 있을 경우1', () => {
+    mockQuestions(['1500', '1,2,3,4,5,46']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
+
+  test('당첨 입력 예외 테스트 - 범위를 벗어난 수가 있을 경우2', () => {
+    mockQuestions(['1500', '0,2,3,4,5,6']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
+
+  test('당첨 입력 예외 테스트 - 범위를 벗어난 수가 있을 경우3', () => {
+    mockQuestions(['1500', '-1,2,3,4,5,6']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
+
+  test('당첨 입력 예외 테스트 - 문자열이 입력될 경우', () => {
+    mockQuestions(['1500', '가,나,다,라,마,바']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
 });
