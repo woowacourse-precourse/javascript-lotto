@@ -18,9 +18,10 @@ class App {
   }
 
   printProfit(profit) {
-    const totalProfit = ((profit / (this.lotteryAmount * 1000)) * 100).toFixed(
-      1
-    );
+    const totalProfit = (
+      (profit / (this.lotteryAmount * LOTTERY_AMOUNT)) *
+      100
+    ).toFixed(1);
     Console.print(`총 수익률은 ${totalProfit}%입니다.`);
     Console.close();
   }
@@ -68,7 +69,7 @@ class App {
 
   inputBonusNumber() {
     Console.readLine("\n보너스 번호를 입력해주세요.", (number) => {
-      this.validation.bonusNumberValidate(number);
+      this.validation.bonusNumberValidate(number, this.lotteryArray);
       this.lotteryArray.push(Number(number));
       this.printResultInfo();
     });
