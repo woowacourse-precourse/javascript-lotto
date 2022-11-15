@@ -17,6 +17,20 @@ class App {
     this.statistics = new Statistics();
   }
 
+  async play() {
+    let money = await this.getMoney();
+    let lottoCnt = money / 1000;
+    let lottoArr = this.lottoMachine.makeLotto(lottoCnt);
+    this.lottoMachine.printLotto();
+    let lottoNum = await this.getAllLottoNum();
+    this.clerk.setData(lottoArr, lottoNum);
+    let revenue = this.clerk.countReward(this.clerk.countPlace());
+    this.clerk.showPlace();
+    this.statistics.getRateOfReturn(money, revenue);
+    this.statistics.showRateOfReturn();
+    MissionUtils.Console.close();
+  }
+
   async getMoney() {
     return this.judge.isBuyerInputValid(
       await this.buyer.getInput(SYS_MESSAGE.INPUT_MONEY_MESSAGE)
