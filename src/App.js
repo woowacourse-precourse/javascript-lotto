@@ -1,19 +1,19 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-
+const Lotto = require('./Lotto')
 
 class App {
   play() {
-    purchase()
+    purchaseLotto()
 
   }
 }
-// function purchaseInput() {
-//   MissionUtils.Console.readLine('금액을 입력해 주세요', (purchase_input)=>{
-//     exceptiondollar(purchase_input)
-    
-//     lotto(purchase_input)
-//   })
-// }
+function purchaseLotto() {
+  MissionUtils.Console.readLine('금액을 입력해 주세요', (money)=>{
+    exceptionMoney(money)
+    MissionUtils.Console.close()
+    // lotto(purchase_input)
+  })
+}
 
 // function lotto(dollarInput) {
 //   MissionUtils.Console.print(`${dollarInput/1000}개를 구매했습니다.`)
@@ -88,30 +88,29 @@ class App {
 //   MissionUtils.Console.print(`총 수익률은 ${value*100/dummy}%입니다.`)
 //   MissionUtils.Console.close()
 // }
-function exceptiondollar(dollarInput) {
-  let regExp = new RegExp('/\D/gm')
-  if (regExp.test(dollarInput)){
+function exceptionMoney(money) {
+  if (isNaN(money)){
     throw '[ERROR] 숫자만 입력해 주세요'
   }
-  if (dollarInput%1000 > 0){
+  if (money%1000 > 0){
     throw '[ERROR] 금액은 1,000원 단위로 입력해야 합니다.'
   }
 }
-function exceptionWinningInput(winningInput){
-  let winningInputArray = winningInput.split(',')
-  let winningSet = new Set(winningInputArray)
-  if (isNaN(winningInput)){
-    throw '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.'
-  }
-  if (Math.max(...winningInnputArray)>45){
-    throw '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.'
-  }
-  if (winningInputArray.length !== 6) {
-    throw '[ERROR] 로또 번호는 6개여야 합니다.'
-  }
-  if (winningSet.size !== 6) {
-    throw '[ERROR] 로또 번호는 서로 다른 6개여야 합니다.'
-  }
-}
+// function exceptionWinningInput(winningInput){
+//   let winningInputArray = winningInput.split(',')
+//   let winningSet = new Set(winningInputArray)
+//   if (isNaN(winningInput)){
+//     throw '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.'
+//   }
+//   if (Math.max(...winningInnputArray)>45){
+//     throw '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.'
+//   }
+//   if (winningInputArray.length !== 6) {
+//     throw '[ERROR] 로또 번호는 6개여야 합니다.'
+//   }
+//   if (winningSet.size !== 6) {
+//     throw '[ERROR] 로또 번호는 서로 다른 6개여야 합니다.'
+//   }
+// }
 
 module.exports = App;
