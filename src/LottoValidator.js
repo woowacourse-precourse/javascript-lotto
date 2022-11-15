@@ -21,7 +21,7 @@ class LottoValidator extends Validator {
     }
 
     if (number < this.minNumber || number > this.maxNumber) {
-      throw new Error(`${this.ERROR_MESSAGE_HEADER} 로또 번호는 ${this.minNumber}부터 ${this.maxNumber}까지 입니다.`);
+      throw new Error(`${this.ERROR_MESSAGE_HEADER} 로또 번호는 ${this.minNumber}부터 ${this.maxNumber} 사이의 숫자여야 합니다.`);
     }
 
     return true;
