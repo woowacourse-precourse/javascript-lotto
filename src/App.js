@@ -128,6 +128,12 @@ class App {
         7
       )}`
     );
+
+    this.end();
+  }
+
+  end() {
+    Console.close();
   }
 }
 
