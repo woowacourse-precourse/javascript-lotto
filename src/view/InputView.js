@@ -55,6 +55,7 @@ class InputView {
   #showIncomeRate() {
     const incomeRate = this.#lottoGameController.outputIncomeRate();
     Console.print(OUTPUT_MESSAGE.TOTAL_INCOME(incomeRate));
+    Console.close();
   }
 }
 
