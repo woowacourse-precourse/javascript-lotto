@@ -65,6 +65,13 @@ class Score {
        
     }
 
+    calculateProfit () {
+        const sum = this.calculateSum();
+        const money = this.money;
+        const profit = Calculate.calculateProfit(sum, money);
+        this.setProfit(profit);
+    }
+
 }
 
 module.exports = Score;
