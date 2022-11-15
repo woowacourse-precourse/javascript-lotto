@@ -1,14 +1,19 @@
 class LottoNumberValidator {
-  static MINIMUM = 1;
-  static MAXIMUM = 45;
-
   static execute(number) {
-    const HAS_OUT_OF_RANGE =
-      number < LottoNumberValidator.MINIMUM || number > LottoNumberValidator.MAXIMUM;
+    this.validate(number);
+  }
 
-    if (HAS_OUT_OF_RANGE) {
-      throw new Error('[ERROR] 로또 번호는 1부터 45까지의 수만 가능합니다.');
-    }
+  static validate(number) {
+    const MESSAGE = '[ERROR] 로또 번호는 1부터 45까지의 수만 가능합니다.';
+
+    if (!this.isInRange(number)) throw new Error(MESSAGE);
+  }
+
+  static isInRange(number) {
+    const MINIMUM = 1;
+    const MAXIMUM = 45;
+
+    return MINIMUM <= number && number <= MAXIMUM;
   }
 }
 
