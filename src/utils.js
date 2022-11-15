@@ -1,4 +1,4 @@
-const { ERROR_PREFIX } = require('./constants');
+const { ERROR_PREFIX, COUNT } = require('./constants');
 
 const makeErrorMsg = (errorMsg) => `${ERROR_PREFIX} ${errorMsg}`;
 
@@ -8,7 +8,8 @@ const invalidNumber = (numbers) =>
 
 const invalidInputNum = (numbers, num) => numbers.length !== num;
 
-const invalidDuplication = (numbers, num) => new Set(numbers).size !== num;
+const invalidDuplication = (numbers) =>
+  new Set(numbers).size !== COUNT.LOTTO_NUMBER;
 
 const invalidRange = (numbers, [minNum, maxNum]) =>
   numbers.filter((number) => !(number >= minNum && number <= maxNum)).length >

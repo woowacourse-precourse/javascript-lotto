@@ -18,7 +18,7 @@ class LottoNumberGenerator {
       MESSAGE.LOTTO_NUMBER_GENERATOR.INPUT_WINNER_NUMBER,
       (numbers) => {
         const winnerNumbers = numbers.split(',').map((n) => +n);
-        LottoNumberGenerator.#validate(winnerNumbers, 'WINNER_NUMBER');
+        this.#validate(winnerNumbers, 'WINNER_NUMBER');
         this.#winnerNumbers = winnerNumbers;
       },
     );
@@ -27,14 +27,15 @@ class LottoNumberGenerator {
       MESSAGE.LOTTO_NUMBER_GENERATOR.INPUT_BONUS_NUMBER,
       (number) => {
         const bonusNumber = number.split(',').map((n) => +n);
-        LottoNumberGenerator.#validate(bonusNumber, 'BONUS_NUMBER');
+        this.#validate(bonusNumber, 'BONUS_NUMBER');
         this.#bonusNumber = bonusNumber;
       },
     );
   }
 
-  static #validate(numbers, type) {
-    const { LOTTO_NUMBER, DUPLICATION, RANGE } = ERROR_MESSAGE;
+  #validate(numbers, type) {
+    const { LOTTO_NUMBER, WINNER_DUPLICATION, BONUS_DUPLICATION, RANGE } =
+      ERROR_MESSAGE;
 
     if (invalidNumber(numbers)) {
       throw new Error(makeErrorMsg(LOTTO_NUMBER));
@@ -45,8 +46,12 @@ class LottoNumberGenerator {
       throw new Error(makeErrorMsg(ERROR_MESSAGE[inputLength]));
     }
 
-    if (invalidDuplication(numbers, COUNT[type])) {
-      throw new Error(makeErrorMsg(DUPLICATION));
+    if (type === 'BONUS_NUMBER' && this.#winnerNumbers.includes(numbers[0])) {
+      throw new Error(makeErrorMsg(BONUS_DUPLICATION));
+    }
+
+    if (type === 'WINNER_NUMBER' && invalidDuplication(numbers)) {
+      throw new Error(makeErrorMsg(WINNER_DUPLICATION));
     }
 
     if (

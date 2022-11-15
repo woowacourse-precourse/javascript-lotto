@@ -66,10 +66,13 @@ const ERROR_PREFIX = '[ERROR]';
 const ERROR_MESSAGE = {
   LOTTO_NUMBER: '로또 번호는 숫자여야 합니다.',
   MONEY_NUMBER: '구매 금액은 숫자여야 합니다.',
-  LOTTO_LENGTH: `로또 번호는 ${COUNT.LOTTO_NUMBER}개여야 합니다.`,
+  LOTTO_NUMBER_LENGTH: `로또 번호는 ${COUNT.LOTTO_NUMBER}개여야 합니다.`,
   WINNER_NUMBER_LENTH: `당첨 번호는 ${COUNT.WINNER_NUMBER}개여야 합니다.`,
   BONUS_NUMBER_LENTH: `보너스 번호는 ${COUNT.BONUS_NUMBER}개여야 합니다.`,
-  DUPLICATION: '로또 번호는 고유해야 합니다.',
+  LOTTO_DUPLICATION: '로또 번호는 고유해야 합니다.',
+  WINNER_DUPLICATION: '당첨 번호는 고유해야 합니다.',
+  BONUS_DUPLICATION:
+    '보너스 번호는 당첨 번호와 중복되지 않는 고유한 값이어야 합니다.',
   RANGE: `로또 번호는 ${COUNT.MIN_LOTTO_NUMBER}부터 ${COUNT.MAX_LOTTO_NUMBER} 사이의 숫자여야 합니다.`,
   MONEY_UNIT: '구매 금액은 천원 단위로 입력해야 합니다.',
 };

@@ -11,14 +11,14 @@ describe('로또 클래스 테스트', () => {
   });
 
   test('로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.', () => {
-    const errorMsg = makeErrorMsg(ERROR_MESSAGE.LOTTO_LENGTH);
+    const errorMsg = makeErrorMsg(ERROR_MESSAGE.LOTTO_NUMBER_LENGTH);
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 6, 7]);
     }).toThrow(errorMsg);
   });
 
   test('로또 번호에 중복된 숫자가 있으면 예외가 발생한다.', () => {
-    const errorMsg = makeErrorMsg(ERROR_MESSAGE.DUPLICATION);
+    const errorMsg = makeErrorMsg(ERROR_MESSAGE.LOTTO_DUPLICATION);
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 5]);
     }).toThrow(errorMsg);
