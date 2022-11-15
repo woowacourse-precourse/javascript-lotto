@@ -59,4 +59,12 @@ describe('로또 클래스 테스트', () => {
       app.play();
     }).toThrow('[ERROR]');
   });
+
+  test('금액 입력 예외 테스트 - 1000단위가 아닌 경우', () => {
+    mockQuestions(['1500']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
 });
