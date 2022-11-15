@@ -19,6 +19,7 @@ class App {
     this.requestPay();
     this.requestNumber();
     this.printWinning();
+    this.printRevenueRate();
   }
 
   requestPay() {
@@ -94,6 +95,23 @@ class App {
       if (count.length === 5) this.lottoWinningCountList[2]++;
       if (count.length === 6) this.lottoWinningCountList[4]++;
     });
+  }
+
+  getRevenueRate() {
+    const winningAmount = [5000, 50000, 1500000, 30000000, 2000000000];
+    let revenue = 0;
+
+    for (let i = 0; i < winningAmount.length; i++) {
+      revenue = winningAmount[0] * this.lottoWinningCountList[0];
+    }
+
+    return (revenue / (this.lottoCount * 1000)) * 100;
+  }
+
+  printRevenueRate() {
+    const result = this.getRevenueRate();
+
+    Console.print(`총 수익률은 ${result}%입니다.`);
   }
 }
 
