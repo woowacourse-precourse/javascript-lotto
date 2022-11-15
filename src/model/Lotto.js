@@ -17,13 +17,15 @@ class Lotto {
    * @param userSplitInput {number[]} [당첨 번호]
    */
   isInputSplitByComma(userSplitInput) {
+    const checkingNumberInput = userSplitInput.map((userSingleInput) => userSingleInput.toString());
+
     // 6개가 아니라면
     if (userSplitInput.length !== 6) {
       throw new Error(WINNING_NUMBER_MESSAGE.COMMA_NUMBER_ERROR);
     }
     // 정수가 아니라면
-    for (const singleElement of userSplitInput) {
-      if (!/^\d+$/.test(singleElement.toString())) {
+    for (const singleElement of checkingNumberInput) {
+      if (!/^\d+$/.test(singleElement)) {
         throw new Error(WINNING_NUMBER_MESSAGE.COMMA_NUMBER_ERROR);
       }
     }

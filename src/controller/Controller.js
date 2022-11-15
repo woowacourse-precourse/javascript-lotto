@@ -44,7 +44,7 @@ class Controller {
    * @param userInput {string} [유저 당첨번호 input]
    */
   setWinningNumberFromUser(userInput) {
-    const userSplitInput = userInput.split(",").map(Number);
+    const userSplitInput = userInput.split(",");
     this.setLottoToUse(new Lotto(userSplitInput).getLottoNumbers());
   }
 
