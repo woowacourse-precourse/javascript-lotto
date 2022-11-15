@@ -56,9 +56,7 @@ class App {
   getWinNumber() {
     Console.readLine(MESSAGE.CONFIRM_WIN, (win) => {
       this.validateWinNumbers(win);
-
       this.winNumbers = win.split(',').map((el) => Number(el));
-
       new Lotto(this.winNumbers);
 
       this.getBonusNumber();
@@ -68,14 +66,18 @@ class App {
   getBonusNumber() {
     Console.readLine(MESSAGE.CONFIRM_BONUS, (bonus) => {
       this.bonusNumber = Number(bonus);
-
       new WinLotto(this.winNumbers, this.bonusNumber);
-      this.publishedLottos.forEach((publishedLotto) => {
-        const result = publishedLotto.calculateResult(this.winNumbers, this.bonusNumber);
-        if (result === undefined) return;
-        this.scoreBoard[result]++;
-      });
+
+      this.makeScoreBoard();
       this.calculateProfit();
+    });
+  }
+
+  makeScoreBoard() {
+    this.publishedLottos.forEach((publishedLotto) => {
+      const result = publishedLotto.calculateResult(this.winNumbers, this.bonusNumber);
+      if (result === undefined) return;
+      this.scoreBoard[result]++;
     });
   }
 
@@ -87,7 +89,6 @@ class App {
     percentage = Number(percentage.toFixed(1)).toLocaleString();
     this.profit = percentage;
     this.printResult();
-    return percentage;
   }
 
   printResult() {
