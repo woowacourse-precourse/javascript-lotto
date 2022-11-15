@@ -78,7 +78,6 @@ class Play {
       const bonusNum = new Bonus(inputObjects.numbers, Number(answer));
       inputObjects.bonus = bonusNum.getBonus();
       Console.print('')
-      console.log(randomNumbersArrays)
       new GetResult(randomNumbersArrays, inputObjects);
     })
   }
