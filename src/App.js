@@ -8,6 +8,7 @@ class App {
     this.lottoList;
     this.winningList;
     this.bonusNumber;
+    this.result = [0,0,0,0,0]
   }
   play() {
     this.getMoney();
@@ -35,7 +36,7 @@ class App {
 
   getWinningNumbers(){
     MissionUtils.Console.readLine("\n당첨 번호를 입력해 주세요.\n",(number) => {
-      const winningNumber = number.split(',').map((v)=>parseInt(v));
+      const winningNumber = number.split(',').map((v)=>parseInt(v)).sort((a,b)=>a-b);
       //유효성 검사하기
       this.winningList = winningNumber;
       this.getBonusNumber();
@@ -47,9 +48,24 @@ class App {
       const bonusNum = parseInt(number);
       //유효성 검사하기
       this.bonusNumber =bonusNum;
+      this.getMatchCount();
     });
   }
 
+  getMatchCount(){
+    this.lottoList.forEach(lottoNums=>{
+      let isMatch = lottoNums.filter(nums => this.winningList.includes(nums));
+
+      if(isMatch.length === 6) this.result[0] +=1;
+      if(isMatch.length === 5) this.getMatchBounsNum(lottoNums);
+      if(isMatch.length === 4) this.result[3] +=1;
+      if(isMatch.length === 3) this.result[4] +=1;
+    })
+  }
+  getMatchBounsNum(lottoNums){
+    if(this.lottoNums.includes(this.bonusNumber)) this.result[1] +=1;
+    else this.result[2] +=1
+  }
 
   
 
