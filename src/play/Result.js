@@ -62,7 +62,7 @@ class Result {
 
   makeLottoResult() {
     this.calculateProfit();
-    this.calculateScore();
+    this.printEachScore();
     this.calculateTotalProfitRate();
   }
 
