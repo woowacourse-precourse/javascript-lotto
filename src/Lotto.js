@@ -54,8 +54,6 @@ class Lotto {
     return score;
   }
 
-  // TODO: 추가 기능 구현
-
   static createRandomLotto() {
     const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
     numbers.sort((a, b) => a - b);
@@ -63,13 +61,13 @@ class Lotto {
     return new Lotto(numbers);
   }
 
-  static createTotalLottoArr(lottoNum) {
-    const lottoArr = [];
-    for (let i = 0; i < lottoNum; i++) {
-      lottoArr.push(Lotto.createRandomLotto());
-    }
-    return lottoArr;
-  }
+  // static createTotalLottoArr(lottoNum) {
+  //   const lottoArr = [];
+  //   for (let i = 0; i < lottoNum; i++) {
+  //     lottoArr.push(Lotto.createRandomLotto());
+  //   }
+  //   return lottoArr;
+  // }
 }
 
 module.exports = Lotto;
