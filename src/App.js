@@ -90,8 +90,24 @@ class App {
     }
     if (count === 6) this.result[MONEY.FristPlaceMoney] += 1;
   }
+  printResult() {
+    Console.print(MESSAGE.RESULT_STATISTICS);
+    Console.print(`3개 일치 (5,000원) - ${this.result[MONEY.FifthPlaceMoney]}개`);
+    Console.print(`4개 일치 (50,000원) - ${this.result[MONEY.FourthPlaceMoney]}개`);
+    Console.print(`5개 일치 (1,500,000원) - ${this.result[MONEY.ThirdPlaceMoney]}개`);
+    Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.result[MONEY.SecondPlaceMoney]}개`);
+    Console.print(`6개 일치 (2,000,000,000원) - ${this.result[MONEY.FristPlaceMoney]}개`);
+    this.calculateProfitPercentage();
+  }
 
-  
+  calculateProfitPercentage() {
+    let profit = 0;
+    for (let key in this.result) {
+      profit += parseInt(key) * this.result[key];
+    }
+    Console.print(`총 수익률은 ${(profit / this.money * 100).toFixed(1)}%입니다.`);
+    Console.close();
+  }  
 }
 
 let app = new App().play;
