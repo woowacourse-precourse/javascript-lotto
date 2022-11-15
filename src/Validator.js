@@ -11,7 +11,7 @@ class Validator {
     throw new Error('[ERROR] 1000원 이상의 금액을 입력해주세요.');
   }
 
-  static isNotDuplicated(list, len) {
+  static isNotDuplicated(list, len = 6) {
     const set = new Set(list);
     if (set.size < len) {
       throw new Error('[ERROR] 중복된 숫자가 있습니다.');
@@ -19,12 +19,14 @@ class Validator {
     return true;
   }
 
-  static isNotExceedAmount(list) {
-    if (list.length >= 7) {
-      throw new Error('[ERROR] 6개 이하의 숫자를 입력하세요.');
+  static isNotExceedAmount(list, len = 6) {
+    console.log('ok is exceed?', list, len, list.length > len);
+    if (list.length > len) {
+      throw new Error(`[ERROR] ${len}개 이하의 숫자를 입력하세요.`);
     }
     return true;
   }
+
   static isValidLottoNumber(number) {
     if (number < 1 || number > 45)
       throw new Error('[ERROR] 1~45 사이의 숫자를 입력하세요.');
@@ -41,10 +43,11 @@ class Validator {
   }
 
   static lottoInputCheckHandler(input, len = 6) {
+    console.log(input, len);
     const target = numList(input);
     reducer(
       input,
-      Validator.isNotExceedAmount(target),
+      Validator.isNotExceedAmount(target, len),
       Validator.isNotDuplicated(target, len),
     );
     return target;

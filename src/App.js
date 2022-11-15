@@ -16,17 +16,19 @@ class App {
       this.inputWinningNumberHandler();
     });
   }
-  
+
   inputWinningNumberHandler() {
     read(`당첨 번호를 입력해주세요\n`, input => {
-      lottoInputCheckHandler(input, input => this.addWinningNumber(input));
-      this.inputBonusNumberHandler();
+      const target = [...input.split('')].filter(x => !isNaN(x));
+      const numbers = lottoInputCheckHandler(target);
+      this.inputBonusNumberHandler(numbers);
     });
   }
 
-  inputBonusNumberHandler() {
+  inputBonusNumberHandler(winningNumbers) {
     read(`보너스 번호를 입력해주세요\n`, input => {
-      lottoInputCheckHandler(input, input => console.log(input), 7);
+      const fullNumbers = [...winningNumbers, input];
+      lottoInputCheckHandler(fullNumbers, 7);
     });
   }
   play() {
