@@ -26,8 +26,8 @@ class LottoGame {
     MissionUtils.Console.print(this.lottoCount + "개를 구매했습니다.");
     for (let i = 0; i < this.lottoCount; i++) {
       const lotto = new Lotto();
-      this.lottos.push(Lotto);
-      MissionUtils.Console.print(Lotto);
+      this.lottos.push(lotto.getLotto());
+      MissionUtils.Console.print(lotto.getLotto());
     }
     MissionUtils.Console.print(this.lottos);
 
