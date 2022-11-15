@@ -20,7 +20,7 @@ class LottoGameView {
   }
 
   printPurchasedLotteries(lottoQuantity, lotteries) {
-    Console.print(`${lottoQuantity}${MESSAGE.OUTPUT.PURCHASE_COUNT}`);
+    Console.print(`\n${lottoQuantity}${MESSAGE.OUTPUT.PURCHASE_COUNT}`);
     lotteries.forEach((lotto) => {
       const number = lotto.getNumber();
       const printNumber = number.map((num) => num).join(', ');
