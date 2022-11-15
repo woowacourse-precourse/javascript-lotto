@@ -88,9 +88,25 @@ class App {
        5개 일치 (1,500,000원) - ${fifth.count}개/n,
        5개 일치, 보너스 볼 일치 (30,000,000원) - ${second.count}개/n,
        6개 일치 (2,000,000원) - ${first.count}개/n
+       총 수익률은 ${totalRatio()}입니다.
        `
-    )
+    );
   }
+
+  totalRatio() {
+    const totalExpenses = lottoNum.answer;
+    const totalIncome = (
+      (fifth.count*fifth_Money) + 
+      (fourth.count*fourth_Money)
+      (third.count*third_Money)
+      (second.count*second_Money)
+      (first.count*first_Money)
+    );
+
+    const earningRatio = ((totalIncome/totalExpenses)*100).toFixed(1);
+    return earningRatio;
+  }
+
 }
 
 
