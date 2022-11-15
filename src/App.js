@@ -8,7 +8,6 @@ class App {
     const User = new USER();
     const LottoWinningNumber = new LOTTOWINNINGNUMBER();
     const BonusNumber = new BONUSNUMBER();
-    let ComparisonOfWinningNumbers = null;
     
     let price = 0;
     let number = 0;
@@ -18,6 +17,7 @@ class App {
     let comparison = [];
     let checkTheNumber = [];
     let countAndSave = [];
+    let ComparisonOfWinningNumbers = null;
 
     price = User.enterLottoBuyPrice();
     number = User.lottoNumberOfPapers(price);
