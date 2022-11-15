@@ -74,7 +74,7 @@ describe("Store 클래스 테스트", () => {
   });
 
   test("발행된 로또를 출력한다.", () => {
-    store.getAnswer = jest.fn();
+    store.setAnswer = jest.fn();
     const testCandidates = [
       [1, 2, 3, 4, 5, 6],
       [4, 5, 6, 7, 8, 9],
@@ -90,16 +90,16 @@ describe("Store 클래스 테스트", () => {
   });
 
   test("당첨 번호를 입력받아 예외가 발생하지 않으면 저장한다.", () => {
-    store.getBonus = jest.fn();
+    store.setBonus = jest.fn();
     mockReadLine("1,2,3,4,5,6");
-    store.getAnswer();
+    store.setAnswer();
     expect(store.answer.numbers).toStrictEqual([1, 2, 3, 4, 5, 6]);
   });
 
   test("보너스 번호를 입력받아 예외가 발생하지 않으면 저장한다.", () => {
     store.answer = new LottoAnswer([1, 2, 3, 4, 5, 6]);
     mockReadLine("7");
-    store.getBonus();
+    store.setBonus();
     expect(store.answer.bonus).toBe(7);
   });
 });

@@ -49,17 +49,17 @@ class Store {
     this.candidates.forEach((candidate) => {
       MissionUtils.Console.print(candidate.numbers);
     });
-    this.getAnswer();
+    this.setAnswer();
   }
 
-  getAnswer() {
+  setAnswer() {
     MissionUtils.Console.readLine("당첨 번호를 입력해 주세요.", (userInput) => {
       this.answer = new LottoAnswer(parseAnswerInput(userInput));
-      return this.getBonus();
+      return this.setBonus();
     });
   }
 
-  getBonus() {
+  setBonus() {
     MissionUtils.Console.readLine(
       "보너스 번호를 입력해 주세요.",
       (userInput) => {
