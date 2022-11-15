@@ -1,18 +1,35 @@
 const { Console } = require('@woowacourse/mission-utils');
 const BoughtLottoNumber = require('./BoughtLottoNumber');
+const {INPUT_MESSAGES} = require('./Constant');
 
 class UserInput {
 
   static getPaymentAmount() {
-    Console.readLine('구입금액을 입력해 주세요. \n', (input) => {
+    Console.readLine(INPUT_MESSAGES.PAYMENT_AMOUNT, (input) => {
       let paymentAmount = parseInt(input)/1000;
       BoughtLottoNumber.boughtLotto(paymentAmount);
-      Console.close();
+      this.getUserInputNumber();
     });
+  }
+
+  static getUserInputNumber() {
+    let userInputNumberArray = [];
+
+    Console.readLine(INPUT_MESSAGES.USER_INPUT_NUMBER, (numbers) => {
+      userInputNumberArray = numbers.split(',').map(x=>parseInt(x));
+      console.log(userInputNumberArray); // [ 1, 11, 2, 22, 3, 33 ]
+    });
+    this.getUserBonusNumber();
+  }
+
+  static getUserBonusNumber() {
+    Console.readLine(INPUT_MESSAGES.USER_BONUS_NUMBER, (number) => {
+
+    })
   }
 
 }
 
 module.exports = UserInput;
-
-//UserInput.getPaymentAmount();
+UserInput.getPaymentAmount()
+// UserInput.getUserInputNumber();
