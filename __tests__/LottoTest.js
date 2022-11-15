@@ -14,5 +14,23 @@ describe("로또 클래스 테스트", () => {
     }).toThrow("[ERROR]");
   });
 
+  test("로또 번호가 45보다 클 경우 에러 발생", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, 46]);
+    }).toThrow("[ERROR]");
+  });
+
+  test("로또 번호가 1보다 작을 경우 에러 발생", () => {
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, 0]);
+    }).toThrow("[ERROR]");
+  });
+
+  test("로또 번호가 숫자가 아닐 경우 에러 발생", () => {
+    expect(() => {
+      new Lotto([1, "ABCDE", 3, 4, 5, "ABCD"]).toThrow("[ERROR]");
+    });
+  });
+
   // 아래에 추가 테스트 작성 가능
 });
