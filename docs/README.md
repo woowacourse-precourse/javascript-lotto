@@ -9,13 +9,11 @@
   - [x] 발행한 로또 수량을 출력한다. | #printAmountOfLotto()
 - [x] 로또 1개당 1부터 45까지의 중복되지 않는 6개의 숫자를 생성한다. | NumberGenerator#createNumbersOfLotto()
   - [x] 생성한 로또 번호를 출력한다. | #printNumbersOfLotto()
+    - [ ] 로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.
+    - [ ] 로또 번호에 중복된 숫자가 있으면 예외가 발생한다.
+    - [ ] 로또 번호가 1부터 45 사이의 숫자가 아니면 예외가 발생한다.
 - [x] 당첨 번호를 입력 받는다. | #receiveWinningNumbers()
 - [x] 보너스 번호를 입력 받는다. | #receiveBonusNumber()
-- [ ] 당첨 번호와 보너스 번호의 유효성 검사를 할 수 있다. | Lotto#validate()
-  - [ ] (예외) 로또 당첨 번호는 1부터 45 사이의 숫자여야 한다.
-  - [ ] (예외) 로또 번호는 6개여야 한다.
-  - [ ] (예외) 로또 보너스 번호는 1부터 45 사이의 숫자여야 한다.
-  - [ ] (예외) 로또 보너스 번호는 1개여야 한다.
 - [ ] 당첨 번호와 구매자 번호를 비교할 수 있다. | Lotto#compare()
   - [ ] 당첨 내역을 출력한다. | #printDetialsOfLotto()
 - [ ] 수익률을 알 수 있다. | Calculator#calculateRateOfReturn()
