@@ -4,15 +4,26 @@ class Lotto {
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
+    this.matchedNumberCount = 0;
+    this.hasbonusNumber = false;
   }
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error("[ERROR]");
+    }
+
+    if (new Set(numbers).size !== 6) {
+      throw new Error("[ERROR]");
     }
   }
 
-  // TODO: 추가 기능 구현
+  compareWith(winNumber) {
+    const winNumbers = winNumber.split(",").map((number) => Number(number));
+    this.#numbers.forEach((lottoNumber) => {
+      if (winNumbers.includes(lottoNumber)) this.matchedNumberCount += 1;
+    });
+  }
 }
 
 module.exports = Lotto;
