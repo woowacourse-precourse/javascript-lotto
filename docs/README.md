@@ -27,4 +27,20 @@
 
 ### Methods
 
+- play()
+- buyLotto()
+- pritnRandomNumber()
+- getLottoNumber()
+- getBonusNumber()
+- getResult()
+- getRevenue()
+- printResult()
+- printRank()
+
 ### Functions
+
+- calCount()
+- calcResult()
+- calcRevenue()
+- calcRevenueRate()
+  = createRandomNumbers()
