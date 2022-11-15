@@ -5,11 +5,13 @@ class App {
   #ticketCnt;
   #purchased;
   #winNumbers;
+  #bonusNumber;
 
   constructor() {
     this.#ticketCnt = 0;
     this.#purchased = [];
     this.#winNumbers = [];
+    this.#bonusNumber = 0;
   }
 
   play() {
@@ -21,7 +23,6 @@ class App {
       this.#getWinNum();
     });
   }
-
   #inputMoneyExceptionCheck(money) {
     if (this.#stringHasNaN(money))
       throw new Error('[ERROR] 금액은 숫자로 입력해 주세요');
@@ -60,10 +61,10 @@ class App {
       '\n당첨 번호를 입력해 주세요.\n',
       (winNum) => {
         this.#inputWinNumExceptionCheck(winNum);
+        this.#getBonusNum();
       }
     );
   }
-
   #inputWinNumExceptionCheck(winNum) {
     winNum.split(',').forEach((num) => this.#winNumbers.push(parseInt(num)));
     this.#validateInputWinNum();
@@ -92,6 +93,22 @@ class App {
     for (let i = 0; i < numbers.length; ++i) {
       if (numbers[i] < 1 || numbers[i] > 45) return true;
     }
+  }
+
+  #getBonusNum() {
+    MissionUtils.Console.readLine(
+      '\n보너스 번호를 입력해 주세요.\n',
+      (secondNum) => {
+        this.#bonusNumber = parseInt(secondNum);
+        this.#inputBonusNumExceptionCheck();
+      }
+    );
+  }
+  #inputBonusNumExceptionCheck() {
+    if (typeof this.#bonusNumber !== 'number')
+      throw new Error('[ERROR] 보너스 번호는 숫자여야 합니다.');
+    if (this.#winNumbers.includes(this.#bonusNumber))
+      throw new Error('[ERROR] 보너스 번호는 당첨번호와 중복될 수 없습니다.');
   }
 }
 
