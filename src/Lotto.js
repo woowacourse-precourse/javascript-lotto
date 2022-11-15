@@ -1,3 +1,4 @@
+const { LOTTO_NUMBER_ERROR } = require('./Const');
 class Lotto {
   #numbers;
 
