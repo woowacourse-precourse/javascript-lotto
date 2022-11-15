@@ -48,7 +48,7 @@ class App {
   printRandomLotto(totalCounts) {
     for (let i = 0; i < totalCounts; i++) {
       this.randomNumberArr.push(MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b));
-      MissionUtils.Console.print(this.randomNumberArr[i]);
+      MissionUtils.Console.print(`[${this.randomNumberArr[i].join(', ')}]`);
     };
     this.userRandomNumber();
   };
