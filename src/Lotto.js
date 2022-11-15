@@ -33,7 +33,8 @@ class Lotto {
 
   insertBonusNumber(numberArray, lottos) {
     MissionUtils.Console.readLine(INGAME_INPUT.WINNING_BONUS, (bonus) => {
-      new Validation().checkOneString(numberArray, bonus);
+      new Validation().checkOneString(bonus);
+      new Validation().bonusDuplication(numberArray, bonus);
       MissionUtils.Console.print(bonus);
 
       this.checkWinning(numberArray, bonus, lottos);
