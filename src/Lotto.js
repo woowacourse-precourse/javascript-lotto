@@ -11,7 +11,15 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+      throw new Error(`${ERROR.COMMON} ${ERROR.NOT_PROPER_LENGTH}`);
+    } else if (new Set(numbers).size < 6) {
+      throw new Error(`${ERROR.COMMON} ${ERROR.CANT_OVERLAP_LOTTO}`);
+    }
+    const temp = numbers.filter((number) => {
+      number < 1 || number > 45;
+    });
+    if (temp.length > 0) {
+      throw new Error(`${ERROR.COMMON} ${ERROR.MUST_IN_RANGE}`);
     }
   }
 
