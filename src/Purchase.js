@@ -1,9 +1,9 @@
-const Validator = require("./Validator.js");
+const Validation = require("./Validation.js");
 class Purchase {
   #Purchase;
 
   constructor(inputNumber) {
-    Validator.validPurchase(inputNumber);
+    Validation.validPurchase(inputNumber);
     this.#Purchase = inputNumber;
   }
 

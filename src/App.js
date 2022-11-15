@@ -1,39 +1,58 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const { REQUEST_MESSAGE } = require("./message");
 const Lotto = require("./Lotto");
-const Validator = require("./Validator.js");
+const Purchase = require("./Purchase");
 const Winning = require("./Winning");
 const Bonus = require("./Bonus");
-class App {
-  play() {
-    this.lottoPrice();
-  }
+const Validation = require("./Validation");
 
+class App {
   constructor() {
-    // 로또 번호
     this.PurchaseInput = null;
-    this.LottoNumber = null;
+    this.LottoNumber = [];
     this.WinningData = null;
     this.BonusData = null;
   }
-  rateOfReturn = (rate) => {
-    console.log(
-      `총 수익률은 ${(rate / this.PurchaseInput.getPurchase()) * 100}%입니다.`
+
+  rateOfReturnPrint(rate) {
+    const totalRate = ((rate / this.PurchaseInput.getPurchase()) * 100).toFixed(
+      1
     );
-  };
-  lottoDraw = () => {
+    MissionUtils.Console.print(`총 수익률은 ${totalRate}%입니다.`);
+    MissionUtils.Console.close();
+  }
+
+  resultPrint(hitsNumber) {
+    MissionUtils.Console.print("당첨 통계");
+    MissionUtils.Console.print("---");
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${hitsNumber.three}개`);
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${hitsNumber.four}개`);
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${hitsNumber.five}개`);
+    MissionUtils.Console.print(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${
+        hitsNumber.five + hitsNumber.bonus
+      }개`
+    );
+    MissionUtils.Console.print(
+      `6개 일치 (2,000,000,000원) - ${hitsNumber.six}개`
+    );
+    this.rateOfReturnPrint(hitsNumber.money);
+  }
+
+  lottoMatch(winningAndBonustNumber) {
     let lottoMatch = [];
-    let winningAndBonustNumber =
-      this.WinningData.getWinning() + "," + this.BonusData.getBonus();
-    winningAndBonustNumber = winningAndBonustNumber
-      .split(",")
-      .map((num) => parseInt(num, 10));
     this.LottoNumber.forEach((num) => {
       lottoMatch.push(
-        num.getNumbers().filter((lottoNum) => {
+        num.filter((lottoNum) => {
           return winningAndBonustNumber.includes(lottoNum);
         })
       );
     });
+    return lottoMatch;
+  }
+
+  lottoDraw(winningAndBonustNumber) {
+    const lottoMatch = this.lottoMatch(winningAndBonustNumber);
     let hitsNumber = {
       three: 0,
       four: 0,
@@ -72,40 +91,40 @@ class App {
         hitsNumber.money += 2000000000;
       }
     });
-    MissionUtils.Console.print(`3개 일치 (5,000원) - ${hitsNumber.three}개`);
-    MissionUtils.Console.print(`4개 일치 (50,000원) - ${hitsNumber.four}개`);
-    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${hitsNumber.five}개`);
-    MissionUtils.Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${
-        hitsNumber.five + hitsNumber.bonus
-      }개`
-    );
-    MissionUtils.Console.print(
-      `6개 일치 (2,000,000,000원) - ${hitsNumber.six}개`
-    );
-    this.rateOfReturn(hitsNumber.money);
-  };
-  bonusNumber = () => {
+    this.resultPrint(hitsNumber);
+  }
+
+  numberCombine() {
+    let winningAndBonustNumber =
+      this.WinningData.getWinning() + "," + this.BonusData.getBonus();
+    winningAndBonustNumber = winningAndBonustNumber
+      .split(",")
+      .map((num) => parseInt(num, 10));
+    Validation.validWinningAndBonus(winningAndBonustNumber);
+    this.lottoDraw(winningAndBonustNumber);
+  }
+
+  bonusNumber() {
     MissionUtils.Console.readLine(
-      "보너스 번호를 입력해 주세요.",
+      REQUEST_MESSAGE.BONUS_NUMBER,
       (BonusInput) => {
         this.BonusData = new Bonus(BonusInput);
-        MissionUtils.Console.print(BonusInput);
       }
     );
-    this.lottoDraw();
-  };
-  winningNumber = () => {
+    this.numberCombine();
+  }
+
+  winningNumber() {
     MissionUtils.Console.readLine(
-      "당첨 번호를 입력해 주세요.",
+      REQUEST_MESSAGE.WINNING_NUMBER,
       (winningInput) => {
         this.WinningData = new Winning(winningInput);
-        MissionUtils.Console.print(winningInput);
       }
     );
     this.bonusNumber();
-  };
-  lottoIssuance = (count) => {
+  }
+
+  lottoIssuance(count) {
     MissionUtils.Console.print(`${count}개를 구매했습니다.`);
     this.LottoNumber = Array.from({ length: count }, () => {
       const randomNumber = MissionUtils.Random.pickUniqueNumbersInRange(
@@ -114,18 +133,26 @@ class App {
         6
       );
       const ascending = randomNumber.sort((a, b) => a - b);
-      return new Lotto(ascending);
+      new Lotto(ascending);
+      MissionUtils.Console.print("[" + ascending.join(", ") + "]");
+      return ascending;
     });
-    this.LottoNumber.forEach((num) => {
-      MissionUtils.Console.print(num.getNumbers());
-    });
+
     this.winningNumber();
-  };
-  lottoPrice = () => {
-    MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (input) => {
-      this.PurchaseInput = new Purchase(input);
-      this.lottoIssuance(parseInt(input, 10) / 1000);
-    });
-  };
+  }
+
+  lottoPurchase() {
+    MissionUtils.Console.readLine(
+      REQUEST_MESSAGE.LOTTO_PURCHASE,
+      (purchase) => {
+        this.PurchaseInput = new Purchase(purchase);
+        this.lottoIssuance(parseInt(purchase, 10) / 1000);
+      }
+    );
+  }
+
+  play() {
+    this.lottoPurchase();
+  }
 }
 module.exports = App;
