@@ -126,7 +126,7 @@
 - `MONETARY` : 1000원 단위
 - `MIN_NUMBER` : 로또 번호 최소 숫자
 - `MAX_NUMBER` : 로또 번호 최대 숫자
-- `MIN_CNT`: 2,
+- `MIN_CNT`: 당첨을 위해 맞아야 할 최소 개수,
 - `LOTTO_LENGTH` : 로또 번호 길이
 - `WIN_NUMBER_CNT` : 로또 번호 개수
 - `BONUS_LENGTH` : 보너스 번호 길이

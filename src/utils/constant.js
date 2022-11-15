@@ -15,14 +15,6 @@ const GUIDE = Object.freeze({
   BAR: "-",
 });
 
-const CORRECT = Object.freeze({
-  1: "6개 일치",
-  2: "5개 일치, 보너스 볼 일치",
-  3: "5개 일치",
-  4: "4개 일치",
-  5: "3개 일치",
-});
-
 const ERROR = Object.freeze({
   PURCHASE_AMOUNT: "[ERROR] 구입 금액은 1000원 단위로 입력하셔야 합니다.",
   WIN_NUMBER: "[ERROR] 올바른 당첨 번호를 입력해주세요.",
@@ -31,20 +23,6 @@ const ERROR = Object.freeze({
   WIN_NUMBER_DUPLICATE:
     "[ERROR] 로또 번호는 서로 다른 6개의 1~45 이내의 숫자여야 합니다.",
   BONUS_NUMBER_DUPLICATE: "[ERROR] 보너스 번호는 당첨번호와 중복되면 안됩니다.",
-});
-
-const UNIT = Object.freeze({
-  MONETARY: 1000,
-  MIN_NUMBER: 1,
-  MAX_NUMBER: 45,
-  MIN_CNT: 2,
-  LOTTO_LENGTH: 6,
-  WIN_NUMBER_CNT: 6,
-  BONUS_LENGTH: 1,
-  DEFAULT: 0,
-  STORAGE_SPACE: [],
-  ALLOW: false,
-  NOT_ALLOW: true,
 });
 
 const RANK = Object.freeze({
@@ -58,6 +36,28 @@ const RANK = Object.freeze({
   THIRD: 3,
   FOURTH: 4,
   FIFTH: 5,
+});
+
+const CORRECT = Object.freeze({
+  1: "6개 일치",
+  2: "5개 일치, 보너스 볼 일치",
+  3: "5개 일치",
+  4: "4개 일치",
+  5: "3개 일치",
+});
+
+const UNIT = Object.freeze({
+  MONETARY: 1000,
+  MIN_NUMBER: 1,
+  MAX_NUMBER: 45,
+  MIN_CNT: 3,
+  LOTTO_LENGTH: 6,
+  WIN_NUMBER_CNT: 6,
+  BONUS_LENGTH: 1,
+  DEFAULT: 0,
+  STORAGE_SPACE: [],
+  ALLOW: false,
+  NOT_ALLOW: true,
 });
 
 const PRIZE_MONEY = Object.freeze({

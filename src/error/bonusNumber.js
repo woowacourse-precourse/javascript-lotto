@@ -7,6 +7,7 @@ class BonusNumber extends Exception {
 
   constructor(input) {
     super();
+
     this.#input = input;
   }
 

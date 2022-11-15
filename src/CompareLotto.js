@@ -46,7 +46,7 @@ class CompareLotto {
     this.userLotto.forEach((lotto) => {
       const [correctCnt, correctBonus] = this.cntCorrect(lotto);
       const calculatedValue = this.compareNumber - correctCnt;
-      if (correctCnt > UNIT.MIN_CNT) {
+      if (correctCnt >= UNIT.MIN_CNT) {
         this.ranking[this.saveResult(calculatedValue, correctBonus)] += 1;
       }
     });
