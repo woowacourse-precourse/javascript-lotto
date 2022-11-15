@@ -30,6 +30,8 @@ class App {
         return parseInt(number);
       })
       this.lotto = new Lotto(numbers);
+
+      this.inputBonusNumber();
     });
   }
 
@@ -37,6 +39,9 @@ class App {
     if (isNaN(money)) {
       throw new Error("[ERROR] 숫자만 입력 가능합니다.");
     }
+  inputBonusNumber() {
+    MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.\n', (number) => {
+    });
   }
 
   printLottoList(lottoList) {
