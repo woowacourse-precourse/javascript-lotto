@@ -52,7 +52,7 @@ class App {
 
     for (let i = 0; i < 5; i++) {
       if (this.winningNumber.slice(i+1).includes(this.winningNumber[i])) {
-        throw new Error('[ERROR] 당첨번호는 중복되면 안됩니다.');
+        throw new Error('[ERROR] 당첨 번호는 중복되면 안됩니다.');
       }
     }
   }
