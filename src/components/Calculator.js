@@ -37,7 +37,7 @@ class Calculator {
       return 4;
     }
     if (count === 5) {
-      this.checkBonusNumber(lotto);
+      return this.checkBonusNumber(lotto);
     }
   }
 
