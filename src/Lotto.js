@@ -16,6 +16,8 @@ class Lotto {
 
   bonus;
 
+  profit;
+
   constructor(numbers) {
     const coin = new Coin();
     this.setJackpotNum();
@@ -78,6 +80,14 @@ class Lotto {
         point = 0;
       }
     }
+  }
+
+  resultPrint(){
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.prize.fifth}개\n`);
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${this.prize.fourth}개\n`);
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${this.prize.third}개\n`);
+    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.prize.second}개\n`);
+    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${this.prize.first}개\n`);
   }
 }
 
