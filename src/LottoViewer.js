@@ -3,6 +3,13 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const { REWARD } = require('./constants/numbers');
 
 class LottoViewer {
+  printLottoPurchaseResult(lottos) {
+    MissionUtils.Console.print(`\n${lottos.length}개를 구매했습니다.`);
+    lottos.forEach((element) => {
+      MissionUtils.Console.print(`[${element.numbers.join(', ')}]`);
+    });
+  }
+
   arrangeLottoWinningResult(ranks, money) {
     const result = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, returnRate: 0 };
     for (const element of ranks) {
