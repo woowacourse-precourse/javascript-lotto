@@ -2,10 +2,12 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const { Console, Random } = MissionUtils;
 const InpuVal = require('./InputVal');
 const LottoVal = require('./Lotto');
+const BonusVal = require('./BonusVal');
 
 class App {
   play() {
     this.inputMoney();
+    this.winningNum = [];
   }
   inputMoney(){
     Console.readLine("구입금액을 입력해 주세요.", (money) => {
@@ -36,8 +38,8 @@ class App {
   InputWinninglotteryNum() {
     Console.readLine('당첨 번호를 입력해 주세요.', (nums) => {
     console.log(nums);
-    let winningNum = this.winningNumToNumArr(nums);
-    const lotto = new LottoVal(winningNum);
+    this.winningNum = this.winningNumToNumArr(nums);
+    const lotto = new LottoVal(this.winningNum);
     });
   }
   winningNumToNumArr(nums) {
@@ -48,6 +50,8 @@ class App {
   InputBonusNum() {
     Console.readLine('보너스 번호를 입력해 주세요.', (bonus) => {
       console.log(bonus);
+      let num = Number(bonus);
+      new BonusVal(num, this.winningNum)
     });
   }
 }
