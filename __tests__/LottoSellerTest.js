@@ -11,10 +11,9 @@ describe('로또셀러 클래스 테스트', () => {
 
   test('1000원으로 나누어 떨어지지 않는 금액을 입력하면 예외가 발생한다.', () => {
     const lottoSeller = new LottoSeller();
+    const result = lottoSeller.sellLotto(1999);
 
-    expect(() => {
-      lottoSeller.sellLotto(1999);
-    }).toThrow('[ERROR]');
+    expect(result).toThrow('[ERROR]');
   });
 
   test('로또 금액이 1000원인지 확인', () => {
