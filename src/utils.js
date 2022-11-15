@@ -14,17 +14,23 @@ const getRandomNumAscendingSort = (randomArr) => {
 
 const lottoQuantity = (money) => {
   const lottoQuantity = parseInt(money / 1000);
-  return displayLotto(lottoQuantity);
+  return lottoQuantity;
 };
 
-const displayLotto = (lottoQuantity) => {
-  const numbers = [];
-  Console.print("\n" + lottoQuantity + "개를 구매했습니다.");
-  for (let i = 0; i < lottoQuantity; i++) {
-    numbers.push(getRandomNum());
+const getProfit = (equalScore) => {
+  const prizeMoney = [2000000000, 30000000, 1500000, 50000, 5000];
+
+  let sumPrizeMoney = 0;
+  for (let i = 0; i < prizeMoney.length; i++) {
+    sumPrizeMoney += prizeMoney[i] * equalScore[i];
   }
-  numbers.forEach((number) => Console.print(`[${number.join(", ")}]`));
-  return numbers;
+
+  return sumPrizeMoney;
 };
 
-module.exports = { lottoQuantity };
+const getProfitRate = (equalScore, userMoney) => {
+  const sumPrizeMoney = getProfit(equalScore);
+  return (sumPrizeMoney / userMoney) * 100;
+};
+
+module.exports = { lottoQuantity, getRandomNum, getProfitRate };
