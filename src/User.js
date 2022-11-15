@@ -91,7 +91,18 @@ class User {
   calculateTotalRate(priceCount) {
     const totalPrice = priceCount[0] * 5000 + priceCount[1] * 50000 + priceCount[2] * 1500000 + priceCount[3] * 30000000 + priceCount[4] * 200000000;
     const rateOfReturn = Math.round((totalPrice * 100 * 100) / this.userMoney) / 100;
-    // return User.showTotalResult(priceCount, rateOfReturn);
+    return User.showTotalResult(priceCount, rateOfReturn);
+  }
+  static showTotalResult(priceCount, rateOfReturn) {
+    Console.print(`\n당첨 통계
+        \n---
+        \n3개 일치 (5,000원) - ${priceCount[0]}개
+        \n4개 일치 (50,000원) - ${priceCount[1]}개
+        \n5개 일치 (1,500,000원) - ${priceCount[2]}개
+        \n5개 일치, 보너스 볼 일치 (30,000,000원) - ${priceCount[3]}개
+        \n6개 일치 (2,000,000,000원) - ${priceCount[4]}개
+        \n총 수익률은 ${rateOfReturn}%입니다.`);
+    Console.close();
   }
   static isValidBonus(number) {
     return LottoValidation.isBonusNotNumber(number) && LottoValidation.checkBonusRange(number) && LottoValidation.isBonusInteger(number);
