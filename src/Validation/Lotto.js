@@ -1,6 +1,7 @@
-const { LOTTO_INFO } = require("../Constants/Constants");
+const { LOTTO_INFO } = require("../Constants");
 
-const isNumberOfLottoNumbersCorrect = numbers => numbers.length === LOTTO_INFO.number_of_numbers;
+const isNumberOfLottoNumbersCorrect = (numbers) =>
+  numbers.length === LOTTO_INFO.number_of_numbers;
 
 const isNumbersInRange = (numbers) => {
   for (let i = 0, length = numbers.length; i < length; i++) {
@@ -11,11 +12,12 @@ const isNumbersInRange = (numbers) => {
   return true;
 };
 
-const hasDuplicateNumbers = numbers => new Set(numbers).size !== numbers.length;
+const hasDuplicateNumbers = (numbers) =>
+  new Set(numbers).size !== numbers.length;
 
 const isNumberOfBonusNumberCorrect = (numbers) => {
   return numbers.length === LOTTO_INFO.number_of_bonus_number;
-}
+};
 
 module.exports = {
   isNumberOfLottoNumbersCorrect,

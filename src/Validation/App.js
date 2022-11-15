@@ -1,4 +1,4 @@
-const { INPUT, ERROR } = require("../Constants/Constants");
+const { INPUT, ERROR } = require("../Constants");
 
 const isCorrectAmountForm = (input) => {
   return INPUT.amount_form.test(input);

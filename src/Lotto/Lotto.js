@@ -1,9 +1,9 @@
-const { ERROR } = require("../Constants/Constants");
+const { ERROR } = require("../Constants");
 const {
   isNumberOfLottoNumbersCorrect,
   isNumbersInRange,
   hasDuplicateNumbers,
-} = require("../Validation/App");
+} = require("../Validation/Lotto");
 const { Console } = require("@woowacourse/mission-utils");
 
 class Lotto {

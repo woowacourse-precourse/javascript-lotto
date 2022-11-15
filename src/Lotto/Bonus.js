@@ -1,8 +1,8 @@
 const {
   isNumberOfBonusNumberCorrect,
   isNumbersInRange,
-} = require("../Validation/App");
-const { ERROR } = require("../Constants/Constants");
+} = require("../Validation/Lotto");
+const { ERROR } = require("../Constants");
 
 class Bonus {
   #number;

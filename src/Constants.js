@@ -64,6 +64,14 @@ const RESULT = {
   },
 };
 
+Object.freeze(QUESTION);
+Object.freeze(LOTTO_INFO);
+Object.freeze(ERROR);
+Object.freeze(INPUT);
+Object.freeze(RANK_TO_ORDINAL);
+Object.freeze(PRIZE);
+Object.freeze(RESULT);
+
 module.exports = {
   QUESTION,
   LOTTO_INFO,
@@ -73,5 +81,3 @@ module.exports = {
   PRIZE,
   RANK_TO_ORDINAL,
 };
-
-Object.freeze(RANK_TO_ORDINAL);
