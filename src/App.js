@@ -10,14 +10,14 @@ class App {
     this.WinningData = null;
     this.BonusData = null;
   }
-  rateOfReturn = (rate) => {
+  rateOfReturn(rate) {
     const totalRate = ((rate / this.PurchaseInput.getPurchase()) * 100).toFixed(
       1
     );
     MissionUtils.Console.print(`총 수익률은 ${totalRate}%입니다.`);
     MissionUtils.Console.close();
-  };
-  lottoDraw = () => {
+  }
+  lottoDraw() {
     let lottoMatch = [];
     let winningAndBonustNumber =
       this.WinningData.getWinning() + "," + this.BonusData.getBonus();
@@ -83,8 +83,8 @@ class App {
       `6개 일치 (2,000,000,000원) - ${hitsNumber.six}개`
     );
     this.rateOfReturn(hitsNumber.money);
-  };
-  bonusNumber = () => {
+  }
+  bonusNumber() {
     MissionUtils.Console.readLine(
       "보너스 번호를 입력해 주세요.",
       (BonusInput) => {
@@ -92,8 +92,8 @@ class App {
       }
     );
     this.lottoDraw();
-  };
-  winningNumber = () => {
+  }
+  winningNumber() {
     MissionUtils.Console.readLine(
       "당첨 번호를 입력해 주세요.",
       (winningInput) => {
@@ -101,8 +101,8 @@ class App {
       }
     );
     this.bonusNumber();
-  };
-  lottoIssuance = (count) => {
+  }
+  lottoIssuance(count) {
     MissionUtils.Console.print(`${count}개를 구매했습니다.`);
     this.LottoNumber = Array.from({ length: count }, () => {
       const randomNumber = MissionUtils.Random.pickUniqueNumbersInRange(
@@ -117,13 +117,13 @@ class App {
     });
 
     this.winningNumber();
-  };
-  lottoPurchase = () => {
+  }
+  lottoPurchase() {
     MissionUtils.Console.readLine("구입금액을 입력해 주세요.", (purchase) => {
       this.PurchaseInput = new Purchase(purchase);
       this.lottoIssuance(parseInt(purchase, 10) / 1000);
     });
-  };
+  }
   play() {
     this.lottoPurchase();
   }
