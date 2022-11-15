@@ -17,16 +17,16 @@ const checkException = require('./util/check/checkException');
 class App {
   #startMoney;
   #earnedMoney;
-  #LotteryNum;
-  #LottoList;
-  #LottoPrintList;
+  #myLotteryQuantity;
+  #myLotteryList;
+  #myLotteryPrintList;
   #winNumber;
   #bonusNumber;
-  #LottoRank;
-  #returnRate;
+  #myLotteryRankList;
+  #profitRate;
 
   constructor() {
-    this.#myLotteryRank = {
+    this.#myLotteryRankList = {
       0: 0,
       1: 0,
       2: 0,
@@ -41,48 +41,48 @@ class App {
   }
 
   buy() {
-    Console.readLine(MESSAGE.INSERT_COST, (input) => {
-      if (!examineNumberCheck(input))
-        checkException(EXCEPTION.INPUT_NOT_NUMBER);
-      if (!examineAmount(Number(input)))
-        checkException(EXCEPTION.MONEY_UNIT_INCORRECT);
-      this.#startMoney = Number(input);
-      this.#LotteryNum = countPurchasedTicket(this.#startMoney);
-      this.#LottoList = Array(this.#LotteryNum).fill(0); // 처음부터 Array(Object) 모양 고정시켜 V8 Map Space에 불필요한 hiddenClass 생성을 막기 위함 (push 사용 x)
-      this.#myLotteryPrintList = Array(this.#LotteryNum).fill(0); // 위와 동일한 이유로 생성
+    Console.readLine(APP_MESSAGE.INSERT_PURCHASE_COST, (userInput) => {
+      if (!verifyNumberType(userInput))
+        makeException(EXCEPTION_REASON.INPUT_NOT_NUMBER);
+      if (!verifyStartMoneyUnit(Number(userInput)))
+        makeException(EXCEPTION_REASON.MONEY_UNIT_INCORRECT);
+      this.#startMoney = Number(userInput);
+      this.#myLotteryQuantity = countPurchasedLotteries(this.#startMoney);
+      this.#myLotteryList = Array(this.#myLotteryQuantity).fill(0); // 처음부터 Array(Object) 모양 고정시켜 V8 Map Space에 불필요한 hiddenClass 생성을 막기 위함 (push 사용 x)
+      this.#myLotteryPrintList = Array(this.#myLotteryQuantity).fill(0); // 위와 동일한 이유로 생성
       this.breakLine();
       return this.makeLotteries();
     });
   }
 
   makeLotteries() {
-    this.#LottoList = this.#LottoList.map((blankObject) => {
-      const myLottery = calculateRandomNumber();
+    this.#myLotteryList = this.#myLotteryList.map((blankObject) => {
+      const myLottery = processRandomLottoNumber();
       blankObject = new Lotto(myLottery); // 내 로또 리스트에 로또 객체들 생성 후 할당.
       return blankObject;
     });
-    return this.myLottoResult();
+    return this.myLotteryResult();
   }
 
-  myLottoResult() {
-    Console.print(MESSAGE.PURCHASE_AMOUNT(this.#LotteryNum));
-    this.#LottoList.forEach((lottery, i) => {
-      this.#LottoPrintList[i] = lottery.returnMyLottery(); // 매번 Console.print()를 하게되면 속도가 매우 느려질 수 있기에, 배열에 로또 번호들을 저장해두고 한번에 Print()
+  myLotteryResult() {
+    Console.print(APP_MESSAGE.PURCHASE_AMOUNT(this.#myLotteryQuantity));
+    this.#myLotteryList.forEach((lottery, i) => {
+      this.#myLotteryPrintList[i] = lottery.returnMyLottery(); // 매번 Console.print()를 하게되면 속도가 매우 느려질 수 있기에, 배열에 로또 번호들을 저장해두고 한번에 Print()
     });
-    Console.print(this.#LottoPrintList.join('\n')); // 내 로또 리스트 출력
+    Console.print(this.#myLotteryPrintList.join('\n')); // 내 로또 리스트 출력
     this.breakLine();
-    return this.winNumber();
+    return this.makeWinNumber();
   }
 
-  winNumber() {
-    Console.readLine(MESSAGE.INSERT_WIN_NUMBER, (input) => {
-      const answerLottery = input.split(',').map((ripInput) => {
-        ripInput = Number(separateInput.trim());
-        return ripInput;
+  makeWinNumber() {
+    Console.readLine(APP_MESSAGE.INSERT_WIN_NUMBER, (userInput) => {
+      const answerLottery = userInput.split(',').map((separateInput) => {
+        separateInput = Number(separateInput.trim());
+        return separateInput;
       });
 
-      const validCheck = examineCountLotto(answerLottery);
-      if (validCheck !== true) return checkException(validCheck);
+      const validCheck = verifyValidLottery(answerLottery);
+      if (validCheck !== true) return makeException(validCheck);
 
       this.#winNumber = answerLottery;
       this.breakLine();
@@ -91,10 +91,10 @@ class App {
   }
 
   makeBonusNumber() {
-    Console.readLine(MESSAGE.INSERT_BONUS_NUMBER, (input) => {
-      const inputBonusNumber = Number(input);
+    Console.readLine(APP_MESSAGE.INSERT_BONUS_NUMBER, (userInput) => {
+      const inputBonusNumber = Number(userInput);
       if (this.#winNumber.includes(inputBonusNumber))
-        return checkException(EXCEPTION.INPUT_OVERLAPPED);
+        return makeException(EXCEPTION_REASON.INPUT_OVERLAPPED);
 
       this.#bonusNumber = inputBonusNumber;
       this.breakLine();
@@ -103,29 +103,29 @@ class App {
   }
 
   calculateResult() {
-    this.#LottoList.forEach((lottery) => {
-      const result = lottery.returnmyLotteryRank(
+    this.#myLotteryList.forEach((lottery) => {
+      const result = lottery.returnMyLotteryRank(
         this.#winNumber,
         this.#bonusNumber
       );
-      this.#LottoRank[result] += 1;
+      this.#myLotteryRankList[result] += 1;
     });
-    return this.computeReturnRate();
+    return this.calculateProfitRate();
   }
 
-  computeReturnRate() {
-    this.#earnedMoney = computeReturn(this.#LottoRank);
-    this.#returnRate = computeReturnRate(this.#startMoney, this.#earnedMoney);
+  calculateProfitRate() {
+    this.#earnedMoney = calculateProfit(this.#myLotteryRankList);
+    this.#profitRate = calculateProfitRate(this.#startMoney, this.#earnedMoney);
     return this.printResult();
   }
 
   printResult() {
-    Console.print(MESSAGE.GET_RANK_STATISTICS);
+    Console.print(APP_MESSAGE.GET_RANK_STATISTICS);
     for (let rank = 5; rank >= 1; rank -= 1) {
-      const myRankData = this.#LottoRank[rank];
-      Console.print(RANK[rank](myRankData));
+      const myRankData = this.#myLotteryRankList[rank];
+      Console.print(RANK_STATISTICS_MESSAGE[rank](myRankData));
     }
-    Console.print(RANK.PROFIT_RATE(this.#returnRate));
+    Console.print(RANK_STATISTICS_MESSAGE.PROFIT_RATE(this.#profitRate));
     return this.endGame();
   }
 

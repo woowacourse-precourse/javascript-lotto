@@ -1,8 +1,9 @@
-const { EXCEPTION } = require('./constant/constant');
-const countNumber = require('./util/count/countNumber');
-const examineBonusNumber = require('./util/examine/examineBonusNumber');
-const examineCountLotto = require('./util/examine/examineCountLotto');
-const calculateTicketRank = require('./util/calculate/calculateTicketRank');
+const { Console } = require('@woowacourse/mission-utils');
+const { EXCEPTION_MESSAGE } = require('./constants/constants');
+const countIncludeNumber = require('./utils/count/countIncludeNumber');
+const verifyValidBonusNumber = require('./utils/verify/verifyValidBonusNumber');
+const verifyValidLottery = require('./utils/verify/verifyValidLottery');
+const processLotteryRank = require('./utils/process/processLotteryRank');
 
 class Lotto {
   #numbers;
@@ -13,20 +14,20 @@ class Lotto {
   }
 
   validate(numbers) {
-    const validCheck = examineCountLotto(numbers);
+    const validCheck = verifyValidLottery(numbers);
     if (validCheck !== true) {
-      throw new Error(EXCEPTION[validCheck]);
+      throw new Error(EXCEPTION_MESSAGE[validCheck]);
     }
   }
 
-  returnLotto() {
+  returnMyLottery() {
     return `[${String(this.#numbers).split(',').join(', ')}]`;
   }
 
-  returnLottoRank(answer, bonusNum) {
-    const basicResult = countNumber(this.#numbers, answer);
-    const bonusResult = examineBonusNumber(bonusNum, answer);
-    const result = calculateTicketRank(basicResult, bonusResult);
+  returnMyLotteryRank(answer, bonusNumber) {
+    const countResult = countIncludeNumber(this.#numbers, answer);
+    const bonusResult = verifyValidBonusNumber(bonusNumber, answer);
+    const result = processLotteryRank(countResult, bonusResult);
 
     return result;
   }
