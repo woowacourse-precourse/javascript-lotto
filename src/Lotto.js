@@ -18,7 +18,10 @@ class Lotto {
       }
     });
     if (count === 5) {
-      return this.returnBonusNumberCount(purchasedLottoNumbersList, bounusNumber);
+      return this.returnBonusNumberCount(
+        purchasedLottoNumbersList,
+        bounusNumber
+      );
     }
     return count;
   }
@@ -39,6 +42,13 @@ class Lotto {
     }
   }
 
+  returnMatchingNumberObj(countList) {
+    const matchingNumberCountObj = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, Bonus: 0 };
+    for (let count of countList) {
+      matchingNumberCountObj[count] += 1;
+    }
+    return matchingNumberCountObj;
+  }
 }
 
 module.exports = Lotto;
