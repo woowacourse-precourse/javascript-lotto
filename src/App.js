@@ -46,6 +46,11 @@ class App {
       MissionUtils.Console.print(`[${lotto.getNumbers().join(", ")}]`)
     );
   }
+  inputWinningNumbers(winningNumbers) {
+    this.#winningNumberList = winningNumbers.split(",").map((number) => {
+      return +number;
+    });
+  }
 }
 
 module.exports = App;
