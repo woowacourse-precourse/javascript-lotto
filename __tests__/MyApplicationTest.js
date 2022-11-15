@@ -37,4 +37,19 @@ describe("App 클래스 추가 테스트", () => {
       sixMatches: 0,
     });
   });
+
+  test("수익률이 정확하게 계산되는지 확인한다", () => {
+    expect(
+      new App().caculateEarningsRate(
+        {
+          threeMatches: 0,
+          fourMatches: 0,
+          fiveMatches: 0,
+          fiveMatchesWithBonus: 1,
+          sixMatches: 0,
+        },
+        1000
+      )
+    ).toBe("3000000.0");
+  });
 });
