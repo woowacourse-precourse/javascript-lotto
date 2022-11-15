@@ -47,7 +47,7 @@ function setRandomLottoNumber(lottoInfo, lottoCount) {
   }
 }
 
-function isInputValidate(money) {
+function isValidateInputMoney(money) {
   if (money % 1000 !== 0) {
     Console.close();
     throw new Error(LOTTO_ERROR_MENTION.money_size_thousand);
@@ -111,7 +111,7 @@ class App {
 
   inputBuyLottoMoney() {
     Console.readLine(LOTTO_PRINT_MENTION.input_money,(money) => {
-      isInputValidate(money);
+      isValidateInputMoney(money);
       this.lottoTicketCount = Number(money) / 1000;
       this.printLottoTicketCount(this.lottoTicketCount);
     });
