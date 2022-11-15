@@ -18,6 +18,8 @@ class App {
       this.myLotto = new MyLotto(this.money);
 
       this.printLottoList(this.myLotto.getMyLottoList());
+
+      this.inputLottoNumbers();
     });
   }
 
