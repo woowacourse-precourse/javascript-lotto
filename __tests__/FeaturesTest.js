@@ -57,5 +57,11 @@ describe('App 클래스 테스트', () => {
         );
     });
 
+    test('구입 금액과 당첨 내역을 통해 수익률을 알 수 있다.', () => {
+        const app = new App();
+        expect(app.getYield([0, 1, 0, 0, 0], 1000)).toBe(
+            150
+        );
+    });
 
 })
