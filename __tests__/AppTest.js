@@ -1,5 +1,6 @@
 const App = require('../src/App');
 const { ERROR_MESSAGE } = require('../src/constant/constant');
+const Lottos = require('../src/Lottos');
 
 describe('메소드 테스트', () => {
   const app = new App();
@@ -91,6 +92,33 @@ describe('메소드 테스트', () => {
     '로또 번호 %p와 당첨 번호 %p를 비교했을 때 6개가 일치하면 1을 반환한다.',
     (lottoNumbers, winningNumbers) => {
       expect(app.compare(lottoNumbers, winningNumbers)).toEqual(1);
+    }
+  );
+
+  test.each([
+    [
+      [
+        [1, 2, 3, 4, 5, 6],
+        [1, 2, 3, 7, 8, 9],
+        [1, 2, 3, 8, 9, 10],
+        [1, 2, 3, 4, 5, 7],
+      ],
+      [1, 2, 3, 4, 5, 6],
+      7,
+    ],
+  ])(
+    '전체 구매한 로또 번호의 결과가 [1등, 2등, 3등, 4등, 5등] 형식으로 반환된다.',
+    (lottoNumbersZip, winningNumbers, bonusNumber) => {
+      expect(app.compareTotal(lottoNumbersZip, winningNumbers, bonusNumber)).toEqual([
+        1, 1, 0, 0, 2,
+      ]);
+    }
+  );
+
+  test.each([[[0, 0, 0, 1, 1]]])(
+    '당첨 결과를 토대로 수익을 반환 받는다.',
+    (winningResult) => {
+      expect(app.calculateReturn(winningResult)).toEqual(55000);
     }
   );
 });
