@@ -1,18 +1,38 @@
-class Lotto {
-  #numbers;
+const { Console } = require('@woowacourse/mission-utils');
+const { GAME, RANK, ERROR } = require('./Message');
 
+class Lotto {
   constructor(numbers) {
     this.validate(numbers);
-    this.#numbers = numbers;
+    this.number = numbers;
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+  validate(numbers) { // 유효성 검사
+    if (numbers.length !== GAME.COUNT) {  // 숫자 길이가 6글자인지 확인
+      throw new Error(`${ERROR.COMMON} ${ERROR.SIX_COUNT}`);
+    } else if (new Set(numbers).size < GAME.COUNT) { // 숫자 중복 여부
+      throw new Error(`${ERROR.COMMON} ${ERROR.OVERLAP}`);
     }
+    const numberReg = /^[0-9]*$/;
+    numbers.forEach((number) => {
+      if (!numberReg.test(number) || number < GAME.START || number > GAME.END) { // 숫자가 범위 내에 있는지 확인
+        throw new Error(`${ERROR.COMMON} ${ERROR.RANGE}`);
+      }
+    });
   }
 
-  // TODO: 추가 기능 구현
+  printLotto() { // 출력
+    Console.print(`[${this.number.join(', ')}]`);
+  }
+
+  calResult(winNumbers, bonus) { // 등수
+    const section = this.number.filter((number) => winNumbers.includes(number));
+    const dupliCount = section.length;
+    if (dupliCount === 5 && this.number.includes(bonus)) { //2등
+      return 'second';
+    }
+    return RANK[dupliCount];
+  }
 }
 
 module.exports = Lotto;
