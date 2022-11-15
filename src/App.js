@@ -2,10 +2,10 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto=require("./Lotto");
 const Bonus=require("./Bonus");
 class App {
-  constructor(){
-    //this.winingNumbers=Lotto.createWiningNumber();
-    //this.bonusNumber=Bonus.bonusNumber();
-  }
+  lottoList=[];
+  number;
+  getWining;
+  getBonus;
   play() {
     this.cost();
   }
@@ -24,61 +24,71 @@ class App {
     return true;
   }
   numberOfPurchases(money){
-    const number=parseInt(money/1000);
-    this.purchaseLottoNumbers(number);
+    this.number=parseInt(money/1000);
+    this.purchaseLottoNumbers();
   }
-  purchaseLottoNumbers(number){
-    MissionUtils.Console.print(`${number}개를 구매했습니다.`)
-    const numbersList=[];
-    for(let i=0;i<number;i++){
-      let numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);      
-      numbers=numbers.toString();
-      numbersList.push(numbers);
+  purchaseLottoNumbers(){
+    MissionUtils.Console.print(`${this.number}개를 구매했습니다.`)
+    for(let i=0;i<this.number;i++){
+      let lottonumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);      
+      this.lottoList.push(lottonumbers);
     }
-    this.printLottoNumber(numbersList,number);  
+    this.printLottoList();  
   }
-  printLottoNumber(numbersList,number){
-    for(let i=0;i<numbersList.length;i++){
-      let print=numbersList[i].split(',');
+  printLottoList(){
+    for(let i=0;i<this.lottoList.length;i++){
+      let print=this.lottoList[i];
       print.sort((a,b)=>a-b);
-      MissionUtils.Console.print(`[${print}]`);
+      MissionUtils.Console.print(`[${print.join(", ")}]`);
     }
-    this.compare(numbersList,number);
+    this.getWiningNumbers();
   }
-  compare(numbersList,number){
-    const winingNumbers=Lotto.createWiningNumber();
-    const bonusNumber=Bonus.bonusNumber();
-    let fivePlace=0;
-    let fourPlace=0;
-    let thirdPlace=0;
-    let secondPlace=0;
-    let firstPlace=0;
-    for(let i=0;i<numbersList.length;i++){
-      let checkNumberList=numbersList[i].split(',');
-      let duplicate=winingNumbers.filter(x=>checkNumberList.includes(x)).length;
-      if(duplicate===3) fivePlace++;
-      if(duplicate===4) fourPlace++;
+  getWiningNumbers(){
+    MissionUtils.Console.readLine("당첨번호를 입력해 주세요.",(input)=>{
+      this.getWining=input.split(',').map(Number);
+      const lotto = new Lotto(this.getWining);
+      this.getBonusNumber();
+    });
+  }
+  getBonusNumber(){
+    MissionUtils.Console.readLine("보너스번호를 입력해 주세요.",(bonusInput)=>{
+      this.getBonus=bonusInput;
+      const bonus=new Bonus();
+      if(bonus.bonusNumberValidate(this.getWining,this.getBonus)) this.compare();
+    });
+  }
+  compare(){
+    let fiveRank=0;
+    let fourRank=0;
+    let thirdRank=0;
+    let secondRank=0;
+    let firstRank=0;
+    for(let i=0;i<this.lottoList.length;i++){
+      let checkNumberList=this.lottoList[i];
+      let duplicate=this.getWining.filter(x=>checkNumberList.includes(x)).length;
+      if(duplicate===3) fiveRank++;
+      if(duplicate===4) fourRank++;
       if(duplicate===5) {
-        if(!winingNumbers.includes(bonusNumber)) {
-          thirdPlace++;
+        if(!winingNumbers.includes(this.getBonus)) {
+          thirdRank++;
         }
-        secondPlace++;
+        secondRank++;
       }
-      if(duplicate===6) firstPlace++;
+      if(duplicate===6) firstRank++;
     }
-    this.resultPrint(fivePlace,fourPlace,thirdPlace,secondPlace,firstPlace,number);
+    this.resultPrint(fiveRank,fourRank,thirdRank,secondRank,firstRank);
   }
-  resultPrint(fivePlace,fourPlace,thirdPlace,secondPlace,firstPlace,number){
+  resultPrint(fiveRank,fourRank,thirdRank,secondRank,firstRank){
     MissionUtils.Console.print(`당첨 통계`)
     MissionUtils.Console.print(`---`)
-    MissionUtils.Console.print(`3개 일치 (5,000원) - ${fivePlace}개`)
-    MissionUtils.Console.print(`4개 일치 (50,000원) - ${fourPlace}개`)
-    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${thirdPlace}개`)
-    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${secondPlace}개`)
-    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${firstPlace}개`)
-    const reteOfReturn=((5000*fivePlace)+(50000*fourPlace)+(1500000*thirdPlace)+(30000000*secondPlace)
-    +(2000000000*firstPlace))/(number*1000);
-    MissionUtils.Console.print(`총 수익률은 ${reteOfReturn.toFixed(1)}입니다.`);
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${fiveRank}개`)
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${fourRank}개`)
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${thirdRank}개`)
+    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${secondRank}개`)
+    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${firstRank}개`)
+    const reteOfReturn=((5000*fiveRank)+(50000*fourRank)+(1500000*thirdRank)+(30000000*secondRank)
+    +(2000000000*firstRank))/(this.number*1000)*100;
+    MissionUtils.Console.print(`총 수익률은 ${reteOfReturn.toFixed(1)}%입니다.`);
   }
 }
 const app = new App();
