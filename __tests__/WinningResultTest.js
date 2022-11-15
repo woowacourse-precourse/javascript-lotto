@@ -6,14 +6,14 @@ test('당첨 금액 계산하기', () => {
   set.add(JSON.stringify([2, 3, 4, 5, 6, 7]));
   const winningResult = new WinningResult(set, [1, 2, 3, 4, 5, 6], 7);
 
-  expect(winningResult.getResult()).toEqual({
+  expect(winningResult.Result).toEqual({
     5000: 0,
     50000: 0,
     1500000: 0,
     30000000: 1,
     2000000000: 1,
   });
-  expect(winningResult.calculateSum()).toBe(2030000000);
+  expect(winningResult.Sum).toBe(2030000000);
 });
 
 test('FIRST_PLACE 수익률 계산', () => {

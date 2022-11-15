@@ -17,16 +17,20 @@ class WinningResult {
     this.#bonusNumber = bonusNumber;
     this.#result = { 5000: 0, 50000: 0, 1500000: 0, 30000000: 0, 2000000000: 0 };
     this.#sum = 0;
-    this.setResult();
+    this.setResult().calculateSum();
+  }
+
+  get Result() {
+    return this.#result;
+  }
+
+  get Sum() {
+    return this.#sum;
   }
 
   getMatchedLottoNumbers(arr1, arr2) {
     let matchedArr = arr1.filter(num => arr2.includes(num));
     return matchedArr.length;
-  }
-
-  getResult() {
-    return this.#result;
   }
 
   setResult() {
@@ -40,6 +44,7 @@ class WinningResult {
         this.#result[WINNING_PRIZE.SECOND]++;
       if (matchedNumber === 6) this.#result[WINNING_PRIZE.FIRST]++;
     });
+    return this;
   }
 
   winningResultMessage(rank) {
@@ -58,11 +63,10 @@ class WinningResult {
   }
 
   calculateSum() {
-    return Object.entries(this.#result).reduce((acc, [key, value]) => acc + key * value, 0);
+    this.#sum = Object.entries(this.#result).reduce((acc, [key, value]) => acc + key * value, 0);
   }
 
   setYield() {
-    this.#sum = this.calculateSum();
     const cash = this.#lottoArr.length * MONEY_UNIT;
     return parseFloat(Math.round((this.#sum * YIELD.PERCENT * 10) / cash) / 10).toFixed(
       YIELD.ROUND,
