@@ -6,7 +6,13 @@ class Lotto {
 
   constructor(numbers) {
     checkValidLotto(numbers);
-    this.#numbers = numbers;
+    this.#numbers = this.sortLotto(numbers);
+  }
+
+  sortLotto(numbers) {
+    return numbers.sort((a, b) => {
+      return a - b;
+    });
   }
 
   printLotto() {
