@@ -10,6 +10,10 @@ class Lotto {
   }
 
   validate(numbers) {
+    if (!Validator.isArrayOfInteger(numbers)) {
+      throw new Error("[ERROR] 로또 번호는 숫자로 이루어져야 합니다.");
+    }
+
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }

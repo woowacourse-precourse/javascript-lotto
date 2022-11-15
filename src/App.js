@@ -19,12 +19,13 @@ class App {
 
       const amountOfPaid = this.makePayment(value);
       const lottos = this.issueLotto(amountOfPaid / 1000);
+      this.printLottos(lottos);
       this.getWinner(lottos, amountOfPaid);
     });
   }
 
   isValidate(value) {
-    if (Number.isNaN(value) || value.match(/\D+/)) {
+    if (Validator.isIntegerInput(value)) {
       throw new TypeError("[ERROR] 올바른 숫자값을 입력해주세요.");
     }
 
@@ -51,8 +52,6 @@ class App {
       const lottoNumbers = this.generateLottoNumber();
       lottos.push(new Lotto(lottoNumbers));
     }
-
-    this.printLottos(lottos);
 
     return lottos;
   }
