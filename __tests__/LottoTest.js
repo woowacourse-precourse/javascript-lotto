@@ -135,4 +135,36 @@ describe('로또 클래스 테스트', () => {
       app.play();
     }).toThrow('[ERROR]');
   });
+
+  test('보너스 입력 예외 테스트 - 범위를 벗어난 수가 있을 경우1', () => {
+    mockQuestions(['1500', '1,2,3,4,5,6', '46']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 입력 예외 테스트 - 범위를 벗어난 수가 있을 경우2', () => {
+    mockQuestions(['1500', '1,2,3,4,5,6', '0']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 입력 예외 테스트 - 범위를 벗어난 수가 있을 경우3', () => {
+    mockQuestions(['1500', '1,2,3,4,5,6', '-1']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
+
+  test('보너스 입력 예외 테스트 - 문자열이 입력될 경우', () => {
+    mockQuestions(['1500', '1,2,3,4,5,6', '가']);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow('[ERROR]');
+  });
 });
