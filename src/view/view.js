@@ -7,7 +7,7 @@ const {
 } = require("../constants/Message");
 const { LOTTO_INFO } = require("../constants/Value");
 
-class view {
+class View {
   #winngingResult;
 
   rankingResult(winningResults) {
@@ -44,4 +44,4 @@ class view {
     );
   }
 }
-module.exports = view;
+module.exports = View;
