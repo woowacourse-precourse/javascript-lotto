@@ -1,5 +1,4 @@
-/* eslint-disable class-methods-use-this */
-const utils = require('./utils/lottoUtils');
+const lottoUtils = require('./utils/lottoUtils');
 const ERROR_MESSAGE = require('./constants/errorMessages');
 
 class Lotto {
@@ -38,7 +37,7 @@ class Lotto {
     const stats = lottos.reduce((accStats, lotto) => {
       const accumulateStats = accStats;
       const correctCount = this.getCount(lotto);
-      const key = utils.getKey(correctCount, lotto, bonusNumber);
+      const key = lottoUtils.getKey(correctCount, lotto, bonusNumber);
 
       if (key === -1) return accumulateStats;
 

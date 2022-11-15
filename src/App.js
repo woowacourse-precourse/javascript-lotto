@@ -1,8 +1,9 @@
 const { Console } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
-const utils = require('./utils/lottoUtils');
+const lottoUtils = require('./utils/lottoUtils');
 const appUtils = require('./utils/appUtils');
 const APP = require('./constants/app');
+const LOTTO = require('./constants/lotto');
 
 class App {
   #amount;
@@ -24,14 +25,14 @@ class App {
   getAmount(input) {
     appUtils.validateAmount(input);
 
-    this.#amount = input / APP.MINIMUM_AMOUNT;
-    this.#lottos = utils.createLottos(this.#amount);
+    this.#amount = input / LOTTO.UNIT;
+    this.#lottos = lottoUtils.createLottos(this.#amount);
 
     appUtils.printEmpty();
     Console.print(`${this.#amount}개를 구매했습니다.`);
     appUtils.printArray(this.#lottos);
 
-    this.nextQuestion(APP.WINNER_NUMBER_MESSAGE, this.getPrizeNumber);
+    this.nextQuestion(APP.PRIZE_NUMBER_MESSAGE, this.getPrizeNumber);
   }
 
   getPrizeNumber(input) {
@@ -53,7 +54,7 @@ class App {
   endLotto() {
     this.#lotto = new Lotto(this.#prizeNumbers);
     const stats = this.#lotto.getStats(this.#lottos, this.#bonusNumber);
-    const resultTexts = appUtils.getResultText(stats, this.#amount);
+    const resultTexts = lottoUtils.getResultTexts(stats, this.#amount);
 
     appUtils.printEmpty();
     resultTexts.forEach((text) => Console.print(text));
@@ -65,15 +66,13 @@ class App {
     Console.readLine(message, callback);
   }
 
-  play() {
-    this.nextQuestion(APP.AMOUNT_MESSAGE, this.getAmount);
-  }
-
   exit() {
     Console.close();
   }
-}
 
-new App().play();
+  play() {
+    this.nextQuestion(APP.AMOUNT_MESSAGE, this.getAmount);
+  }
+}
 
 module.exports = App;

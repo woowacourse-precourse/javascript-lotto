@@ -1,7 +1,6 @@
 const appUtils = require('../src/utils/appUtils');
 const APP = require('../src/constants/app');
 const LOTTO = require('../src/constants/lotto');
-const prize = require('../src/constants/prize');
 const ERROR_MESSAGE = require('../src/constants/errorMessages');
 
 describe('금액 입력 테스트', () => {
@@ -97,58 +96,5 @@ describe('보너스 번호 입력 테스트', () => {
     const input = '7';
 
     expect(appUtils.validateBonusNumber(input, prizeNumbers)).toBeUndefined();
-  });
-});
-
-describe('수익률 테스트', () => {
-  test('원하는 대로 계산해주는 경우', () => {
-    const stats = {
-      1: 0,
-      2: 0,
-      3: 0,
-      4: 0,
-      5: 1,
-    };
-    const amount = 8;
-
-    expect(appUtils.getEarningRate(stats, amount)).toBe('62.5');
-  });
-
-  test('소숫점 첫째 자리의 값까지 반환한다.', () => {
-    const stats = {
-      1: 0,
-      2: 0,
-      3: 0,
-      4: 0,
-      5: 1,
-    };
-    const amount = 5;
-
-    expect(appUtils.getEarningRate(stats, amount)).toBe('100.0');
-  });
-});
-
-describe('통계 결과 생성 테스트', () => {
-  test('원하는 대로 생성해주는 경우', () => {
-    const stats = {
-      1: 0,
-      2: 0,
-      3: 0,
-      4: 0,
-      5: 1,
-    };
-    const amount = 8;
-    const resultTexts = [
-      '당첨 통계',
-      '---',
-      `3개 일치 (5,000원) - 1개`,
-      `4개 일치 (50,000원) - 0개`,
-      `5개 일치 (1,500,000원) - 0개`,
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - 0개`,
-      `6개 일치 (2,000,000,000원) - 0개`,
-      `총 수익률은 62.5%입니다.`,
-    ];
-
-    expect(appUtils.getResultText(stats, amount)).toEqual(resultTexts);
   });
 });
