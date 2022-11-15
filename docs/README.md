@@ -28,11 +28,11 @@
   - [v] 보너스 번호가 로또 숫자 범위가 1~45에 해당되지 않은 경우 예외처리한다.
   - [v] 보너스 번호가 로또 당첨번호와 중복일 경우 예외처리한다.
     `validateInputBonusNumber()`
-- [ ] 당첨 번호와 로또 발행 번호를 비교한다. `compareLottery()`
-  - [ ] 5개가 맞았을 경우에는, 보너스와 나머지 숫자를 비교하여 2, 3등을 가린다.
-- [ ] 당첨 내역과 당첨금을 곱해 총 수익을 계산한다. `calculateTotalProfit()`
-- [ ] 총 수익과 구매 금액을 이용해 수익률을 계산한다. `calculateRateOfReturn()`
-- [ ] 당첨 내역 및 수익률을 출력한다. `printResult()`
+- [v] 당첨 번호와 로또 발행 번호를 비교한다. `compareLottery()`
+  - [v] 5개가 맞았을 경우에는, 보너스와 나머지 숫자를 비교하여 2, 3등을 가린다.
+- [v] 당첨 내역과 당첨금을 곱해 총 수익을 계산한다. `calculateTotalProfit()`
+- [v] 총 수익과 구매 금액을 이용해 수익률을 계산한다. `calculateRateOfReturn()`
+- [v] 당첨 내역 및 수익률을 출력한다. `printResult()`
 
 ## 🚀 기능 요구 사항
 
