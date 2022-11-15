@@ -18,5 +18,9 @@ module.exports = {
     // 우아한테크코스 프로그래밍 요구사항 - 추가된 요구사항
     // https://github.com/solo5star/javascript-lotto#%EC%B6%94%EA%B0%80%EB%90%9C-%EC%9A%94%EA%B5%AC-%EC%82%AC%ED%95%AD
     'max-lines-per-function': ['error', 15],
+
+    // JSDoc과 관련된 오류 침묵
+    'jsdoc/require-param-description': 'off',
+    'jsdoc/require-returns-description': 'off',
   },
 };
