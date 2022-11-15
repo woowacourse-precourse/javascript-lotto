@@ -22,17 +22,16 @@ class App {
       this.printer('/n');
 
       //당첨 번호 입력받음
-      const Numbers = 0;
+      const Numbers = [];
       this.readLine("당첨 번호를 입력해 주세요."), (numbers) => {
         Numbers = numbers;
         console.log(Numbers);
       }
 
       //보너스 번호 입력받음
-      const Bonus = new Array(6);
       this.readLine("보너스 번호를 입력해 주세요."), (bonus) => {
-        Bonus = bonus;
-        console.log(Bonus);
+        Numbers.push(bonus);
+        console.log(bonus);
       }
 
       
