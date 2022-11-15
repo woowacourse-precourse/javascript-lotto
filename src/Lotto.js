@@ -48,6 +48,17 @@ class Lotto {
     }
   }
 
+  prizeCaculation(stats) {
+    const rewardArray = [2000000000, 30000000, 1500000, 50000, 5000];
+
+    return stats.reduce((money, value, index) => {
+      if (value > 0) {
+        return (money += rewardArray[index] * value);
+      }
+      return money;
+    }, 0);
+  }
+
   countLotto(lotto, numbers) {
     return lotto.reduce((count, value) => {
       if (numbers.includes(value.toString())) {
