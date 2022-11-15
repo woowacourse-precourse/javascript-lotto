@@ -19,7 +19,7 @@ class Lotto {
   }
 
   sortNumbers(numbers) {
-    return numbers.sort((a, b) => a - b);
+    return numbers.map((elem) => Number(elem)).sort((a, b) => a - b);
   }
 
   static generateNumbers() {
