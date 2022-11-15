@@ -22,7 +22,7 @@ class App {
     // 보너스번호 입력받기
     const bonusNumber = this.getBonusNumber();
 
-    // 최종 결과 출력
+    // 당첨 결과 출력
     this.printResult();
   }
 
@@ -43,16 +43,17 @@ class App {
 
   // 구입 금액에 해당하는 만큼 로또 발행, 출력
   creatLotto() {
-    let lottoList = [];
+    let lottos = [];
     for (let i = 0; i < this.money / LOTTO_PRICE; i++) {
       const lotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       lotto.sort(function (a, b) {
         return a - b;
       });
-      lottoList.push(lotto);
+
+      lottos.push(lotto);
     }
-    MissionUtils.Console.print(lottoList);
-    return lottoList;
+    MissionUtils.Console.print(lottos);
+    return lottos;
   }
 
   // 당첨번호 입력받기
@@ -81,13 +82,13 @@ class App {
     let matchingCountArr = [];
     let bonusMatch = [];
     for (let i = 0; i < this.money / LOTTO_PRICE; i++) {
-      const lottoPiece = this.lottoLists[i];
+      const lottoPiece = this.lottosList[i];
       const matchingNumber = winningNumber.filter((num) =>
         lottoPiece.includes(num)
       );
       if (
         matchingNumber.length === 5 &&
-        this.lottoList[i].includes(bonusNumber)
+        this.lottosList[i].includes(bonusNumber)
       ) {
         bonusMatch.push(bonusNumber);
       } else {
