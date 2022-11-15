@@ -2,6 +2,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const MyLotto = require("./MyLotto");
 const Lotto = require("./Lotto");
 const BonusNumber = require("./BonusNumber");
+const {roundToTwo} = require('./Util');
 
 class App {
   money;
@@ -122,7 +123,7 @@ class App {
   }
   
   calculateRateOfReturn() {
-    return this.revenue / this.money * 100
+    return roundToTwo(this.revenue / this.money * 100)
   }
 }
 
