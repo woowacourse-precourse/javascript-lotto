@@ -24,7 +24,7 @@ class Lotto {
   }
 
   publishLotto() {
-    Console.print(this.#numbers);
+    Console.print(`[${this.#numbers.join(', ')}]`);
   }
 
   calculateResult(winNumbers, bonus) {
