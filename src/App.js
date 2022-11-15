@@ -8,7 +8,6 @@ const inputObjects = {
   'bonus': '',
 }
 const randomNumberList = []
-
 function getBudget() {
   Console.readLine('', (answer) => {
     const gameBudget = new Budget(Number(answer));
@@ -16,7 +15,6 @@ function getBudget() {
     getLottoNumbers()
   })
 }
-
 function inputValueToArray(inputValue) {
   const inputArray = inputValue.split(',')
   inputArray.forEach((element, index) => {
@@ -24,7 +22,6 @@ function inputValueToArray(inputValue) {
   })
   return inputArray;
 }
-
 function getLottoNumbers() {
   Console.readLine('', (answer) => {
     const inputArray = inputValueToArray(answer)
@@ -35,33 +32,35 @@ function getLottoNumbers() {
     getBonusNumber()
   })
 }
-
 function getBonusNumber() {
   Console.readLine('', (answer) => {
     const bonusNum = new Bonus(inputObjects['numbers'], Number(answer));
     inputObjects['bonus'] = bonusNum.getBonus();
     startLotto()
   })
-
+}
 function startLotto() {
   Console.print(`${inputObjects['budget']/1000}개를 구매했습니다.`)
   getRandomNumberList()
 }
+
 function getRandomNumber() {
-  const randomNumber = MissionUtils.Random.pickNumberInRange(1, 45)
-  return randomNumber;
+  const randomNumber = Random.pickNumberInRange(1, 45)
+  return randomNumber
 }
+
 function getRandomNumbers() {
   const randomNumbers = []
   while(randomNumbers.length < 6) {
-    const randomNumber = makeRandomNumber();
+    const randomNumber = getRandomNumber();
     if(randomNumbers.includes(randomNumber)) continue;
     randomNumbers.push(randomNumber);
   }
   return randomNumbers;
 }
+
 function getRandomNumberList() {
-  for(let i=0; i<budget/10; i++){
+  for(let i=0; i<inputObjects['budget']/1000; i++){
     const randomNumbers = getRandomNumbers()
     randomNumberList.push(randomNumbers)
     Console.print(randomNumbers)
@@ -77,4 +76,3 @@ class App {
 }
 module.exports = App;
 test = new App();
-}
