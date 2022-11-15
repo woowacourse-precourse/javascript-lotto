@@ -43,8 +43,8 @@ class App {
       if(winningNumbers.length !== 6)
         throw new Error("[ERROR] 로또 번호는 6개입니다");
       
-      this.#lottoWinningNumbers = winningNumbers.map(v => Number(v));
-      if(!this.#lottoWinningNumbers.every(v => v >= 1 && v <= 45))
+      this.#lottoWinningNumbers = winningNumbers.map(value => Number(value));
+      if(!this.#lottoWinningNumbers.every(value => value >= 1 && value <= 45))
         throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
       if(new Set(this.#lottoWinningNumbers).size != 6)
         throw new Error("[ERROR] 로또 번호는 서로 다른 6개의 숫자여야 합니다.");
