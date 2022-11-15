@@ -69,19 +69,21 @@ class App {
     MissionUtils.Console.readLine(
       "\n보너스 번호를 입력해 주세요.\n",
       (bonusNumber) => {
-        this.bonusNumber = parseInt(bonusNumber);
+        this.bonusNumber = bonusNumber;
         this.validateBonus(this.bonusNumber);
       }
     );
   }
 
   validateBonus(bonusNumber) {
-    if (!(1 <= bonusNumber && bonusNumber <= 45)) {
-      throw new Error("[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다.");
+    MissionUtils.Console.print(bonusNumber, this.lottoNumber);
+    if (!(1 <= bonusNumber && bonusNumber <= 45) && isNaN(bonusNumber)) {
+      throw new Error("[ERROR] 보너스 번호는 1부터 45사이의 숫자여야 합니다.");
     }
-    if (this.lottoNumber.includes(bonusNumber)) {
-      throw new Error("[ERROR] `당첨 번호와 중복되지 않은 숫자여야 합니다.");
+    if (this.lottoNumber.indexOf(parseInt(bonusNumber)) !== -1) {
+      throw new Error("[ERROR] 당첨 번호와 중복되지 않은 숫자여야 합니다.");
     }
+    this.bonusNumber = parseInt(bonusNumber);
     this.checkNumberCount(this.userLottoNumbers, this.lottoNumber);
   }
 
