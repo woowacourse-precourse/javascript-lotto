@@ -56,8 +56,6 @@ class BuyLotto {
         throw new Error(ERR_MESSAGE.ERR_LOTTO_INPUT_VALUE);
       }
       this.howMany = inputValue / CONDITION.BASE_PRICE;
-      Console.print(this.howMany + MESSAGE.BUYING_RESULT);
-
       this.getAutoNumber();
     });
   }
@@ -67,20 +65,15 @@ class BuyLotto {
     for (let i = 1; i <= this.howMany; i++) {
       const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
       const sortNumber = this.getSortNumber(numbers);
-      // for (let i = 0; i < sortNumber.length; i++) {
-      //   sortNumber[i] = sortNumber[i].toString();
-      // }
+      for (let i = 0; i < sortNumber.length; i++) {
+        sortNumber[i] = sortNumber[i].toString();
+      }
       makeNumbers.push(sortNumber);
-      Console.print(JSON.stringify(sortNumber).replace(/,/g, ", "));
     }
     this.makeNumbers = makeNumbers;
-<<<<<<< HEAD
-    // Console.print(this.makeNumbers);
-
-=======
     Console.print(this.howMany + MESSAGE.BUYING_RESULT);
     Console.print(this.makeNumbers);
->>>>>>> parent of 48f726c (fix : test코드 구현)
+
     this.userInputNumber();
   }
 
