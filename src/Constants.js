@@ -36,8 +36,14 @@ const INPUT = {
   MONEY: '구입금액을 입력해 주세요.',
 };
 
+const PRINT = {
+  ANALYSIS: '당첨 통계',
+  DIVIDE_LINE: '---',
+};
+
 module.exports = {
   LOTTO,
   PRIZE,
   INPUT,
+  PRINT,
 };

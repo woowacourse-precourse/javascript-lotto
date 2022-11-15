@@ -2,7 +2,7 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const UI = require('./UI');
 const WinningTicket = require('./WinningTicket');
-const { LOTTO, PRIZE, INPUT } = require('./Constants');
+const { LOTTO, PRIZE, INPUT, PRINT } = require('./Constants');
 const Money = require('./Money');
 
 const ui = new UI();
@@ -66,8 +66,8 @@ class App {
   }
 
   #printAnalysis() {
-    ui.print('당첨 통계');
-    ui.print('---');
+    ui.print(PRINT.ANALYSIS);
+    ui.print(PRINT.DIVIDE_LINE);
     LOTTO.RESULT_PRINT_ORDER.forEach((order) => {
       ui.print(`${PRIZE[order].MESSAGE} - ${this.#result[order]}개`);
     });
