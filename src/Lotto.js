@@ -40,6 +40,12 @@ class Lotto {
     return MissionUtils.Random.pickUniqueNumbersInRange(1,45,6).sort();
   }
 
+  static getResult() {
+    
+
+
+  }
+
   // TODO: 추가 기능 구현
 }
 
