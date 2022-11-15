@@ -91,8 +91,10 @@ describe("로또 테스트", () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
+});
 
-  test("예외 테스트", () => {
+describe("예외 테스트", () => {
+  test("구입 금액으로 숫자가 아닌 값을 입력하면 예외가 발생한다.", () => {
     mockQuestions(["1000j"]);
     expect(() => {
       const app = new App();
