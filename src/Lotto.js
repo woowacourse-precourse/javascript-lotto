@@ -24,6 +24,12 @@ class Lotto {
       throw new Error(MESSAGES.ERROR.DUPICATION);
     }
   }
+
+  validateBonus(number) {
+    if (this.#numbers.includes(number)) {
+      throw new Error(MESSAGES.ERROR.BONUS_DUPLICATION);
+    }
+  }
 }
 
 module.exports = Lotto;
