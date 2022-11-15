@@ -25,19 +25,19 @@ class App {
 
   enterWinningNumber() {
     Console.readLine(INPUT_MESSAGE.ENTER_WINNING_NUMBER, input => {
-      const inputNumber = input.split(',').map(num => Number(num));
-      const lotto = new Lotto(inputNumber);
-      lotto.validate(inputNumber);
-      Match.winningNumber = inputNumber;
+      const inputWinningNumber = input.split(',').map(num => Number(num));
+      const lotto = new Lotto(inputWinningNumber);
+      lotto.validate(inputWinningNumber);
+      Match.winningNumber = inputWinningNumber;
       this.enterBonusNumber();
     });
   }
 
   enterBonusNumber() {
     Console.readLine(INPUT_MESSAGE.ENTER_BONUS_NUMBER, input => {
-      const inputNumber = Number(input);
-      InputCheck.bonusValidate(inputNumber);
-      Match.bonusNumber += inputNumber;
+      const inputBonusNumber = Number(input);
+      InputCheck.bonusValidate(inputBonusNumber);
+      Match.bonusNumber += inputBonusNumber;
       this.winningStatistics();
     });
   }
