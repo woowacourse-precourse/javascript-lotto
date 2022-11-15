@@ -8,6 +8,18 @@ class App {
   #bonusNumber;
   #matchedCounts;
 
+  constructor() {
+    this.#matchedCounts = [];
+  }
+
+  compareLotteryNumbers = (lottery) => {
+    let matchedCount = 0;
+    lottery.forEach((number) => {
+      if (this.#winningNumbers.includes(number)) matchedCount++;
+    });
+    return matchedCount;
+  };
+
   computeLotteryResult = () => {
     this.#myLottery.forEach((lottery) => {
       const numberOfMatchedNumbers = this.compareLotteryNumbers(lottery);
