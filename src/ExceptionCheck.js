@@ -71,6 +71,17 @@ class ExceptionCheck {
       if (overLap[num] > 1) throw new CustomError(ErrorMessage.overLapNumber);
     });
   }
+  isHasProperties(object, propertyList) {
+    if (!(object === Object(object)))
+      throw new CustomError(ErrorMessage.notObject);
+    const keys = Object.keys(object);
+
+    keys.forEach((key) => {
+      if (!propertyList.includes(key))
+        throw new CustomError(ErrorMessage.notHasProperty);
+    });
+  }
+
   isError(condition, message) {
     if (condition) {
       throw new CustomError(message);

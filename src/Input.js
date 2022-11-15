@@ -32,7 +32,7 @@ class InputExceptionCheck extends ExceptionCheck {
     const numOrCommaReg = /,|[0-9]/g;
     const lotteryNumberArray = checkTarget.split(",");
     lotteryNumberArray.forEach((num) => {
-      super.isLotteryNumberAtom(num);
+      super.isNumberInRange(num);
     });
     super.isError(
       !numOrCommaReg.test(checkTarget),

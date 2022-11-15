@@ -78,7 +78,7 @@ class LottoExceptionCheck extends ExceptionCheck {
     super.isOverLapArray(lottery);
     super.isSortedArray(lottery);
     lottery.forEach((num, i, arr) => {
-      super.isLotteryNumberAtom(num);
+      super.isNumberInRange(num);
     });
   }
 
