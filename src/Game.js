@@ -10,6 +10,7 @@ class Game {
     this.publishNumbers = [];
     this.winningNumber = [];
     this.bonusNumber = 0;
+    this.countArr=[];
     this.earningPercent = 0;
 
     this.static = [
@@ -28,6 +29,7 @@ class Game {
     this.getBonusNumberInput();
     this.lotto = new Lotto(this.winningNumber);
     this.priceEarning();
+    this.printResult();
   } 
 
   getPriceInput() {
@@ -84,13 +86,29 @@ class Game {
   }
 
   priceEarning() {
-    let countArr = this.lotto.compareNumbers(this.publishNumbers, this.bonusNumber);
+    this.countArr = this.lotto.compareNumbers(this.publishNumbers, this.bonusNumber);
     let total = 0;
     
-    countArr.forEach((count, idx) => {
+    this.countArr.forEach((count, idx) => {
       total += this.static[idx].prize * count;
     });
     this.earningPercent = ((add / this.price) * 100).toFixed(1);
+  }
+
+  printResult() {
+    Console.print('당첨 통계');
+    Console.print('---');
+
+    this.countArr.forEach((count, idx) => {
+      if(idx !== 3){
+        Console.print(`${this.static[idx].match}개 일치 (${this.static[idx].prize.toLocaleString()}원) - ${count}개`);
+      }
+      else{
+        Console.print(`${this.static[idx].match}개 일치, 보너스 볼 일치 (${this.static[idx].prize.toLocaleString()}원) - ${count}개`);
+      }
+    });
+
+    Console.print(`총 수익률은 ${this.earningPercent}%입니다.`);
   }
 
 
