@@ -8,12 +8,12 @@ describe("로또 테스트", () => {
     const outputAmount = 1;
 
     const ranking = new RankingResult();
-    const rankingResult = ranking.setRankingResult(
+    ranking.setRankingResult(
       issuedLotto,
       winningLotto,
       bonusLotto
     );
-    const firstRanking = rankingResult.find((v) => v.ranking == "FIRST");
+    const firstRanking = ranking.rankingResult.find((v) => v.ranking == "FIRST");
 
     expect(firstRanking.amount).toEqual(outputAmount);
   });
@@ -25,12 +25,12 @@ describe("로또 테스트", () => {
     const outputAmount = 1;
 
     const ranking = new RankingResult();
-    const rankingResult = ranking.setRankingResult(
+    ranking.setRankingResult(
       issuedLotto,
       winningLotto,
       bonusLotto
     );
-    const secondRanking = rankingResult.find((v) => v.ranking == "SECOND");
+    const secondRanking = ranking.rankingResult.find((v) => v.ranking == "SECOND");
 
     expect(secondRanking.amount).toEqual(outputAmount);
   });
@@ -42,8 +42,8 @@ describe("로또 테스트", () => {
     const outputAmount = 1 
 
     const ranking = new RankingResult();
-    const rankingResult = ranking.setRankingResult(issuedLotto,winningLotto,bonusLotto)
-    const thirdRanking = rankingResult.find((v)=>v.ranking=="THIRD")
+    ranking.setRankingResult(issuedLotto,winningLotto,bonusLotto)
+    const thirdRanking = ranking.rankingResult.find((v)=>v.ranking=="THIRD")
 
     expect(thirdRanking.amount).toEqual(outputAmount);
   })
@@ -101,13 +101,13 @@ describe("로또 테스트", () => {
     ];
 
     const ranking = new RankingResult();
-    const rankingResult = ranking.setRankingResult(
+    ranking.setRankingResult(
       issuedLotto,
       winningLotto,
       bonusLotto
     );
 
-    expect(rankingResult).toEqual(output);
+    expect(ranking.rankingResult).toEqual(output);
   });
 });
 
