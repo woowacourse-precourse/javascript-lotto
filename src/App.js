@@ -118,8 +118,8 @@ class App {
     return procdeeds;
   }
 
-  static returnRateGetter(procdeeds, purchaseAmount) {
-    const returnRate = (procdeeds / purchaseAmount) * 100;
+  static returnRateGetter(proceeds, purchaseAmount) {
+    const returnRate = (proceeds / purchaseAmount) * 100;
     return returnRate.toFixed(1);
   }
 
@@ -131,5 +131,8 @@ class App {
     App.lottoPurchaser();
   }
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
