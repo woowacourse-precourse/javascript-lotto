@@ -6,7 +6,7 @@
 
 ## 🛠 구조
 
-![](.README_images/11849188.png)
+![](.README_images/fa5d48db.png)
 
 ## 🧾 기능 요구사항
 
