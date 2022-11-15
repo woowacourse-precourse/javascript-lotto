@@ -10,6 +10,10 @@ class Lotto {
   validate(numbers) {
     checkValidWinningNumberInput(numbers);
   }
+
+  checkSameNumber(numbers) {
+    return this.#numbers.filter((number) => numbers.includes(number)).length;
+  }
 }
 
 module.exports = Lotto;
