@@ -1,4 +1,4 @@
-const { Random, Console } = require("@woowacourse/mission-utils");
+const { Console } = require("@woowacourse/mission-utils");
 
 const User = require("./User");
 const Lotto = require("./Lotto");
