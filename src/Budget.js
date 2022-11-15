@@ -15,6 +15,10 @@ class Budget {
     }
   }
 
+  getBudget() {
+    return this.#budget
+  }
+
 }
 
 module.exports = Budget;
