@@ -11,12 +11,18 @@ class App {
 
   lottoAmount() {
     Console.readLine("구입금액을 입력해 주세요.\n", (inputMoney) => {
-      if (inputMoney % 1000 != 0) throw "[ERROR] 올바르지 않은 입력입니다.";
+      this.amountException(inputMoney);
       let amount = inputMoney / 1000;
       Console.print(amount + "개를 구매했습니다.");
       let myNumbers = this.autoLottoNums(amount);
       this.inputWinningNums(myNumbers);
+      return amount;
     });
+  }
+
+  amountException(input) {
+    if (input % 1000 != 0) throw "[ERROR] 올바르지 않은 입력입니다.";
+    if(input < 1000) throw "[ERROR] 로또는 1000원부터 구매 가능합니다.";
     return;
   }
 
@@ -24,27 +30,11 @@ class App {
     let myNumbers = [];
     while (cnt) {
       const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
-      numbers.sort((a, b) => {
-        return a - b;
-      });
-      for (let i in numbers) {
-        Console.print(
-          "[" +
-            numbers[0] +
-            ", " +
-            numbers[1] +
-            ", " +
-            numbers[2] +
-            ", " +
-            numbers[3] +
-            ", " +
-            numbers[4] +
-            ", " +
-            numbers[5] +
-            "]"
-        );
-        break;
-      }
+      numbers.sort((a, b) => { return a - b });
+      Console.print(
+        "[" + numbers[0] + ", " + numbers[1] + ", " + numbers[2] +
+        ", " + numbers[3] + ", " + numbers[4] + ", " + numbers[5] + "]"
+      );
       myNumbers.push(numbers);
       cnt--;
     }
