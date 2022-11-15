@@ -88,6 +88,9 @@ class Controller {
     return score;
   }
 
+  calcLottoCount(price) {
+    return price / LOTTO.PRICE;
+  }
 
   createQuickPick() {
     return Random.pickUniqueNumbersInRange(
