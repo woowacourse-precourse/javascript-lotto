@@ -33,9 +33,19 @@ function validateUniqueNumbers(numbers) {
   }
 }
 
+function validateBonusNumber(bonusNumber, winningNumbers) {
+  if (bonusNumber < 1 || bonusNumber > 45) {
+    throw Error(ErrorMessage.range);
+  }
+  if (Array.from(winningNumbers).includes(Number(bonusNumber))) {
+    throw Error(ErrorMessage.bonusDuplicated);
+  }
+}
+
 module.exports = {
   validateUserMoney,
   sortAscending,
   validateLottoNumber,
   validateUniqueNumbers,
+  validateBonusNumber,
 };
