@@ -39,7 +39,7 @@ class Lotto {
     this.#numbers = numbers;
     this.lottoList = lottoList;
     this.bonusNumber = bonusNumber;
-    this.stats = [];
+    this.stats = [0, 0, 0, 0, 0];
     this.yield = null;
   }
 
@@ -55,6 +55,30 @@ class Lotto {
       }
       return count;
     }, 0);
+  }
+
+  compareBonus(count, lotto, bonus) {
+    return count === 5 && lotto.includes(Number(bonus))
+      ? (count += 0.5)
+      : count;
+  }
+
+  rank(correct) {
+    if (correct === 3) {
+      return (this.stats[4] += 1);
+    }
+    if (correct === 4) {
+      return (this.stats[3] += 1);
+    }
+    if (correct === 5) {
+      return (this.stats[2] += 1);
+    }
+    if (correct === 5.5) {
+      return (this.stats[1] += 1);
+    }
+    if (correct === 6) {
+      return (this.stats[0] += 1);
+    }
   }
 }
 module.exports = { LottoBuilder, Lotto };
