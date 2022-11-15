@@ -121,7 +121,7 @@ class WinnerSelector {
       this.prizeMoney += this.prizeResult.winner[rank].length * money;
     });
 
-    this.prizeMoney += this.prizeResult.bonus * bonus.prizeMoney;
+    this.prizeMoney += this.prizeResult.bonus.length * bonus.prizeMoney;
   }
 
   getResult() {
