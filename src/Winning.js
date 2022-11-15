@@ -17,28 +17,28 @@ class Winning {
       '4th': 50000,
       '5th': 5000,
     }
-    this.result = this.aroundAllLotto(lottoNumbers, userNumber);
     this.#lottoNumbers = lottoNumbers;
     this.#userNumbers = userNumber;
     this.#bonusNumber = bonusNumber;
+    this.result = this.aroundAllLotto();
   }
 
-  aroundAllLotto(lottoNumbers, userNumber, bonusNumber) {
-    lottoNumbers.forEach((lotto) => {
-      this.setWinningStats(lotto, userNumber, bonusNumber);
+  aroundAllLotto() {
+    this.#lottoNumbers.forEach((lotto) => {
+      this.setWinningStats(lotto);
     });
     return this.rank;
   }
 
-  setWinningStats(lotto, userNumber, bonusNumber) {
-    let count = lotto.filter(number => userNumber.includes(number)).length;
+  setWinningStats(lotto) {
+    let count = lotto.filter(number => this.#userNumbers.includes(number)).length;
     if (count === 3) {
       this.rank['5th'] += 1;
     } else if (count === 4) {
       this.rank['4th'] += 1;
-    } else if (count === 5) {
+    } else if (count === 5 && !lotto.includes(this.#bonusNumber)) {
       this.rank['3rd'] += 1;
-    } else if (count === 5 && lotto.includes(bonusNumber)) {
+    } else if (count === 5 && lotto.includes(this.#bonusNumber)) {
       this.rank['2nd'] += 1;
     } else if (count === 6) {
       this.rank['1st'] += 1;
