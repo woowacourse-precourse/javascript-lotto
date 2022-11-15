@@ -20,6 +20,13 @@ class View {
       Console.print(`[${quickPick.join(', ')}]`);
     });
   }
+
+  printStatistics(statistics) {
+    Console.print(QUERY.STATISTICS);
+    for (let matchCount in statistics) {
+      Console.print(`${STATISTICS_MESSAGE[matchCount]}${statistics[matchCount]}개`)
+    }
+  }
 }
 
 module.exports = View;
