@@ -31,4 +31,14 @@ describe("Validator 클래스 테스트", () => {
     expect(Validator.isLottoLength(5)).toEqual(false);
     expect(Validator.isLottoLength(7)).toEqual(false);
   });
+
+  test("isPositiveNumber : 양수인지 테스트", () => {
+    expect(Validator.isPositiveNumber(1000)).toEqual(true);
+    expect(Validator.isPositiveNumber("1000")).toEqual(true);
+    expect(Validator.isPositiveNumber(7.14)).toEqual(false);
+    expect(Validator.isPositiveNumber("7.14")).toEqual(false);
+    expect(Validator.isPositiveNumber(0)).toEqual(false);
+    expect(Validator.isPositiveNumber("0")).toEqual(false);
+    expect(Validator.isPositiveNumber("abc")).toEqual(false);
+  });
 });
