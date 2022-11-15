@@ -3,23 +3,10 @@
 const User = require('./User.js');
 const Lotto = require('./Lotto.js');
 const LottoManager = require('./LottoManager.js');
-const Utils = require('./Utils.js');
-const {
-  INPUT_AMOUNT_MESSAGE,
-  INPUT_BONUS_NUMBER,
-  INPUT_LOTTO_NUMBERS,
-  STATISTICS,
-  DIVIDER,
-  FIFTH_PRIZE,
-  FOURTH_PRIZE,
-  THIRD_PRIZE,
-  SECOND_PRIZE,
-  FIRST_PRIZE,
-  LOTTO_PRICE,
-  LOTTO_MIN_NUMBER,
-  LOTTO_MAX_NUMBER,
-  LOTTO_MAX_COUNT,
-} = require('./const.js');
+const Utils = require('./utils/Utils.js');
+const Printer = require('./utils/Printer.js');
+const { message } = require('./utils/messages.js');
+const { lotto } = require('./utils/const.js');
 
 class App {
   /** @type {User} */
@@ -34,15 +21,14 @@ class App {
   }
 
   play() {
-    Utils.readLine(`${INPUT_AMOUNT_MESSAGE}\n`, (inputAmount) => {
+    Utils.readLine(message.INPUT_AMOUNT_MESSAGE, (inputAmount) => {
       this.#user.setAmount(inputAmount);
       const amount = this.#user.getAmount();
-
       const numbersList = this.generateNumbersList(amount);
 
       this.#user.setNumbersList(numbersList);
       const userNumbersList = this.#user.getNumbersList();
-      this.#printUserNumberList(userNumbersList);
+      Printer.printUserNumberList(userNumbersList);
 
       this.#askLottoNumbers();
     });
@@ -56,11 +42,11 @@ class App {
   generateNumbersList(amount) {
     const list = [];
 
-    for (let i = 0; i < amount / LOTTO_PRICE; i++) {
+    for (let i = 0; i < amount / lotto.PRICE; i++) {
       const randomNumbers = Utils.getRandomNumbers(
-        LOTTO_MIN_NUMBER,
-        LOTTO_MAX_NUMBER,
-        LOTTO_MAX_COUNT
+        lotto.MIN_NUMBER,
+        lotto.MAX_NUMBER,
+        lotto.MAX_COUNT
       );
 
       const lottoNumbers = this.publishLotto(randomNumbers);
@@ -81,24 +67,30 @@ class App {
   }
 
   #askLottoNumbers() {
-    Utils.readLine(`\n${INPUT_LOTTO_NUMBERS}\n`, (inputWinningNumbers) => {
-      const lottoNumbers = Utils.separateNumbers(inputWinningNumbers, ',');
-      this.#lottoManager.setWinningNumbers(lottoNumbers);
-      this.#askBonusNumber();
-    });
+    Utils.readLine(
+      message.INPUT_LOTTO_NUMBERS_MESSAGE,
+      (inputWinningNumbers) => {
+        const lottoNumbers = Utils.separateNumbers(inputWinningNumbers, ',');
+        this.#lottoManager.setWinningNumbers(lottoNumbers);
+        this.#askBonusNumber();
+      }
+    );
   }
 
   #askBonusNumber() {
-    Utils.readLine(`\n${INPUT_BONUS_NUMBER}\n`, (inputBonus) => {
-      this.#lottoManager.setBonusNumber(inputBonus);
-      const amount = this.#user.getAmount();
-      const userNumbersList = this.#user.getNumbersList();
+    Utils.readLine(
+      `\n${message.INPUT_BONUS_NUMBER_MESSAGE}\n`,
+      (inputBonus) => {
+        this.#lottoManager.setBonusNumber(inputBonus);
+        const amount = this.#user.getAmount();
+        const userNumbersList = this.#user.getNumbersList();
 
-      const statistics = this.#generateStatistics(amount, userNumbersList);
-      this.#printStatistics(statistics.prizes, statistics.revenue);
+        const statistics = this.#generateStatistics(amount, userNumbersList);
+        Printer.printStatistics(statistics.prizes, statistics.revenue);
 
-      this.#finishLotto();
-    });
+        Utils.close();
+      }
+    );
   }
 
   /**
@@ -113,40 +105,6 @@ class App {
 
     return { prizes, revenue };
   }
-
-  #finishLotto() {
-    Utils.close();
-  }
-
-  /**
-   *
-   * @param {number[][]} userNumbersList
-   */
-  #printUserNumberList(userNumbersList) {
-    Utils.print(`\n${userNumbersList.length}개를 구매했습니다.`);
-    userNumbersList.forEach((numbers) =>
-      Utils.print(`[${numbers.join(', ')}]`)
-    );
-  }
-
-  /**
-   *
-   * @param {{first: number, second: number, third:number, fourth:number, fifth:number}} statistics
-   * @param {string} revenue
-   */
-  #printStatistics(statistics, revenue) {
-    Utils.print(`\n${STATISTICS}`);
-    Utils.print(`${DIVIDER}`);
-    Utils.print(`${FIFTH_PRIZE} - ${statistics.fifth}개`);
-    Utils.print(`${FOURTH_PRIZE} - ${statistics.fourth}개`);
-    Utils.print(`${THIRD_PRIZE} - ${statistics.third}개`);
-    Utils.print(`${SECOND_PRIZE} - ${statistics.second}개`);
-    Utils.print(`${FIRST_PRIZE} - ${statistics.first}개`);
-    Utils.print(`총 수익률은 ${revenue}%입니다.`);
-  }
 }
-
-const app = new App();
-app.play();
 
 module.exports = App;

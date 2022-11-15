@@ -1,9 +1,6 @@
 // @ts-check
 
-const {
-  INVALID_INTEGER_ERROR_MESSAGE,
-  INVALID_UNIT_ERROR_MESSAGE,
-} = require('./const');
+const { error } = require('./utils/messages');
 
 class User {
   /** @type {number} */
@@ -20,11 +17,11 @@ class User {
     const regex = /^[0-9]+$/;
 
     if (!regex.test(amount)) {
-      throw new Error(INVALID_INTEGER_ERROR_MESSAGE);
+      throw new Error(error.INVALID_INTEGER_ERROR_MESSAGE);
     }
 
     if (Number(amount) % 1000 !== 0) {
-      throw new Error(INVALID_UNIT_ERROR_MESSAGE);
+      throw new Error(error.INVALID_UNIT_ERROR_MESSAGE);
     }
   }
 

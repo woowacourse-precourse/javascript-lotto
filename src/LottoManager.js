@@ -1,19 +1,8 @@
 // @ts-check
 
 const Lotto = require('./Lotto');
-const { DUPLICATE_ERROR_MESSAGE } = require('./const');
-
-const PRIZE_WITHOUT_SECOND = ['none', 'fifth', 'fourth', 'third', 'first'];
-const PRIZE_REWARD = {
-  first: 2000000000,
-  second: 30000000,
-  third: 1500000,
-  fourth: 50000,
-  fifth: 5000,
-};
-
-Object.freeze(PRIZE_WITHOUT_SECOND);
-Object.freeze(PRIZE_REWARD);
+const { prize } = require('./utils/const');
+const { error } = require('./utils/messages');
 
 class LottoManager {
   /** @type {number[]} */
@@ -45,7 +34,7 @@ class LottoManager {
    */
   validateBonusNumber(bonusNumber) {
     if (this.#winningNumbers.includes(bonusNumber)) {
-      throw new Error(DUPLICATE_ERROR_MESSAGE);
+      throw new Error(error.DUPLICATE_ERROR_MESSAGE);
     }
   }
 
@@ -96,7 +85,7 @@ class LottoManager {
 
     const shiftedCount = Math.max(count - 2, 0);
 
-    return PRIZE_WITHOUT_SECOND[shiftedCount];
+    return prize.LIST_WITHOUT_SECOND[shiftedCount];
   }
 
   /**
@@ -129,7 +118,7 @@ class LottoManager {
 
     Object.entries(statistics).forEach((statistic) => {
       const [type, count] = statistic;
-      sum += PRIZE_REWARD[type] * count;
+      sum += prize.REWARD[type] * count;
     });
 
     const revenue = (sum / amount) * 100;
