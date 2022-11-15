@@ -27,6 +27,10 @@ class Lotto {
     this.validate();
   }
 
+  /**
+   * 무작위 번호를 가지는 로또를 생성한다.
+   * @returns {Lotto}
+   */
   static fromRandom() {
     const numbers = MissionUtils.Random.pickUniqueNumbersInRange(
       Lotto.NUMBER_MIN,
@@ -36,6 +40,11 @@ class Lotto {
     return new Lotto(numbers);
   }
 
+  /**
+   * 문자열로부터 숫자를 파싱하여 로또를 생성한다.
+   * @param {string} text
+   * @returns {Lotto}
+   */
   static fromString(text) {
     return new Lotto(text.split(',').map(Number));
   }
@@ -68,10 +77,17 @@ class Lotto {
     this.#validateDuplication();
   }
 
+  /**
+   * @param {number} number
+   * @returns {boolean}
+   */
   hasNumber(number) {
     return this.#numbers.includes(number);
   }
 
+  /**
+   * @returns {number[]}
+   */
   getNumbers() {
     return this.#numbers;
   }
