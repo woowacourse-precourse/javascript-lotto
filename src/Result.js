@@ -27,6 +27,7 @@ class Result {
     this.randomNumUnits.map((randomNums) => {
       resultArr.push(this.checkCorrectNum(randomNums));
     });
+    console.log('check');
     return resultArr;
   }
 
@@ -74,6 +75,7 @@ class Result {
     }
     this.hitNumList.six++;
   }
+
   setProfit() {
     const money = PRICE_PER_LOTTO * this.randomNumUnits.length;
     const totalGain = this.getTotalGain();

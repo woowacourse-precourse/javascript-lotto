@@ -22,6 +22,19 @@ describe('결과 클래스 테스트', () => {
     expect(result.makeCorrectNums()).toEqual(correctResult);
   });
 
+  test('로또 번호와 당첨 번호를 비교해서 겹치는 숫자로 이루어진 새 배열을 리턴한다.', () => {
+    const randomNumsUnits = [
+      [13, 19, 22, 32, 35, 37],
+      [11, 13, 15, 17, 28, 40],
+      [14, 15, 23, 25, 40, 43],
+    ];
+    const lottoNums = [1, 2, 3, 4, 5, 9];
+    const bonusNum = 12;
+    const correctResult = [[], [], []];
+    const result = new Result(randomNumsUnits, lottoNums, bonusNum);
+    expect(result.makeCorrectNums()).toEqual(correctResult);
+  });
+
   test('당첨 내역 리스트를 리턴한다.', () => {
     const randomNumsUnits = [
       [8, 21, 23, 41, 42, 43],
@@ -37,6 +50,22 @@ describe('결과 클래스 테스트', () => {
     const bonusNum = 7;
     const correctResult = {
       three: 1,
+      four: 0,
+      five: 0,
+      fiveAndBonus: 0,
+      six: 0,
+    };
+    const result = new Result(randomNumsUnits, lottoNums, bonusNum);
+    result.getResult();
+    expect(result.hitNumList).toEqual(correctResult);
+  });
+
+  test('당첨 내역 리스트를 리턴한다.', () => {
+    const randomNumsUnits = [];
+    const lottoNums = [1, 4, 23, 30, 40, 43];
+    const bonusNum = 12;
+    const correctResult = {
+      three: 0,
       four: 0,
       five: 0,
       fiveAndBonus: 0,
