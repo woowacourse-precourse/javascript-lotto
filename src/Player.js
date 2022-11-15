@@ -48,9 +48,10 @@ class Player {
   }
 
   getProfitRate() {
-    const profitRate = (this.winMoney / this.spentMoney) * 100;
+    const profitRate = this.winMoney / this.spentMoney;
+    const localeOption = { style: 'percent', minimumFractionDigits: 1 };
 
-    return profitRate.toFixed(1);
+    return profitRate.toLocaleString('ko-KR', localeOption);
   }
 }
 
