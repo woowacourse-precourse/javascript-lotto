@@ -15,7 +15,7 @@ describe("에러 체커 클래스 테스트", () => {
 
     test("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.", () => {
         expect(() => {
-            ErrorChecker.checkDuplicatedElement([1, 2, 3, 4, 5, 5]);
+            ErrorChecker.checkDuplicatedElement([1, 2, 3, 4, 5, 5], 6);
         }).toThrow("[ERROR] 로또 번호는 중복되지 않는 6자리 숫자여야 합니다.");
     });
 })
