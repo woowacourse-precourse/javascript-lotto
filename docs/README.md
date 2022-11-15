@@ -6,11 +6,12 @@
     - 범위 밖의 숫자인 경우 예외 발생 : throw new error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
   - [] 중복 허용X : checkNumDuplicate()
     - 중복되는 숫자가 있는 경우 예외 발생 : throw new error("[ERROR] 로또 번호는 중복이 허용되지 않습니다.")
+  - [] 숫자 6개 : validate()
+    - 숫자 6개 아닌 경우 throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
 
-- [] 발행된 로또 유효성 검사 : validateNum()
+- [] 발행된 로또 유효성 검사 : constructor 내에서
 
-  - 숫자 6개
-  - checkNumRange(), checkNumDuplicate() 실행 & 길이 6인지 체크
+  - checkNumRange, checkNumDuplicate, validate 실행
 
 - [] 추첨된 당첨 번호 유효성 검사 : validateWinNum()
 
