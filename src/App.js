@@ -9,12 +9,17 @@ class App {
     this.lottoCount=0;
   }
 
-  CreateUserLotto(){
+  CreateLottoNum(){
+    return Random.pickUniqueNumbersInRange(1, 45, 6);
+  }
+  
+  CreateUserLottoNum(){
     for(let idx=0; idx<this.lottoCount; idx++){
-      this.lottos.push(Random.pickUniqueNumbersInRange(1, 45, 6));
-      console.log(this.lottos[idx]);
+      const lottoNum = this.CreateLottoNum();
+      const lotto = new Lotto(lottoNum);
+      this.lottos.push(lotto);
+      // console.log(lotto.getNumbers());
     }
-    return this.lottos;
   }
 
   isValidCacheInput(answer){
@@ -42,7 +47,7 @@ class App {
     this.InputCache();
       // 금액에 맞는 로또 수량 발행
       // 해당 갯수에 맞는 로또 번호 생성
-    this.CreateUserLotto();
+    this.CreateUserLottoNum();
     // 당첨번호 입력
     //InputWinLotto();
     // 보너스 번호 입력
