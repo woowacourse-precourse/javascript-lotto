@@ -16,9 +16,13 @@ class App {
   }
 
   inputMoney(input) {
+    let inputValue = "";
+    if (isNaN(Number(input))) throw new Error(ERROR_MESSAGES.NAN);
+    const money = Number(input);
     if (money % LOTTO.MONEY_UNIT !== 0) throw new Error(ERROR_MESSAGE.UNIT);
     if (money <= 0) throw new Error(ERROR_MESSAGE.POSITIVE_NUMBER);
     this.money = input;
+    return inputValue;
   }
 }
 
