@@ -4,22 +4,32 @@ const Lotto = require("../game-machine/Lotto");
 class ResultStats {
   #lotto_num=[];
 
-  constructor(numbers){
-    this.lotto_num=numbers;
+  constructor(){
+    this.draw_number;
+    this.bonus_number;
   }
   
   getDrawAndBonusNumber(draw_number,bonus_number){
-
+    this.draw_number = this.changeDrawNumbersToArray(draw_number);
+    this.bonus_number = bonus_number;
   }
 
-  changeToArray(numbers){
+  changeLottoNumbersToArray(numbers){
     let lotto_list = (numbers + "").split(",");
     this.createLottoNumbersList(lotto_list);
+  }
+
+  changeDrawNumbersToArray(draw_number){
+    let arr = (draw_number + "").split(",");
+    console.log(arr);
+    return arr;
   }
 
   createLottoNumbersList(lotto_list){
     this.#lotto_num.push(lotto_list);
   }
+
+
 }
 
 module.exports = ResultStats;
