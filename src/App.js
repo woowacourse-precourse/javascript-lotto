@@ -16,6 +16,20 @@ class App {
       this.inputExceptionThousand(answer);
     });
   } 
+
+  userLottoInput() {
+    Console.readLine('당첨번호를 입력해 주세요.', (answer) => {
+      Console.print(`${[answer]}/n`);
+      let userLottoList = String(answer).split(',').map(Number); 
+    });
+    userLottoList.forEach((element) => {
+      this.inputExceptionNotANumber(element);
+    });
+    userLottoList.sort((a, b) => a - b);
+    this.inputExceptionLottoLength(userLottoList);
+    this.inputExceptionLottoDuplicate();
+    this.compareLottoNumber();
+  }
 }
 
 module.exports = App;
