@@ -2,6 +2,7 @@ const { Console, Random } = require('@woowacourse/mission-utils');
 const { VALIDATE_NUMBER, ERROR_MESSAGE, INPUT_QUESTION, PRINT_MESSAGE, PRIZE } = require('./utils/Constants'); 
 const Bonus = require('./Bonus');
 const Lotto = require('./Lotto');
+const PurchaseAmount = require('./PurchaseAmount');
 
 
 class App {
@@ -21,24 +22,16 @@ class App {
   }
 
   play() {
+    this.purchaseAmount = new PurchaseAmount();
     this.inputPurchaseAmount();
   }
 
   inputPurchaseAmount() {
     Console.readLine(INPUT_QUESTION.money, (money) => {
-      if (this.isDividedByTen(money)) {
-        this.money = money;
-        this.getPurchaseCount();
-      }
+      this.purchaseAmount.checkError(money);
+      this.money = money;
+      this.getPurchaseCount();
     });
-  }
-
-  isDividedByTen(money) {
-    if (money % VALIDATE_NUMBER.moneyUnit !== 0) {
-      throw new Error(ERROR_MESSAGE.moneyUnit);
-    }
-
-    return true;
   }
 
   getPurchaseCount() {
@@ -98,7 +91,7 @@ class App {
         this.getRank(matchingNumbers, lotto);
       }
     });
-    
+
     this.printResult();
     this.getProfit();
   }
