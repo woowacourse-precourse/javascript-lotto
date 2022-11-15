@@ -77,6 +77,8 @@ class App {
       );
     }
     this.#matchingNumberCountObj = lotto.returnMatchingNumberObj(winningPrizeList);
+    this.printCalculation();
+    this.printRateOfReturn();
   }
 
   printCalculation() {
