@@ -29,15 +29,15 @@ class Lotto {
     winNumber.forEach((winNum) => {
       if (this.#numbers.includes(winNum)) this.#right += 1;
     });
-    if (this.#numbers.includes(bonusNumber)) this.#bonus == true;
+    if (this.#numbers.includes(bonusNumber)) this.#bonus = true;
     return this.checkRank();
   }
 
   checkRank() {
     this.#rank = 8 - this.#right;
     if (this.#right === 5) {
-      if (!this.#bonus) this.#rank = 3;
       this.#rank = 2;
+      if (!this.#bonus) this.#rank = 3;
     }
     if (this.#right === 6) {
       this.#rank = 1;
