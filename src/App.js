@@ -1,5 +1,10 @@
+const LotteryManager = require('./LotteryManager');
+
 class App {
-  play() {}
+  play() {
+    const manager = new LotteryManager();
+    manager.start();
+  }
 }
 
 module.exports = App;
