@@ -16,7 +16,7 @@ class EarningRate {
       index += 1;
     }
     earningRate = (earningRate / purchase) * UTILS.PERCENT;
-    return earningRate;
+    return Number(earningRate.toFixed(1));
   }
 }
 
