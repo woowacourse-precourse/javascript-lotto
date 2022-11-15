@@ -185,7 +185,7 @@ class App {
     for(let i=0; i<this.prizeMoneyArr.length; i++) {
       winningAmount += parseInt(this.prizeMoneyArr[i] * this.countMatchNumberArr[i]); 
     }
-    rateOfReturn = (winningAmount / this.amountMoneyInputArr[0] ) * 100;
+    rateOfReturn = parseInt(winningAmount / this.amountMoneyInputArr[0] ) * 100;
     rateOfReturn = rateOfReturn.toFixed(1);
     Console.print(`총 수익율은 ${rateOfReturn}%입니다.`);
   }
