@@ -2,14 +2,15 @@ const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const purchaseAmountValidator = require('./purchaseAmountValidate');
 const BonusValidate = require('./BonusValidate');
+const { INPUT_REQUEST_MESSAGE, RESPONSE_MESSAGE } = require('./Constants');
 
 class App {
   static lottoPurchaser() {
-    Console.readLine('구입금액을 입력해 주세요.\n', purchaseAmount => {
+    Console.readLine(INPUT_REQUEST_MESSAGE.PURCAHSE_AMOUNT, purchaseAmount => {
       const { validatedAmount } = new purchaseAmountValidator(purchaseAmount);
       const purchaseLottoCount = this.lottoCountGetter(purchaseAmount);
       const purchaseLottoList = this.lottoPublisher(purchaseLottoCount);
-      this.printer(`${purchaseLottoCount}개를 구매했습니다.`);
+      this.printer(`${purchaseLottoCount + RESPONSE_MESSAGE.PURCHASE_COUNT}`);
       this.purchaseLottoListPrinter(purchaseLottoList);
       this.winningNumberDecider(purchaseLottoList, purchaseAmount);
     });
@@ -47,8 +48,8 @@ class App {
   }
 
   static winningNumberDecider(purchaseLottoList, purchaseAmount) {
-    Console.readLine('\n당첨 번호를 입력해 주세요.\n', winningNumber => {
-      Console.readLine('\n보너스 번호를 입력해 주세요.\n', bonusNumber => {
+    Console.readLine(INPUT_REQUEST_MESSAGE.WINNING_NUMBER, winningNumber => {
+      Console.readLine(INPUT_REQUEST_MESSAGE.BONUS_NUMBER, bonusNumber => {
         const bonusValidate = new BonusValidate(bonusNumber);
         const winningList = this.totalWinningCounter(
           purchaseLottoList,
