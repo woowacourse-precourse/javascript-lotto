@@ -1,6 +1,6 @@
 const { ERROR, RULE } = require("./constants.js");
 
-function buyingAmountValidator(buyingAmount) {
+function buyingValidate(buyingAmount) {
   if (hasBlank(buyingAmount)) {
     throw new Error(ERROR.HAS_BLANK);
   }
@@ -31,4 +31,4 @@ function isZeroWon(buyingAmount) {
   return buyingAmount === "0";
 }
 
-module.exports = buyingAmountValidator;
+module.exports = buyingValidate;

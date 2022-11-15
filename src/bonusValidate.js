@@ -1,6 +1,6 @@
 const { ERROR, RULE } = require("./constants.js");
 
-function bonusNumberValidator(winningNumberList, bonusNumber) {
+function bonusValidate(winningNumberList, bonusNumber) {
   if (hasCharacter(bonusNumber)) {
     throw new Error(ERROR.HAS_CHARACTER);
   }
@@ -38,4 +38,4 @@ function containsBlanks(bonusNumber) {
   return bonusNumber.includes(" ");
 }
 
-module.exports = bonusNumberValidator;
+module.exports = bonusValidate;

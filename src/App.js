@@ -1,7 +1,7 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { MESSAGE, WINNING_RESULT_PRINT } = require("./constants.js");
-const buyingAmountValidator = require("./buyingValidate.js");
-const bonusNumberValidator = require("./bonusValidate.js");
+const buyingValidate = require("./buyingValidate.js");
+const bonusValidate = require("./bonusValidate.js");
 const LottoTicket = require("./LottoTicket.js");
 const Lotto = require("./Lotto.js");
 const WinningResult = require("./WinningResult");
@@ -20,7 +20,7 @@ class App {
 
   inputBuyingAmount() {
     Console.readLine(MESSAGE.INPUT_BUYING_AMOUNT, (BuyingAmount) => {
-      this.buyingLottoNumber = buyingAmountValidator(BuyingAmount);
+      this.buyingLottoNumber = buyingValidate(BuyingAmount);
       this.printBuyingLottoNumber();
     });
   }
@@ -49,7 +49,7 @@ class App {
 
   inputBonusNumber() {
     Console.readLine(MESSAGE.INPUT_BONUS_NUMBER, (bonusNumber) => {
-      bonusNumberValidator(this.winningNumberList, bonusNumber);
+      bonusValidate(this.winningNumberList, bonusNumber);
       this.bonusNumber = bonusNumber;
       this.printWinningResult();
     });
