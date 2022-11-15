@@ -1,4 +1,4 @@
-const NO_MONEY = '[ERROR] 돈이 아닙니다.';
+const NO_MONEY = '[ERROR] 숫자를 입력해주세요.';
 const WRONG_UNIT = '[ERROR] 천원 단위로 입력해주세요.';
 const EMPTY = '[ERROR] 값이 존재하지 않습니다.';
 
