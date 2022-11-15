@@ -1,4 +1,5 @@
 const Lotto = require("./Lotto");
+const { Console } = require("@woowacourse/mission-utils");
 
 class App {
   inputValue = {
@@ -60,7 +61,7 @@ class App {
   printLottoList(frequency) {
     Console.print(frequency + "개를 구매했습니다.");
     Console.close();
-    
+
     for (let index = 0; index<frequency; index++) {
       Console.print(this.inputValue[purchaseLotto[index]]);
     }
