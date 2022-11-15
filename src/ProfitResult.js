@@ -21,7 +21,7 @@ class ProfitResult {
     }
 
     getProfitPercentage(userMoney) {
-        this.#percent = Math.round(((this.#totalProfitMoney /userMoney) * 100) * 100) / 100;
+        this.#percent = (Math.round(((this.#totalProfitMoney /userMoney) * 100) * 10) / 10).toFixed(1);
     }
     
     printPercentage() {
