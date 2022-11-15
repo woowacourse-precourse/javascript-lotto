@@ -3,13 +3,13 @@ const { Console } = MissionUtils;
 
 const VendingMachine = require("./lotto/domain/VendingMachine");
 const NumberGenerator = require("./lotto/domain/NumberGenerator");
+const Lotto = require("./Lotto");
 
 class App {
   constructor() {
     this.vendingMachine = new VendingMachine();
     this.numberGenerator = new NumberGenerator();
   }
-
   play() {
     Console.readLine("구입금액을 입력해 주세요.\n", (money) => {
       this.vendingMachine.setMoney(money);
@@ -31,7 +31,16 @@ class App {
       Console.print(strPurchasedLotto);
     }
 
-    return;
+    return this.inputLottoNumber(totalLotto);
+  }
+
+  inputLottoNumber(totalLotto) {
+    Console.readLine("\n당첨 번호를 입력해 주세요.\n", (winningNumber) => {
+      const winningNumbers = winningNumber.split(",").map(Number);
+      const winningLotto = new Lotto(winningNumbers);
+
+      return;
+    });
   }
 }
 
