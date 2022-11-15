@@ -36,7 +36,7 @@ describe("로또 클래스 테스트", () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     const place = lotto.winWhatPlace([1, 2, 3, 4, 5, 7], 8);
     console.log(`등수는: ${place}등 입니다.`);
-    expect(place).toEqual(2);
+    expect(place).toEqual(3);
   });
 
   test("숫자 6개를 모두 틀리면 아무것도 아니다.", () => {
