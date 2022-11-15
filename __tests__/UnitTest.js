@@ -57,4 +57,20 @@ describe("App 클래스 메소드 테스트 ", () => {
 
     expect(app.lottoArray).toEqual(testarray);
   });
+
+  test("위닝 로또 번호 sort 테스트", () => {
+    const app = new App();
+    app.winningNumber = [1, 2, 6, 5, 4, 3];
+    const testarray = [1, 2, 3, 4, 5, 6];
+    app.sortWinningNumber();
+    expect(app.winningNumber).toEqual(testarray);
+  });
+
+  test("로또 번호 비교 함수 테스트", () => {
+    const app = new App();
+    app.lottoArray = [[1, 2, 3, 4, 5, 6]];
+    app.winningNumber = [1, 2, 3];
+    app.compareLottoNumber();
+    expect(app.collectNumber).toHaveLength(3);
+  });
 });

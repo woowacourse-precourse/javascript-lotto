@@ -66,14 +66,18 @@ class App {
     });
   }
 
+  sortWinningNumber() {
+    this.winningNumber.sort((a, b) => {
+      return a - b;
+    });
+  }
+
   getWinningNumber() {
     MissionUtils.Console.readLine(
       "\n당첨 번호를 입력해 주세요. \n",
       (number) => {
         this.winningNumber = this.splitWinningNumber(number);
-        this.winningNumber.sort((a, b) => {
-          return a - b;
-        });
+        this.sortWinningNumber();
         new Lotto(this.winningNumber);
         this.getBonusNumber();
       }
