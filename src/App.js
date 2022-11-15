@@ -23,6 +23,10 @@ class App {
     );
   }
 
+  async getAllLottoNum() {
+    return [await this.getLottoNum(), await this.getBonusNum()];
+  }
+
   async getLottoNum() {
     return this.judge.lottoInputValid(
       await this.recommender.getInput(SYS_MESSAGE.INPUT_LOTTO_NUM)
