@@ -10,7 +10,7 @@ class Lotto {
 
   validate(numbers, limit) {
     if (numbers.length !== limit) {
-      throw new Error(`[ERROR] 입력 번호는 ${limit}개여야 합니다.`);
+      throw new Error(`[ERROR] 입력 번호는 ${limit}개를 쉼표로 구분해서 입력해주세요.`);
     }
     numbers.forEach(number => {
       if (number > 45 || number < 1) {
@@ -32,14 +32,14 @@ class Lotto {
   }
 
   checkCorrect(winAndBonusNum, makedLots){
-    const winningNumLs = winAndBonusNum[0];
+    const winningNumsLs = winAndBonusNum[0];
     const bonusNum = winAndBonusNum[1];
     const correctLists = [];
     let secondPrize = 0;
     this.savePurchaseQuantity(makedLots);
 
     for (let i = 0; i < makedLots.length; i++) {
-      const winNumInLot = this.checkWinNumInlot(makedLots[i], winningNumLs);
+      const winNumInLot = this.checkWinNumInlot(makedLots[i], winningNumsLs);
       const is2ndPrize = this.check2ndPrize(winNumInLot, makedLots[i], ...bonusNum);
       is2ndPrize ? secondPrize += 1 : correctLists.push(winNumInLot.length);
     }
@@ -51,8 +51,8 @@ class Lotto {
     this.#numbers = makedLots.length;
   }
 
-  checkWinNumInlot(makedLots, winningNumLs) {
-    return makedLots.filter(number => winningNumLs.includes(String(number)));
+  checkWinNumInlot(makedLot, winningNumsLs) {
+    return makedLot.filter(number => winningNumsLs.includes(String(number)));
   }
 
   check2ndPrize(winNumInLot, makedLotto, bonusNum){
