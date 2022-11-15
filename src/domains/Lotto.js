@@ -20,8 +20,9 @@ class Lotto {
    * @param {number[]} numbers
    */
   constructor(numbers) {
-    this.validate(numbers);
-    this.#numbers = numbers.sort();
+    numbers.sort((a, b) => a - b);
+    this.#numbers = numbers;
+    this.validate();
   }
 
   static fromRandom() {
@@ -54,14 +55,19 @@ class Lotto {
   /**
    * @param {number[]} numbers
    */
-  validate(numbers) {
-    if (numbers.length !== Lotto.NUMBER_COUNT) {
+  validate() {
+    if (!this.#numbers.every((number) => typeof number === 'number')) {
+      throw new Error('[ERROR] 로또 번호는 Number 타입이어야 합니다.');
+    }
+    if (this.#numbers.length !== Lotto.NUMBER_COUNT) {
       throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
     }
-    if (!numbers.every((number) => Lotto.NUMBER_MIN <= number && number <= Lotto.NUMBER_MAX)) {
+    if (
+      !this.#numbers.every((number) => Lotto.NUMBER_MIN <= number && number <= Lotto.NUMBER_MAX)
+    ) {
       throw new Error('[ERROR] 로또 번호는 1에서 45 사이여야 합니다.');
     }
-    if (new Set(numbers).size !== numbers.length) {
+    if (new Set(this.#numbers).size !== this.#numbers.length) {
       throw new Error('[ERROR] 로또 번호는 모두 중복되어선 안됩니다.');
     }
   }
