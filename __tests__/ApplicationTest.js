@@ -53,6 +53,7 @@ describe("로또 테스트", () => {
       "6개 일치 (2,000,000,000원) - 0개",
       "총 수익률은 62.5%입니다.",
     ];
+
     const logSpy = getLogSpy();
     const app = new App();
     app.play();
