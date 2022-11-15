@@ -56,7 +56,10 @@ describe('로또 기계 클래스 테스트', () => {
       '[2, 13, 22, 32, 38, 45]',
       '[1, 3, 5, 14, 22, 45]',
     ];
-    LotteryMachine.issueTicket();
+
+    const lotteryMachine = new LotteryMachine();
+    lotteryMachine.issueTicket();
+
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
@@ -67,7 +70,8 @@ describe('로또 기계 클래스 테스트', () => {
     mockQuestions(answers);
 
     expect(() => {
-      LotteryMachine.issueTicket();
+      const lotteryMachine = new LotteryMachine();
+      lotteryMachine.issueTicket();
     }).toThrow(makeErrorMsg(ERROR_MESSAGE.MONEY_NUMBER));
   });
 
@@ -76,7 +80,8 @@ describe('로또 기계 클래스 테스트', () => {
     mockQuestions(answers);
 
     expect(() => {
-      LotteryMachine.issueTicket();
+      const lotteryMachine = new LotteryMachine();
+      lotteryMachine.issueTicket();
     }).toThrow(makeErrorMsg(ERROR_MESSAGE.MONEY_UNIT));
   });
 
@@ -136,7 +141,10 @@ describe('로또 기계 클래스 테스트', () => {
       totalLottoNum: 8,
       totalWinnings: 5000,
     };
-    LotteryMachine.printWinResult(winningStatistics);
+
+    const lotteryMachine = new LotteryMachine();
+    lotteryMachine.printWinResult(winningStatistics);
+
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });

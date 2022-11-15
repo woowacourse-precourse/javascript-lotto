@@ -2,26 +2,32 @@ const LotteryMachine = require('./components/LotteryMachine');
 const LottoNumberGenerator = require('./components/LottoNumberGenerator');
 
 class App {
+  #lottos;
+
   constructor() {
     this.lotteryMachine = new LotteryMachine();
     this.lottoNumberGenerator = new LottoNumberGenerator();
   }
 
   play() {
-    const lottos = LotteryMachine.issueTicket();
+    this.purchaseLotto();
     this.drawLots();
-    this.confirmWin(lottos);
+    this.confirmWin();
+  }
+
+  purchaseLotto() {
+    const lottos = this.lotteryMachine.issueTicket();
+    this.#lottos = lottos;
   }
 
   drawLots() {
-    this.lottoNumberGenerator.drawLottery();
-    const winningNumbers = this.lottoNumberGenerator.getNumbers();
+    const winningNumbers = this.lottoNumberGenerator.drawLottery();
     this.lotteryMachine.updateWinnerNumber(winningNumbers);
   }
 
-  confirmWin(lottos) {
-    const winningStatistics = this.lotteryMachine.readQrCode(lottos);
-    LotteryMachine.printWinResult(winningStatistics);
+  confirmWin() {
+    const winningStatistics = this.lotteryMachine.readQrCode(this.#lottos);
+    this.lotteryMachine.printWinResult(winningStatistics);
   }
 }
 

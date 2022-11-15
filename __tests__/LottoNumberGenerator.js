@@ -21,9 +21,9 @@ describe('로또 번호 추첨기 클래스 테스트', () => {
     mockQuestions(answers);
 
     const lottoNumberGenerator = new LottoNumberGenerator();
-    lottoNumberGenerator.drawLottery();
+    const winningNumbers = lottoNumberGenerator.drawLottery();
 
-    expect(lottoNumberGenerator.getNumbers()).toEqual({
+    expect(winningNumbers).toEqual({
       winnerNumbers: [1, 2, 3, 4, 5, 6],
       bonusNumber: 7,
     });

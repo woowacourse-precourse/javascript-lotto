@@ -16,7 +16,7 @@ class LotteryMachine {
     this.#winningNumbers = winningNumbers;
   }
 
-  static issueTicket() {
+  issueTicket() {
     let lottos = [];
 
     Console.readLine(MESSAGE.LOTTERY_MACHINE.INPUT_MONEY, (input) => {
@@ -114,7 +114,7 @@ class LotteryMachine {
     }, 0);
   }
 
-  static printWinResult(winningStatistics) {
+  printWinResult(winningStatistics) {
     Console.print(MESSAGE.LOTTERY_MACHINE.PRINT_STATISTICS);
 
     Object.keys(winningStatistics.ranking).forEach((rank) => {
