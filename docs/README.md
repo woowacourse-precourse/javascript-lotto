@@ -16,19 +16,19 @@
   - `clerk`클래스를 통해, 구매자로부터 구매수량, 당첨번호, 보너스 번호를 관리
   - `private fields`엔 구매수량, 구입한 랜덤 로또 번호, 당첨번호, 보너스번호, 지불금액을 저장하여 내부에서 관리
 
-    [x] 로또 구매 금액 입력받기
+  - [x] 로또 구매 금액 입력받기
 
     - [x] private fields `this.#payment`를 `PurChase`클래스의 인스턴스로 생성
     - [x] 입력받은 금액은 `PurChase`클래스를 통해 Validate 진행
     - [x] private fields `this.#quickPick`는 `QuickPick`클래스의 인스턴스로 생성
     - [x] `#quickPick`에는 입력받은 금액만큼 생성한 로또 번호의 정보 저장.
 
-    [x] 로또 당첨 번호 입력받기
+  - [x] 로또 당첨 번호 입력받기
 
     - [x] `this.#lotto`를 `Lotto`클래스의 인스턴스로 생성
     - [x] 인스턴스로 생성 후 이에 대한 validate성공한 값 저장.
 
-    [x] 보너스 번호 입력받기
+  - [x] 보너스 번호 입력받기
 
     - [x] `this.#bonus`를 `Bonus`클래스의 인스턴스로 생성
     - [x] 인스턴스로 생성 후 이에 대한 validate성공한 값 저장.
@@ -45,6 +45,12 @@
 
   - 로또 구매자로부터 입력받은 구매수량만큼의 로또 번호(배열)을 생성하는 기능.
   - `QuickPick`클래스를 생성하여 구매수량, 로또 번호, 각 번호(배열) 출력을 관리
+
+  - [x] 매개변수로 전달된 amount를 `this.#amount`에 저장
+  - [x] 생성자로 부터 `this.myLottoArray`를 전역메소드의 결과값을 저장
+    - [x] 전역메소드 `pickRandomNumbers`는 주어진 수량만큼 `Random`을 이용해 배열을 생성
+  - [x] 금액만큼 만들어진 숫자 배열 출력하는 메소드 작성
+  - [x] private fields에 저장된 값 return하는 get메소드 작성.
 
 <br>
 
