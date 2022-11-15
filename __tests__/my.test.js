@@ -1,25 +1,24 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Lotto = require("../src/Lotto.js");
-const Generator = require("../src/Generator.js");
-const Checker = require("../src/Checker.js");
+const Checker = require("../src/Utils/Checker.js");
+const Ticket = require("../src/Utils/Ticket.js");
 
-const generator = new Generator();
 const checker = new Checker();
 
 describe("입력한 금액 값", () => {
   const answer = [8000, 10000, 2000000, 12000];
 
   test("이 있을 경우 6자리 숫자의 복권 숫자를 생성하는 지", () => {
-    const generatedLottoNumber = generator.generateLottoNumbers(8000);
+    const ticket = new Ticket(8000);
 
-    expect(generatedLottoNumber[0]).toHaveLength(6);
+    expect(ticket.number[0]).toHaveLength(6);
   });
 
-  test("에 맞는 복권의 수를 생성하는 지", () => {
+  test("에 맞는 복권 티켓의 수를 생성하는 지", () => {
     const result = [8, 10, 2000, 12];
     for (let i = 0; i < answer.length; i++) {
-      const generatedLottoNumber = generator.generateLottoNumbers(answer[i]);
-      expect(generatedLottoNumber).toHaveLength(result[i]);
+      const ticket = new Ticket(answer[i]);
+      expect(ticket.number).toHaveLength(result[i]);
     }
   });
 
