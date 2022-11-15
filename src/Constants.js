@@ -29,6 +29,17 @@ const MESSAGES = {
     WIN_STATS: "당첨 통계\n",
     EARNING_RATE: "총 수익률은 ",
     PERCENT: "%입니다.",
+    ERR_WINNUM_NOT_SIX_NUMS: "[ERROR] 로또 번호는 6개여야 합니다.",
+    ERR_WINNUM_DUPLICATES: "[ERROR] 로또 번호는 중복되지 않아야 합니다.",
+    ERR_WINNUM_NOT_BETWEEN_ONETOFOURTYFIVE: "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.",
+    ERR_WINNUM_NOT_INT: "[ERROR] 로또 번호는 정수여야 합니다.",
+    ERR_BONUSNUM_NOT_ONE_NUM: "[ERROR] 보너스 번호는 1개여야 합니다.",
+    ERR_BONUSNUM_NOT_BETWEEN_ONETOFOURTYFIVE: "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.",
+    ERR_BONUSNUM_NOT_INT: "[ERROR] 보너스 번호는 정수여야 합니다.",
+    ERR_BONUSNUM_DUPLICATES: "[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.",
+    ERR_PAYNUM_NOT_INT: "[ERROR] 구매 금액은 정수여야 합니다.",
+    ERR_PAYNUM_NOT_MULTIPLE_OF_THOUSAND: "[ERROR] 구매 금액은 1000원 단위여야 합니다.",
+    ERR_PAYNUM_NOT_POSITIVE: "[ERROR] 구매 금액은 0 이상이어야 합니다.",
 };
 
 module.exports = {

@@ -1,3 +1,5 @@
+const { MESSAGES } = require('./Constants');
+
 class Bonus {
   #numbers;
 
@@ -12,25 +14,25 @@ class Bonus {
   validateBonusNumLength(numbers) {
     const numArr = [numbers];
     if (numArr.length !== 1) {
-      throw new Error("[ERROR] 보너스 번호는 1개여야 합니다.");
+      throw new Error(MESSAGES.ERR_BONUSNUM_NOT_ONE_NUM);
     }
   }
 
   validateBonusNumBetween1To45(numbers) {
     if (numbers < 1 || numbers > 45) {
-      throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+      throw new Error(MESSAGES.ERR_BONUSNUM_NOT_BETWEEN_ONETOFOURTYFIVE);
     }
   }
 
   validateBonusNumInteger(numbers) {
     if (!Number.isInteger(numbers)) {
-      throw new Error("[ERROR] 보너스 번호는 정수여야 합니다.");
+      throw new Error(MESSAGES.ERR_BONUSNUM_NOT_INT);
     }
   }
 
   validateBonusNumUnique(numbers, winningNumArray) {
     if (winningNumArray.includes(numbers)) {
-      throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+      throw new Error(MESSAGES.ERR_BONUSNUM_DUPLICATES);
     }
   }
 }

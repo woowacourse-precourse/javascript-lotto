@@ -1,3 +1,5 @@
+const { MESSAGES } = require('./Constants');
+
 class Payment {
   #numbers;
 
@@ -10,19 +12,19 @@ class Payment {
 
   validatePaymentInteger(numbers) {
     if (!Number.isInteger(numbers)) {
-      throw new Error("[ERROR] 구매금액은 정수여야 합니다.");
+      throw new Error(MESSAGES.ERR_PAYNUM_NOT_INT);
     }
   }
 
   validatePaymentMultipleOfThousand(numbers) {
     if (numbers % 1000 !== 0) {
-      throw new Error("[ERROR] 구매금액은 1000원 단위여야 합니다.");
+      throw new Error(MESSAGES.ERR_PAYNUM_NOT_MULTIPLE_OF_THOUSAND);
     }
   }
 
   validatePaymentNotNegative(numbers) {
     if (numbers < 0) {
-      throw new Error("[ERROR] 구매금액은 0 이상이어야 합니다.");
+      throw new Error(MESSAGES.ERR_PAYNUM_NOT_POSITIVE);
     }
   }
   // TODO: 추가 기능 구현
