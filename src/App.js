@@ -3,6 +3,7 @@ const Lotto = require("./Lotto");
 const Purchase = require("./Purchase");
 const Winning = require("./Winning");
 const Bonus = require("./Bonus");
+const Validation = require("./Validation");
 class App {
   constructor() {
     this.PurchaseInput = null;
@@ -94,7 +95,7 @@ class App {
     winningAndBonustNumber = winningAndBonustNumber
       .split(",")
       .map((num) => parseInt(num, 10));
-
+    Validation.validWinningAndBonus(winningAndBonustNumber);
     this.lottoDraw(winningAndBonustNumber);
   }
   bonusNumber() {

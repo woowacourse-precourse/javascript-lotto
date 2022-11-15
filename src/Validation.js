@@ -34,10 +34,12 @@ class Validation {
     if (isNaN(BonusNumber)) {
       throw new Error("[ERROR] 숫자를 입력해주세요.");
     }
-    // const WinningNumber = new Set(this.splitInputNumber.push(BonusNumber));
-    // if (WinningNumber.size !== 7) {
-    //   throw new Error("[ERROR] 중복된 데이터가 있습니다.");
-    // }
+  }
+
+  static validWinningAndBonus(data) {
+    if (new Set(data).size !== 7) {
+      throw new Error("[ERROR] 중복된 데이터가 있습니다.");
+    }
   }
 }
 module.exports = Validation;
