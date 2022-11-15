@@ -1,23 +1,17 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
+const { REWARDS, RANK_MESSAGE, RANK_NOTICE } = require('./constants/constants')
 const Budget = require('./Budget');
 const Lotto = require('./Lotto');
 const Bonus = require('./Bonus');
 
+const randomNumbersArrays = []
+const results = [0, 0, 0, 0, 0, 0]
 const inputObjects = {
   'budget': '',
   'numbers': [],
   'bonus': '',
 }
-const randomNumbersArrays = []
-const results = [0, 0, 0, 0, 0, 0]
-const REWARDS = [0, 5000, 50000, 1500000, 30000000, 2000000000]
-const RANK_MESSAGE = ['', 
-  '3개 일치 (5,000원) - ',
-  '4개 일치 (50,000원) - ', 
-  '5개 일치 (1,500,000원) - ', 
-  '5개 일치, 보너스 볼 일치 (30,000,000원) - ', 
-  '6개 일치 (2,000,000,000원) - ',
-]
+
 function finishLotto() {
   Console.close();
 }
@@ -66,7 +60,7 @@ function countSameNumbers() {
   getResultStatics();
 }
 function getBonusNumber() {
-  Console.readLine('보너스 번호를 입력해 주세요.\n', (answer) => {
+  Console.readLine(INPUT_MESSAGE.BONUS, (answer) => {
     const bonusNum = new Bonus(inputObjects['numbers'], Number(answer));
     inputObjects['bonus'] = bonusNum.getBonus();
     Console.print('')
@@ -81,7 +75,7 @@ function inputValueToArray(inputValue) {
   return inputArray;
 }
 function getLottoNumbers() {
-  Console.readLine('당첨 번호를 입력해주세요.\n', (answer) => {
+  Console.readLine(INPUT_MESSAGE.LOTTO, (answer) => {
     const inputArray = inputValueToArray(answer)
     const lotto = new Lotto(inputArray);
     lotto.getNumbers().forEach((element) => {
@@ -122,7 +116,7 @@ function startLotto() {
   getRandomNumberList();
 }
 function getBudget() {
-  Console.readLine('구입금액을 입력해 주세요.\n', (answer) => {
+  Console.readLine(INPUT_MESSAGE.BUDGET, (answer) => {
     const gameBudget = new Budget(Number(answer));
     inputObjects['budget'] = gameBudget.getBudget();
     Console.print('')
