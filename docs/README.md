@@ -104,3 +104,31 @@ Random 값은 **MissionUtils 라이브러리**의 `Random.pickUniqueNumbersInRan
 **MissionUtils 라이브러리**에서 제공하는 `Console.print()`를 활용하여 출력한다.
 
 </br>
+
+# 📌 클래스 분리
+### Lotto
+하나의 로또를 의미하는 클래스
+
+### User
+usersLottos라는 배열을 갖는 클래스  
+발행한 로또들을 목록으로 가지고 있기 위함
+
+### App
+프로그램의 시작 클래스  
+**LottoMachine 객체를 생성**하고 start()를 실행한다.
+
+### LottoMachine
+구입 금액을 입력받고 로또를 발행해주는 클래스  
+**Lotto 객체를 생성**하고 **User객체의 usersLottos 배열**에 담는다.  
+이후, LottoManager 객체에 **usersLottos 배열**을 할당하여 생성하고 start()를 실행한다.
+
+### LottoManager
+당첨 번호와 보너스 번호를 입력받는 클래스  
+LottoCalculator 객체에 **usersLottos, 당첨 번호, 보너스 번호**를 할당하여 생성하고 calculate()를 실행한다.
+
+### LottoCalculator
+User의 로또 번호와 당첨 번호(및 보너스 번호)를 비교하여 결과를 분석하고 출력하는 클래스
+
+
+
+
