@@ -37,11 +37,21 @@ class App {
       Lotto.prototype.bonusNumber = input;
       this.lotto.forEach((lotto) => {
         let count = Lotto.getMatchingNumber(lotto);
-        console.log(count);
         this.matchingNumbers.push(count);
       });
+      this.printEarningStasticsMessage();
+      this.printEarningRate();
       MissionUtils.Console.close();
     });
+  }
+  printEarningStasticsMessage() {
+    MissionUtils.Console.print("당첨 통계\n---");
+  }
+  printEarningRate() {
+    const totalEarning = Lotto.getStastics(this.matchingNumbers) || 1;
+    MissionUtils.Console.print(
+      `총 수익률은 ${Lotto.getEarningRate(this.purchase, totalEarning)}%입니다.`
+    );
   }
 }
 
