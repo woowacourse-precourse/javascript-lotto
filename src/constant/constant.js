@@ -1,5 +1,5 @@
 const LOTTERY_PRICE = 1000;
-
+const LOTTERY_LENGTH = 6;
 const MESSAGE = {
   LOTTERY_BUDGET: '구입금액을 입력해 주세요.\n',
   LOTTERY_WIN_NUMBER: '당첨 번호를 입력해 주세요.\n',
@@ -20,4 +20,5 @@ module.exports = {
   LOTTERY_PRICE,
   MESSAGE,
   EXCEPTIONS,
+  LOTTERY_LENGTH,
 };
