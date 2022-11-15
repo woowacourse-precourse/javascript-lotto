@@ -1,4 +1,4 @@
-const LottoManager = require("./LottoManager");
+const LottoManager = require('./LottoManager');
 class App {
   constructor() {}
   play() {
@@ -6,7 +6,5 @@ class App {
     lottoManager.init();
   }
 }
-const app = new App();
-app.play();
 
 module.exports = App;

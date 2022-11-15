@@ -1,12 +1,9 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const MissionUtils = require('@woowacourse/mission-utils');
 
-const Lotto = require("./Lotto");
-const Ticket = require("./Ticket");
-const Validator = require("./Validator");
-const InputView = require("./InputView");
-
-const MAX_NUMBER = 45;
-const MIN_NUMBER = 1;
+const Lotto = require('./Lotto');
+const Ticket = require('./Ticket');
+const Validator = require('./Validator');
+const InputView = require('./InputView');
 
 const MATCH_THREE = 0;
 const MATCH_FOUR = 1;
@@ -55,7 +52,7 @@ class LottoManger {
   }
 
   printTickets(ticketNumbers) {
-    MissionUtils.Console.print('['+ticketNumbers.join(", ")+']');
+    MissionUtils.Console.print("[" + ticketNumbers.join(", ") + "]");
   }
 
   sortAscendingOrder(ticketNumbers) {
@@ -88,23 +85,19 @@ class LottoManger {
 
   enumerateRanks(ticket) {
     const matches = this.lotto.matchNumbers(ticket);
-    switch (matches) {
-      case 3:
-        this.winningTicketsCount[MATCH_THREE]++;
-        break;
-      case 4:
-        this.winningTicketsCount[MATCH_FOUR]++;
-        break;
-      case 5:
-        this.ticketMatchesBonus(ticket)
-          ? this.winningTicketsCount[MATCH_FIVE_PLUS_BONUS]++
-          : this.winningTicketsCount[MATCH_FIVE]++;
-        break;
-      case 6:
-        this.winningTicketsCount[MATCH_SIX]++;
-        break;
-      default:
-        break;
+    if (matches === 3) {
+      this.winningTicketsCount[MATCH_THREE]++;
+    }
+    if (matches === 4) {
+      this.winningTicketsCount[MATCH_FOUR]++;
+    }
+    if (matches === 5) {
+      this.ticketMatchesBonus(ticket)
+        ? this.winningTicketsCount[MATCH_FIVE_PLUS_BONUS]++
+        : this.winningTicketsCount[MATCH_FIVE]++;
+    }
+    if (matches === 6) {
+      this.winningTicketsCount[MATCH_SIX]++;
     }
   }
 
@@ -116,8 +109,8 @@ class LottoManger {
   }
 
   printOutResult() {
-    MissionUtils.Console.print("\n");
-    MissionUtils.Console.print("당첨 통계\n---");
+    MissionUtils.Console.print('\n');
+    MissionUtils.Console.print('당첨 통계\n---');
     MissionUtils.Console.print(
       `3개 일치 (5,000원) - ${this.winningTicketsCount[MATCH_THREE]}개`
     );
