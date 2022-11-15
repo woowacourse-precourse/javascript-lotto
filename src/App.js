@@ -32,16 +32,18 @@ class App {
   autoLottoNums(cnt) {
     let myNumbers = [];
     while (cnt) {
-      const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
-      numbers.sort((a, b) => { return a - b });
-      Console.print(
-        "[" + numbers[0] + ", " + numbers[1] + ", " + numbers[2] +
-        ", " + numbers[3] + ", " + numbers[4] + ", " + numbers[5] + "]"
-      );
-      myNumbers.push(numbers);
+      const randomNums = Random.pickUniqueNumbersInRange(1, 45, 6);
+      let sortLottoNums = this.sortLottoNums(randomNums);
+      Console.print('[' + sortLottoNums.join(', ') + ']');
+      myNumbers.push(sortLottoNums);
       cnt--;
     }
     return myNumbers;
+  }
+
+  sortLottoNums(numbers) {
+    numbers.sort((a, b) => { return a - b });
+    return numbers;
   }
 
   inputWinningNums(myNumbers) {
