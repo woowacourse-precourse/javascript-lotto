@@ -71,23 +71,26 @@ class App {
     });
   }
   printNumbers() {
+    // TODO : 형태 바꾸기 // [1, 2, 3, 4, 5, 6]
     this.#randomNumbers.forEach((element) => {
-      Console.print(element);
+      Console.print(`[${element.join(", ")}]`);
     });
     Console.print("");
     this.getLottoNumber();
   }
+
   makeRandomNumbers() {
+    console.log(this.#cnt);
     for (let i = 0; i < this.#cnt; i++) {
-      let randoms = Random.pickUniqueNumbersInRange(1, 45, 6);
-      randoms.sort((a, b) => a - b);
-      this.#randomNumbers.push(randoms);
+      let arr = Random.pickUniqueNumbersInRange(1, 45, 6);
+      arr = arr.sort((a, b) => a - b);
+      this.#randomNumbers.push(arr);
     }
     this.printNumbers();
   }
   getMoney() {
     Console.readLine("구입금액을 입력해 주세요.\n", (input) => {
-      const inputMoney = new Money(parseInt(input));
+      const inputMoney = new Money(Number(input));
       this.#money = inputMoney.getMoney();
       Console.print("");
       this.#cnt = returnCount(this.#money);
@@ -100,6 +103,4 @@ class App {
   }
 }
 
-const app = new App();
-app.play();
 module.exports = App;
