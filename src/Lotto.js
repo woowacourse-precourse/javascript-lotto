@@ -16,8 +16,9 @@ class Lotto {
       throw new Error(`${ERROR.COMMON} ${ERROR.CANT_OVERLAP_LOTTO}`);
     }
     const temp = numbers.filter((number) => {
-      number < 1 || number > 45;
+      return number < 1 || number > 45;
     });
+    console.log(temp);
     if (temp.length > 0) {
       throw new Error(`${ERROR.COMMON} ${ERROR.MUST_IN_RANGE}`);
     }
