@@ -13,11 +13,7 @@ class LottoMachine {
   }
 
   makeLotto() {
-    const lotto = new Set();
-    while(lotto.size < 6){
-      lotto.add(MissionUtils.Random.pickNumberInRange(1, 45));
-    }
-    return [...lotto];
+    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
   }
 
   purchaseLotto(purchaseMoney) {
