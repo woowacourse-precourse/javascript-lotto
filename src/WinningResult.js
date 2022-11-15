@@ -42,7 +42,7 @@ class WinningResult {
       return prizeMoney;
     }, 0);
     const profitRate = (totalPrizeMoney * 100) / (this.lottoTicketList.length * A_LOTTO_PRICE);
-    return Math.round(profitRate * 100) / 100;
+    return profitRate.toFixed(1);
   }
 }
 
