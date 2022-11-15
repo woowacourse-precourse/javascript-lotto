@@ -38,7 +38,7 @@ class Display {
 
   static error(type) {
     switch (type) {
-      case 'UNACCEPTABLE_PAYMENT':
+      case 'PAYMENT':
         return '[ERROR] 금액은 1000원으로 나눠 떨어져야 합니다.';
       case 'DUPLICATED':
         return '[ERROR] 중복된 숫자가 입력되었습니다.';

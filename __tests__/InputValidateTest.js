@@ -33,7 +33,7 @@ describe('사용자 입력값 에러 테스트', () => {
     inputs.forEach((input) => {
       expect(() => {
         validatePayment(input);
-      }).toThrow(Display.error('UNACCEPTABLE_PAYMENT'));
+      }).toThrow(Display.error('PAYMENT'));
     });
   });
 
