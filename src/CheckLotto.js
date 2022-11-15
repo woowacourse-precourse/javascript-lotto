@@ -1,20 +1,20 @@
-const { Console } = require("@woowacourse/mission-utils");
-const { RULES } = require("./constants");
+const { RULES, PRIZE } = require("./constants");
 
 class CheckLotto {
   #lotto;
   #winningNumber;
   #bonusNumber;
   #rankCount;
+  #profitRate;
 
   constructor() {
-    this.#rankCount = new Array(RULES.RANK_COUNT).fill(0);
-    this.#bonusNumber = 0;
-    this.#winningNumber = [];
     this.#lotto = [];
+    this.#winningNumber = [];
+    this.#bonusNumber = 0;
+    this.#rankCount = new Array(RULES.RANK_COUNT).fill(0);
   }
 
-  winningNumberMatch(lottoSet, winningNumber, bonusNumber) {
+  matchResult(lottoSet, winningNumber, bonusNumber) {
     this.#winningNumber = winningNumber;
     this.#bonusNumber = bonusNumber;
 
@@ -51,10 +51,20 @@ class CheckLotto {
     }
   }
 
+  profitResult(rankCount, money) {
+    const eachRankPrize = rankCount.map((value, idx) => {
+      return value * PRIZE.MONEY[idx];
+    });
+    const sumPrize = eachRankPrize.reduce((a, b) => a + b);
+
+    return ((sumPrize * 100) / money).toFixed(1);
+  }
+
   play(money, lottoSet, winningNumber, bonusNumber) {
-    this.winningNumberMatch(lottoSet, winningNumber, bonusNumber);
-    Console.print(this.#rankCount);
-    return { rankCount: this.#rankCount };
+    this.matchResult(lottoSet, winningNumber, bonusNumber);
+    this.#profitRate = this.profitResult(this.#rankCount, money);
+
+    return { matchResult: this.#rankCount, profitResult: this.#profitRate };
   }
 }
 module.exports = CheckLotto;
