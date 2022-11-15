@@ -82,10 +82,6 @@ class App {
     else return true;
   }
 
-  isValidBonusNumber(input) {
-    return Number(input) >= 1 && Number(input) <= 45;
-  }
-
   getBonusNumber() {
     Console.readLine("\n보너스 번호를 입력해 주세요.\n", (input) => {
       if (!this.isValidBonusNumber(input)) {
@@ -96,6 +92,10 @@ class App {
         this.printScore();
       }
     });
+  }
+
+  isValidBonusNumber(input) {
+    return Number(input) >= 1 && Number(input) <= 45;
   }
 
   matchLottos(lottos, winNumbers, bonusNumber) {
