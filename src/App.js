@@ -5,6 +5,7 @@ class App {
   constructor(){
     this.lottomachine = new LottoMachine();
     this.lottoQuantity;
+    this.lottoList;
   }
   play() {
     this.buyLotto();
@@ -19,7 +20,13 @@ class App {
   }
 
   printQuantity(){
-    MissionUtils.Console.print(`${this.lottoQuantity}개를 구매했습니다.`)
+    MissionUtils.Console.print(`\n${this.lottoQuantity}개를 구매했습니다.`)
+    this.printLottoList();
+  }
+  printLottoList(){
+    this.lottoList = this.lottomachine.makeLottoNumbers();
+    this.lottoList.forEach(ele =>MissionUtils.Console.print(ele))
+    ;
   }
 
 
