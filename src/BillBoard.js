@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-prototype-builtins */
 /* eslint-disable function-paren-newline */
@@ -6,8 +7,7 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Counter = require('./Counter');
 
-const intersection = (setA, setB) =>
-  new Set([...setA].filter((element) => setB.has(element)));
+const intersection = (setA, setB) => new Set([...setA].filter((element) => setB.has(element)));
 
 const addCommas = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
@@ -20,7 +20,9 @@ class BillBoard {
 
   #counterInstance;
 
-  constructor(tickets, lottoNumbers, bonusNumber) {
+  #budget;
+
+  constructor(tickets, lottoNumbers, bonusNumber, budget) {
     this.#tickets = tickets;
     this.#lottoNumbers = lottoNumbers;
     this.#bonusNumber = bonusNumber;
@@ -31,21 +33,32 @@ class BillBoard {
       match5Bonus: new Counter('5개 일치, 보너스 볼 일치', 30000000),
       match6: new Counter('6개 일치', 2000000000),
     };
+    this.#budget = budget;
   }
 
-  print() {
+  printRateOfReturn() {
+    const rateOfReturn = ((this.getTotalWinnings() / this.#budget) * 100).toFixed(1);
+    MissionUtils.Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
+  }
+
+  getTotalWinnings() {
+    return Object.entries(this.#counterInstance).reduce(
+      (accumulator, [key, value]) => accumulator + value.WinningsByCount,
+      0,
+    );
+  }
+
+  printStatics() {
     MissionUtils.Console.print('\n당첨 통계');
     MissionUtils.Console.print('---');
     Object.entries(this.#counterInstance).forEach(([key, value]) => {
       MissionUtils.Console.print(
-        `${value.matchName} (${addCommas(value.winnings)}원) - ${
-          value.count
-        }개`,
+        `${value.matchName} (${addCommas(value.winnings)}원) - ${value.count}개`,
       );
     });
   }
 
-  count(matchResult) {
+  countByInstance(matchResult) {
     matchResult.forEach((matchCount) => {
       if (this.#counterInstance.hasOwnProperty(matchCount)) {
         this.#counterInstance[matchCount].increaseCount();
@@ -55,10 +68,7 @@ class BillBoard {
 
   match() {
     return this.#tickets.map((ticket) => {
-      const matchCount = intersection(
-        new Set(ticket),
-        new Set(this.#lottoNumbers),
-      ).size;
+      const matchCount = intersection(new Set(ticket), new Set(this.#lottoNumbers)).size;
       if (matchCount === 5 && ticket.includes(this.#bonusNumber)) {
         return 'match5Bonus';
       }
@@ -68,8 +78,9 @@ class BillBoard {
 
   makeBillBoard() {
     const matchResult = this.match();
-    this.count(matchResult);
-    this.print();
+    this.countByInstance(matchResult);
+    this.printStatics();
+    this.printRateOfReturn();
   }
 }
 
