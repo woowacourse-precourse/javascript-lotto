@@ -14,6 +14,13 @@ function validateDuplicate(numbers) {
   return true;
 }
 
+function validateDuplicateWithBonusNumber(numbers, bonusNumber) {
+  if (numbers.includes(bonusNumber)) {
+    throw new Error('[ERROR] 보너스 번호는 당첨번호와 중복되지 않아야 합니다.');
+  }
+  return true;
+}
+
 function validateNumberRange(numbers) {
   for (const number of numbers) {
     if (number < VALID_MIN_NUM || number > VALID_MAX_NUM) {
@@ -23,4 +30,9 @@ function validateNumberRange(numbers) {
   return true;
 }
 
-module.exports = { validateLength, validateDuplicate, validateNumberRange };
+module.exports = {
+  validateLength,
+  validateDuplicate,
+  validateDuplicateWithBonusNumber,
+  validateNumberRange,
+};
