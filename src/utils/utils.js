@@ -7,8 +7,8 @@ const isDuplicated = (arr) => {
 const isOutOfRange = (numberOrNumbers) => {
   if (typeof numberOrNumbers === "object") {
     const numbersArr = numberOrNumbers;
-    for (let i = 0; i < numbersArr.length; i++) {
-      if (numbersArr[i] < 1 || numbersArr[i] > 45) {
+    for (const number of numbersArr) {
+      if (number < 1 || number > 45) {
         return true;
       }
     }

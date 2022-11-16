@@ -45,8 +45,8 @@ class Lotto {
 
     let count = 0;
 
-    for (let i = 0; i < lottoNumbers.length; i++) {
-      lottoNumbers[i].forEach((eachNum) => {
+    for (const lottoNumber of lottoNumbers) {
+      lottoNumber.forEach((eachNum) => {
         if (sevenNums.includes(eachNum)) count++;
       });
       switch (count) {
@@ -60,7 +60,7 @@ class Lotto {
           result["third"] += 1;
           break;
         case 6:
-          if (lottoNumbers[i].includes(bonusNumber)) {
+          if (lottoNumber.includes(bonusNumber)) {
             result["second"] += 1;
           } else result["first"] += 1;
           break;
