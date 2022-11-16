@@ -26,13 +26,17 @@ class Purchase {
   };
   purchaseLotto = (cost) => {
     this.validateCost(cost);
-    this.amountOfLotto = Number(cost) / 1000;
+    this.amountOfLotto = Number(cost) / NUMBERS.MIN_COST_NUM;
 
     return this.amountOfLotto;
   };
 
   generateOneLotto = () => {
-    const sixRandomNumber = Random.pickUniqueNumbersInRange(1, 45, 6);
+    const sixRandomNumber = Random.pickUniqueNumbersInRange(
+      NUMBERS.MIN_LOTTO_NUM,
+      NUMBERS.MAX_LOTTO_NUM,
+      NUMBERS.LOTTO_NUM_AMOUNT
+    );
 
     return sixRandomNumber.sort((a, b) => a - b);
   };

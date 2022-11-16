@@ -2,11 +2,11 @@ const { isOutOfRange, isDuplicated } = require("../utils/utils");
 const { ERROR_MESSAGES, NUMBERS } = require("../constants/constants");
 
 const validateWinningNumbers = (winningNumbers) => {
-  if (winningNumbers.length !== NUMBERS.LOTTO_NUM)
+  if (winningNumbers.length !== NUMBERS.LOTTO_NUM_AMOUNT)
     throw new Error(ERROR_MESSAGES.INVALID_LOTTO_LENGTH);
 
   if (isDuplicated(winningNumbers)) {
-    throw new Error(ERROR_MESSAGES.DUPLICATED_LOTTO_NUM);
+    throw new Error(ERROR_MESSAGES.DUPLICATED_LOTTO_NUM_AMOUNT);
   }
 
   if (isOutOfRange(winningNumbers))
@@ -21,7 +21,7 @@ const validateBonusNumber = (bonusNumber, winningNumber) => {
   }
 
   if (winningNumber.includes(bonusNumber)) {
-    throw new Error(ERROR_MESSAGES.DUPLICATED_LOTTO_NUM);
+    throw new Error(ERROR_MESSAGES.DUPLICATED_LOTTO_NUM_AMOUNT);
   }
 
   if (isOutOfRange(bonusNumber))

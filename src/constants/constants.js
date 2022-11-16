@@ -22,7 +22,7 @@ const ERROR_MESSAGES = Object.freeze({
 const NUMBERS = Object.freeze({
   MIN_LOTTO_NUM: 1,
   MAX_LOTTO_NUM: 45,
-  LOTTO_NUM: 6,
+  LOTTO_NUM_AMOUNT: 6,
   MIN_COST_NUM: 1000,
   MAX_COST_NUM: 10000,
   FIRST_PRIZE: "2,000,000,000".replace(/,/g, ""),
