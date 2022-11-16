@@ -22,6 +22,7 @@ class CheckWinner {
     for (let i = 0; i < this.#myLotto.length; i++) {
       let count = 0;
       let bonus = 0;
+
       this.#myLotto[i].map((n) => {
         if (this.#winningLotto.includes(n)) {
           count++;
@@ -30,7 +31,6 @@ class CheckWinner {
           bonus++;
         }
       });
-
       this.divideWinner(count, bonus);
     }
   }

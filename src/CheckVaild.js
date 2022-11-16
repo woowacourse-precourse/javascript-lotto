@@ -11,10 +11,7 @@ class CheckVaild {
     if (money % LOTTO_INFO.PRICE !== 0) {
       throw new Error(`${ERROR_MESSAGES.NO_REST_MONEY}`);
     }
-    if (money > 1000000) {
-      throw new Error(`${ERROR_MESSAGES.OVER_THE_MAX} 입력금액: ${money}`);
-    }
-    if (money < 1000) {
+    if (money < LOTTO_INFO.PRICE) {
       throw new Error(`${ERROR_MESSAGES.UNDER_THE_MIN} 입력금액: ${money}`);
     }
   }
