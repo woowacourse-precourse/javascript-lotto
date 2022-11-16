@@ -98,7 +98,7 @@ class Lotto {
     let revenueRate = 0;
 
     revenueRate = revenue / (amount / 100);
-    return revenueRate;
+    return revenueRate.toFixed(1);
   }
 }
 
