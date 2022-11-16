@@ -59,12 +59,13 @@ class LottoModel {
     if (isNan) { MissionUtils.Console.close(); throw new Error("[ERROR] 로또 번호에 문자가 포함 돼 있습니다."); }
     if (convertNumber > 45 || convertNumber < 1) { MissionUtils.Console.close(); throw new Error("[ERROR] 1 ~ 45 숫자에 포함되지 않습니다."); }
     if (convertNumber.length > 1) { MissionUtils.Console.close(); throw new Error("[ERROR] 보너스 번호가 2개 이상 되었습니다"); }
+    if (this.numberArr.indexOf(...convertNumber) !== -1) { MissionUtils.Console.close(); throw new Error("[ERROR] 중복된 번호가 있습니다"); }
 
     this.bonusNumberArr = convertNumber;
     return bonusInputNumber;
   }
 
-  collectCalculator() {
+  get collectCalculator() {
     let basicScore = Array(5).fill(0);
 
     for (let lottoNumbers of this.lottoNumberArr) {
@@ -84,13 +85,12 @@ class LottoModel {
     if (collectList.length === 6) basicScore[4] += 1;
   }
 
-  percentCalculator() {
+  get percentCalculator() {
     let moneyArray = [5000, 50000, 1500000, 30000000, 2000000000];
-    let collectList = this.collectCalculator();
     let save = 0;
 
     for (let i = 0; i < moneyArray.length; i++) {
-      save += collectList[i] * moneyArray[i];
+      save += this.collectCalculator[i] * moneyArray[i];
     }
 
     const percentage = ((save / this.lottoPay) * 100).toFixed(1);
@@ -100,13 +100,11 @@ class LottoModel {
 
   resultMessage() {
     let resultMessage = [ "3개 일치 (5,000원) - ", "4개 일치 (50,000원) - ", "5개 일치 (1,500,000원) - ", "5개 일치, 보너스 볼 일치 (30,000,000원) - ", "6개 일치 (2,000,000,000원) - ", ];
-    let collectList = this.collectCalculator();
-    let benefitPercent = this.percentCalculator();
 
     for (let i = 0; i < resultMessage.length; i++) {
-      MissionUtils.Console.print(resultMessage[i] + collectList[i] + "개");
+      MissionUtils.Console.print(resultMessage[i] + this.collectCalculator[i] + "개");
     }
-    MissionUtils.Console.print(`총 수익률은 ${benefitPercent}%입니다.`);
+    MissionUtils.Console.print(`총 수익률은 ${this.percentCalculator}%입니다.`);
   }
 }
 
