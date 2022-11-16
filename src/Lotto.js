@@ -1,3 +1,8 @@
+const { Console } = require("@woowacourse/mission-utils");
+const ValidateLotto = require("./validation/ValidateLotto");
+const MakeWinResult = require("./components/MakeWinResult");
+const { INPUT_MSG } = require("./constants");
+
 class Lotto {
   #numbers;
 
@@ -7,12 +12,22 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+    ValidateLotto(numbers);
   }
 
-  // TODO: 추가 기능 구현
+  inputBonusNumber(lotteries) {
+    let bonusNumber;
+    Console.readLine(INPUT_MSG.BONUS_MSG, (number) => {
+      bonusNumber = number;
+
+      const makeWinResult = new MakeWinResult(
+        this.#numbers,
+        bonusNumber,
+        lotteries
+      );
+      makeWinResult.iterateLotteries();
+    });
+  }
 }
 
 module.exports = Lotto;
