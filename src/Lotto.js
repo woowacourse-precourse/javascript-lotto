@@ -1,3 +1,6 @@
+const { ERROR } = require('./constants/message');
+const SETTING = require('./constants/setting');
+
 class Lotto {
   #numbers;
 
@@ -7,12 +10,33 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    if (numbers.length !== SETTING.NUMBER_COUNT) {
+      throw new Error(ERROR.NUMBER_COUNT);
+    }
+
+    if (numbers.length !== new Set(numbers).size) {
+      throw new Error(ERROR.NO_DUPLICATE);
+    }
+
+    if (Math.min(...numbers) < SETTING.MIN_NUMBER || Math.max(...numbers) > SETTING.MAX_NUMBER) {
+      throw new Error(ERROR.NUMBER_IN_RANGE);
     }
   }
 
-  // TODO: 추가 기능 구현
+  getNumbers() {
+    return this.#numbers;
+  }
+
+  getMatchCount(winNumbers) {
+    const winNumberSet = new Set(winNumbers);
+    const matchNumbers = this.#numbers.filter((number) => winNumberSet.has(number));
+
+    return matchNumbers.length;
+  }
+
+  hasWinBonus(winBonus) {
+    return this.#numbers.includes(winBonus);
+  }
 }
 
 module.exports = Lotto;
