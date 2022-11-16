@@ -47,7 +47,10 @@ class PrizeCalculator {
   }
 
   caculateYield() {
-    return ((this.accumulatedWinnings / this.#money) * 100).toFixed(1);
+    return ((this.accumulatedWinnings / this.#money) * 100).toLocaleString(undefined, {
+      minimumFractionDigits: 1,
+      minimumFractionDigits: 1,
+    });
   }
 }
 
