@@ -32,10 +32,10 @@ class Statistic {
       sumOfPayout += +winner * PAYOUT[idx];
     });
 
-    this.#profit = (
-      (sumOfPayout / (this.#quantity * DIVISION_UNIT)) *
-      100
-    ).toFixed(1);
+    this.#profit = ((sumOfPayout / (this.#quantity * DIVISION_UNIT)) * 100)
+      .toFixed(1)
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
   printStatistic() {
