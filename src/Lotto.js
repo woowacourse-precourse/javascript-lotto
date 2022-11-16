@@ -21,7 +21,7 @@ class Lotto {
       Validation.isLottoVariable(Number(lottoNumber));
     });
 
-    const toNumberSplitNumbers = splitNumbers.map((string) => Number(string));
+    const toNumberSplitNumbers = splitNumbers.map(Number);
     this.#numbers = toNumberSplitNumbers;
   }
 
@@ -47,9 +47,10 @@ class Lotto {
     const winningBoard = { ...LOTTO.WINNING_BOARD };
 
     userLottoArr.forEach((lotto) => {
-      const intersectionLottoAndUser = lotto.filter((x) =>
-        this.#numbers.includes(x)
-      ).length;
+      const intersectionLottoAndUser = lotto.reduce((acc, number) => {
+        if (this.#numbers.includes(number)) acc += 1;
+        return acc;
+      }, 0);
 
       if (intersectionLottoAndUser < RANK.FIFTH) return;
 
@@ -84,7 +85,9 @@ class Lotto {
   getProfit(winningBoard, userLottoArr) {
     const userRevenue = this.checkRevenue(winningBoard);
     const userMoney = userLottoArr.length;
-    const profit = Math.round((userRevenue / userMoney) * 100 * 10) / 10;
+    const profit = Number(
+      ((userRevenue / userMoney) * 100).toFixed(1)
+    ).toLocaleString("en");
     //소수점 한자리까지 반올림
 
     return profit;
