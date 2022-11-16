@@ -13,6 +13,12 @@ class Validation {
     }
   }
 
+  static isNaturalNumber(userInput) {
+    if (!/^[1-9][0-9]*$/.test(userInput)) {
+      throw new Error(ERROR.IS_NATURAL_NUMBER);
+    }
+  }
+
   static isLottoInput(userInput) {
     if (userInput.length !== LOTTO_DETAILS.EA) {
       throw new Error(ERROR.IS_LOTTO_INPUT);

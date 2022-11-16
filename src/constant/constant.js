@@ -13,6 +13,7 @@ module.exports = {
     IS_OVERLAP: "[ERROR] 중복되지 않은 숫자를 입력해주세요.",
     is_INCLUDE_NUMBER_IN_ARR:
       "[ERROR] 보너스 번호는 로또 번호와 다른 숫자여야합니다.",
+    IS_NATURAL_NUMBER: "[ERROR] 자연수로 입력해주세요!",
   }),
 
   LOTTO: Object.freeze({

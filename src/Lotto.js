@@ -27,6 +27,7 @@ class Lotto {
 
   validateBonusNumber(bonusNumber) {
     Validation.isNumber(bonusNumber);
+    Validation.isNaturalNumber(bonusNumber);
     const toNumberBonusNumber = Number(bonusNumber);
     Validation.isIncludeNumberInArr(bonusNumber, this.#numbers);
     Validation.isLottoVariable(toNumberBonusNumber);

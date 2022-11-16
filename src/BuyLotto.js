@@ -9,16 +9,17 @@ class BuyLotto {
 
   constructor(userMoney) {
     this.validate(userMoney);
-    this.userLottoEA(userMoney);
+    this.userLottoQuantity(userMoney);
     this.getUserLottoArr(this.#userLottos);
   }
 
   validate(userMoney) {
     Validation.isNumber(userMoney);
+    Validation.isNaturalNumber(userMoney);
     Validation.isLottoMoney(userMoney);
   }
 
-  userLottoEA(userMoney) {
+  userLottoQuantity(userMoney) {
     this.#userLottos = userMoney / LOTTO_DETAILS.PRICE;
   }
 
