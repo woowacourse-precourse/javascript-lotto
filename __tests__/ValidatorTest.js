@@ -1,7 +1,7 @@
 const Validator = require('../src/Validator');
 
 describe('검증기 클래스 테스트', () => {
-  test('입력값이 숫자나 심표가 아니면 예외가 발생한다.', () => {
+  test('입력값이 숫자나 쉼표가 아니면 예외가 발생한다.', () => {
     const input = '1000.0';
     expect(() => {
       Validator.checkInput(input);
