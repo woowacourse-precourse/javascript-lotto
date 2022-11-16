@@ -8,9 +8,7 @@ class LottoAdmin {
   }
 
   static #generateLotto() {
-    return Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) =>
-      a > b ? 1 : -1
-    );
+    return Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
   }
 
   static getSameNumWithInputLotto(lotto, winNumbers) {
@@ -31,11 +29,15 @@ class LottoAdmin {
     return ranks.reduce((acc, value, idx) => acc + value * price[idx], 0);
   }
 
+  static #priceToString(price) {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   static getMargin(price, [lottoLen, ranks]) {
     const margin = this.#getStatisticsPriceSum(price, ranks);
     const totalLottoPrice = lottoLen * 1000;
     const middle = (margin / totalLottoPrice) * 100;
-    return Math.round(middle * 100) / 100;
+    return this.#priceToString(middle.toFixed(1));
   }
 }
 

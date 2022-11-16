@@ -35,10 +35,14 @@ describe("로또 관리자 테스트", () => {
   });
 
   test("이익률을 계산한다.", () => {
-    expect(LottoAdmin.getMargin(price, [4, [1, 1, 1, 1, 1]])).toEqual(50788875);
-    expect(LottoAdmin.getMargin(price, [4, [1, 1, 0, 0, 0]])).toEqual(1375);
-    expect(LottoAdmin.getMargin(price, [8, [3, 1, 0, 0, 0]])).toEqual(812.5);
-    expect(LottoAdmin.getMargin(price, [12, [3, 1, 0, 0, 0]])).toEqual(541.67);
-    expect(LottoAdmin.getMargin(price, [17, [3, 3, 0, 0, 0]])).toEqual(970.59);
+    expect(LottoAdmin.getMargin(price, [4, [1, 1, 1, 1, 1]])).toEqual(
+      "50,788,875.0"
+    );
+    expect(LottoAdmin.getMargin(price, [4, [1, 1, 0, 0, 0]])).toEqual(
+      "1,375.0"
+    );
+    expect(LottoAdmin.getMargin(price, [8, [3, 1, 0, 0, 0]])).toEqual("812.5");
+    expect(LottoAdmin.getMargin(price, [12, [3, 1, 0, 0, 0]])).toEqual("541.7");
+    expect(LottoAdmin.getMargin(price, [17, [3, 3, 0, 0, 0]])).toEqual("970.6");
   });
 });
