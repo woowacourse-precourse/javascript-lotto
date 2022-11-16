@@ -1,3 +1,5 @@
+const { REGEX } = require('../constant');
+
 class CalculatorModel {
   #rewardList;
 
@@ -75,7 +77,7 @@ class CalculatorModel {
   }
 
   getRewardRates(reward, money) {
-    return ((reward / money) * 100).toFixed(1);
+    return ((reward / money) * 100).toFixed(1).replace(REGEX, ',');
   }
 }
 

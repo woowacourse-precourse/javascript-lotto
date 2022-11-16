@@ -32,10 +32,13 @@ const RANK_MESSAGE = {
   FIRST: (count) => `6개 일치 (2,000,000,000원) - ${count}개`,
 };
 
+const REGEX = /\B(?=(\d{3})+(?!\d))/g;
+
 module.exports = {
   INPUT_MESSAGE,
   ERROR_MESSAGE,
   LOTTO_INFO,
   CURRENCY_UNIT,
   RANK_MESSAGE,
+  REGEX,
 };
