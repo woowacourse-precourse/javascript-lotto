@@ -34,8 +34,6 @@ class App {
         else if(a < b)return -1;
       });
       this.lotto[i] = new Lotto(Random_Pick);
-      MissionUtils.Console.print(this.lotto[i].get_numbers());
-      MissionUtils.Console.close();
     }
 
     this.Get_Answer();

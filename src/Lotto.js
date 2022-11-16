@@ -3,9 +3,18 @@ class Lotto {
   #numbers;
   arr = [,,,,,];
   constructor(numbers) {
+    var printnum = '[';
     this.validate(numbers);
     this.overlap_check(numbers);
     this.#numbers = numbers;
+    for(var i = 0 ; i<this.#numbers.length; i++){
+      if(i != 5){
+        printnum = printnum + this.#numbers[i] + ', '; 
+      }else{
+        printnum = printnum + this.#numbers[i] + ']';
+      }
+    }
+    MissionUtils.Console.print(printnum);
   }
 
   get_numbers(){return this.#numbers}
