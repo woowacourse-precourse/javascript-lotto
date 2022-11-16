@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "description": "우아한테크코스 프리코스 로또 미션",
   "dependencies": {
-    "@woowacourse/mission-utils": "^1.0.6"
+    "@woowacourse/mission-utils": "^1.0.6",
+    "install": "^0.13.0"
   },
   "devDependencies": {
     "jest": "^29.0.3"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest --runInBand --detectOpenHandles"
   },
   "repository": {
     "type": "git",
