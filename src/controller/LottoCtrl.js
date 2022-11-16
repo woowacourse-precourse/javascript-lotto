@@ -12,9 +12,10 @@ const LottoView = require('../view/LottoView');
 const LottoModel = require('../model/LottoModel');
 
 const LottoCtrl = class extends GameCtrl {
-  constructor() {
-    super(new LottoView(), new LottoModel());
+  constructor(view, model) {
+    super(view, model);
   }
+
 
   gameProcess() {
     this.inputLottoBudget();
