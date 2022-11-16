@@ -62,6 +62,7 @@ const RESULT_START_MESSAGE = '\n당첨 통계\n---';
 // Lotto.js 상수
 
 const ERROR_MESSAGE = Object.freeze({
+  zero: '[ERROR] 0 또는 불필요한 문자가 존재합니다.',
   hasString: '[ERROR] 숫자이외의 문자가 존재합니다.',
   notDivide: '[ERROR] 1000원으로 나누어 떨어지지 않습니다.',
   notCorrect: '[ERROR] 당첨번호가 올바르지 않습니다.',

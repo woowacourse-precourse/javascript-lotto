@@ -13,6 +13,7 @@ class Lotto {
   }
 
   checkUserInputMoney() {
+    this.checkZero();
     this.checkOnlyNumber();
     this.checkCanBuy();
     return this.checkHowManyBuy();
@@ -41,6 +42,12 @@ class Lotto {
     this.checkNumberRangesFrom1To45ForArray();
     this.checkDuplicates();
     return this.#numbers;
+  }
+
+  checkZero() {
+    if (!Number(this.#numbers)) {
+      throw `${ERROR_MESSAGE.zero}`;
+    }
   }
 
   checkOnlyNumber() {
