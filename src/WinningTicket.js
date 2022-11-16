@@ -17,11 +17,11 @@ class WinningTicket {
   validateWinningNumbers(numbers) {
     try {
       validation.checkEmptyItem(numbers);
-      validation.checkArrayLength(numbers, LOTTO.LENGTH);
+      validation.checkArrayLength(numbers, LOTTO.length);
       validation.checkDuplication(numbers);
       numbers.forEach((number) => {
         validation.checkPositiveInteger(number);
-        validation.checkNumberIncludeInRange(number, LOTTO.START, LOTTO.END);
+        validation.checkNumberIncludeInRange(number, LOTTO.start, LOTTO.end);
       });
     } catch (error) {
       ui.printError(error);
@@ -31,7 +31,7 @@ class WinningTicket {
   validateBonusNumber(number) {
     try {
       validation.checkPositiveInteger(number);
-      validation.checkNumberIncludeInRange(number, LOTTO.START, LOTTO.END);
+      validation.checkNumberIncludeInRange(number, LOTTO.start, LOTTO.end);
       validation.checkDuplication([...this.#winningNumbers, number]);
     } catch (error) {
       ui.printError(error);

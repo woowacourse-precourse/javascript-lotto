@@ -32,9 +32,9 @@ class App {
 
   #publishLotto() {
     let lotto = MissionUtils.Random.pickUniqueNumbersInRange(
-      LOTTO.START,
-      LOTTO.END,
-      LOTTO.LENGTH,
+      LOTTO.start,
+      LOTTO.end,
+      LOTTO.length,
     );
     lotto = lotto.sort((currentNumber, nextNumber) => {
       return currentNumber - nextNumber;
@@ -53,7 +53,7 @@ class App {
 
   #getRevenue() {
     Object.entries(this.#result).forEach(([key, value]) => {
-      this.#revenue += PRIZE[key].REVENUE * value;
+      this.#revenue += PRIZE[key].revenue * value;
     });
     const revenuePercentage = (this.#revenue / this.#money.getMoney()) * 100;
     const roundNumber = Math.round(revenuePercentage * 10) / 10;
@@ -66,10 +66,10 @@ class App {
   }
 
   #printAnalysis() {
-    ui.print(PRINT.ANALYSIS);
-    ui.print(PRINT.DIVIDE_LINE);
-    LOTTO.RESULT_PRINT_ORDER.forEach((order) => {
-      ui.print(`${PRIZE[order].MESSAGE} - ${this.#result[order]}개`);
+    ui.print(PRINT.analysis);
+    ui.print(PRINT.divideLine);
+    LOTTO.resultPrintOrder.forEach((order) => {
+      ui.print(`${PRIZE[order].message} - ${this.#result[order]}개`);
     });
   }
 
@@ -80,14 +80,14 @@ class App {
         this.#winningTicket.getBonusNumber(),
       );
 
-      if (matchCount >= LOTTO.MINIMUM_MATCH_COUNT || matchCount === '5B') {
+      if (matchCount >= LOTTO.minimumMatchCount || matchCount === '5B') {
         this.#result[matchCount] += 1;
       }
     });
   }
 
   #getBonusNumber() {
-    ui.input(`${INPUT.BONUS_NUMBER}\n`, (bonusNumber) => {
+    ui.input(`${INPUT.bonusNumber}\n`, (bonusNumber) => {
       const bonusNumberInput = Number(bonusNumber);
       this.#winningTicket.setBonusNumber(bonusNumberInput);
       this.#matchLotto();
@@ -98,7 +98,7 @@ class App {
   }
 
   #getWinningNumber() {
-    ui.input(`${INPUT.WINNING_NUMBER}\n`, (winningNumbers) => {
+    ui.input(`${INPUT.winningNumber}\n`, (winningNumbers) => {
       const winningNumberInput = winningNumbers.split(',').map(Number);
       this.#winningTicket.setWinningNumbers(winningNumberInput);
       this.#getBonusNumber();
@@ -115,9 +115,9 @@ class App {
   }
 
   #getMoney() {
-    ui.input(`${INPUT.MONEY}\n`, (money) => {
+    ui.input(`${INPUT.money}\n`, (money) => {
       this.#money = new Money(money);
-      this.#lottoCount = this.#money.getMoneyDivideByPrice(LOTTO.PRICE);
+      this.#lottoCount = this.#money.getMoneyDivideByPrice(LOTTO.price);
       this.#startLotto();
     });
   }

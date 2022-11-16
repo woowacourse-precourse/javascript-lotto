@@ -16,7 +16,7 @@ class Money {
   validate(money) {
     try {
       validation.checkPositiveInteger(money);
-      validation.checkSplitIntoDivisor(money, LOTTO.PRICE);
+      validation.checkSplitIntoDivisor(money, LOTTO.price);
     } catch (error) {
       ui.printError(error);
     }

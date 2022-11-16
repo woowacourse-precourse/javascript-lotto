@@ -15,7 +15,7 @@ class Lotto {
 
   validate(numbers) {
     try {
-      validation.checkArrayLength(numbers, LOTTO.LENGTH);
+      validation.checkArrayLength(numbers, LOTTO.length);
       validation.checkDuplication(numbers);
     } catch (error) {
       ui.printError(error);
