@@ -9,13 +9,13 @@ class Payment {
   #lottoTicket;
   constructor(money) {
     this.validate(money);
-    this.#money = parseInt(money);
+    this.#money = parseInt(money, 10);
     this.#lottoTicket = this.calculateLottoTicket(money);
   }
   validate(money) {
     Validation.throwError(isNaN(money), ERROR_MSG.PAYMENT_VAL_NUMBER);
     Validation.throwError(
-      parseInt(money) % LOTTO.PRICE !== 0,
+      parseInt(money, 10) % LOTTO.PRICE !== 0,
       ERROR_MSG.PAYMENT_VAL_UNIT
     );
   }

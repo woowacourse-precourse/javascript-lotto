@@ -29,7 +29,7 @@ class Lotto {
   }
   isNotInRange(numbers) {
     for (const num of numbers) {
-      if (parseInt(num) < LOTTO.START || parseInt(num) > LOTTO.END) {
+      if (parseInt(num, 10) < LOTTO.START || parseInt(num, 10) > LOTTO.END) {
         return true;
       }
     }
@@ -46,17 +46,17 @@ class Lotto {
     return this.#numbers;
   }
   compareNums(matchingLotto) {
-    let match = this.isWinning(matchingLotto.winning.getNumbers());
+    let match = this.compareWinning(matchingLotto.winning.getNumbers());
     if (match < MATCH[RANK_NAME.FIFTH]) {
       return { match, rank: null };
     }
     let rank = RANK[match];
     if (match === MATCH[RANK_NAME.THIRD]) {
-      rank = this.isBonus(matchingLotto.bonus);
+      rank = this.compareBonus(matchingLotto.bonus);
     }
     return { match, rank };
   }
-  isWinning(winningArr) {
+  compareWinning(winningArr) {
     let win = 0;
     for (const num of this.#numbers) {
       if (winningArr.includes(num)) {
@@ -65,7 +65,7 @@ class Lotto {
     }
     return win;
   }
-  isBonus(bonusNum) {
+  compareBonus(bonusNum) {
     const rank = this.#numbers.includes(bonusNum)
       ? RANK_NAME.SECOND
       : RANK_NAME.THIRD;

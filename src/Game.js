@@ -25,14 +25,15 @@ class Game {
     const matchingLotto = {};
     matchingLotto[MATCHING_LOTTO.WINNING] = new Lotto(this.getWinningNums());
     matchingLotto[MATCHING_LOTTO.BONUS] = parseInt(
-      WConsole.readLine(INPUT_MSG.BONUS_NUMS)
+      WConsole.readLine(INPUT_MSG.BONUS_NUMS),
+      10
     );
     return matchingLotto;
   }
   getWinningNums() {
     let winningNums = WConsole.readLine(INPUT_MSG.WINNING_NUMS);
     winningNums = winningNums.split(",");
-    return winningNums.map((num) => parseInt(num));
+    return winningNums.map((num) => parseInt(num, 10));
   }
 }
 

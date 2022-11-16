@@ -69,16 +69,17 @@ const prizeMsg = (rank, count) => {
 const yieldMsg = (money, prize) => {
   return `총 수익률은 ${(prize / money) * 100}%입니다.`;
 };
-
-exports.INPUT_MSG = INPUT_MSG;
-exports.ERROR_MSG = ERROR_MSG;
-exports.paymentMsg = paymentMsg;
-exports.prizeMsg = prizeMsg;
-exports.yieldMsg = yieldMsg;
-exports.toCurrencyFormat = toCurrencyFormat;
-exports.RANK_NAME = RANK_NAME;
-exports.LOTTO = LOTTO;
-exports.MATCH = MATCH;
-exports.RANK = RANK;
-exports.PRIZE = PRIZE;
-exports.MATCHING_LOTTO = MATCHING_LOTTO;
+module.exports = {
+  INPUT_MSG,
+  ERROR_MSG,
+  paymentMsg,
+  prizeMsg,
+  yieldMsg,
+  toCurrencyFormat,
+  RANK_NAME,
+  LOTTO,
+  MATCH,
+  RANK,
+  PRIZE,
+  MATCHING_LOTTO,
+};
