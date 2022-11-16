@@ -100,7 +100,6 @@ class App {
     printProfit(profit, this.getMoney());
     Console.close();
   }
-
 }
 
 
