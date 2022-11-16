@@ -1,3 +1,6 @@
+const Console = require("./Console");
+const Validator = require("./validator/Validator");
+
 class Lotto {
   #numbers;
 
@@ -7,12 +10,23 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+    if (!Validator.isValidLottoNum(numbers)) return;
+    if (!numbers.every((num) => Validator.isValidLottoType(num))) return;
+    if (!Validator.isValidLottoRange(numbers, [1, 45])) return;
+    if (Validator.isDuplicatedLotto(numbers)) return;
   }
 
-  // TODO: 추가 기능 구현
+  static caculateLottoNumPerUnit(price, unit = 1000) {
+    return Math.floor(price / unit);
+  }
+
+  static printLottos(lottos) {
+    lottos.forEach((lotto) => Console.print("[" + lotto.join(", ") + "]"));
+  }
+
+  get getNumbers() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
