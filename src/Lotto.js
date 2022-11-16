@@ -1,3 +1,5 @@
+const LottoValidator = require('./validator/LottoValidator');
+
 class Lotto {
   #numbers;
 
@@ -7,9 +9,25 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+    LottoValidator.validate(numbers);
+  }
+
+  toString() {
+    return `[${this.#numbers.join(', ')}]`;
+  }
+
+  compare(winning) {
+    let count = 0;
+
+    this.#numbers.forEach((number) => {
+      if (winning.includes(number)) count++;
+    });
+
+    return count;
+  }
+
+  isContain(bonus) {
+    return this.#numbers.includes(bonus);
   }
 
   // TODO: 추가 기능 구현
