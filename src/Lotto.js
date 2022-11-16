@@ -51,7 +51,7 @@ class Lotto {
 
   checkCanBuy() {
     if (this.#numbers % RESTRICTIONS.thousand) {
-      throw `${ERROR_MESSAGE.notCorrect}`;
+      throw `${ERROR_MESSAGE.notDivide}`;
     }
   }
 
