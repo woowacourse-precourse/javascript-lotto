@@ -1,4 +1,5 @@
 const ERROR = require('./constants/error');
+const { COUNT_OF_LOTTO_NUMBERS, UNIT_OF_AMOUNT } = require('./constants/gameSetting');
 
 class Validator {
   static validateTotalPurchaseAmount(totalPurchaseAmount) {
@@ -6,13 +7,13 @@ class Validator {
       throw new Error(ERROR.NATURAL_NUMBER);
     }
 
-    if (!this.isThousands(totalPurchaseAmount)) {
+    if (!this.isUnitOfAmount(totalPurchaseAmount)) {
       throw new Error(ERROR.THOUSANDS_NUMBER);
     }
   }
 
   static validateLottoNumbers(lottoNumbers) {
-    if (!this.isSixNumbers(lottoNumbers)) {
+    if (!this.isSameLottoCount(lottoNumbers)) {
       throw new Error(ERROR.SIX_NUMBERS);
     }
 
@@ -37,20 +38,20 @@ class Validator {
     return /^[1-9][0-9]*$/.test(value);
   }
 
-  static isThousands(value) {
-    return value % 1000 === 0;
+  static isUnitOfAmount(value) {
+    return value % UNIT_OF_AMOUNT === 0;
   }
 
   static isBetween1And45(value) {
-    return value >= 1 && value <= 45;
+    return value >= MIN_LOTTO_NUMBER && value <= MAX_LOTTO_NUMBER;
   }
 
   static isUniqueNumbers(numbers) {
     return numbers.length === new Set(numbers).size;
   }
 
-  static isSixNumbers(numbers) {
-    return numbers.length === 6;
+  static isSameLottoCount(numbers) {
+    return numbers.length === COUNT_OF_LOTTO_NUMBERS;
   }
 }
 
