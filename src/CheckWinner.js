@@ -1,3 +1,4 @@
+const { RANKING } = require('./common/constants');
 class CheckWinner {
   #bouns;
   #winningLotto;
@@ -7,11 +8,11 @@ class CheckWinner {
     this.#bouns = bouns;
     this.#myLotto = myLotto;
     this.ranking = {
-      '1등': 0,
-      '2등': 0,
-      '3등': 0,
-      '4등': 0,
-      '5등': 0,
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 0,
     };
     this.reward = 0;
     this.checkPrice();
@@ -36,27 +37,27 @@ class CheckWinner {
 
   divideWinner(count, bonus) {
     if (count === 3) {
-      this.ranking['5등'] += 1;
+      this.ranking[RANKING.FIVE]++;
       this.reward += 5000;
       return;
     }
     if (count === 4) {
-      this.ranking['4등']++;
+      this.ranking[RANKING.FOUR]++;
       this.reward += 50000;
       return;
     }
     if (count === 5) {
       if (bonus === 0) {
-        this.ranking['3등']++;
+        this.ranking[RANKING.THREE]++;
         this.reward += 1500000;
         return;
       }
-      this.ranking['2등']++;
+      this.ranking[RANKING.TWO]++;
       this.reward += 30000000;
       return;
     }
     if (count === 6) {
-      this.ranking['1등']++;
+      this.ranking[RANKING.ONE]++;
       this.reward += 2000000000;
       return;
     }

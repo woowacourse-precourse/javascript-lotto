@@ -11,7 +11,7 @@ class App {
     this.bouns = 0;
     this.buyMoney = 0;
   }
-  getBuyLottoMoney() {
+  startLotto() {
     const moneyInput = (money) => {
       CheckVaild.isValidMoney(money);
       this.buyMoney = money;
@@ -21,43 +21,30 @@ class App {
       Print.myLotto(this.myLotto);
       this.winningNum();
     };
-    MissionUtils.Console.readLine(
-      `${INPUT_MESSAGES.INPUT_BUY_LOTTO}`,
-      moneyInput
-    );
+    MissionUtils.Console.readLine(`${INPUT_MESSAGES.INPUT_BUY_LOTTO}`, moneyInput);
   }
 
   winningNum() {
-    MissionUtils.Console.readLine(
-      `${INPUT_MESSAGES.INPUT_WINNING_NUMBER}`,
-      (winning) => {
-        this.winningLotto = winning.split(',').map(Number);
-        CheckVaild.isVaildWinningNumber(this.winningLotto);
-        this.bonusNum();
-      }
-    );
+    MissionUtils.Console.readLine(`${INPUT_MESSAGES.INPUT_WINNING_NUMBER}`, (winning) => {
+      this.winningLotto = winning.split(',').map(Number);
+      CheckVaild.isVaildWinningNumber(this.winningLotto);
+      this.bonusNum();
+    });
   }
   bonusNum() {
-    MissionUtils.Console.readLine(
-      `${INPUT_MESSAGES.INPUT_BOUNS_NUMBER}`,
-      (bouns) => {
-        this.bouns = parseInt(bouns);
-        CheckVaild.isVaildBounsNumber(this.winningLotto, this.bouns);
+    MissionUtils.Console.readLine(`${INPUT_MESSAGES.INPUT_BOUNS_NUMBER}`, (bouns) => {
+      this.bouns = parseInt(bouns);
+      CheckVaild.isVaildBounsNumber(this.winningLotto, this.bouns);
 
-        const count = new CheckWinner(
-          this.winningLotto,
-          this.bouns,
-          this.myLotto
-        );
-        const reward = count.getReward();
-        const rinking = count.getRanking();
-        Print.result(reward, rinking, this.buyMoney);
-      }
-    );
+      const count = new CheckWinner(this.winningLotto, this.bouns, this.myLotto);
+      const reward = count.getReward();
+      const rinking = count.getRanking();
+      Print.result(reward, rinking, this.buyMoney);
+    });
   }
 
   play() {
-    this.getBuyLottoMoney();
+    this.startLotto();
   }
 }
 const app = new App();

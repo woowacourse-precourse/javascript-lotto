@@ -1,6 +1,5 @@
 const { ERROR_MESSAGES } = require('./common/message');
-const MissionUtils = require('@woowacourse/mission-utils');
-
+const { LOTTO_INFO } = require('./common/constants');
 class CheckVaild {
   static isValidMoney(money) {
     if (Number.isNaN(money)) {
@@ -9,7 +8,7 @@ class CheckVaild {
     if (money < 0) {
       throw new Error(`${ERROR_MESSAGES.NEGATIVE_NUMBER}`);
     }
-    if (money % 1000 !== 0) {
+    if (money % LOTTO_INFO.PRICE !== 0) {
       throw new Error(`${ERROR_MESSAGES.NO_REST_MONEY}`);
     }
     if (money > 1000000) {

@@ -11,14 +11,8 @@ class LottoGenerator {
 
   makeLottoNumber() {
     for (let i = 0; i < this.count; i++) {
-      let makeLotto = MissionUtils.Random.pickUniqueNumbersInRange(
-        1,
-        45,
-        6
-      ).sort((a, b) => a - b);
-
+      let makeLotto = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
       new Lotto(makeLotto);
-
       this.#lottoNumber.push(makeLotto);
     }
   }
