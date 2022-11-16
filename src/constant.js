@@ -24,6 +24,7 @@ const ERROR_MESSAGE = {
 };
 
 const RANK_MESSAGE = {
+  BEGINING: '당첨 통계\n---',
   FIFTH: (count) => `3개 일치 (5,000원) - ${count}개`,
   FOURTH: (count) => `4개 일치 (50,000원) - ${count}개`,
   THIRD: (count) => `5개 일치 (1,500,000원) - ${count}개`,

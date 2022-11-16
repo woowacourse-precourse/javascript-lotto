@@ -20,6 +20,7 @@ class LottoGameView {
 
   printRank(rank) {
     const rankArray = Object.entries(rank);
+    print(RANK_MESSAGE.BEGINING);
 
     rankArray.forEach((list) => {
       const [rank, count] = list;
