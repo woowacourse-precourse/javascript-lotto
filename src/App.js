@@ -20,6 +20,7 @@ class App {
       inputCost = +input;
     });
     this.cost = new Cost(inputCost);
+    return this;
   }
 
   // 구매한 로또 번호
@@ -36,12 +37,14 @@ class App {
     getInput(INPUT_MESSAGE.LOTTO_NUMBERS, (input) => {
       this.lotto = new Lotto(input.split(',').map((number) => +number));
     });
+    return this;
   }
 
   getBonusNumber() {
     getInput(INPUT_MESSAGE.BONUS_NUMBER, (input) => {
       this.bonus = new Bonus(+input);
     });
+    return this;
   }
 
   // 로또와 보너스 번호가 겹치는지 확인
@@ -49,13 +52,11 @@ class App {
     if (this.lotto.getValue().filter((number) => number === this.bonus.getValue()).length === 1) {
       throw new Error(ERROR_MESSAGE.BONUS.NUMBER_DUPLICATED);
     }
+    return this;
   }
 
   getInputAndValidate() {
-    this.getCost();
-    this.getLottoNumber();
-    this.getBonusNumber();
-    this.lottoBonusCheck();
+    this.getCost().getLottoNumber().getBonusNumber().lottoBonusCheck();
   }
 
   play() {
