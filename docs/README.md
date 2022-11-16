@@ -98,3 +98,55 @@ node "YOUR_PATH/javascript-lotto/src/App.js"
 - 객체 지향 어떻게 하는지 몰랐던 어려움 -> java private 개념과 python class 문법을 보며 며칠 동안 공부
 - Lotto는 입력하는 숫자가 들어가는지 랜덤넘버가 들어가는지 -> 테스트 코드에 유효성 검사가 있으니 입력하는 숫자로 판단
 - callback 지옥 최선인가.. -> class 사이 동기적으로 변수를 공유할 방법은 없을까?
+
+# 코드 링크
+
+[COME ON BRO - PULL REQUEST](https://github.com/woowacourse-precourse/javascript-lotto/pull/364)
+
+# Hello?
+
+안녕하세요? 이번 주차는 객체지향이라는 개념을 공부하기에도 급급했습니다. 다들 안녕하시죠,...?
+
+이전에는 소극적으로 다른 분들 리뷰를 보곤 했는데 조금씩 적극적으로 리뷰도 남기고 이제 리뷰 요청까지 드리게 되었네요.
+
+매 주차마다 제가 부족한 부분을 채울 수 있는 기회 피어리뷰!
+
+제 피어리뷰 해주시는 분들은 다음 주차 테스트 케이스 한방에 통과하실 겁니다!
+
+제가 미리 남겨놓은 리뷰도 있는데 살포시 이모지나 덧붙이는 리뷰 환영입니다!
+
+# 클래스 설명
+
+## [App.js](https://github.com/woowacourse-precourse/javascript-lotto/pull/364/files#diff-3d74dddefb6e35fbffe3c76ec0712d5c416352d9449e2fcc8210a9dee57dff67) : 시작 트리거를 날립니다.
+
+- play() : 구입금액을 입력받고 inputBudgetCallback 을 실행합니다.
+- inputBudgetCallback() : 입력받은 구입금액으로 TicketBox 클래스 인스턴스를 만듭니다.
+
+## [TicketBox.js](https://github.com/woowacourse-precourse/javascript-lotto/pull/364/files#diff-282ef3d3386b3878fc7bc9ec1813e015383d0fed78333053ba17204a0d36f2ea) : 매표소라는 뜻으로 사용했습니다. 돈을 받고 로또 발행, 당첨번호와 보너스 번호 입력, 당첨 결과를 처리하는 총괄. main이라고 생각하시면 됩니다.
+
+- makeTickets() : 로또를 발행하고 곧이어 당첨번호를 입력 받습니다.
+- inputLottoCallback(): Lotto.js로 당첨번호를 입력받아 유효성 검사를 하고 곧이어 보너스 번호를 입력 받습니다.
+- lottoValidate() : 당첨번호 문자형일 때 유효성 검사
+- inputBonusCallback() : Bonus.js로 보너스 번호를 입력 받고 곧이어 BillBoard.js로 당첨 결과를 처리합니다.
+
+## [Lotto.js](https://github.com/woowacourse-precourse/javascript-lotto/pull/364/files#diff-7803949204b374f29124b518149172122e713f9d8f38f50df9b6864d4e53df83) : 당첨번호를 받아 유효성 검증을 합니다.
+
+## [Bonus.js](https://github.com/woowacourse-precourse/javascript-lotto/pull/364/files#diff-6cebe3a43c6bc5251aae01e824269545607d503a168386fbf3d57d6e54ad6fa5) : 보너스번호를 받아 유효성 검증을 합니다.
+
+## [BillBoard.js](https://github.com/woowacourse-precourse/javascript-lotto/pull/364/files#diff-6f9e2aa44b79abb1c20aca6949c857649902a804a3ade5f63412ff64cac846fb) : 당첨결과를 처리합니다.
+
+- makeBillBoard() : 당첨번호화 로또번호를 비교하고 각 등수별 당첨된 로또수를 산출하여 결과와 수익률을 출력하는 메소드를 실행합니다. BillBoard의 main 이라고 생각하시면 됩니다.
+- match() : 당첨번호와 로또번호(일치가 5일 경우 보너스 번호도 비교)를 비교하여 각 로또번호가 얼마나 일치하는지 반환합니다.
+- countByInstance() : 각 등수가 몇개인지 count합니다.
+- printStatics() : 각 등수 별 당첨된 수를 출력합니다.
+- printRateOfReturn : 수익률을 계산하여 출력합니다.
+
+## [Counter.js](https://github.com/woowacourse-precourse/javascript-lotto/pull/364/files#diff-8a341a90cc463b77ec2ddad2e53250bd9fd5fce89f9ad2d93a1e2b2e69fa38b8) : 각 등수를 인스턴스로 만드기 위한 클래스
+
+- matchName() : 일치 이름
+- WinningsByCount() : 각 등수별 총 상금
+- winnings() : 각 등수별 상금
+- count() : 각 등수 수량
+- increaseCount() : 각 등수 수량 증가
+
+**EOF**
