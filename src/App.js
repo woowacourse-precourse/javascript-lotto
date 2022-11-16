@@ -1,5 +1,11 @@
+const LottoGameTool = require('./LottoGameTool');
 class App {
-  play() {}
+  constructor() {
+    this.lottoGame = new LottoGameTool;
+  }
+  play() {
+    this.lottoGame.lottoBuyStart();
+  }
 }
 
 module.exports = App;
