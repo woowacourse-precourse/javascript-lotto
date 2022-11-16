@@ -16,7 +16,7 @@ const Lotto = class extends ErrorBoundary {
 
   validate(numbers) {
     const isNumberLengthValid = numbers.length === 6;
-    const isNumberNotDuplicated = numbers.length === [...new Set(numbers)].length;
+    const isNumberNotDuplicated = numbers.length === new Set(numbers).size;
     const isNumberRangeValid = numbers.every(number => number >= 1 && number <= 45);
 
     const isLottoValid = isNumberLengthValid && isNumberNotDuplicated && isNumberRangeValid;
