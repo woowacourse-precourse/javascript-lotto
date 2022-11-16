@@ -41,8 +41,8 @@ class App {
   }
 
   #printPurchasedLotto() {
-    MissionUtils.Console.print(`${this.lottoManager.getLottoUnit()}개를 구매했습니다.`);
-    this.lottoManager.getLottos().forEach(lotto => {
+    MissionUtils.Console.print(`${this.lottoManager.lottoUnit}개를 구매했습니다.`);
+    this.lottoManager.lottos.forEach(lotto => {
       MissionUtils.Console.print(lotto.stringfy());
     });
   }
@@ -57,7 +57,7 @@ class App {
   toConsoleSetWinnerBonus(message, func) {
     toConsole(message, func, (input)=>{
       const num = parseInt(input);
-      this.lottoManager.getWinnerLotto().setBonus(num);
+      this.lottoManager.setBonusNumber(num);
     });
   }
 
@@ -65,20 +65,15 @@ class App {
     MissionUtils.Console.print('당첨 통계');
     MissionUtils.Console.print('---');
     
-    for (const lotto of this.lottoManager.getLottos()) {
-      const [count, isMatchedBonus] = this.lottoManager.getWinnerLotto().match(lotto);
-      
-      this.lottoManager.setBoard(count, isMatchedBonus);
-    }
+    const matchResult = this.lottoManager.run().result();
 
-    const matchResult = this.lottoManager.getMatchResult();
     MissionUtils.Console.print(`3개 일치 (${this.PRIZES[0].toLocaleString('en')}원) - ${matchResult[0]}개`);
     MissionUtils.Console.print(`4개 일치 (${this.PRIZES[1].toLocaleString('en')}원) - ${matchResult[1]}개`);
     MissionUtils.Console.print(`5개 일치 (${this.PRIZES[2].toLocaleString('en')}원) - ${matchResult[2]}개`);
     MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (${this.PRIZES[3].toLocaleString('en')}원) - ${matchResult[3]}개`);
     MissionUtils.Console.print(`6개 일치 (${this.PRIZES[4].toLocaleString('en')}원) - ${matchResult[4]}개`);
 
-    const y = this.lottoManager.getYield();
+    const y = this.lottoManager.yield();
     MissionUtils.Console.print(`총 수익률은 ${y.toLocaleString('en')}%입니다.`)
   }
 }

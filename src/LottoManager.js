@@ -31,7 +31,7 @@ class WinLotto extends Lotto {
   }
 
   match(lotto) {
-    if (!this.bonus) {
+    if (!this.hasBonus()) {
       throw new BonusNotFoundException();
     }
     let [cnt, isMatchedBonus] = super.match(lotto);
@@ -43,15 +43,23 @@ class WinLotto extends Lotto {
 
     return [cnt, isMatchedBonus];
   }
+
+  hasBonus() {
+    if (!this.bonus) {
+      return false;
+    }
+    return true;
+  }
 }
 
 class LottoManager {
   #purchaseAmount;
-  #lottoUnit;
-  #lottos = [];
   #winnerLotto;
 
   #matchResult = [];
+
+  lottoUnit = 0;
+  lottos = [];
 
   static PRIZES = [5000, 50000, 1500000, 30000000, 2000000000];
 
@@ -63,23 +71,15 @@ class LottoManager {
     }
   }
 
-  getLottoUnit() {
-    return this.#lottoUnit;
-  }
-
-  getLottos() {
-    return this.#lottos;
-  }
-
-  getWinnerLotto() {
-    return this.#winnerLotto;
-  }
-
-  getMatchResult() {
+  /**
+   * 
+   * @returns {number[]}
+   */
+  result() {
     return this.#matchResult;
   }
 
-  getYield() {
+  yield() {
     const current = getCashFlow(this.PRIZES, this.#matchResult);
     return getYield(current, this.#purchaseAmount);
   }
@@ -113,12 +113,12 @@ class LottoManager {
   exchangeLotto(amount) {
     if (!this.isValidPurchase(amount)) { throw new PurchaseException(); }
     this.#purchaseAmount = amount;
-    this.#lottoUnit = parseInt(amount / Lotto.PRICE);
+    this.lottoUnit = parseInt(amount / Lotto.PRICE);
 
-    for (let i = 0; i < this.#lottoUnit; i++) {
+    for (let i = 0; i < this.lottoUnit; i++) {
       const randomNumbers = getRandomNumbers(Lotto.RANGE[0], Lotto.RANGE[1], Lotto.SIZE);
       const lotto = new Lotto(randomNumbers);
-      this.#lottos.push(lotto);
+      this.lottos.push(lotto);
     }
   }
 
@@ -128,6 +128,10 @@ class LottoManager {
    */
   setWinnerLotto(numbers) {
     this.#winnerLotto = new WinLotto(numbers);
+  }
+
+  setBonusNumber(num) {
+    this.#winnerLotto.setBonus(num);
   }
 
   /**
@@ -140,6 +144,28 @@ class LottoManager {
       return false;
     }
     return true;
+  }
+
+  run() {
+    this.validateRun();
+
+    for (const lotto of this.lottos) {
+      const [count, isMatchedBonus] = this.#winnerLotto.match(lotto);
+      
+      this.setBoard(count, isMatchedBonus);
+    }
+
+    return this;
+  }
+
+  validateRun() {
+    if (!this.#winnerLotto) {
+      throw Error('[ERROR] Cannot run manager because winnerLotto does not set.');
+    }
+
+    if (!this.#winnerLotto.hasBonus()) {
+      throw Error('[ERROR] Cannot run manager because bonus number does not set.')
+    }
   }
 }
 
