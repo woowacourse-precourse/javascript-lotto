@@ -3,6 +3,8 @@ const Validator = require('../src/Validator');
 const ERROR = require('../src/constants/error');
 
 describe('validateTotalPurchaseAmount 테스트', () => {
+  afterAll(() => MissionUtils.Console.close());
+
   test('자연수이면서 천 단위인 경우 통과한다.', () => {
     const answer = [1000, 3000, 10000, 64000, 1230000];
     answer.forEach((totalPurchaseAmount) =>
