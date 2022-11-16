@@ -49,7 +49,7 @@ class App {
 
   // 로또와 보너스 번호가 겹치는지 확인
   lottoBonusCheck() {
-    if (this.lotto.getValue().filter((number) => number === this.bonus.getValue()).length === 1) {
+    if (this.lotto.getValue().includes(this.bonus.getValue())) {
       throw new Error(ERROR_MESSAGE.BONUS.NUMBER_DUPLICATED);
     }
     return this;
