@@ -1,18 +1,27 @@
+const Validator = require('./Validator');
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
-    this.#numbers = numbers;
+    Validator.validateLottoNumbers(numbers);
+    this.#numbers = numbers.map(Number);
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+  getLottoNumbers() {
+    return this.#numbers;
   }
 
-  // TODO: 추가 기능 구현
+  getMatchCount(winningLottoNumbers) {
+    return winningLottoNumbers.reduce(
+      (acc, cur) => (this.#numbers.includes(cur) ? acc + 1 : acc),
+      0
+    );
+  }
+
+  hasBonusNumber(winningLottoBonusNumber) {
+    return this.#numbers.includes(winningLottoBonusNumber);
+  }
 }
 
 module.exports = Lotto;
