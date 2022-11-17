@@ -1,8 +1,7 @@
-const { Random } = require('@woowacourse/mission-utils');
 const { ERROR } = require('./constants/constants.js');
 
 const isAllDigit = (input, type) => {
-  const possibleNumbers = Random.pickUniqueNumbersInRange(0, 9, 10).map((number) => String(number));
+  const possibleNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((number) => String(number));
   if (input.split('').every((digit) => possibleNumbers.includes(digit))) return true;
   if (type === 'purchaseAmount') throw new Error(ERROR.INCLUDE_NOT_NUMBER_IN_PURCHASE_AMOUNT_ERROR);
   if (type === 'winningNumber') throw new Error(ERROR.INCLUDE_NOT_NUMBER_IN_WINNING_NUMBERS_ERROR);
@@ -36,8 +35,7 @@ const isSixNumbers = (input) => {
 };
 
 const isNumberInRange = (input) => {
-  const possibleWinngNumbers = Random.pickUniqueNumbersInRange(1, 45, 45);
-  return possibleWinngNumbers.includes(input);
+  return input >= 1 && input <= 45;
 };
 
 const isAllNumberInRange = (input) => {

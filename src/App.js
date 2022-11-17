@@ -5,6 +5,7 @@ const {
   isValidWinningNumbers,
   isValidBonusNumber,
 } = require('./validation.js');
+const Lotto = require('./Lotto.js');
 class App {
   constructor() {
     this.purchaseAmount = 0;
@@ -39,7 +40,9 @@ class App {
   }
 
   generateLottoNumbers() {
-    return Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b);
+    let geneartedLottoNumbers = Random.pickUniqueNumbersInRange(1, 45, 6);
+    geneartedLottoNumbers.sort((a, b) => a - b);
+    return geneartedLottoNumbers;
   }
 
   calculateNumberOfGeneratedLottos() {
@@ -48,7 +51,7 @@ class App {
 
   generateLottos() {
     for (let i = 0; i < this.numberOfGeneratedLottos; i++) {
-      this.generatedLottos.push(this.generateLottoNumbers());
+      this.generatedLottos.push(new Lotto(this.generateLottoNumbers()));
     }
   }
 
@@ -57,9 +60,9 @@ class App {
   }
 
   printLottoNumbers() {
-    this.generatedLottos.forEach((generatedLotto) =>
-      Console.print(`[${generatedLotto.join(', ')}]`)
-    );
+    this.generatedLottos.forEach((generatedLotto) => {
+      Console.print(generatedLotto.getNumbers());
+    });
     Console.print('');
   }
 
@@ -98,12 +101,19 @@ class App {
   calculateResult() {
     const numbersOfMatching = [0, 0, 0, 0, 0];
     this.generatedLottos.forEach((generatedLotto) => {
-      let numberOfMatchingWithWinngNumbers =
-        this.compareGeneratedLottoWithWinngNumbers(generatedLotto);
+      let numberOfMatchingWithWinngNumbers = this.compareGeneratedLottoWithWinngNumbers(
+        generatedLotto['#numbers']
+      );
       if (numberOfMatchingWithWinngNumbers < 3) return;
-      if (numberOfMatchingWithWinngNumbers < 6 && !this.isMatchWithBonusNumber(generatedLotto))
+      if (
+        numberOfMatchingWithWinngNumbers < 6 &&
+        !this.isMatchWithBonusNumber(generatedLotto['#numbers'])
+      )
         numbersOfMatching[numberOfMatchingWithWinngNumbers - 3] += 1;
-      if (numberOfMatchingWithWinngNumbers === 5 && this.isMatchWithBonusNumber(generatedLotto))
+      if (
+        numberOfMatchingWithWinngNumbers === 5 &&
+        this.isMatchWithBonusNumber(generatedLotto['#numbers'])
+      )
         numbersOfMatching[3] += 1;
       if (numberOfMatchingWithWinngNumbers === 6) numbersOfMatching[4] += 1;
     });
