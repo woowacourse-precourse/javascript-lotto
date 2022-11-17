@@ -44,7 +44,7 @@ class App {
     const rankCalculator = new RankCalculator(this.#playerLottos, this.#winningLotto);
     const rankCountArray = rankCalculator.getRankCountArray();
 
-    const purchaseAmount = this.#playerLottos.length * 1000;
+    const purchaseAmount = this.#playerLottos.length * LOTTO_PRICE;
     const yieldCalculator = new YieldCalculator(purchaseAmount, rankCountArray);
     const prizeYield = yieldCalculator.getPrizeYield();
 
