@@ -9,20 +9,20 @@ const { validateLotto, validateBonus } = require("./LottoValidation");
 const Lotto = require("./Lotto");
 
 class App {
-  #purchaselottos;
+  #purchaseLotto;
   #publishedLottos = [];
   #winningNumber;
   #bonusNumber;
   #profitRate;
 
   play() {
-    this.getPurchaseLotto();
+    this.getLotto();
   }
 
-  getPurchaseLotto() {
+  getLotto() {
     MissionUtils.Console.readLine(MESSAGES.PURCHASEPRICE, (input) => {
       validateLotto(input);
-      this.#purchaselottos = Number(input);
+      this.#purchaseLotto = Number(input);
 
       return this.publishLottos();
     });
@@ -48,10 +48,10 @@ class App {
   }
 
   publishLottos() {
-    const amounts = ~~(this.#purchaselottos / LOTTOREQUIREMENT.LOTTOPRICE);
-    printNumber(amounts);
+    const myLotto = ~~(this.#purchaseLotto / LOTTOREQUIREMENT.LOTTOPRICE);
+    printNumber(myLotto);
 
-    for (let i = 0; i < amounts; i++) {
+    for (let i = 0; i < myLotto; i++) {
       const publishLotto = MissionUtils.Random.pickUniqueNumbersInRange(
         LOTTOREQUIREMENT.MIN,
         LOTTOREQUIREMENT.MAX,
@@ -77,13 +77,12 @@ class App {
           LOTTOPRIZE.FIVEMATCHES * five +
           LOTTOPRIZE.BONUSMATCHES * bonus +
           LOTTOPRIZE.SIXMATCHES * six) /
-          this.#purchaselottos) *
+          this.#purchaseLotto) *
           10000
       ) / 100;
     printResult({ three, four, five, bonus, six }, this.#profitRate);
   }
 }
-
 const app = new App();
 app.play();
 

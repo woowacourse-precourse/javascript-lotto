@@ -10,19 +10,6 @@ const printNumber = (amounts) => {
   MissionUtils.Console.print(`${amounts}${MESSAGES.PURCHASEDLOTTO}`);
 };
 
-const printLotto = (lotto) => {
-  const str = makeStrLotto(lotto);
-  MissionUtils.Console.print(str);
-};
-
-const printResult = ({ three, four, five, bonus, six }, profitRate) => {
-  MissionUtils.Console.print(
-    StatisticsMessage({ three, four, five, bonus, six })
-  );
-  MissionUtils.Console.close();
-  MissionUtils.Console.print(ProfitMessage(profitRate));
-};
-// 로또의 문자열화
 const makeStrLotto = (lotto) => {
   let str = "[";
   lotto.forEach((cur, idx) => {
@@ -32,6 +19,19 @@ const makeStrLotto = (lotto) => {
   str += "]";
 
   return str;
+};
+
+const printLotto = (lotto) => {
+  const str = makeStrLotto(lotto);
+  MissionUtils.Console.print(str);
+};
+
+const printResult = ({ three, four, five, bonus, six }, profitRate) => {
+  MissionUtils.Console.print(
+    StatisticsMessage({ three, four, five, bonus, six })
+  );
+  MissionUtils.Console.print(ProfitMessage(profitRate));
+  MissionUtils.Console.close();
 };
 
 module.exports = { printNumber, printLotto, printResult, makeStrLotto };
