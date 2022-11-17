@@ -28,12 +28,18 @@ class LottoGameMachine {
   }
 
   #printLottoStatistics() {
+    let lottoStatisticsMessage = '';
     Console.print(MESSAGE.OUTPUT.WINNING_HISTORY);
-    RANKING_ARRAY.forEach((RANKING) =>
-      Console.print(MESSAGE.OUTPUT.match(RANKING, this.lottoStatistics[RANKING.NAME]))
+    RANKING_ARRAY.forEach(
+      (RANKING) =>
+        (lottoStatisticsMessage += `${MESSAGE.OUTPUT.match(
+          RANKING,
+          this.lottoStatistics[RANKING.NAME]
+        )}\n`)
     );
 
-    Console.print(MESSAGE.OUTPUT.profitRate(this.lottoStatistics.profitRate));
+    lottoStatisticsMessage += MESSAGE.OUTPUT.profitRate(this.lottoStatistics.profitRate);
+    Console.print(lottoStatisticsMessage);
     return this;
   }
 

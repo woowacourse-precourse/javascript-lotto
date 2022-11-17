@@ -1,5 +1,5 @@
 const ERROR = require('./constants/error');
-const { COUNT_OF_LOTTO_NUMBERS, UNIT_OF_AMOUNT } = require('./constants/gameSetting');
+const { COUNT_OF_LOTTO_NUMBERS, UNIT_OF_AMOUNT, MAX_LOTTO_NUMBER, MIN_LOTTO_NUMBER } = require('./constants/gameSetting');
 
 class Validator {
   static validateTotalPurchaseAmount(totalPurchaseAmount) {
