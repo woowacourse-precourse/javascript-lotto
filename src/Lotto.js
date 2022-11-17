@@ -1,4 +1,5 @@
 const { ERROR } = require('./constants/constants.js');
+
 class Lotto {
   #numbers;
 
@@ -8,12 +9,31 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
+    if (!this.isSixLottoNumbers(numbers)) {
       throw new Error(ERROR.NOT_SIX_LOTTO_NUMBERS_ERROR);
     }
-    if (numbers.length !== new Set(numbers).size) {
-      throw new Error(ERROR.LOTTO_NUMBERS_DUPLICATED);
+    if (!this.isNotLottoNumberDuplicated(numbers)) {
+      throw new Error(ERROR.LOTTO_NUMBER_DUPLICATED_ERROR);
     }
+    if (!this.isAllLottoNumberInRange(numbers)) {
+      throw new Error(ERROR.LOTTO_NUMBER_OUT_OF_RANGE_ERROR);
+    }
+  }
+
+  isSixLottoNumbers(numbers) {
+    return numbers.length === 6;
+  }
+
+  isNotLottoNumberDuplicated(numbers) {
+    return numbers.length === new Set(numbers).size;
+  }
+
+  isLottoNumberInRange(number) {
+    return number >= 1 && number <= 45;
+  }
+
+  isAllLottoNumberInRange(numbers) {
+    return numbers.every((number) => this.isLottoNumberInRange(number));
   }
 
   getNumbers() {
