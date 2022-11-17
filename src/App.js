@@ -61,7 +61,7 @@ class App {
 
   printLottoNumbers() {
     this.generatedLottos.forEach((generatedLotto) => {
-      Console.print(generatedLotto.getNumbers());
+      Console.print(`[${generatedLotto.getNumbers().join(', ')}]`);
     });
     Console.print('');
   }
@@ -86,34 +86,27 @@ class App {
     });
   }
 
-  compareGeneratedLottoWithWinngNumbers(generatedLotto) {
+  compareGeneratedLottoWithWinngNumbers(numbers) {
     let numberOfMatchingWithWinngNumbers = 0;
-    generatedLotto.forEach((number) => {
+    numbers.forEach((number) => {
       if (this.winningNumbers.includes(number)) numberOfMatchingWithWinngNumbers += 1;
     });
     return numberOfMatchingWithWinngNumbers;
   }
 
-  isMatchWithBonusNumber(generatedLotto) {
-    return generatedLotto.includes(this.bonusNumber);
+  isMatchWithBonusNumber(numbers) {
+    return numbers.includes(this.bonusNumber);
   }
 
   calculateResult() {
     const numbersOfMatching = [0, 0, 0, 0, 0];
     this.generatedLottos.forEach((generatedLotto) => {
-      let numberOfMatchingWithWinngNumbers = this.compareGeneratedLottoWithWinngNumbers(
-        generatedLotto['#numbers']
-      );
+      let numbers = generatedLotto.getNumbers();
+      let numberOfMatchingWithWinngNumbers = this.compareGeneratedLottoWithWinngNumbers(numbers);
       if (numberOfMatchingWithWinngNumbers < 3) return;
-      if (
-        numberOfMatchingWithWinngNumbers < 6 &&
-        !this.isMatchWithBonusNumber(generatedLotto['#numbers'])
-      )
+      if (numberOfMatchingWithWinngNumbers < 6 && !this.isMatchWithBonusNumber(numbers))
         numbersOfMatching[numberOfMatchingWithWinngNumbers - 3] += 1;
-      if (
-        numberOfMatchingWithWinngNumbers === 5 &&
-        this.isMatchWithBonusNumber(generatedLotto['#numbers'])
-      )
+      if (numberOfMatchingWithWinngNumbers === 5 && this.isMatchWithBonusNumber(numbers))
         numbersOfMatching[3] += 1;
       if (numberOfMatchingWithWinngNumbers === 6) numbersOfMatching[4] += 1;
     });
@@ -153,7 +146,7 @@ class App {
     winningAmounts.forEach(
       (_, idx) => (totalWinningAmount += winningAmounts[idx] * numbersOfMatching[idx])
     );
-    return Number.parseFloat((totalWinningAmount / this.purchaseAmount) * 100).toFixed(2);
+    return Number.parseFloat((totalWinningAmount / this.purchaseAmount) * 100).toFixed(1);
   }
 
   printGameResult() {
