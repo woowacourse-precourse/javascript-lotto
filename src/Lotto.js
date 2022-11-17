@@ -20,7 +20,17 @@ class Lotto {
     return this.#numbers;
   }
 
-  // TODO: 추가 기능 구현
+  getNumberOfMatching(winningNumbers) {
+    let numberOfMatchingWithWinningNumbers = 0;
+    this.#numbers.forEach((number) => {
+      if (winningNumbers.includes(number)) numberOfMatchingWithWinningNumbers += 1;
+    });
+    return numberOfMatchingWithWinningNumbers;
+  }
+
+  isMatchingWithBonusNumber(bonusNumber) {
+    return this.#numbers.includes(bonusNumber);
+  }
 }
 
 module.exports = Lotto;

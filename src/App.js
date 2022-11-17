@@ -9,8 +9,8 @@ const Lotto = require('./Lotto.js');
 class App {
   constructor() {
     this.purchaseAmount = 0;
-    this.numberOfGeneratedLottos = 0;
-    this.generatedLottos = [];
+    this.numberOfLottos = 0;
+    this.lottos = [];
     this.winningNumbers = [];
     this.bonusNumber = 0;
   }
@@ -30,12 +30,13 @@ class App {
       this.getBonusNumber();
     });
   }
+
   getPurchaseAmount(input) {
     if (isValidPurchaseAmount(input)) this.purchaseAmount = Number(input);
   }
 
   buyLottos() {
-    this.numberOfGeneratedLottos = this.calculateNumberOfGeneratedLottos();
+    this.numberOfLottos = this.getNumberOfLottos();
     this.generateLottos();
   }
 
@@ -45,23 +46,23 @@ class App {
     return geneartedLottoNumbers;
   }
 
-  calculateNumberOfGeneratedLottos() {
+  getNumberOfLottos() {
     return this.purchaseAmount / 1000;
   }
 
   generateLottos() {
-    for (let i = 0; i < this.numberOfGeneratedLottos; i++) {
-      this.generatedLottos.push(new Lotto(this.generateLottoNumbers()));
+    for (let i = 0; i < this.numberOfLottos; i++) {
+      this.lottos.push(new Lotto(this.generateLottoNumbers()));
     }
   }
 
   printNumberofLottos() {
-    Console.print(`${this.numberOfGeneratedLottos}${GUIDE.SHOW_NUMBER_OF_LOTTOS}`);
+    Console.print(`${this.numberOfLottos}${GUIDE.SHOW_NUMBER_OF_LOTTOS}`);
   }
 
   printLottoNumbers() {
-    this.generatedLottos.forEach((generatedLotto) => {
-      Console.print(`[${generatedLotto.getNumbers().join(', ')}]`);
+    this.lottos.forEach((lotto) => {
+      Console.print(`[${lotto.getNumbers().join(', ')}]`);
     });
     Console.print('');
   }
@@ -86,29 +87,16 @@ class App {
     });
   }
 
-  compareGeneratedLottoWithWinngNumbers(numbers) {
-    let numberOfMatchingWithWinngNumbers = 0;
-    numbers.forEach((number) => {
-      if (this.winningNumbers.includes(number)) numberOfMatchingWithWinngNumbers += 1;
-    });
-    return numberOfMatchingWithWinngNumbers;
-  }
-
-  isMatchWithBonusNumber(numbers) {
-    return numbers.includes(this.bonusNumber);
-  }
-
-  calculateResult() {
+  getNumberOfMatching() {
     const numbersOfMatching = [0, 0, 0, 0, 0];
-    this.generatedLottos.forEach((generatedLotto) => {
-      let numbers = generatedLotto.getNumbers();
-      let numberOfMatchingWithWinngNumbers = this.compareGeneratedLottoWithWinngNumbers(numbers);
-      if (numberOfMatchingWithWinngNumbers < 3) return;
-      if (numberOfMatchingWithWinngNumbers < 6 && !this.isMatchWithBonusNumber(numbers))
-        numbersOfMatching[numberOfMatchingWithWinngNumbers - 3] += 1;
-      if (numberOfMatchingWithWinngNumbers === 5 && this.isMatchWithBonusNumber(numbers))
+    this.lottos.forEach((lotto) => {
+      let numberOfMatching = lotto.getNumberOfMatching(this.winningNumbers);
+      if (numberOfMatching < 3) return;
+      if (numberOfMatching < 6 && !lotto.isMatchingWithBonusNumber(this.bonusNumber))
+        numbersOfMatching[numberOfMatching - 3] += 1;
+      if (numberOfMatching === 5 && lotto.isMatchingWithBonusNumber(this.bonusNumber))
         numbersOfMatching[3] += 1;
-      if (numberOfMatchingWithWinngNumbers === 6) numbersOfMatching[4] += 1;
+      if (numberOfMatching === 6) numbersOfMatching[4] += 1;
     });
     return numbersOfMatching;
   }
@@ -125,7 +113,7 @@ class App {
     return `5개 일치, 보너스 볼 일치 (${winningAmount.toLocaleString()}원) - ${number.toLocaleString()}개\n`;
   }
 
-  getMatchiingResult(winningAmounts, numbersOfMatching) {
+  getMatchingResult(winningAmounts, numbersOfMatching) {
     let matchingResult = '';
     numbersOfMatching.forEach((number, idx) => {
       let amount = winningAmounts[idx];
@@ -151,10 +139,10 @@ class App {
 
   printGameResult() {
     const winningAmounts = [5000, 50000, 1500000, 30000000, 2000000000];
-    const numbersOfMatching = this.calculateResult();
+    const numbersOfMatching = this.getNumberOfMatching();
     let result = '';
     Console.print(GUIDE.SHOW_GAME_RESULT);
-    result += this.getMatchiingResult(winningAmounts, numbersOfMatching);
+    result += this.getMatchingResult(winningAmounts, numbersOfMatching);
     result += `총 수익률은 ${this.getRateOfReturn(winningAmounts, numbersOfMatching)}%입니다.`;
     Console.print(result);
     Console.close();
