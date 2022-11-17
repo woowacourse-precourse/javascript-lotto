@@ -1,4 +1,3 @@
-const { LottoNumberData } = require('./components/lotto-data/LottoNumberData');
 // constant
 const {
   RESTRICTIONS,
@@ -12,27 +11,7 @@ class Lotto {
     this.#numbers = numbers;
   }
 
-  checkUserInputMoney() {
-    this.checkZero();
-    this.checkOnlyNumber();
-    this.checkCanBuy();
-    return this.checkHowManyBuy();
-  }
-
-  checkUserWinningNumber() {
-    this.splitNumbers();
-    this.checkDistinguishedByCommas();
-    this.checkSixWinningNumbers();
-    this.checkOnlyNumbers();
-    this.checkNumberRangesFrom1To45ForArray();
-    this.checkDuplicates();
-    return this.#numbers;
-  }
-
-  checkUserBonusNumber() {
-    this.checkOnlyNumber();
-    this.checkNumberRangesFrom1To45();
-    this.checkOverlapsWithWinningNumber();
+  returnNumbers() {
     return this.#numbers;
   }
 
@@ -44,26 +23,10 @@ class Lotto {
     return this.#numbers;
   }
 
-  checkZero() {
-    if (!Number(this.#numbers)) {
-      throw `${ERROR_MESSAGE.zero}`;
-    }
-  }
-
   checkOnlyNumber() {
     if (/\D/.test(this.#numbers)) {
       throw `${ERROR_MESSAGE.hasString}`;
     }
-  }
-
-  checkCanBuy() {
-    if (this.#numbers % RESTRICTIONS.thousand) {
-      throw `${ERROR_MESSAGE.notDivide}`;
-    }
-  }
-
-  checkHowManyBuy() {
-    return this.#numbers / RESTRICTIONS.thousand;
   }
 
   splitNumbers() {
@@ -71,18 +34,6 @@ class Lotto {
       this.#numbers = this.#numbers.split(',');
     } catch (error) {
       throw `${ERROR_MESSAGE.notCorrect}`;
-    }
-  }
-
-  checkDistinguishedByCommas() {
-    if (this.#numbers.length === RESTRICTIONS.noComma) {
-      throw `${ERROR_MESSAGE.notComma}`;
-    }
-  }
-
-  checkSixWinningNumbers() {
-    if (this.#numbers.length !== RESTRICTIONS.lottoNumberCount_Six) {
-      throw `${ERROR_MESSAGE.notSix}`;
     }
   }
 
@@ -104,11 +55,18 @@ class Lotto {
     });
   }
 
+  checkSixWinningNumbers() {
+    if (this.#numbers.length !== RESTRICTIONS.lottoNumberCount_Six) {
+      throw `${ERROR_MESSAGE.notSix}`;
+    }
+  }
+
   checkDuplicates() {
     const numberSet = new Set(this.#numbers);
     if (numberSet.size !== this.#numbers.length) {
       throw `${ERROR_MESSAGE.hasDuplication}`;
     }
+    return this.#numbers;
   }
 
   checkNumberRangesFrom1To45() {
@@ -117,12 +75,6 @@ class Lotto {
       this.#numbers > RESTRICTIONS.lottoNumberEnd_FortyFive
     ) {
       throw `${ERROR_MESSAGE.outOfRange}`;
-    }
-  }
-
-  checkOverlapsWithWinningNumber() {
-    if (LottoNumberData.Winning.includes(this.#numbers)) {
-      throw `${ERROR_MESSAGE.hasDuplicationWithWinning}`;
     }
   }
 }

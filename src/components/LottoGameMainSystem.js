@@ -5,7 +5,10 @@ const matchLottoNumberWithWinningNumber = require('./util/matchLottoNumberWithWi
 const calculateRateOfReturn = require('./util/calculateRateOfReturn');
 const saveConfirmedInputValueToLottoNumberData = require('./util/saveConfirmedInputValueToLottoNumberData');
 // input-check
-const Lotto = require('../Lotto');
+const UserMoney = require('../Input-Check/UserMoney');
+const Winning = require('../Input-Check/Winning');
+const Bonus = require('../Input-Check/Bonus');
+
 // UI
 const printFinalLottoResult = require('../ui/printFinalLottoResult');
 const printLottoNumberIssuedFromComputer = require('../ui/printLottoNumberIssuedFromComputer');
@@ -36,21 +39,21 @@ class LottoGameMainSystem {
   }
 
   processFirstInput(money) {
-    const lotto = new Lotto(money);
-    printLottoNumberIssuedFromComputer(lotto.checkUserInputMoney());
+    const userMoney = new UserMoney(money);
+    printLottoNumberIssuedFromComputer(userMoney.checkInput());
     saveConfirmedInputValueToLottoNumberData(+money);
     this.getWinningNumberFromInputFiled();
   }
 
   processSecondInput(winningNumber) {
-    const lotto = new Lotto(winningNumber);
-    saveConfirmedInputValueToLottoNumberData(lotto.checkUserWinningNumber());
+    const winning = new Winning(winningNumber);
+    saveConfirmedInputValueToLottoNumberData(winning.checkNumbers());
     this.getBonusNumberFromInputFiled();
   }
 
   processThirdInput(bonusNumber) {
-    const lotto = new Lotto(bonusNumber);
-    saveConfirmedInputValueToLottoNumberData(lotto.checkUserBonusNumber());
+    const bonus = new Bonus(bonusNumber);
+    saveConfirmedInputValueToLottoNumberData(bonus.checkNumber());
     matchLottoNumberWithWinningNumber();
     calculateRateOfReturn();
     printFinalLottoResult();
