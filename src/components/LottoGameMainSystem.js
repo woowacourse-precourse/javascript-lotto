@@ -18,24 +18,24 @@ const resetLottoNumberData = require('./resetLottoNumberData');
 
 class LottoGameMainSystem {
   getUserPurchaseAmountFromInputFiled() {
-    Console.readLine(`${INPUT_CONSOLE_MESSAGE.purchaseAmount}`, (money) => {
-      return this.processFirstInput(money);
-    });
+    Console.readLine(
+      `${INPUT_CONSOLE_MESSAGE.purchaseAmount}`,
+      this.processFirstInput.bind(this)
+    );
   }
 
   getWinningNumberFromInputFiled() {
     Console.readLine(
       `${INPUT_CONSOLE_MESSAGE.winningNumber}`,
-      (winningNumber) => {
-        return this.processSecondInput(winningNumber);
-      }
+      this.processSecondInput.bind(this)
     );
   }
 
   getBonusNumberFromInputFiled() {
-    Console.readLine(`${INPUT_CONSOLE_MESSAGE.bonusNumber}`, (bonusNumber) => {
-      return this.processThirdInput(bonusNumber);
-    });
+    Console.readLine(
+      `${INPUT_CONSOLE_MESSAGE.bonusNumber}`,
+      this.processThirdInput(this)
+    );
   }
 
   processFirstInput(money) {
