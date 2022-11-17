@@ -1,8 +1,7 @@
 const Lotto = require('../Lotto');
-
 const {
-  RESTRICTIONS,
   ERROR_MESSAGE,
+  RESTRICTIONS,
 } = require('../components/lotto-data/Constant');
 
 class Winning extends Lotto {
