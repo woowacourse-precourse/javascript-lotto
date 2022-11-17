@@ -7,7 +7,7 @@ class Utils {
     return numbers.split(",").map((number) => Number(number));
   }
 
-  static getRandomeNumbers(startInclusive, endInclusive, count) {
+  static getRandomNumbers(startInclusive, endInclusive, count) {
     return Random.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
   }
 
