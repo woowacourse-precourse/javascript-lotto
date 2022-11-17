@@ -1,1 +1,4 @@
 node_modules
+.eslintrc.js
+temp.js
+.gitignore
