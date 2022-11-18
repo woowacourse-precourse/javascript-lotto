@@ -1,6 +1,6 @@
 const { LOTTO, ERROR, REGEXP } = require('./constant');
 
-class Lotto {
+class WinningNumbers {
   #numbers;
 
   constructor(numbers) {
@@ -32,4 +32,4 @@ class Lotto {
   }
 }
 
-module.exports = Lotto;
+module.exports = WinningNumbers;
