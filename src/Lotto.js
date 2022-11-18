@@ -1,18 +1,33 @@
+const { ERROR } = require("./constant");
+
 class Lotto {
   #numbers;
 
-  constructor(numbers) {
-    this.validate(numbers);
+  constructor(numbers, bonusNumber) {
+    this.validate(numbers, bonusNumber);
     this.#numbers = numbers;
+    this.bonusNumber = bonusNumber;
   }
 
-  validate(numbers) {
+  validate(numbers, bonusNumber) {
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error(ERROR.LOTTO_NUMBER);
+    }
+    if (new Set(numbers).size !== numbers.length) {
+      throw new Error(ERROR.LOTTO_DUPLICATED);
+    }
+    if (numbers.includes(Number(bonusNumber))) {
+      throw new Error(ERROR.BONUS_DUPLICATED);
     }
   }
 
-  // TODO: 추가 기능 구현
+  getNumbers() {
+    return this.#numbers;
+  }
+
+  getBonusNumber() {
+    return this.bonusNumber;
+  }
 }
 
 module.exports = Lotto;
