@@ -1,31 +1,17 @@
-const { USER_ERROR } = require("../Constant");
+const { USER_ERROR } = require("../constants/error.constants");
 
 class UserValidation {
-  static isNumber(number) {
-    if (isNaN(number)) {
-      throw new Error(USER_ERROR.NOT_A_NUMBER);
-    }
+  static isInteger(number) {
+    if (!Number.isInteger(number)) throw new Error(USER_ERROR.NOT_INTEGER);
+  }
+  static isPositive(number) {
+    if (number < 0) throw new Error(USER_ERROR.NOT_POSITIVE);
   }
   static isDivisible(number) {
-    number = Number(number);
-    if (number % 1000 !== 0) {
-      throw new Error(USER_ERROR.NOT_DIVISIBLE);
-    }
+    if (number % 1000 !== 0) throw new Error(USER_ERROR.NOT_DIVISIBLE);
   }
-
-  static isUnderMaxPurchase(number) {
-    number = Number(number);
-    if (!Number.isSafeInteger(number)) {
-      throw new Error(USER_ERROR.TOO_LARGE);
-    }
-  }
-
-  static isPositiveInteger(number) {
-    number = Number(number);
-    if (number > 0 && Number.isInteger(number)) {
-      return true;
-    }
-    throw new Error(USER_ERROR.NOT_POSITIVE_INTEGER);
+  static isUnderMaxInteger(number) {
+    if (number > Number.MAX_SAFE_INTEGER) throw new Error(USER_ERROR.OVER_RANGE);
   }
 }
 

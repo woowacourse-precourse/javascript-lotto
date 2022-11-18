@@ -1,19 +1,18 @@
-const LottoValidation = require("./Validation/LottoValidation");
+const LottoValidation = require("./validation/LottoValidation");
 
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    Lotto.validate(numbers);
     this.#numbers = numbers;
   }
 
-  validate(numbers) {
-    LottoValidation.hasSixNumbers(numbers);
-    LottoValidation.isNotNumber(numbers);
-    LottoValidation.checkRange(numbers);
-    LottoValidation.isUniqueNumber(numbers);
+  static validate(numbers) {
     LottoValidation.isInteger(numbers);
+    LottoValidation.isOutOfRange(numbers);
+    LottoValidation.hasLengthOfSix(numbers);
+    LottoValidation.hasOverlapNumbers(numbers);
   }
 
   getNumbers() {
