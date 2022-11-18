@@ -3,7 +3,7 @@ const GAME_MESSAGES = Object.freeze({
   RETURN_PURCHASED_AMOUNT: (n) => `${n}개를 구매했습니다.`,
   ASK_FOR_WINNING_NUMBERS: "당첨 번호를 입력해 주세요: ",
   ASK_FOR_BONUS_NUMBER: "보너스 번호를 입력해 주세요: ",
-  GAME_OVER: "게임 종료",
+  GAME_OVER: "\n--------------------\n게임 종료",
 });
 
 const ERROR_MESSAGES = Object.freeze({

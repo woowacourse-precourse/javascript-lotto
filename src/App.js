@@ -1,61 +1,67 @@
 const Lotto = require("./service/Lotto");
 const Purchase = require("./service/Purchase");
+const WinningNumbers = require("./service/WinningNumbers");
+const BonusNumber = require("./service/BonusNumber");
+const Result = require("./service/Result");
 const { Console } = require("@woowacourse/mission-utils");
 const { GAME_MESSAGES } = require("./constants/constants");
 
 class App {
-  cost;
-  lottoNumbers;
-  winningNumbers;
-  bonusNumber;
-
-  play() {
-    this.purchaseLotto();
-  }
-
-  purchaseLotto() {
-    Console.readLine(GAME_MESSAGES.ASK_TO_PAY, (cost) => {
-      this.lottoNumbers = new Purchase(cost);
-      this.cost = cost;
-
-      this.getWinningNum();
+  play = () => {
+    Console.readLine(GAME_MESSAGES.ASK_TO_PAY, (price) => {
+      this.purchaseLotto(price);
     });
-  }
+  };
 
-  getWinningNum() {
-    Console.readLine(
-      GAME_MESSAGES.ASK_FOR_WINNING_NUMBERS,
-      (winningNumbers) => {
-        const temp = [];
+  purchaseLotto = (priceStr) => {
+    const price = Purchase.refinePrice(priceStr);
+    Purchase.validatePrice(price);
+    Purchase.setPrice(price);
 
-        if (winningNumbers.includes(","))
-          winningNumbers.split(",").map((num) => temp.push(Number(num)));
-        else winningNumbers.split("").map((num) => temp.push(Number(num)));
+    const amountOfLotto = Purchase.getAmountOfLotto(price);
+    Purchase.setAmountOfLotto(amountOfLotto);
 
-        this.winningNumbers = temp;
-        Console.print(this.winningNumbers);
+    this.generateLottoNumbers(amountOfLotto);
+  };
 
-        this.getBonusNum();
-      }
+  generateLottoNumbers = (amountOfLotto) => {
+    const lottoNumbers = Lotto.generateAllLottoNumbers(amountOfLotto);
+    Lotto.setLottoNumbers(lottoNumbers);
+
+    Console.readLine(GAME_MESSAGES.ASK_FOR_WINNING_NUMBERS, (winningNums) =>
+      this.getWinningNumbers(winningNums)
     );
-  }
-  getBonusNum() {
-    Console.readLine(GAME_MESSAGES.ASK_FOR_BONUS_NUMBER, (bonusNumber) => {
-      this.bonusNumber = Number(bonusNumber);
-      Console.print(this.bonusNumber);
+  };
 
-      this.getLottoResult();
-    });
-  }
+  getWinningNumbers = (numbersStr) => {
+    const numbersArr = WinningNumbers.refineWinningNumbers(numbersStr);
+    WinningNumbers.validateWinningNumbers(numbersArr);
+    WinningNumbers.setWinningNumbers(numbersArr);
 
-  getLottoResult() {
-    const lottoResult = new Lotto(
-      this.lottoNumbers,
-      this.winningNumbers,
-      this.bonusNumber,
-      this.cost
+    Console.readLine(GAME_MESSAGES.ASK_FOR_BONUS_NUMBER, (bonusNum) =>
+      this.getBonusNumber(bonusNum)
     );
-  }
+  };
+
+  getBonusNumber = (numberStr) => {
+    const number = BonusNumber.refineBonusNumber(numberStr);
+    BonusNumber.validateBonusNumber(number);
+    BonusNumber.setBonusNumber(number);
+
+    this.getLottoResult();
+  };
+
+  getLottoResult = () => {
+    const resultMessage = Result.generateTotalResult();
+    this.end(resultMessage);
+  };
+
+  end = (result) => {
+    Console.print(result + GAME_MESSAGES.GAME_OVER);
+  };
 }
+
+const app = new App();
+app.play();
 
 module.exports = App;
