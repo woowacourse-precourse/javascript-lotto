@@ -1,5 +1,7 @@
-const { Console } = require("@woowacourse/mission-utils");
-const ERROR_MENTION = require('./constant/ErrorMention');
+const { 
+  isDuplicateNumber,
+  isNumberLengthCheck,
+} = require('./Controllers/Validate');
 
 class Lotto {
   #numbers;
@@ -32,24 +34,9 @@ class Lotto {
     }
   }
 
-  isDuplicateNumber(numbers) {
-    const duplicateSet = new Set(numbers);
-    if (numbers.length !== duplicateSet.size) {
-      Console.close();
-      throw new Error(ERROR_MENTION.duplicate_lotto_number);
-    }
-  }
-
-  isNumberLengthCheck(numbers) {
-    if (numbers.length !== 6) {
-      Console.close();
-      throw new Error(ERROR_MENTION.lotto_number_length);
-    }
-  }
-
   validate(numbers) {
-    this.isDuplicateNumber(numbers);
-    this.isNumberLengthCheck(numbers);    
+    isDuplicateNumber(numbers);
+    isNumberLengthCheck(numbers);    
   }
 }
 

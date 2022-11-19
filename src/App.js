@@ -1,5 +1,15 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
-const { LOTTO_ERROR_MENTION, LOTTO_PRINT_MENTION, LOTTO_REWARD } = require("./constant");
+const { LOTTO_PRINT_MENTION } = require("./constant");
+const { 
+  calcLottoResultCount,
+  calcRevenuePercent,
+  calcLottoResultMoney,
+  compareLottoNumber,
+} = require('./Controllers/CalcLotto');
+const {
+  isValidateBonusNumber,
+  isValidateInputMoney,
+} = require('./Controllers/Validate');
 const Lotto = require("./Lotto"); 
 
 function printLottoRevenuePercent(lottoRevenue, lottoTicketCount) {
@@ -8,58 +18,12 @@ function printLottoRevenuePercent(lottoRevenue, lottoTicketCount) {
   Console.close();
 }
 
-function calcLottoResultMoney(lottoResult) {
-  let resultMoney = 0;
-  LOTTO_REWARD.forEach((reward, index) => {
-    resultMoney += reward * Number(lottoResult[index]);
-  })
-  return resultMoney;
-}
-
-function calcRevenuePercent(lottoRevenue, lottoTicketCount) {
-  return lottoRevenue / (lottoTicketCount * 1000) * 100;
-}
-
-function calcLottoResultCount(lottoResult) {
-  lottoResult.forEach((count, index) => {
-    Console.print(LOTTO_PRINT_MENTION.lotto_reward[index] +` ${count}개`);
-  })
-}
-
-function compareLottoNumber(lottoNumber, jackpotNumber) {
-  let count = 0;
-
-  jackpotNumber.forEach((number) => {
-    if (lottoNumber.includes(number)) {
-      count++;
-    }
-  })
-
-  return count;
-}
-
 function setRandomLottoNumber(lottoInfo, lottoCount) {
   let randomLotto;
 
   for(let i = 0; i<lottoCount; i++) {
     randomLotto = Random.pickUniqueNumbersInRange(1, 45, 6);
     lottoInfo.push(randomLotto);
-  }
-}
-
-function isValidateInputMoney(money) {
-  if (money % 1000 !== 0) {
-    Console.close();
-    throw new Error(LOTTO_ERROR_MENTION.money_size_thousand);
-  }
-}
-
-function isValidateBonusNumber(number) {
-  if (0 > number || number > 45) {
-    throw new Error(LOTTO_ERROR_MENTION.bonus_number_range);
-  }
-  if (number.length !== 1) {
-    throw new Error(LOTTO_ERROR_MENTION.bonus_number_length);
   }
 }
 
@@ -79,6 +43,17 @@ class App {
     printLottoRevenuePercent(countAmount, this.lottoTicketCount);
   }
 
+  printLottoTicketCount(lottoTicketCount) {
+    Console.print(`${lottoTicketCount}개를 구매했습니다.`)
+  }
+
+  printRandomLottoNumber() {
+    this.lottoInfo.forEach((randomLottoNumber) => {
+      let randomLottoNumberString = String(randomLottoNumber).split(',').join(', ');
+      Console.print(`[${randomLottoNumberString}]`);
+    })
+  }
+
   inputBonusNumber() {
     Console.readLine(LOTTO_PRINT_MENTION.input_bonus_number,(Bonus) => {
       isValidateBonusNumber(Bonus);
@@ -95,17 +70,6 @@ class App {
         if (correctCount === 0) return;
         lottoNumber.calcLottoResultCount(correctCount, lotto, this.lottoResult, this.BonusNumber);
       });
-    })
-  }
-
-  printLottoTicketCount(lottoTicketCount) {
-    Console.print(`${lottoTicketCount}개를 구매했습니다.`)
-  }
-
-  printRandomLottoNumber() {
-    this.lottoInfo.forEach((randomLottoNumber) => {
-      let randomLottoNumberString = String(randomLottoNumber).split(',').join(', ');
-      Console.print(`[${randomLottoNumberString}]`);
     })
   }
 
