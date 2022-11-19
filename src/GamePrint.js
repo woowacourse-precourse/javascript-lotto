@@ -1,0 +1,32 @@
+const MissionUtils = require('@woowacourse/mission-utils');
+const { MESSAGES, LOTTO_BASIC_CONDITION, CURRENCY } = require('./constants');
+const GameUtils = require('./Utils/GameUtils');
+
+class GamePrint {
+  static sheets(sheets) {
+    MissionUtils.Console.print(`${sheets}${MESSAGES.GAME.BUY_SHEET}`);
+  }
+  
+  static lottoList(lottos) {
+    lottos.forEach(lotto => {
+      lotto = lotto.join(', ');
+      lotto = `[${lotto}]`;
+      MissionUtils.Console.print(lotto);
+    });    
+  }
+  
+  static result(prize, revenueRate) {
+    MissionUtils.Console.print(MESSAGES.GAME.RESULT_HEADER);
+    for(let rank in prize) {
+      if(rank === LOTTO_BASIC_CONDITION.bonusCheckPoint) {
+        MissionUtils.Console.print(`${rank}개 일치 (${GameUtils.addComma(prize[rank].nonBonus.winningAmount)}${CURRENCY}) - ${prize[rank].nonBonus.ea}개`);
+        MissionUtils.Console.print(`${rank}개 일치, 보너스 볼 일치 (${GameUtils.addComma(prize[rank].hasBonus.winningAmount)}${CURRENCY}) - ${prize[rank].hasBonus.ea}개`);
+        continue;
+      }
+      MissionUtils.Console.print(`${rank}개 일치 (${GameUtils.addComma(prize[rank].winningAmount)}${CURRENCY}) - ${prize[rank].ea}개`);
+    }
+    MissionUtils.Console.print(`총 수익률은 ${revenueRate}%입니다.`);
+  }
+}
+
+module.exports = GamePrint;
