@@ -1,7 +1,3 @@
-const MissionUtils = require("@woowacourse/mission-utils");
-const RegExp = require("./constants/RegExp");
-const ErrorMessages = require("./constants/ErrorMessages");
-
 class PrizeCalculator {
   #money;
   #userLottosArr;
