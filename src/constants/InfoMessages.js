@@ -1,4 +1,4 @@
-class infoMessages {
+class InfoMessages {
   static ENTER_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.\n";
   static ENTER_WINNING_NUM = "\n당첨 번호를 입력해 주세요.\n";
   static ENTER_BONUS_NUM = "\n보너스 번호를 입력해 주세요.\n";
@@ -13,4 +13,4 @@ class infoMessages {
   static FIRST_PLACE = "6개 일치 (2,000,000,000원) - ";
 }
 
-module.exports = Object.freeze(infoMessages);
+module.exports = Object.freeze(InfoMessages);
