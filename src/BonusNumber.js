@@ -1,23 +1,27 @@
-const { REQUIRE, ERROR, NOTICE, LOTTO, REGEXP, PRIZE_MONEY } = require('./constant');
+const { ERROR, LOTTO, REGEXP } = require('./constant');
 
 class BonusNumber {
-  constructor(winningNumbers, number) {
-    this.validate(number);
-    this.number = number;
-    this.winningNumbers = winningNumbers;
+  #bonusNumber;
+
+  constructor(input, winningNumbers) {
+    this.validate(input, winningNumbers);
+    this.#bonusNumber = Number(input);
   }
 
-  static validate() {
-    const isNumber = REGEXP.bonusNumber.test(this.number);
+  validate(input, winningNumbers) {
+    const isNumber = REGEXP.bonusNumber.test(input);
     if (!isNumber) throw new Error(ERROR.bonusNumber);
 
-    const isInRange = LOTTO.rangeStart <= this.number && this.number <= LOTTO.rangeEnd;
+    const number = Number(input);
+    const isInRange = LOTTO.rangeStart <= number && number <= LOTTO.rangeEnd;
     if (!isInRange) throw new Error(ERROR.bonusNumber);
 
-    const isDuplicate = this.winningNumbers.includes(this.umber);
+    const isDuplicate = winningNumbers.includes(number);
     if (isDuplicate) throw new Error(ERROR.bonusNumber);
+  }
 
-    return Number(this.number);
+  get() {
+    return this.#bonusNumber;
   }
 }
 
