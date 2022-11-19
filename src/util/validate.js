@@ -1,4 +1,19 @@
-const { VALID_LENGTH, VALID_MAX_NUM, VALID_MIN_NUM } = require('../constant');
+const {
+  VALID_LENGTH,
+  VALID_MAX_NUM,
+  VALID_MIN_NUM,
+  UNIT_OF_AMOUNT,
+} = require('../constant');
+
+function validateUnitOfAmount(money) {
+  if (money % UNIT_OF_AMOUNT !== 0)
+    throw new Error('[ERROR] 로또 구입 금액은 1,000원 단위로 입력해주세요');
+}
+
+function validateMinAmount(money) {
+  if (money < 1000)
+    throw new Error('[ERROR] 로또 구입 금액은 1,000원 이상이어야 합니다.');
+}
 
 function validateLength(numbers) {
   if (numbers.length !== VALID_LENGTH) {
@@ -31,6 +46,8 @@ function validateNumberRange(numbers) {
 }
 
 module.exports = {
+  validateUnitOfAmount,
+  validateMinAmount,
   validateLength,
   validateDuplicate,
   validateDuplicateWithBonusNumber,
