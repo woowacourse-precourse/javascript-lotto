@@ -6,6 +6,15 @@ class Lotto {
     this.#numbers = numbers;
   }
 
+  manual() {
+    // 당첨 번호가 유효하면 리턴하는 메서드
+    let numbers = this.#numbers;
+    for (let i = 0; i < 6; i++) {
+      numbers[i] = parseInt(numbers[i]);
+    }
+    return numbers;
+  }
+
   validate(numbers) {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
