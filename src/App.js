@@ -12,22 +12,18 @@ const { validateUnitOfAmount, validateMinAmount } = require('./util/validate');
 const WinningLotto = require('./WinningLotto');
 
 class App {
+  #money;
   #lotto;
   #winningLotto;
   #bonusNumber;
   #result;
 
   constructor() {
+    this.#money = null;
     this.#lotto = [];
     this.#winningLotto = [];
     this.#bonusNumber = null;
-    this.#result = {
-      FIFTH_PLACE: 0,
-      FORTH_PLACE: 0,
-      THIRD_PLACE: 0,
-      SECOND_PLACE: 0,
-      FIRST_PLACE: 0,
-    };
+    this.#result = RESULT;
   }
 
   play() {
@@ -40,11 +36,11 @@ class App {
 
   insertMoney() {
     Console.readLine('구입금액을 입력해 주세요.\n', (answer) => {
-      const money = convertToNumber(answer);
+      this.#money = convertToNumber(answer);
 
-      this.validate(money);
+      this.validate(this.#money);
 
-      const quantutyOfLotto = this.getQuantityOfLotto(money);
+      const quantutyOfLotto = this.getQuantityOfLotto(this.#money);
       this.createLotto(quantutyOfLotto);
     });
   }
@@ -55,7 +51,7 @@ class App {
   }
 
   getQuantityOfLotto(amount) {
-    return Math.floor(amount / UNIT_OF_AMOUNT);
+    return amount / UNIT_OF_AMOUNT;
   }
 
   printMessage(message) {
@@ -115,23 +111,23 @@ class App {
   setMatchCount(matchNumber, hasBonusNumber) {
     if (matchNumber < 3) return;
     if (matchNumber === 3) {
-      this.#result.FIFTH_PLACE += 1;
+      this.#result.FIFTH_PLACE.MATCH_COUNT += 1;
       return;
     }
     if (matchNumber === 4) {
-      this.#result.FORTH_PLACE += 1;
+      this.#result.FORTH_PLACE.MATCH_COUNT += 1;
       return;
     }
     if (matchNumber === 5) {
       if (hasBonusNumber) {
-        this.#result.SECOND_PLACE += 1;
+        this.#result.SECOND_PLACE.MATCH_COUNT += 1;
         return;
       }
-      this.#result.THIRD_PLACE += 1;
+      this.#result.THIRD_PLACE.MATCH_COUNT += 1;
       return;
     }
     if (matchNumber === 6) {
-      this.#result.FIRST_PLACE += 1;
+      this.#result.FIRST_PLACE.MATCH_COUNT += 1;
       return;
     }
   }
@@ -140,9 +136,26 @@ class App {
     Console.print('당첨 통계\n---');
     for (const place in this.#result) {
       Console.print(
-        `${RESULT[`${place}`].DESCRIPTION} - ${this.#result[place]}개`
+        `${this.#result[place].DESCRIPTION} - ${
+          this.#result[place].MATCH_COUNT
+        }개`
       );
     }
+
+    const profitRate = this.calulateProfitRate();
+    Console.print(`총 수익률은 ${profitRate}%입니다.`);
+    Console.close();
+  }
+
+  calulateProfitRate() {
+    let sumProfit = 0;
+    for (const place in this.#result) {
+      sumProfit += this.#result[place].PRIZE * this.#result[place].MATCH_COUNT;
+    }
+
+    const profitRate = ((sumProfit / this.#money) * 100).toFixed(1);
+
+    return profitRate;
   }
 }
 
