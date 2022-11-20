@@ -38,7 +38,7 @@ class WinningLotto {
     const [numbers, otherNumbers] = [this.#lotto.getNumbers(), new Set(lotto.getNumbers())];
     const count = numbers
       .map((number) => (otherNumbers.has(number) ? 1 : 0))
-      .reduce((a, b) => a + b, 0);
+      .reduce((acc, cur) => acc + cur, 0);
 
     return count;
   }
