@@ -13,10 +13,12 @@ const WinningLotto = require('./WinningLotto');
 class App {
   #lotto;
   #winningLotto;
+  #bonusNumber;
 
   constructor() {
     this.#lotto = [];
     this.#winningLotto = [];
+    this.#bonusNumber = null;
   }
 
   play() {
@@ -74,6 +76,16 @@ class App {
     Console.readLine('당첨 번호를 입력해 주세요.\n', (answer) => {
       const setWinningnumbers = convertToNumberArray(answer);
       this.#winningLotto = new WinningLotto(setWinningnumbers);
+
+      this.setBonusNumber();
+    });
+  }
+
+  setBonusNumber() {
+    Console.readLine('보너스 번호를 입력해 주세요.\n', (answer) => {
+      const number = convertToNumber(answer);
+      this.#winningLotto.validateBonusNumber(number);
+      this.#bonusNumber = this.#winningLotto.BonusNumber();
     });
   }
 }

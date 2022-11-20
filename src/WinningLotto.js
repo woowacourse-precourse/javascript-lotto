@@ -3,10 +3,12 @@ const {
   validateDuplicate,
   validateNumberRange,
   validateIsNumber,
+  validateDuplicateWithBonusNumber,
 } = require('./util/validate');
 
 class WinningLotto {
   #numbers;
+  #bonusNumber;
 
   constructor(numbers) {
     this.validate(numbers);
@@ -20,8 +22,19 @@ class WinningLotto {
     validateIsNumber(numbers);
   }
 
+  validateBonusNumber(number) {
+    validateDuplicateWithBonusNumber(this.#numbers, number);
+    validateIsNumber([number]);
+
+    this.#bonusNumber = number;
+  }
+
   WinningLotto() {
     return this.#numbers;
+  }
+
+  BonusNumber() {
+    return this.#bonusNumber;
   }
 }
 
