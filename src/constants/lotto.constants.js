@@ -1,8 +1,8 @@
 const LOTTO_MSG = Object.freeze({
-  INPUT_MONEY: "구입금액을 입력해 주세요.\n",
+  INPUT_MONEY: '구입금액을 입력해 주세요.\n',
   NUMBER_OF_PURCHASE: (numberOfPurchase) => `${numberOfPurchase}개를 구매했습니다.`,
-  INPUT_LOTTO_NUMBERS: "당첨 번호를 입력해 주세요.\n",
-  INPUT_BONUS_NUMBERS: "보너스 번호를 입력해 주세요.\n",
+  INPUT_LOTTO_NUMBERS: '당첨 번호를 입력해 주세요.\n',
+  INPUT_BONUS_NUMBERS: '보너스 번호를 입력해 주세요.\n',
   SHOW_RESULT: (result, priceRate) => `당첨 통계\n
   ---\n
   3개 일치 (5,000원) - ${result[0]}개\n

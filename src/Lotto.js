@@ -1,4 +1,4 @@
-const LottoValidation = require("./validation/LottoValidation");
+const LottoValidation = require('./validation/LottoValidation');
 
 class Lotto {
   #numbers;

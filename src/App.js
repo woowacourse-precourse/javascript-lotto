@@ -1,8 +1,8 @@
-const { Console } = require("@woowacourse/mission-utils");
+const { Console } = require('@woowacourse/mission-utils');
 
-const User = require("./User");
-const LottoGenerator = require("./LottoGenerator");
-const Reader = require("./Reader");
+const User = require('./User');
+const LottoGenerator = require('./LottoGenerator');
+const Reader = require('./Reader');
 
 class App {
   user;

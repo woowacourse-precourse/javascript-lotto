@@ -1,4 +1,4 @@
-const { USER_ERROR } = require("../constants/error.constants");
+const { USER_ERROR } = require('../constants/error.constants');
 
 class UserValidation {
   static isInteger(number) {

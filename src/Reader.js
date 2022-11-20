@@ -1,5 +1,5 @@
-const { Console } = require("@woowacourse/mission-utils");
-const { LOTTO_MSG, RANK_PRICE } = require("./constants/lotto.constants");
+const { Console } = require('@woowacourse/mission-utils');
+const { LOTTO_MSG, RANK_PRICE } = require('./constants/lotto.constants');
 
 class Reader {
   static comparisonOperator(expenditure, userLottoList, winnerCondition) {

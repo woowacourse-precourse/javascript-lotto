@@ -1,7 +1,7 @@
-const { Console, Random } = require("@woowacourse/mission-utils");
-const { LOTTO_MSG, LOTTO_PRICE, LOTTO_MIN, LOTTO_MAX, LOTTO_NUMBERS_LENGTH } = require("./constants/lotto.constants");
+const { Console, Random } = require('@woowacourse/mission-utils');
+const { LOTTO_MSG, LOTTO_PRICE, LOTTO_MIN, LOTTO_MAX, LOTTO_NUMBERS_LENGTH } = require('./constants/lotto.constants');
 
-const UserValidation = require("./validation/UserValidation");
+const UserValidation = require('./validation/UserValidation');
 
 class User {
   static purchaseLotto(nextStep) {
@@ -23,7 +23,7 @@ class User {
   }
   static showLottoList(lottoList) {
     lottoList.forEach((lottoNumbers) => {
-      Console.print(`[${lottoNumbers.join(", ")}]`);
+      Console.print(`[${lottoNumbers.join(', ')}]`);
     });
   }
   static createRandomSortedNumber() {

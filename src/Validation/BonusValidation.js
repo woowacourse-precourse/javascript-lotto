@@ -1,5 +1,5 @@
-const { BONUS_ERROR } = require("../constants/error.constants");
-const { LOTTO_MIN, LOTTO_MAX } = require("../constants/lotto.constants");
+const { BONUS_ERROR } = require('../constants/error.constants');
+const { LOTTO_MIN, LOTTO_MAX } = require('../constants/lotto.constants');
 
 class BonusValidation {
   static isInteger(number) {
