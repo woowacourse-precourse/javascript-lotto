@@ -5,6 +5,7 @@ const {
   VALID_MIN_NUM,
   VALID_MAX_NUM,
 } = require('./constant/index');
+const { RESULT } = require('./constant/Result');
 const Lotto = require('./Lotto');
 const { convertToNumber, convertToNumberArray } = require('./util/convert');
 const { validateUnitOfAmount, validateMinAmount } = require('./util/validate');
@@ -14,11 +15,19 @@ class App {
   #lotto;
   #winningLotto;
   #bonusNumber;
+  #result;
 
   constructor() {
     this.#lotto = [];
     this.#winningLotto = [];
     this.#bonusNumber = null;
+    this.#result = {
+      FIFTH_PLACE: 0,
+      FORTH_PLACE: 0,
+      THIRD_PLACE: 0,
+      SECOND_PLACE: 0,
+      FIRST_PLACE: 0,
+    };
   }
 
   play() {
@@ -86,7 +95,54 @@ class App {
       const number = convertToNumber(answer);
       this.#winningLotto.validateBonusNumber(number);
       this.#bonusNumber = this.#winningLotto.BonusNumber();
+
+      this.compareLotto();
     });
+  }
+
+  compareLotto() {
+    for (const lottoNumber of this.#lotto) {
+      const matchNumber = lottoNumber.filter((number) =>
+        this.#winningLotto.WinningLotto().includes(number)
+      ).length;
+      const hasBonusNumber = lottoNumber.includes(this.#bonusNumber);
+      this.setMatchCount(matchNumber, hasBonusNumber);
+    }
+
+    this.printResult();
+  }
+
+  setMatchCount(matchNumber, hasBonusNumber) {
+    if (matchNumber < 3) return;
+    if (matchNumber === 3) {
+      this.#result.FIFTH_PLACE += 1;
+      return;
+    }
+    if (matchNumber === 4) {
+      this.#result.FORTH_PLACE += 1;
+      return;
+    }
+    if (matchNumber === 5) {
+      if (hasBonusNumber) {
+        this.#result.SECOND_PLACE += 1;
+        return;
+      }
+      this.#result.THIRD_PLACE += 1;
+      return;
+    }
+    if (matchNumber === 6) {
+      this.#result.FIRST_PLACE += 1;
+      return;
+    }
+  }
+
+  printResult() {
+    Console.print('당첨 통계\n---');
+    for (const place in this.#result) {
+      Console.print(
+        `${RESULT[`${place}`].DESCRIPTION} - ${this.#result[place]}개`
+      );
+    }
   }
 }
 
