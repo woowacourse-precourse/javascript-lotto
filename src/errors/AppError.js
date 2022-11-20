@@ -6,10 +6,12 @@ const Messages = require('../constants/Messages');
 class AppError extends Error {
   static PREFIX = '[ERROR]';
 
-  name = 'AppError';
+  /** @type {string} */
+  name;
 
   constructor(message, ...args) {
     super(`${AppError.PREFIX} ${Messages.format(message, ...args)}`);
+    this.name = this.constructor.name;
   }
 }
 
