@@ -6,7 +6,7 @@ const {
   VALID_MAX_NUM,
 } = require('./constant/index');
 const Lotto = require('./Lotto');
-const { convertToNumber } = require('./util/convert');
+const { convertToNumber, convertToNumberArray } = require('./util/convert');
 const { validateUnitOfAmount, validateMinAmount } = require('./util/validate');
 
 class App {
@@ -60,7 +60,7 @@ class App {
       generateLottoNumbers.sort((a, b) => a - b);
 
       const playerLotto = new Lotto(generateLottoNumbers);
-      this.printMessage(playerLotto.Lotto());
+      playerLotto.print();
       this.#lotto.push(playerLotto.Lotto());
     }
   }

@@ -1,3 +1,4 @@
+const { Console } = require('@woowacourse/mission-utils');
 const {
   validateLength,
   validateDuplicate,
@@ -16,6 +17,10 @@ class Lotto {
     validateLength(numbers);
     validateDuplicate(numbers);
     validateNumberRange(numbers);
+  }
+
+  print() {
+    Console.print(this.#numbers);
   }
 
   Lotto() {
