@@ -105,6 +105,8 @@ class LottoModel {
       MissionUtils.Console.print(resultMessage[i] + this.collectCalculator[i] + "개");
     }
     MissionUtils.Console.print(`총 수익률은 ${this.percentCalculator}%입니다.`);
+    MissionUtils.Console.close();
+
   }
 }
 
