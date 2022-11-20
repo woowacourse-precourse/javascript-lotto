@@ -34,9 +34,11 @@ class App {
   * #routineReward(prompt) {
     yield Messages.ROUTINE_REWARD_PUT_WINNING_NUMBERS;
     yield Messages.ROUTINE_REWARD_PUT_BONUS_NUMBER;
-    this.#winningLotto = new WinningLotto(Lotto.fromString(prompt.read()), prompt.readNumber());
+    const lotto = Lotto.fromString(prompt.read());
+    const bonusNumber = prompt.readNumber();
+    this.#winningLotto = new WinningLotto(lotto, bonusNumber);
     this.#rewards = this.#lottos
-      .map((lotto) => this.#winningLotto.getRewardFor(lotto))
+      .map((_lotto) => this.#winningLotto.getRewardFor(_lotto))
       .filter((reward) => !!reward);
   }
 
