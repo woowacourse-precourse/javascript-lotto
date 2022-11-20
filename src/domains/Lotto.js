@@ -68,9 +68,7 @@ class Lotto {
     }
 
     const amount = money / Lotto.PRICE;
-    return Array(amount)
-      .fill()
-      .map(() => Lotto.fromRandom());
+    return [...Array(amount)].map(() => Lotto.fromRandom());
   }
 
   /**
