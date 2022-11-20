@@ -8,12 +8,15 @@ const {
 const Lotto = require('./Lotto');
 const { convertToNumber, convertToNumberArray } = require('./util/convert');
 const { validateUnitOfAmount, validateMinAmount } = require('./util/validate');
+const WinningLotto = require('./WinningLotto');
 
 class App {
   #lotto;
+  #winningLotto;
 
   constructor() {
     this.#lotto = [];
+    this.#winningLotto = [];
   }
 
   play() {
@@ -63,6 +66,15 @@ class App {
       playerLotto.print();
       this.#lotto.push(playerLotto.Lotto());
     }
+
+    this.setWinningLotto();
+  }
+
+  setWinningLotto() {
+    Console.readLine('당첨 번호를 입력해 주세요.\n', (answer) => {
+      const setWinningnumbers = convertToNumberArray(answer);
+      this.#winningLotto = new WinningLotto(setWinningnumbers);
+    });
   }
 }
 
