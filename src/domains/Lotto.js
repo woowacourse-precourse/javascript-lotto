@@ -63,7 +63,7 @@ class Lotto {
     if (money < Lotto.PRICE) {
       throw new LottoError(Messages.LOTTO_BUY_AT_LEAST_ONE);
     }
-    if (money % Lotto.PRICE !== 0) {
+    if (money % Lotto.PRICE) {
       throw new LottoError(Messages.LOTTO_BUY_NO_CHANGE);
     }
 
