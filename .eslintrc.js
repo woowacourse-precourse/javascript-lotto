@@ -23,4 +23,13 @@ module.exports = {
     'jsdoc/require-param-description': 'off',
     'jsdoc/require-returns-description': 'off',
   },
+  overrides: [
+    {
+      files: ['__tests__/**/*.js'],
+      rules: {
+        'max-lines-per-function': 'off',
+        'no-new': 'off',
+      },
+    },
+  ],
 };

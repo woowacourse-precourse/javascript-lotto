@@ -1,5 +1,3 @@
-/* eslint-disable no-new */
-/* eslint-disable max-lines-per-function */
 const Lotto = require('../src/Lotto');
 
 describe('로또 클래스 테스트', () => {

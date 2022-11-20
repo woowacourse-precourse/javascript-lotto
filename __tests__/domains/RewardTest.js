@@ -1,5 +1,3 @@
-/* eslint-disable no-new */
-/* eslint-disable max-lines-per-function */
 const Reward = require('../../src/domains/Reward');
 const WinningLotto = require('../../src/domains/WinningLotto');
 const Lotto = require('../../src/Lotto');

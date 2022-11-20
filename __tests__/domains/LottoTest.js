@@ -1,5 +1,3 @@
-/* eslint-disable no-new */
-/* eslint-disable max-lines-per-function */
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('../../src/Lotto');
 
