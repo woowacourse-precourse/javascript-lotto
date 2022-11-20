@@ -39,8 +39,15 @@ function validateDuplicateWithBonusNumber(numbers, bonusNumber) {
 function validateNumberRange(numbers) {
   for (const number of numbers) {
     if (number < VALID_MIN_NUM || number > VALID_MAX_NUM) {
-      throw new Error('[ERROR] 로또 번호는 1~45 사이여야 합니다.');
+      throw new Error('[ERROR] 번호는 1~45 사이여야 합니다.');
     }
+  }
+  return true;
+}
+
+function validateIsNumber(numbers) {
+  if (numbers.includes(NaN)) {
+    throw new Error('[ERROR] 번호는 숫자만 입력하여야 합니다.');
   }
   return true;
 }
@@ -52,4 +59,5 @@ module.exports = {
   validateDuplicate,
   validateDuplicateWithBonusNumber,
   validateNumberRange,
+  validateIsNumber,
 };
