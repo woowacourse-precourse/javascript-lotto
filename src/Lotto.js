@@ -1,18 +1,32 @@
+const { Random } = require('@woowacourse/mission-utils');
+const { LOTTO } = require('./constant');
+
 class Lotto {
-  #numbers;
+  #lottos;
 
-  constructor(numbers) {
-    this.validate(numbers);
-    this.#numbers = numbers;
+  constructor(count) {
+    this.#lottos = this.generateLottos(count);
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+  getLottos() {
+    return this.#lottos;
+  }
+
+  generateLottos(count) {
+    const lottos = [];
+
+    for (let i = 0; i < count; i += 1) {
+      const lotto = Random.pickUniqueNumbersInRange(
+        LOTTO.rangeStart,
+        LOTTO.rangeEnd,
+        LOTTO.count,
+      ).sort((a, b) => a - b);
+
+      lottos.push(lotto);
     }
-  }
 
-  // TODO: 추가 기능 구현
+    return lottos;
+  }
 }
 
 module.exports = Lotto;
