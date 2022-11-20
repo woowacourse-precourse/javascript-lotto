@@ -1,0 +1,32 @@
+# <type>(<scope>): <short summary>
+################
+# --- short summary ---
+# - 50자 이내, 현재 시제, 명령문으로 작성
+# --- scope ---
+# - 선택 사항
+# - location, browser, compile, rootScope ...
+# --- type ---
+# - build: build system 또는 external dependencies에 영향을 미치는 변경사항 (example scopes: gulp, broccoli, npm)
+# - ci: CI configuration 파일 또는 scripts의 변경사항 (examples: CircleCi, SauceLabs)
+# - docs: 문서 관련 변경사항
+# - feat: 새로운 기능 추가
+# - fix: 버그 수정
+# - perf: 성능을 향상시키는 코드 변경
+# - refactor: fix나 feat이 아닌 코드 변경
+# - style : 스타일 변경, 코드 의미에 영향을 주지 않는 변경사항(포매팅, 들여쓰기 추가, 세미콜론 추가 등)
+# - test: 테스트 관련 코드 변경(누락된 테스트 추가, 기존 테스트 수정 등)
+# - chore : 그 외 변경사항
+
+# <body>
+################
+# --- body ---
+# - "어떻게" 보다 "무엇을", "왜"를 설명
+# - 구체적인 내용, 현재 시제, 명령문으로 작성
+# - 여러 줄의 메시지를 작성할 땐 "-"로 구분 (한 줄은 72자 이내)
+
+# <footer>
+################
+# --- footer ---
+# - 주요 변경 내역들 (Breaking Changes): 변경점 (description of the change), 변경 사유 (justification), 마이그레이션 지시 (migration instructions)
+# - 해결된 이슈 (Referencing Issues): 예) Close #7
+

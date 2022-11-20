@@ -1,3 +1,10 @@
+const { Console } = require('@woowacourse/mission-utils');
+const {
+  validateLength,
+  validateDuplicate,
+  validateNumberRange,
+} = require('./util/validate');
+
 class Lotto {
   #numbers;
 
@@ -7,12 +14,18 @@ class Lotto {
   }
 
   validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+    validateLength(numbers);
+    validateDuplicate(numbers);
+    validateNumberRange(numbers);
   }
 
-  // TODO: 추가 기능 구현
+  print() {
+    Console.print('[' + this.#numbers.join(', ') + ']');
+  }
+
+  Lotto() {
+    return this.#numbers;
+  }
 }
 
 module.exports = Lotto;
