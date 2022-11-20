@@ -71,9 +71,6 @@ class Lotto {
     return [...Array(amount)].map(() => Lotto.fromRandom());
   }
 
-  /**
-   * @param {number[]} numbers
-   */
   validate() {
     this.#validateType();
     this.#validateNumberCount();
