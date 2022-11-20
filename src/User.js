@@ -32,8 +32,8 @@ class User {
   static validate(number) {
     UserValidation.isInteger(number);
     UserValidation.isPositive(number);
-    UserValidation.isDivisible(number);
     UserValidation.isUnderMaxInteger(number);
+    UserValidation.isDivisible(number);
   }
 }
 

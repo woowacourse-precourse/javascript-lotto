@@ -30,7 +30,6 @@ class App {
     });
   }
   getBonusNumber() {
-    console.log("HERE ", this.winnerCondition[0]);
     LottoGenerator.getBonusNumber(this.winnerCondition[0], (bonusNumber) => {
       this.winnerCondition.push(bonusNumber);
       this.getPriceResult(this.winnerCondition);
