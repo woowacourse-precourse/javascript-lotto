@@ -1,5 +1,5 @@
 function convertToNumber(stringNumber) {
-  return parseInt(stringNumber, 10);
+  return Number(stringNumber);
 }
 
 function convertToNumberArray(string) {
