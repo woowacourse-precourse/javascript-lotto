@@ -6,7 +6,7 @@ class Lotto {
     this.noRepeat(numbers);
   }
   validate(numbers) {
-    if (numbers.length !== 6) {
+    if (numbers.length !== 7) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     } else {
       console.log(numbers);
@@ -16,7 +16,7 @@ class Lotto {
   // TODO: 추가 기능 구현 중복 불가.
   noRepeat(numbers) {
     const validateRepeat = [...new Set(numbers)];
-    if (validateRepeat.length !== 6) {
+    if (validateRepeat.length !== 7) {
       throw new Error("[ERROR] 중복된 글자는 입력할 수 없습니다.");
     }
   }
