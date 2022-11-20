@@ -72,7 +72,7 @@ class Lotto {
   }
 
   validate() {
-    this.#validateType();
+    this.#validateNumberType();
     this.#validateNumberCount();
     this.#validateNumberRange();
     this.#validateDuplication();
@@ -97,7 +97,7 @@ class Lotto {
     return `[${this.#numbers.join(', ')}]`;
   }
 
-  #validateType() {
+  #validateNumberType() {
     if (!this.#numbers.every((number) => typeof number === 'number' && !Number.isNaN(number))) {
       throw new LottoError(Messages.LOTTO_VALIDATE_TYPE_MUST_NUMBER);
     }
