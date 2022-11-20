@@ -3,16 +3,19 @@ const Messages = require('../constants/Messages');
 const LottoError = require('../errors/LottoError');
 
 class Lotto {
-  /** 로또가 가질 수 있는 숫자 갯수 */
+  /**
+   * @member {number} NUMBER_COUNT 로또가 가질 수 있는 숫자 갯수
+   * @member {number} NUMBER_MIN 로또가 가질 수 있는 숫자의 최소값
+   * @member {number} NUMBER_MAX 로또가 가질 수 있는 숫자의 최대값
+   * @member {number} PRICE로또 1장의 가격
+   */
+
   static NUMBER_COUNT = 6;
 
-  /** 로또가 가질 수 있는 숫자의 최소값 */
   static NUMBER_MIN = 1;
 
-  /** 로또가 가질 수 있는 숫자의 최대값 */
   static NUMBER_MAX = 45;
 
-  /** 로또 1장의 가격 */
   static PRICE = 1000;
 
   /** @type {number[]} */
@@ -25,6 +28,7 @@ class Lotto {
     numbers.sort((a, b) => a - b);
     this.#numbers = numbers;
     this.validate();
+    this.some = 12;
   }
 
   /**
