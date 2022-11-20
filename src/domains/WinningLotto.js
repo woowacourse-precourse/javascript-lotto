@@ -63,19 +63,6 @@ class WinningLotto {
     return this.#availableRewards.find((reward) => reward.isEligible(this, lotto)) ?? null;
   }
 
-  /**
-   * @param {number} investment
-   * @param {Reward[]} rewards
-   * @returns {string}
-   */
-  static getRateOfReturn(investment, rewards) {
-    const earning = rewards.reduce((money, reward) => money + reward.getMoney(), 0);
-    const rateOfReturn = (Math.round((earning / investment) * 10000) / 100).toFixed(1);
-    const [integerPart, fractionPart] = rateOfReturn.split('.');
-
-    return `${Number(integerPart).toLocaleString()}.${fractionPart}`;
-  }
-
   #validateBonusNumberType() {
     if (typeof this.#bonusNumber !== 'number' || Number.isNaN(this.#bonusNumber)) {
       throw new LottoError(Messages.WINNING_LOTTO_VALIDATE_TYPE_MUST_NUMBER);

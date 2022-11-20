@@ -3,6 +3,7 @@ const Lotto = require('./domains/Lotto');
 const WinningLotto = require('./domains/WinningLotto');
 const Messages = require('./constants/Messages');
 const Reward = require('./domains/Reward');
+const Utils = require('./Utils');
 
 class App {
   /** @type {Lotto[]} */
@@ -54,7 +55,7 @@ class App {
       .forEach(([reward, count]) => prompt.print(`${reward.toString()} - ${count}개`));
 
     const investment = Lotto.PRICE * this.#lottos.length;
-    const rateOfReturn = WinningLotto.getRateOfReturn(investment, this.#rewards);
+    const rateOfReturn = Utils.calculateRateOfReturn(investment, this.#rewards);
     prompt.print(Messages.ROUTINE_STATS_RATE_OF_RETURN, rateOfReturn);
   }
 
