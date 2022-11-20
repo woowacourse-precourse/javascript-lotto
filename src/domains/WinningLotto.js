@@ -35,9 +35,9 @@ class WinningLotto {
    * @returns {number}
    */
   countMatchNumber(lotto) {
-    const [numbers, otherNumbers] = [this.#lotto.getNumbers(), lotto.getNumbers()];
+    const [numbers, otherNumbers] = [this.#lotto.getNumbers(), new Set(lotto.getNumbers())];
     const count = numbers
-      .map((number) => (otherNumbers.includes(number) ? 1 : 0))
+      .map((number) => (otherNumbers.has(number) ? 1 : 0))
       .reduce((a, b) => a + b, 0);
 
     return count;
