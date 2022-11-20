@@ -1,4 +1,4 @@
-const MissionUtils = require('@woowacourse/mission-utils');
+const { Console } = require('@woowacourse/mission-utils');
 const Messages = require('../constants/Messages');
 const PromptError = require('../errors/PromptError');
 
@@ -44,7 +44,7 @@ class Prompt {
    */
   // eslint-disable-next-line class-methods-use-this
   print(message, ...args) {
-    MissionUtils.Console.print(Messages.format(message, ...args));
+    Console.print(Messages.format(message, ...args));
   }
 
   read() {
@@ -84,13 +84,13 @@ class Prompt {
       if (query !== '' && !query) break;
 
       let readDone = false;
-      MissionUtils.Console.readLine(query, (text) => {
+      Console.readLine(query, (text) => {
         this.#onReadLine(text);
         readDone = true;
       });
       if (!readDone) yield;
     }
-    MissionUtils.Console.close();
+    Console.close();
   }
 }
 

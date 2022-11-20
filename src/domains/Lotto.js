@@ -1,4 +1,4 @@
-const MissionUtils = require('@woowacourse/mission-utils');
+const { Random } = require('@woowacourse/mission-utils');
 const Messages = require('../constants/Messages');
 const LottoError = require('../errors/LottoError');
 
@@ -37,7 +37,7 @@ class Lotto {
    * @returns {Lotto}
    */
   static fromRandom() {
-    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(
+    const numbers = Random.pickUniqueNumbersInRange(
       Lotto.NUMBER_MIN,
       Lotto.NUMBER_MAX,
       Lotto.NUMBER_COUNT,
