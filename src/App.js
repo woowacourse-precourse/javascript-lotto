@@ -1,5 +1,9 @@
+const Lotto = require("./Lotto");
+let lotto = new Lotto();
 class App {
-  play() {}
+  play() {
+    lotto.makeLottoNumbers();
+  }
 }
 
 module.exports = App;
