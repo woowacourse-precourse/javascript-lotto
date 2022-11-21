@@ -19,10 +19,6 @@ class Lotto {
       throw new Error(ErrorMsg.INVALID_LOTTO_NOT_NUM);
   }
 
-  get objectName() {
-    return "Lotto";
-  }
-
   printNumbers() {
     Console.print(`[${this.#numbers.join(", ")}]`);
   }

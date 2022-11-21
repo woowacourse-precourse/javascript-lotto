@@ -9,7 +9,7 @@ describe("게임 유틸 클래스 테스트", () => {
   test("getLottos는 Lotto 객체를 생성한다.", () => {
     const lottos = GameUtils.getLottos(6);
     for (let i = 0; i < 6; i++) {
-      expect(lottos[i].objectName).toEqual("Lotto");
+      expect(lottos[i] instanceof Lotto).toBeTruthy();
     }
   });
 
