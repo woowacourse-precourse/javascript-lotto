@@ -4,14 +4,11 @@ const Utils = {
    *
    * @param {number} investment
    * @param {Reward[]} rewards
-   * @returns {string}
+   * @returns {number}
    */
   calculateRateOfReturn(investment, rewards) {
     const earning = rewards.reduce((money, reward) => money + reward.getMoney(), 0);
-    const rateOfReturn = (Math.round((earning / investment) * 10000) / 100).toFixed(1);
-    const [integerPart, fractionPart] = rateOfReturn.split('.');
-
-    return `${Number(integerPart).toLocaleString()}.${fractionPart}`;
+    return (earning / investment) * 100;
   },
 };
 

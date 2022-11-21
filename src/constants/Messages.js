@@ -33,4 +33,15 @@ module.exports = Object.freeze({
   format(message, ...args) {
     return args.reduce((formatted, arg, index) => formatted.replace(`{${index}}`, arg), message);
   },
+
+  /**
+   * 수익률을 지정된 포맷에 맞게 변환합니다.
+   *
+   * @param {number} rateOfReturn
+   * @returns {string}
+   */
+  formatRateOfReturn(rateOfReturn) {
+    const [integerPart, fractionPart] = rateOfReturn.toFixed(1).split('.');
+    return `${Number(integerPart).toLocaleString('ko-KR')}.${fractionPart}`;
+  },
 });
