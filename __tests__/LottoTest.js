@@ -75,7 +75,7 @@ describe("로또 클래스 테스트", () => {
     const userLottoArr = Array.from({ length: 9 });
 
     const lotto = new Lotto("1,2,3,4,5,6", [1, 2, 3, 4, 5, 6]);
-    expect(lotto.getProfit(winningBoard, userLottoArr)).toBe(16722.2);
+    expect(lotto.getProfit(winningBoard, userLottoArr)).toBe("16,722.2");
   });
 
   // 아래에 추가 테스트 작성 가능
