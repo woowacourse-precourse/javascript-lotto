@@ -1,5 +1,11 @@
+const LottoSimulator = require('./LottoSimulator.js');
+
 class App {
-  play() {}
+  lottoSimulator = new LottoSimulator();
+
+  play() {
+    this.lottoSimulator.start();
+  }
 }
 
 module.exports = App;
