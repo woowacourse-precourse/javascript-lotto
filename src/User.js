@@ -75,7 +75,7 @@ class User {
   }
 
   calcuateReturnOfInvestment() {
-    this.returnOfInvestment = ((this.prize / this.amount) * 100).toFixed(1);
+    this.returnOfInvestment = ((this.prize / this.fee) * 100).toFixed(1);
   }
 }
 
