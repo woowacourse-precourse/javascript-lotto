@@ -1,4 +1,4 @@
-<h1 align="middle">프리코스 2주차 - 로또 🎱</h1>
+<h1 align="middle">프리코스 3주차 - 로또 🎱</h1>
 <p align="middle">Console을 통해 작동하는 로또 애플리케이션</p>
 <br>
 
