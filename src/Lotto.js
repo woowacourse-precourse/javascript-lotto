@@ -1,6 +1,5 @@
 class Lotto {
   #numbers;
-
   constructor(numbers) {
     this.validate(numbers);
     this.#numbers = numbers;
@@ -10,8 +9,45 @@ class Lotto {
     if (numbers.length !== 6) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
+    if (!this.checkDuplicateNumber(numbers)) {
+      throw new Error("[ERROR] 로또 번호는 겹치면 안됩니다.");
+    }
+  }
+  checkDuplicateNumber(numbers) {
+    let setNumbers = Array.from(new Set(numbers));
+    if (setNumbers.length < 6) return false;
+    return true;
   }
 
+  checkCorrespond(winNum, bonus) {
+    let correspondObj = { num: 0, bonus: 0 };
+    this.#numbers.forEach((el) => {
+      if (winNum.includes(el)) correspondObj.num += 1;
+      if (el === bonus) correspondObj.bonus += 1;
+    });
+    return this.checkResult(correspondObj);
+  }
+  checkResult(correspondObj) {
+    let result;
+    switch (correspondObj.num) {
+      case 6:
+        result = 1;
+        break;
+      case 5:
+        result = 3;
+        break;
+      case 4:
+        result = 4;
+        break;
+      case 3:
+        result = 5;
+        break;
+      default:
+        result = 0;
+    }
+    if (result === 3 && correspondObj.bonus === 1) result = 2;
+    return result;
+  }
   // TODO: 추가 기능 구현
 }
 
