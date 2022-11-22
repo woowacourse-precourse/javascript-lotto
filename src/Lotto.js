@@ -18,7 +18,7 @@ class Lotto {
     return `[${this.#numbers.join(", ")}]`;
   }
 
-  getNumber() {
+  getNumbers() {
     return this.#numbers;
   }
 
