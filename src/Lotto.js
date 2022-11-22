@@ -31,7 +31,7 @@ class Lotto {
     if (IS_DUPLICATE) throw new Error(ERROR_MESSAGE.DUPLICATE);
     return;
   }
-
+  //7.예외 상황 처리하기
   validate(numbers) {
     this.checkBlank(numbers);
     this.checkLength(numbers);
