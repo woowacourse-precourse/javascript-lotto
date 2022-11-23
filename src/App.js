@@ -11,12 +11,12 @@ const WINNING_PRICE = {
 };
 
 class App {
-  lottoAmount;
-  winningLotteryNumbers;
-  bonusNumber;
-  profit;
-  lottos = [];
-  result = {
+  #lottoAmount;
+  #winningLotteryNumbers;
+  #bonusNumber;
+  #profit;
+  #lottos = [];
+  #result = {
     first: 0,
     second: 0,
     third: 0,
@@ -34,8 +34,8 @@ class App {
   }
 
   getLottoAmount(price) {
-    this.lottoAmount = parseInt(price) / 1000;
-    this.makeLottoNumbers(this.lottoAmount);
+    this.#lottoAmount = parseInt(price) / 1000;
+    this.makeLottoNumbers(this.#lottoAmount);
   }
 
   getWinningLotteryNumbers() {
@@ -43,15 +43,15 @@ class App {
       const numbers = inputNumbers.toString().split(',').map(Number);
       Validate.lotteryNumbers(numbers);
 
-      this.winningLotteryNumbers = numbers;
+      this.#winningLotteryNumbers = numbers;
       this.getBonusNumber();
     });
   }
 
   getBonusNumber() {
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (number) => {
-      Validate.bonusNumber(number, this.winningLotteryNumbers);
-      this.bonusNumber = number;
+      Validate.bonusNumber(number, this.#winningLotteryNumbers);
+      this.#bonusNumber = number;
 
       this.compareNumbers();
       this.computeProfit();
@@ -59,8 +59,8 @@ class App {
     });
   }
   printPurchaseList() {
-    MissionUtils.Console.print(`${this.lottoAmount}개를 구매했습니다.`);
-    this.lottos.forEach((lottoNumbers) => {
+    MissionUtils.Console.print(`${this.#lottoAmount}개를 구매했습니다.`);
+    this.#lottos.forEach((lottoNumbers) => {
       const a = lottoNumbers.join(', ');
       MissionUtils.Console.print(`[${a}]`);
     });
@@ -68,42 +68,42 @@ class App {
 
   computeProfit() {
     const totalWinningPrice =
-      WINNING_PRICE.fifth * this.result.fifth +
-      WINNING_PRICE.fourth * this.result.fourth +
-      WINNING_PRICE.third * this.result.third +
-      WINNING_PRICE.second * this.result.second +
-      WINNING_PRICE.first * this.result.first;
-    const purchaseAmount = this.lottoAmount * 1000;
+      WINNING_PRICE.fifth * this.#result.fifth +
+      WINNING_PRICE.fourth * this.#result.fourth +
+      WINNING_PRICE.third * this.#result.third +
+      WINNING_PRICE.second * this.#result.second +
+      WINNING_PRICE.first * this.#result.first;
+    const purchaseAmount = this.#lottoAmount * 1000;
     const profitPercent = (totalWinningPrice / purchaseAmount) * 100;
-    this.profit = Math.round(profitPercent * 100) / 100;
+    this.#profit = Math.round(profitPercent * 100) / 100;
   }
 
   makeLottoNumbers(amount) {
     for (let i = 0; i < amount; i++) {
       const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
       const lotto = new Lotto(numbers);
-      this.lottos.push(lotto.show());
+      this.#lottos.push(lotto.show());
     }
   }
 
   compareNumbers() {
-    this.lottos.forEach((lotto) => {
+    this.#lottos.forEach((lotto) => {
       this.winLotto(lotto);
     });
   }
 
   winLotto(lotto) {
-    const numbersOfMatch = this.winningLotteryNumbers.filter((num) => lotto.includes(num)).length;
+    const numbersOfMatch = this.#winningLotteryNumbers.filter((num) => lotto.includes(num)).length;
     switch (numbersOfMatch) {
       case 3:
-        return (this.result.fifth += 1);
+        return (this.#result.fifth += 1);
       case 4:
-        return (this.result.fourth += 1);
+        return (this.#result.fourth += 1);
       case 5:
-        if (!lotto.includes(this.bonusNumber)) return (this.result.third += 1);
-        return (this.result.second += 1);
+        if (!lotto.includes(this.#bonusNumber)) return (this.#result.third += 1);
+        return (this.#result.second += 1);
       case 6:
-        return (this.result.first += 1);
+        return (this.#result.first += 1);
       default:
         return;
     }
@@ -112,12 +112,14 @@ class App {
   printResult() {
     MissionUtils.Console.print('당첨 통계');
     MissionUtils.Console.print('---');
-    MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.result.fifth}개`);
-    MissionUtils.Console.print(`4개 일치 (50,000원) - ${this.result.fourth}개`);
-    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${this.result.third}개`);
-    MissionUtils.Console.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.result.second}개`);
-    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${this.result.first}개`);
-    MissionUtils.Console.print(`총 수익률은 ${this.profit}%입니다.`);
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.#result.fifth}개`);
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${this.#result.fourth}개`);
+    MissionUtils.Console.print(`5개 일치 (1,500,000원) - ${this.#result.third}개`);
+    MissionUtils.Console.print(
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.#result.second}개`,
+    );
+    MissionUtils.Console.print(`6개 일치 (2,000,000,000원) - ${this.#result.first}개`);
+    MissionUtils.Console.print(`총 수익률은 ${this.#profit}%입니다.`);
     MissionUtils.Console.close();
   }
 }
