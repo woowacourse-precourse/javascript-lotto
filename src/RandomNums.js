@@ -17,7 +17,7 @@ class RandomNums {
     this.getRandomNums();
   }
 
-  makeRandomNums() {
+  SortRandomNums() {
     const randomNums = MissionUtils.Random.pickUniqueNumbersInRange(
       LOTTO.MIN_NUM,
       LOTTO.MAX_NUM,

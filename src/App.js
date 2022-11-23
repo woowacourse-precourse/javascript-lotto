@@ -4,7 +4,7 @@ const Purchase = require('./Purchase');
 class App {
   play() {
     const purchase = new Purchase();
-    purchase.readInput();
+    purchase.start();
   }
 }
 
