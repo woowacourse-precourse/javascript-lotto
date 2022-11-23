@@ -1,5 +1,6 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
+const Validate = require('./Validate');
 
 const WINNING_PRICE = {
   first: 2000000000,
@@ -25,20 +26,11 @@ class App {
 
   play() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.', (price) => {
-      this.validatePrice(price);
+      Validate.price(price);
       this.getLottoAmount(price);
       this.printPurchaseList();
       this.getWinningLotteryNumbers();
     });
-  }
-
-  validatePrice(price) {
-    if (!Number(price)) {
-      throw new Error('[ERROR] 구입금액은 숫자여야 합니다.');
-    }
-    if (parseInt(price) % 1000 !== 0) {
-      throw new Error('[ERROR] 구입금액은 1,000원 단위로 입력하셔야 합니다.');
-    }
   }
 
   getLottoAmount(price) {
@@ -49,31 +41,16 @@ class App {
   getWinningLotteryNumbers() {
     MissionUtils.Console.readLine('당첨 번호를 입력해 주세요.', (inputNumbers) => {
       const numbers = inputNumbers.toString().split(',').map(Number);
-      this.validateLotteryNumbers(numbers);
+      Validate.lotteryNumbers(numbers);
 
       this.winningLotteryNumbers = numbers;
       this.getBonusNumber();
     });
   }
 
-  validateLotteryNumbers(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error('[ERROR] 당첨번호는 6개여야 합니다.');
-    }
-    if (numbers.filter((number) => !Number(number)).length > 0) {
-      throw new Error('[ERROR] 당첨번호는 숫자여야 합니다.');
-    }
-    if (numbers.filter((number) => number < 1 || number > 45).length > 0) {
-      throw new Error('[ERROR] 당첨번호는 1에서 45사이어야 합니다.');
-    }
-    if ([...new Set(numbers)].length !== 6) {
-      throw new Error('[ERROR] 당첨번호가 중복되면 안됩니다.');
-    }
-  }
-
   getBonusNumber() {
     MissionUtils.Console.readLine('보너스 번호를 입력해 주세요.', (number) => {
-      this.validtaeBonusNumber(number);
+      Validate.bonusNumber(number, this.winningLotteryNumbers);
       this.bonusNumber = number;
 
       this.compareNumbers();
@@ -81,19 +58,6 @@ class App {
       this.printResult();
     });
   }
-
-  validtaeBonusNumber(number) {
-    if (!Number(number)) {
-      throw new Error('[ERROR] 보너스 번호는 숫자여야 합니다.');
-    }
-    if (this.winningLotteryNumbers.includes(number)) {
-      throw new Error('[ERROR] 당첨번호와 중복되면 안됩니다.');
-    }
-    if (number < 1 || number > 45) {
-      throw new Error('[ERROR] 보너스 번호는 1에서 45사이어야 합니다.');
-    }
-  }
-
   printPurchaseList() {
     MissionUtils.Console.print(`${this.lottoAmount}개를 구매했습니다.`);
     this.lottos.forEach((lottoNumbers) => {
