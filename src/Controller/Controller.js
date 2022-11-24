@@ -20,10 +20,6 @@ class Controller {
 
   start() {
     this.getUserMoneyAndGenWinningNumbers();
-    this.getUserLottoNumber();
-    this.getUserBonusNumber();
-    this.getUserLottoResult();
-    this.getUserRateOfReturn();
   }
 
   getUserMoneyAndGenWinningNumbers() {
@@ -33,6 +29,7 @@ class Controller {
       this.model.lottoLists = this.genWinningNumbersAsMoney(userInput);
       this.view.showMoney(this.model.userMoney);
       this.view.showGenLottos(this.model.lottoLists);
+      this.getUserLottoNumber();
     });
   }
 
@@ -52,6 +49,7 @@ class Controller {
         userLottoNumber.replace(/\s/g, ''),
       );
       this.view.showUserLottosNumber(userLottoNumber);
+      this.getUserBonusNumber();
     });
   }
 
@@ -61,6 +59,8 @@ class Controller {
         userBonusNumber.replace(/\s/g, ''),
       );
       this.view.showUserBonusNumber(userBonusNumber);
+      this.getUserLottoResult();
+      this.getUserRateOfReturn();
     });
   }
 

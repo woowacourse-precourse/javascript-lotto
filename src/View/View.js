@@ -1,11 +1,11 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const { MESSAGE, RESULT_MESSAGES } = require('../Constants');
+const { RESULT_MESSAGES } = require('../Constants');
 
 const { Console } = MissionUtils;
 
 class View {
   showMoney(userMoney) {
-    Console.print(`${MESSAGE.INPUT_MONEY} \n ${userMoney}`);
+    Console.print(`${userMoney}`);
   }
 
   showGenLottos(lottoLists) {
@@ -14,11 +14,11 @@ class View {
   }
 
   showUserLottosNumber(userLottoNumber) {
-    Console.print(`${MESSAGE.INPUT_LOTTONUMBERS} ${userLottoNumber}`);
+    Console.print(`${userLottoNumber}`);
   }
 
   showUserBonusNumber(userBonusNumber) {
-    Console.print(`${MESSAGE.INPUT_BONUSNUMBER} ${userBonusNumber}`);
+    Console.print(`${userBonusNumber}`);
   }
 
   showUserLottoResults(lottoResults) {
@@ -29,6 +29,7 @@ class View {
 
   showUserRateOfReturn(rateOfReturn) {
     Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
+    Console.close();
   }
 }
 
