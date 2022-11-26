@@ -7,24 +7,24 @@ class Result {
   }
 
   statistics(bundle, numbers, bonus) {
-    for (let i = 0; i < bundle.length; i++) {
+    bundle.forEach(x => {
       let bonusCount = 0;
-      if (bundle[i].includes(bonus)) {
+      if(x.includes(bonus)) {
         bonusCount += 1;
       }
-      const count = this.setCount(bundle[i], numbers);
+      const count = this.setCount(x, numbers);
       this.setCollectCount(count, bonusCount);
-    }
+    })
     this.calculationResult();
   }
 
   setCount(lotto, numbers) {
     let count = 0;
-    for (let i = 0; i < lotto.length; i++) {
-      if (lotto.includes(numbers[i])) {
+    numbers.forEach(x => {
+      if(lotto.includes(x)){
         count += 1;
       }
-    }
+    })
     return count;
   }
 
