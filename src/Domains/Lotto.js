@@ -21,7 +21,6 @@ class Lotto {
     if (numbers.filter((x) => isNaN(x)).length > 0) {
       throw new Error(ERROR.NUMBERS_ISNAN);
     }
-    return true;
   }
 }
 

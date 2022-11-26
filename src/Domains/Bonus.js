@@ -1,7 +1,9 @@
 const { ERROR, MAX_NUBER, MIN_NUMBER } = require("../Utils/constant");
 class Bonus {
+  #bonus
   constructor(numbers, bonus) {
-    this.validate(numbers, bonus);
+    this.#bonus = bonus;
+    this.validate(numbers, this.#bonus);
   }
 
   validate(numbers, bonus) {
@@ -14,7 +16,6 @@ class Bonus {
     if (isNaN(bonus)) {
       throw new Error(ERROR.BONUS_ISNAN);
     }
-    return true;
   }
 }
 module.exports = Bonus;

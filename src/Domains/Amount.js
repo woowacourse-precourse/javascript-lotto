@@ -14,7 +14,6 @@ class Amount {
     if (isNaN(amount / UNIT)) {
       throw new Error(ERROR.AMOUNT_ISNAN);
     }
-    return true;
   }
 }
 module.exports = Amount;
