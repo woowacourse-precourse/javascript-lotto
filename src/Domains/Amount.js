@@ -3,8 +3,8 @@ class Amount {
   #amount;
 
   constructor(amount) {
-    this.validate(amount);
     this.#amount = amount;
+    this.validate(this.#amount);
   }
 
   validate(amount) {

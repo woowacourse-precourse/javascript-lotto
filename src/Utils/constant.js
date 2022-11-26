@@ -16,7 +16,6 @@ const MATCHING_COUNT = {
   FOUR: 4,
   FIVE: 5,
   SIX: 6,
-
 }
 
 const PRIZE = {
