@@ -11,6 +11,14 @@ const MESSAGE = {
   },
 };
 
+const MATCHING_COUNT = {
+  THREE: 3,
+  FOUR: 4,
+  FIVE: 5,
+  SIX: 6,
+
+}
+
 const PRIZE = {
   FIRST: 2_000_000_000,
   SECOND: 30_000_000,
@@ -65,4 +73,5 @@ module.exports = {
   UNIT,
   MAX_NUBER,
   MIN_NUMBER,
+  MATCHING_COUNT,
 };
