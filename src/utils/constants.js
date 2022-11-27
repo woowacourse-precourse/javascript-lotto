@@ -1,0 +1,33 @@
+module.exports = {
+  LOTTO_LENGTH: 6,
+  MAX_NUMBER: 45,
+  MIN_NUMBER: 1,
+
+  LOTTO_PRICE: 1000,
+
+  NUMBER_OF_RANKS: 5,
+
+  INDEX: {
+    FIRST_RANK: 0,
+    SECOND_RANK: 1,
+    THIRD_RANK: 2,
+    FORTH_RANK: 3,
+    FIFTH_RANK: 4,
+  },
+
+  MATCH_COUNT: {
+    FIRST_RANK: 6,
+    SECOND_RANK: 5,
+    THIRD_RANK: 5,
+    FORTH_RANK: 4,
+    FIFTH_RANK: 3,
+  },
+
+  PRIZE_AMOUNT: {
+    FIRST_RANK: 2000000000,
+    SECOND_RANK: 30000000,
+    THIRD_RANK: 1500000,
+    FORTH_RANK: 50000,
+    FIFTH_RANK: 5000,
+  },
+};
