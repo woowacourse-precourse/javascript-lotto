@@ -2,22 +2,24 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const { PROFIT, PRICE_PER_LOTTO } = require('./constants');
 
 class Result {
+  #hitList = {
+    three: 0,
+    four: 0,
+    five: 0,
+    fiveAndBonus: 0,
+    six: 0,
+  };
+
   constructor(randomNumUnits, lottoNums, bonusNum) {
     this.randomNumUnits = randomNumUnits;
     this.lottoNums = lottoNums;
     this.bonusNum = bonusNum;
-    this.hitNumList = {
-      three: 0,
-      four: 0,
-      five: 0,
-      fiveAndBonus: 0,
-      six: 0,
-    };
+    this.make();
   }
 
-  getResult() {
+  make() {
     this.correctNums = this.makeCorrectNums();
-    this.setHitList();
+    this.setHitList(this.correctNums);
     this.setProfit();
     this.printResult();
   }
@@ -27,7 +29,6 @@ class Result {
     this.randomNumUnits.map((randomNums) => {
       resultArr.push(this.checkCorrectNum(randomNums));
     });
-    console.log('check');
     return resultArr;
   }
 
@@ -45,8 +46,8 @@ class Result {
     }
   }
 
-  setHitList() {
-    this.correctNums.forEach((numbers) => {
+  setHitList(correctNums) {
+    correctNums.forEach((numbers) => {
       this.addList(numbers);
     });
   }
@@ -54,13 +55,13 @@ class Result {
   addList(numbers) {
     switch (numbers.length) {
       case 3:
-        this.hitNumList.three++;
+        this.#hitList.three++;
         break;
       case 4:
-        this.hitNumList.four++;
+        this.#hitList.four++;
         break;
       case 5:
-        this.hitNumList.five++;
+        this.#hitList.five++;
         break;
       case 6:
         this.checkWithBonus(numbers);
@@ -70,10 +71,10 @@ class Result {
 
   checkWithBonus(numbers) {
     if (numbers.includes(this.bonusNum)) {
-      this.hitNumList.fiveAndBonus++;
+      this.#hitList.fiveAndBonus++;
       return;
     }
-    this.hitNumList.six++;
+    this.#hitList.six++;
   }
 
   setProfit() {
@@ -85,11 +86,11 @@ class Result {
 
   getTotalGain() {
     var total = 0;
-    total += this.hitNumList.three * PROFIT.THREE;
-    total += this.hitNumList.four * PROFIT.FOUR;
-    total += this.hitNumList.five * PROFIT.FIVE;
-    total += this.hitNumList.fiveAndBonus * PROFIT.FIVE_AND_BONUS;
-    total += this.hitNumList.six * PROFIT.SIX;
+    total += this.#hitList.three * PROFIT.THREE;
+    total += this.#hitList.four * PROFIT.FOUR;
+    total += this.#hitList.five * PROFIT.FIVE;
+    total += this.#hitList.fiveAndBonus * PROFIT.FIVE_AND_BONUS;
+    total += this.#hitList.six * PROFIT.SIX;
     return total;
   }
 
@@ -102,20 +103,18 @@ class Result {
   }
 
   printList() {
+    MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.#hitList.three}개`);
+    MissionUtils.Console.print(`4개 일치 (50,000원) - ${this.#hitList.four}개`);
     MissionUtils.Console.print(
-      `3개 일치 (5,000원) - ${this.hitNumList.three}개`
+      `5개 일치 (1,500,000원) - ${this.#hitList.five}개`
     );
     MissionUtils.Console.print(
-      `4개 일치 (50,000원) - ${this.hitNumList.four}개`
+      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${
+        this.#hitList.fiveAndBonus
+      }개`
     );
     MissionUtils.Console.print(
-      `5개 일치 (1,500,000원) - ${this.hitNumList.five}개`
-    );
-    MissionUtils.Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${this.hitNumList.fiveAndBonus}개`
-    );
-    MissionUtils.Console.print(
-      `6개 일치 (2,000,000,000원) - ${this.hitNumList.six}개`
+      `6개 일치 (2,000,000,000원) - ${this.#hitList.six}개`
     );
   }
 }

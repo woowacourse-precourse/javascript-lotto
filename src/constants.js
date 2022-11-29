@@ -1,7 +1,7 @@
 const PRINT = {
   ENTER_PURCHASE_AMOUNT_INPUT: '구입금액을 입력해 주세요.\n',
-  ENTER_WINNING_NUMS: '당첨 번호를 입력해 주세요.\n',
-  ENTER_BONUS_NUM: '보너스 번호를 입력해 주세요.\n'
+  ENTER_WINNING_NUMS: '\n당첨 번호를 입력해 주세요.\n',
+  ENTER_BONUS_NUM: '\n보너스 번호를 입력해 주세요.\n',
 };
 
 const ERROR_MESSAGE = {

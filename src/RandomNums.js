@@ -1,53 +1,49 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+const { sortAscending } = require('./util');
 const { LOTTO } = require('./constants');
 
 class RandomNums {
+  #amount;
+  #randomNumUnits = [];
+
   constructor(amount) {
-    this.amount = amount;
-    this.randomNumUnits = [];
-    this.getRandomNums();
+    this.#amount = amount;
+    this.makeRandomNums();
   }
 
   getRandomNums() {
-    if (this.randomNumUnits.length === this.amount) {
-      this.printRandomNums();
-      return;
-    }
-    this.randomNumUnits.push(this.makeRandomNums());
-    this.getRandomNums();
+    return this.#randomNumUnits;
   }
 
-  SortRandomNums() {
+  makeRandomNums() {
+    if (this.#randomNumUnits.length === this.#amount) {
+      this.print();
+      return;
+    }
+    this.#randomNumUnits.push(this.generate());
+    this.makeRandomNums();
+  }
+
+  generate() {
     const randomNums = MissionUtils.Random.pickUniqueNumbersInRange(
       LOTTO.MIN_NUM,
       LOTTO.MAX_NUM,
       LOTTO.NUM
     );
-    this.sortNums(randomNums);
+    sortAscending(randomNums);
     return randomNums;
   }
 
-  sortNums(randomNums) {
-    randomNums.sort((firstInput, secondInput) => {
-      return firstInput - secondInput;
-    });
-  }
-
-  printRandomNums() {
+  print() {
     MissionUtils.Console.print('');
-    MissionUtils.Console.print(`${this.amount}개를 구매했습니다.`);
-    this.randomNumUnits.forEach((randomNums) => {
+    MissionUtils.Console.print(`${this.#amount}개를 구매했습니다.`);
+    this.#randomNumUnits.forEach((randomNums) => {
       this.printNum(randomNums);
     });
   }
 
   printNum(randomNums) {
-    let print = '[';
-    randomNums.forEach((num, index) => {
-      print += num;
-      if (index === 5) print += ']';
-      else print += ', ';
-    });
+    const print = `[${randomNums.join(', ')}]`;
     MissionUtils.Console.print(print);
   }
 }

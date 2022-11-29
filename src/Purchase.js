@@ -19,9 +19,7 @@ class Purchase {
 
   makeLotto(money) {
     this.#money = money;
-    const amount = this.getAmount();
-    const random = new RandomNums(amount);
-    this.randomNumUnits = random.randomNumUnits;
+    const random = new RandomNums(this.getAmount(money));
     this.readLottoNums();
   }
 
