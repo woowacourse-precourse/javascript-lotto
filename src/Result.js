@@ -1,4 +1,4 @@
-const MissionUtils = require('@woowacourse/mission-utils');
+const { Console } = require('@woowacourse/mission-utils');
 const { PROFIT, PRICE_PER_LOTTO } = require('./constants');
 
 class Result {
@@ -21,7 +21,6 @@ class Result {
     this.correctNums = this.makeCorrectNums();
     this.setHitList(this.correctNums);
     this.setProfit();
-    this.printResult();
   }
 
   makeCorrectNums() {
@@ -95,27 +94,19 @@ class Result {
   }
 
   printResult() {
-    MissionUtils.Console.print('');
-    MissionUtils.Console.print(`당첨 통계`);
-    MissionUtils.Console.print(`---`);
+    Console.print(PRINT.RESULT_FORM);
     this.printList();
-    MissionUtils.Console.print(`총 수익률은 ${this.profit}%입니다.`);
+    Console.print(`총 수익률은 ${this.profit}%입니다.`);
   }
 
   printList() {
-    MissionUtils.Console.print(`3개 일치 (5,000원) - ${this.#hitList.three}개`);
-    MissionUtils.Console.print(`4개 일치 (50,000원) - ${this.#hitList.four}개`);
-    MissionUtils.Console.print(
-      `5개 일치 (1,500,000원) - ${this.#hitList.five}개`
+    Console.print(PRINT.CORRECT_THREE + `${this.#hitList.three}개`);
+    Console.print(PRINT.CORRECT_FOUR + `${this.#hitList.four}개`);
+    Console.print(PRINT.CORRECT_FIVE + `${this.#hitList.five}개`);
+    Console.print(
+      PRINT.CORRECT_FIVE_AND_BONUS + `${this.#hitList.fiveAndBonus}개`
     );
-    MissionUtils.Console.print(
-      `5개 일치, 보너스 볼 일치 (30,000,000원) - ${
-        this.#hitList.fiveAndBonus
-      }개`
-    );
-    MissionUtils.Console.print(
-      `6개 일치 (2,000,000,000원) - ${this.#hitList.six}개`
-    );
+    Console.print(PRINT.CORRECT_SIX + `${this.#hitList.six}개`);
   }
 }
 

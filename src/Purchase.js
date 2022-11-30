@@ -4,6 +4,7 @@ const InputView = require('./InputView');
 const RandomNums = require('./RandomNums');
 const Result = require('./Result');
 const { LOTTO, PRICE_PER_LOTTO } = require('./constants');
+const { getAmount } = require('./util');
 
 class Purchase {
   #money;
@@ -19,31 +20,22 @@ class Purchase {
 
   makeLotto(money) {
     this.#money = money;
-    const random = new RandomNums(this.getAmount(money));
-    this.readLottoNums();
+    const random = new RandomNums(getAmount(money));
+    InputView.readLottoNums(this.getUserInput.bind(this));
   }
 
-  getAmount() {
-    return this.#money / PRICE_PER_LOTTO;
+  getUserInput(inputNums) {
+    this.lotto = new Lotto(inputNums);
+    InputView.readBonusNum(this.lotto.getNumbers(), this.makeResult.bind(this));
   }
 
-  validateBonusNum(number) {
-    Purchase.checkIsNum(number);
-    Purchase.checkNumRange(number);
-    Purchase.checkDuplicatedNum(this.lotto.getNumbers(), number);
-  }
-
-  static checkNumRange(number) {
-    if (number < LOTTO.MIN_NUM || number > LOTTO.MAX_NUM)
-      throw new Error('[ERROR] 로또 번호는 1~45 범위의 숫자여야 합니다.');
-  }
-
-  static checkDuplicatedNum(lottoNum, bonusNum) {
-    if (lottoNum.includes(bonusNum) === true) {
-      throw new Error(
-        '[ERROR] 당첨 번호와 보너스 번호는 중복된 값을 가질 수 없습니다.'
-      );
-    }
+  makeResult(bonusNum) {
+    this.result = new Result(
+      this.randomNumUnits,
+      this.lotto.getNumbers(),
+      bonusNum
+    );
+    this.result.printResult();
   }
 }
 

@@ -1,5 +1,11 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const { checkIsNum, checkRightAmountMoney } = requrie('./util');
+const { PRINT } = require('./constants');
+const {
+  checkIsNum,
+  checkNumRange,
+  checkDuplicatedBonusNum,
+  checkRightAmountMoney,
+} = require('./validate');
 
 const InputView = {
   readInput(makeLotto) {
@@ -17,25 +23,24 @@ const InputView = {
     checkRightAmountMoney(money);
   },
 
-  readLottoNums() {
-    MissionUtils.Console.readLine(PRINT.ENTER_WINNING_NUMS, (numbers) => {
-      this.lotto = new Lotto(numbers.split(','));
-      this.readBonusNum();
+  readLottoNums(getUserInput) {
+    MissionUtils.Console.readLine(PRINT.ENTER_WINNING_NUMS, (inputNums) => {
+      getUserInput(inputNums);
     });
   },
 
-  readBonusNum() {
+  readBonusNum(lottoNum, makeResult) {
     MissionUtils.Console.readLine(PRINT.ENTER_BONUS_NUM, (input) => {
-      this.validateBonusNum(input);
-      this.bonusNum = input;
-      const result = new Result(
-        this.randomNumUnits,
-        this.lotto.getNumbers(),
-        this.bonusNum
-      );
-      result.getResult();
+      this.validateBonusNum(input, lottoNum);
+      makeResult(input);
       MissionUtils.Console.close();
     });
+  },
+
+  validateBonusNum(input, lottoNum) {
+    checkIsNum(input);
+    checkNumRange(input);
+    checkDuplicatedBonusNum(lottoNum, input);
   },
 };
 
