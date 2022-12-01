@@ -18,7 +18,7 @@ class Controller {
   }
 
   run() {
-    InputView.inputLottoAmount(this.answerLottoAmount.bind(this));
+    InputView.readLottoAmount(this.answerLottoAmount.bind(this));
   }
 
   answerLottoAmount(answer) {
@@ -33,11 +33,11 @@ class Controller {
   }
 
   inputWinningLotto() {
-    InputView.inputWinningLottoNumbers(this.answerWinningLottoNumbers.bind(this));
+    InputView.readWinningLottoNumbers(this.answerWinningLottoNumbers.bind(this));
   }
 
   answerWinningLottoNumbers(winningNumbers) {
-    InputView.inputBonusNumber(this.answerBonusNumber(winningNumbers).bind(this));
+    InputView.readBonusNumber(this.answerBonusNumber(winningNumbers).bind(this));
   }
 
   answerBonusNumber(winningNumbers) {
