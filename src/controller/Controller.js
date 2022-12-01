@@ -4,7 +4,7 @@ const LottoTicket = require('../domain/lotto/LottoTicket');
 const WinningLotto = require('../domain/lotto/WinningLotto');
 const Result = require('../domain/result/Result');
 const InputView = require('../view/InputView');
-const PrintView = require('../view/PrintView');
+const OutputView = require('../view/OutputView');
 
 class Controller {
   #lottoAmount;
@@ -26,8 +26,8 @@ class Controller {
     const lottoCount = this.#lottoAmount.getLottoCount();
     this.#lottoTicket = LottoTicket.of(lottoCount);
 
-    PrintView.printLottoCount(lottoCount);
-    PrintView.printLottoTicket(this.#lottoTicket);
+    OutputView.printLottoCount(lottoCount);
+    OutputView.printLottoTicket(this.#lottoTicket);
 
     this.inputWinningLotto();
   }
@@ -51,8 +51,8 @@ class Controller {
     const result = Result.from(this.#lottoTicket, this.#winningLotto);
     const profit = result.getProfit(this.#lottoAmount.getValue());
 
-    PrintView.printWinningStats(result);
-    PrintView.printProfit(profit);
+    OutputView.printWinningStats(result);
+    OutputView.printProfit(profit);
 
     Controller.exit();
   }

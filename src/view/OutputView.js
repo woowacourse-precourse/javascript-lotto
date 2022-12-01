@@ -1,8 +1,8 @@
 const { Console } = require('@woowacourse/mission-utils');
 const Prize = require('../domain/result/Prize');
 
-class PrintView {
-  static #MESSAGE = Object.freeze({
+const OutputView = {
+  MESSAGE: Object.freeze({
     getLottoCountMessage(lottoCount) {
       return `${lottoCount}개를 구매했습니다.`;
     },
@@ -15,31 +15,31 @@ class PrintView {
     getProfitMessage(profit) {
       return `총 수익률은 ${profit}%입니다.`;
     },
-  });
+  }),
 
-  static printLottoCount(count) {
-    Console.print(PrintView.#MESSAGE.getLottoCountMessage(count));
-  }
+  printLottoCount(count) {
+    Console.print(OutputView.MESSAGE.getLottoCountMessage(count));
+  },
 
-  static printLottoTicket(lottoTicket) {
+  printLottoTicket(lottoTicket) {
     lottoTicket.getLottos().forEach((lotto) => Console.print(`[${lotto.getNumbers().join(', ')}]`));
     Console.print('');
-  }
+  },
 
-  static printWinningStats(result) {
-    Console.print(this.#MESSAGE.winningStatsTitleMessage);
+  printWinningStats(result) {
+    Console.print(this.MESSAGE.winningStatsTitleMessage);
     result.getPrizes().forEach((value, key) => {
       if (Prize.NONE === key) {
         return;
       }
 
-      Console.print(this.#MESSAGE.getWinningStatsMessage(key, value));
+      Console.print(this.MESSAGE.getWinningStatsMessage(key, value));
     });
-  }
+  },
 
-  static printProfit(profit) {
-    Console.print(PrintView.#MESSAGE.getProfitMessage(profit));
-  }
-}
+  printProfit(profit) {
+    Console.print(OutputView.MESSAGE.getProfitMessage(profit));
+  },
+};
 
-module.exports = PrintView;
+module.exports = OutputView;
