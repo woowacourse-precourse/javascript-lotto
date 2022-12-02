@@ -47,9 +47,19 @@ class Prize {
     },
   });
 
-  static getPrize(matchCount, isBonus) {
+  static match(matchCount, isBonus) {
     const { values } = Object;
     return values(Prize).find(({ match }) => match(matchCount, isBonus));
+  }
+
+  static toString(prize, count) {
+    if (prize === Prize.NONE) {
+      return '';
+    }
+
+    const hasBonusMessage = prize === Prize.SECOND ? ', 보너스 볼 일치' : '';
+    const { amount, matchCount } = prize;
+    return `${matchCount}개 일치${hasBonusMessage} (${amount.toLocaleString()}원) - ${count}개`;
   }
 }
 

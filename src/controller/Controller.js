@@ -37,6 +37,7 @@ class Controller {
   }
 
   answerWinningLottoNumbers(winningNumbers) {
+    OutputView.printBlank();
     InputView.readBonusNumber(this.answerBonusNumber(winningNumbers).bind(this));
   }
 
@@ -51,7 +52,8 @@ class Controller {
     const result = Result.from(this.#lottoTicket, this.#winningLotto);
     const profit = result.getProfit(this.#lottoAmount.getValue());
 
-    OutputView.printWinningStats(result);
+    OutputView.printBlank();
+    OutputView.printWinningStats(result.toStringPrizes());
     OutputView.printProfit(profit);
 
     Controller.exit();

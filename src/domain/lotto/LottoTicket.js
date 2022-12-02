@@ -29,8 +29,8 @@ class LottoTicket {
     return Array.from({ length: count }, () => Lotto.of(createRandomNumbers()));
   }
 
-  getLottos() {
-    return this.#lottos;
+  forEach(callback) {
+    this.#lottos.forEach(callback);
   }
 
   toString() {

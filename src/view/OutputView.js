@@ -1,21 +1,18 @@
 const { Console } = require('@woowacourse/mission-utils');
-const Prize = require('../domain/result/Prize');
 
 const OutputView = {
-  MESSAGE: {
-    LOTTO_COUNT: '개를 구매했습니다.',
-    WINNING_STATS_TITLE: '당첨 통계\n---',
-    PROFIT_PREFIX: '총 수익률은',
-    PROFIT_SUFFIX: '%입니다.',
-  },
-
   message(type) {
-    return this.MESSAGE[type] ?? '해당 없음';
+    return {
+      BLANK: '',
+      LOTTO_COUNT: '개를 구매했습니다.',
+      WINNING_STATS_TITLE: '당첨 통계\n---',
+      PROFIT_PREFIX: '총 수익률은',
+      PROFIT_SUFFIX: '%입니다.',
+    }[type] ?? '해당 없음';
   },
 
-  getWinningStatsMessage({ amount, matchCount }, count) {
-    const hasBonusMessage = amount === Prize.SECOND.amount ? ', 보너스 볼 일치' : '';
-    return `${matchCount}개 일치${hasBonusMessage} (${amount.toLocaleString()}원) - ${count}개`;
+  printBlank() {
+    Console.print(this.message('BLANK'));
   },
 
   printLottoCount(count) {
@@ -26,15 +23,9 @@ const OutputView = {
     Console.print(lottoTicket);
   },
 
-  printWinningStats(result) {
+  printWinningStats(winningStats) {
     Console.print(this.message('WINNING_STATS_TITLE'));
-    result.getPrizes().forEach((count, prize) => {
-      if (Prize.NONE === prize) {
-        return;
-      }
-
-      Console.print(this.getWinningStatsMessage(prize, count));
-    });
+    Console.print(winningStats);
   },
 
   printProfit(profit) {

@@ -37,14 +37,15 @@ class Result {
     }
   }
 
-  getPrizes() {
-    return this.#prizes;
-  }
-
   getProfit(lottoAmount) {
     return (
       (this.#prizeMoney * Result.#PROFIT.percentage) / lottoAmount
     ).toFixed(Result.#PROFIT.decimalPoint).toLocaleString();
+  }
+
+  toStringPrizes() {
+    const prizes = [...this.#prizes].splice(1);
+    return prizes.map(([prize, count]) => Prize.toString(prize, count)).join('\n');
   }
 
   #initializePrizes() {
@@ -55,10 +56,10 @@ class Result {
   }
 
   #countPrize() {
-    this.lottoTicket.getLottos().forEach((lotto) => {
+    this.lottoTicket.forEach((lotto) => {
       const matchCount = this.winningLotto.countSameNumber(lotto);
       const isBonus = lotto.includes(this.winningLotto.getBonusNumber());
-      const prize = Prize.getPrize(matchCount, isBonus);
+      const prize = Prize.match(matchCount, isBonus);
       const newValue = this.#prizes.get(prize) + 1;
       this.#prizes.set(prize, newValue);
     });
