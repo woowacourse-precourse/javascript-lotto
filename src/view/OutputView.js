@@ -2,23 +2,22 @@ const { Console } = require('@woowacourse/mission-utils');
 const Prize = require('../domain/result/Prize');
 
 const OutputView = {
-  MESSAGE: Object.freeze({
-    getLottoCountMessage(lottoCount) {
-      return `${lottoCount}개를 구매했습니다.`;
-    },
-    winningStatsTitleMessage: '당첨 통계\n---',
-    getWinningStatsMessage(prize, count) {
-      const { amount, matchCount } = prize;
-      const hasBonusMessage = prize === Prize.SECOND ? ', 보너스 볼 일치' : '';
-      return `${matchCount}개 일치${hasBonusMessage} (${amount.toLocaleString()}원) - ${count}개`;
-    },
-    getProfitMessage(profit) {
-      return `총 수익률은 ${profit}%입니다.`;
-    },
-  }),
+  message(type) {
+    return {
+      LOTTO_COUNT: '개를 구매했습니다.',
+      WINNING_STATS_TITLE: '당첨 통계\n---',
+      PROFIT_PREFIX: '총 수익률은',
+      PROFIT_SUFFIX: '%입니다.',
+    }[type] ?? '해당 없음';
+  },
+
+  getWinningStatsMessage({ amount, matchCount }, count) {
+    const hasBonusMessage = amount === Prize.SECOND.amount ? ', 보너스 볼 일치' : '';
+    return `${matchCount}개 일치${hasBonusMessage} (${amount.toLocaleString()}원) - ${count}개`;
+  },
 
   printLottoCount(count) {
-    Console.print(OutputView.MESSAGE.getLottoCountMessage(count));
+    Console.print(`${count}${this.message('LOTTO_COUNT')}`);
   },
 
   printLottoTicket(lottoTicket) {
@@ -27,18 +26,18 @@ const OutputView = {
   },
 
   printWinningStats(result) {
-    Console.print(this.MESSAGE.winningStatsTitleMessage);
-    result.getPrizes().forEach((value, key) => {
-      if (Prize.NONE === key) {
+    Console.print(this.message('WINNING_STATS_TITLE'));
+    result.getPrizes().forEach((count, prize) => {
+      if (Prize.NONE === prize) {
         return;
       }
 
-      Console.print(this.MESSAGE.getWinningStatsMessage(key, value));
+      Console.print(this.getWinningStatsMessage(prize, count));
     });
   },
 
   printProfit(profit) {
-    Console.print(OutputView.MESSAGE.getProfitMessage(profit));
+    Console.print(`${this.message('PROFIT_PREFIX')} ${profit}${this.message('PROFIT_SUFFIX')}`);
   },
 };
 
