@@ -27,7 +27,7 @@ class Controller {
     this.#lottoTicket = LottoTicket.of(lottoCount);
 
     OutputView.printLottoCount(lottoCount);
-    OutputView.printLottoTicket(this.#lottoTicket);
+    OutputView.printLottoTicket(this.#lottoTicket.toString());
 
     this.inputWinningLotto();
   }

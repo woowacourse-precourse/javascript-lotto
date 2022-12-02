@@ -32,6 +32,10 @@ class LottoTicket {
   getLottos() {
     return this.#lottos;
   }
+
+  toString() {
+    return `${this.#lottos.map(((lotto) => lotto.toString())).join('\n')}\n`;
+  }
 }
 
 module.exports = LottoTicket;

@@ -2,13 +2,15 @@ const { Console } = require('@woowacourse/mission-utils');
 const Prize = require('../domain/result/Prize');
 
 const OutputView = {
+  MESSAGE: {
+    LOTTO_COUNT: '개를 구매했습니다.',
+    WINNING_STATS_TITLE: '당첨 통계\n---',
+    PROFIT_PREFIX: '총 수익률은',
+    PROFIT_SUFFIX: '%입니다.',
+  },
+
   message(type) {
-    return {
-      LOTTO_COUNT: '개를 구매했습니다.',
-      WINNING_STATS_TITLE: '당첨 통계\n---',
-      PROFIT_PREFIX: '총 수익률은',
-      PROFIT_SUFFIX: '%입니다.',
-    }[type] ?? '해당 없음';
+    return this.MESSAGE[type] ?? '해당 없음';
   },
 
   getWinningStatsMessage({ amount, matchCount }, count) {
@@ -21,8 +23,7 @@ const OutputView = {
   },
 
   printLottoTicket(lottoTicket) {
-    lottoTicket.getLottos().forEach((lotto) => Console.print(`[${lotto.getNumbers().join(', ')}]`));
-    Console.print('');
+    Console.print(lottoTicket);
   },
 
   printWinningStats(result) {

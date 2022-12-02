@@ -33,10 +33,6 @@ class Lotto {
     }
   }
 
-  getNumbers() {
-    return this.#numbers;
-  }
-
   countSameNumber(lotto) {
     Lotto.validateLotto(lotto);
     return this.#numbers.filter((number) => lotto.includes(number)).length;
@@ -44,6 +40,14 @@ class Lotto {
 
   includes(number) {
     return this.#numbers.some((value) => value === number);
+  }
+
+  getNumbers() {
+    return this.#numbers;
+  }
+
+  toString() {
+    return `[${this.#numbers.join(', ')}]`;
   }
 }
 
