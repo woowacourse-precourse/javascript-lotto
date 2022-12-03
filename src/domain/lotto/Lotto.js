@@ -15,10 +15,10 @@ class Lotto {
   }
 
   static validate(numbers) {
-    if (numbers.length !== 6) {
+    if (numbers.length !== Lotto.SIZE) {
       throw new LottoLengthException(numbers.length);
     }
-    if (new Set(numbers).size !== 6) {
+    if (new Set(numbers).size !== Lotto.SIZE) {
       throw new LottoHasDuplicatedException();
     }
   }
