@@ -1,4 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
+const { makeLottoTicket } = require('../domain/generator/LottoMaker');
+const { generate } = require('../domain/generator/LottoRandomNumbersGenerator');
 const LottoAmount = require('../domain/lotto/LottoAmount');
 const LottoTicket = require('../domain/lotto/LottoTicket');
 const WinningLotto = require('../domain/lotto/WinningLotto');
@@ -24,7 +26,8 @@ class Controller {
   answerLottoAmount(answer) {
     this.#lottoAmount = LottoAmount.from(answer);
     const lottoCount = this.#lottoAmount.getLottoCount();
-    this.#lottoTicket = LottoTicket.of(lottoCount);
+    const lottos = makeLottoTicket(lottoCount, generate);
+    this.#lottoTicket = LottoTicket.of(lottos);
 
     OutputView.printLottoCount(lottoCount);
     OutputView.printLottoTicket(this.#lottoTicket.toString());

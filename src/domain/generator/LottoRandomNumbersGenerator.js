@@ -3,7 +3,7 @@ const Lotto = require('../lotto/Lotto');
 const LottoNumber = require('../lotto/LottoNumber');
 
 const LottoRandomNumbersGenerator = {
-  createRandomNumbers() {
+  generate() {
     const { min, max } = LottoNumber.RANGE;
     const size = Lotto.SIZE;
     const sortByNumber = (a, b) => a - b;

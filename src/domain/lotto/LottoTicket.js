@@ -1,32 +1,26 @@
 const Lotto = require('./Lotto');
 const InstanceException = require('../../exception/InstanceException');
-const { createRandomNumbers } = require('../generator/NumberGenerator');
 
 class LottoTicket {
   #lottos;
 
-  constructor(count) {
-    const lottos = LottoTicket.createRandomLotto(count);
+  constructor(lottos) {
     LottoTicket.validate(lottos);
     this.#lottos = lottos;
   }
 
-  static of(count) {
-    return new LottoTicket(count);
+  static of(lottos) {
+    return new LottoTicket(lottos);
   }
 
   static validate(lottos) {
-    lottos.forEach(LottoTicket.validateIsTicket);
+    lottos.forEach(LottoTicket.checkLottoInstance);
   }
 
-  static validateIsTicket(lotto) {
+  static checkLottoInstance(lotto) {
     if (!(lotto instanceof Lotto)) {
       throw new InstanceException('Lotto');
     }
-  }
-
-  static createRandomLotto(count) {
-    return Array.from({ length: count }, () => Lotto.of(createRandomNumbers()));
   }
 
   forEach(callback) {
