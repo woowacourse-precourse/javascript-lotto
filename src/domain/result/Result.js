@@ -23,10 +23,6 @@ class Result {
     this.#setPrizeMoney();
   }
 
-  static from(lottoTicket, winningLotto) {
-    return new Result(lottoTicket, winningLotto);
-  }
-
   static validate(lottoTicket, winningLotto) {
     if (!(lottoTicket instanceof LottoTicket)) {
       throw new InstanceException('LottoTicket');

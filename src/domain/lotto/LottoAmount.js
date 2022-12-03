@@ -13,10 +13,6 @@ class LottoAmount {
     this.#value = value;
   }
 
-  static from(value) {
-    return new LottoAmount(value);
-  }
-
   static validate(value) {
     if (checkNotNumber(value)) {
       throw new NotNumberException(value);

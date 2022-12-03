@@ -24,10 +24,10 @@ class Controller {
   }
 
   answerLottoAmount(answer) {
-    this.#lottoAmount = LottoAmount.from(answer);
+    this.#lottoAmount = new LottoAmount(answer);
     const lottoCount = this.#lottoAmount.getLottoCount();
     const lottos = makeLottoTicket(lottoCount, generate);
-    this.#lottoTicket = LottoTicket.of(lottos);
+    this.#lottoTicket = new LottoTicket(lottos);
 
     OutputView.printLottoCount(lottoCount);
     OutputView.printLottoTicket(this.#lottoTicket.toString());
@@ -46,13 +46,13 @@ class Controller {
 
   answerBonusNumber(winningNumbers) {
     return (answer) => {
-      this.#winningLotto = WinningLotto.of(winningNumbers, answer);
+      this.#winningLotto = new WinningLotto(winningNumbers, answer);
       this.printResult();
     };
   }
 
   printResult() {
-    const result = Result.from(this.#lottoTicket, this.#winningLotto);
+    const result = new Result(this.#lottoTicket, this.#winningLotto);
     const profit = result.getProfit(this.#lottoAmount.getValue());
 
     OutputView.printBlank();

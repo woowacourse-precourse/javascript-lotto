@@ -9,10 +9,6 @@ class LottoTicket {
     this.#lottos = lottos;
   }
 
-  static of(lottos) {
-    return new LottoTicket(lottos);
-  }
-
   static validate(lottos) {
     lottos.forEach(LottoTicket.checkLottoInstance);
   }

@@ -23,10 +23,6 @@ class Lotto {
     }
   }
 
-  static of(numbers) {
-    return new Lotto(numbers);
-  }
-
   static validateLotto(lotto) {
     if (!(lotto instanceof Lotto)) {
       throw new InstanceException('Lotto');

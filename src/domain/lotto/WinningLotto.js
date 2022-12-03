@@ -18,10 +18,6 @@ class WinningLotto extends Lotto {
     }
   }
 
-  static of(numbers, bonusNumber) {
-    return new WinningLotto(numbers, bonusNumber);
-  }
-
   getBonusNumber() {
     return this.#bonusNumber;
   }
