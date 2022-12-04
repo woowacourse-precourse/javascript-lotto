@@ -14,11 +14,4 @@ describe('로또 클래스 테스트', () => {
       new Lotto([1, 2, 3, 4, 5, 5]);
     }).toThrow('[ERROR]');
   });
-
-  test('당첨 번호 형변환 테스트', () => {
-    const input = '1,2,3,4,5,6';
-    const expectedResult = [1, 2, 3, 4, 5, 6];
-
-    expect(Lotto.changeWinningNumbersType(input)).toEqual(expectedResult);
-  });
 });
