@@ -1,3 +1,5 @@
+const { SEPARATOR } = require('./settings');
+
 class Lotto {
   #numbers;
 
@@ -12,6 +14,9 @@ class Lotto {
     }
   }
 
+  static changeWinningNumbersType(input) {
+    return input.split(SEPARATOR).map((winningNumber) => Number(winningNumber));
+  }
   // TODO: 추가 기능 구현
 }
 
