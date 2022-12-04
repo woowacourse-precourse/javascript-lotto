@@ -2,9 +2,9 @@ const { Console } = require('@woowacourse/mission-utils');
 
 const InputView = {
   message: {
-    PURCHASE: '구입금액을 입력해 주세요.',
-    WINNING: '당첨 번호를 입력해 주세요.',
-    BONUS: '보너스 번호를 입력해 주세요.',
+    PURCHASE: '구입금액을 입력해 주세요.\n',
+    WINNING: '\n당첨 번호를 입력해 주세요.\n',
+    BONUS: '\n보너스 번호를 입력해 주세요.\n',
   },
 
   readInput(message, callback) {
