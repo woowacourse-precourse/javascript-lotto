@@ -1,23 +1,25 @@
-const { getCount, getRandomNumbers, issueLottos } = require('./Purchase');
+const Purchase = require('./Purchase');
 const Draw = require('./Draw');
 const Prize = require('./Prize');
 const { readPurchaseAmount, readWinningNumbers, readBonusNumber } = require('./InputView');
 const { printPurchase } = require('./OutputView');
 
 class GameController {
-  #issuedLottos = [];
+  #purchase = new Purchase();
 
   #draw = new Draw();
 
+  #prize = new Prize();
+
   readPurchase() {
-    readPurchaseAmount(this.purchase.bind(this));
+    readPurchaseAmount(this.makePurchase.bind(this));
   }
 
-  purchase(money) {
-    const count = getCount(money);
-    this.#issuedLottos = issueLottos(count, getRandomNumbers);
+  makePurchase(money) {
+    const count = this.#purchase.getCount(money);
+    this.#purchase.issueLottos(count, Purchase.getRandomNumbers);
 
-    printPurchase(count, this.#issuedLottos);
+    printPurchase(count, this.#purchase.getIssuedLottos());
   }
 
   readWinning() {
@@ -40,9 +42,15 @@ class GameController {
     const { winningNumbers, bonusNumber } = this.#draw.getWinningAndBonus();
 
     const prize = new Prize();
-    const result = prize.getResult(this.#issuedLottos, winningNumbers, bonusNumber);
+    const result = prize.getResult(this.#purchase.getIssuedLottos(), winningNumbers, bonusNumber);
 
     return result;
+  }
+
+  getProfitRate() {
+    const expense = this.#purchase.getExpense();
+
+    return this.#prize.getProfitRate(expense);
   }
 }
 

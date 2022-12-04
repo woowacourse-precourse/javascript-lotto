@@ -2,7 +2,12 @@ const { Random } = require('@woowacourse/mission-utils');
 const { MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_LENGTH, PRICE } = require('./settings');
 
 class Purchase {
-  static getCount(money) {
+  #money;
+
+  #issuedLottos = [];
+
+  getCount(money) {
+    this.#money = money;
     const count = money / PRICE;
 
     return count;
@@ -18,10 +23,16 @@ class Purchase {
     return numbers;
   }
 
-  static issueLottos(count, getNumbers) {
-    const issuedLottos = Array.from({ length: count }, () => getNumbers().sort((a, b) => a - b));
+  issueLottos(count, getNumbers) {
+    this.#issuedLottos = Array.from({ length: count }, () => getNumbers().sort((a, b) => a - b));
+  }
 
-    return issuedLottos;
+  getIssuedLottos() {
+    return this.#issuedLottos;
+  }
+
+  getExpense() {
+    return this.#money;
   }
 }
 

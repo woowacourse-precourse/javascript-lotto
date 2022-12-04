@@ -19,6 +19,14 @@ class Prize {
     return this.#ranks;
   }
 
+  getProfitRate(expense) {
+    const profit = this.#ranks
+      .map((rank) => rank.money * rank.count)
+      .reduce((prev, curr) => prev + curr);
+
+    return ((profit / expense) * 100).toFixed(1);
+  }
+
   compareAllLottos(issuedLottos, winningNumbers, bonusNumber) {
     issuedLottos.forEach((issuedLotto) => {
       const { isWon, matchingCount, hasBonus } = this.compareSingleLotto(
