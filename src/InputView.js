@@ -16,6 +16,10 @@ const InputView = {
   readPurchaseAmount(callback) {
     InputView.readInput(InputView.message.PURCHASE, callback);
   },
+
+  readWinningNumbers(callback) {
+    InputView.readInput(InputView.message.WINNING, callback);
+  },
 };
 
 module.exports = InputView;

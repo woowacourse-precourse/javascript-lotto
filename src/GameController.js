@@ -1,5 +1,5 @@
 const { getCount, getRandomNumbers, issueLottos } = require('./Purchase');
-const { readPurchaseAmount } = require('./InputView');
+const { readPurchaseAmount, readWinningNumbers } = require('./InputView');
 const { printPurchase } = require('./OutputView');
 
 class GameController {
@@ -14,6 +14,10 @@ class GameController {
     this.#issuedLottos = issueLottos(count, getRandomNumbers);
 
     printPurchase(count, this.#issuedLottos);
+  }
+
+  readWinning() {
+    readWinningNumbers();
   }
 }
 
