@@ -1,5 +1,6 @@
 const { getCount, getRandomNumbers, issueLottos } = require('./Purchase');
 const { readPurchaseAmount } = require('./InputView');
+const { printPurchase } = require('./OutputView');
 
 class GameController {
   #issuedLottos = [];
@@ -11,6 +12,8 @@ class GameController {
   purchase(money) {
     const count = getCount(money);
     this.#issuedLottos = issueLottos(count, getRandomNumbers);
+
+    printPurchase(count, this.#issuedLottos);
   }
 }
 
