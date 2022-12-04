@@ -20,6 +20,10 @@ const InputView = {
   readWinningNumbers(callback) {
     InputView.readInput(InputView.message.WINNING, callback);
   },
+
+  readBonusNumber(callback) {
+    InputView.readInput(InputView.message.BONUS, callback);
+  },
 };
 
 module.exports = InputView;

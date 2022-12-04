@@ -1,5 +1,5 @@
 const { getCount, getRandomNumbers, issueLottos } = require('./Purchase');
-const { readPurchaseAmount, readWinningNumbers } = require('./InputView');
+const { readPurchaseAmount, readWinningNumbers, readBonusNumber } = require('./InputView');
 const { printPurchase } = require('./OutputView');
 
 class GameController {
@@ -18,6 +18,10 @@ class GameController {
 
   readWinning() {
     readWinningNumbers();
+  }
+
+  readBonus() {
+    readBonusNumber();
   }
 }
 
