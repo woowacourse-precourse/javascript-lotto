@@ -1,12 +1,14 @@
 const Controller = require('./controller/Controller');
 
 class App {
+  #controller;
+
   constructor() {
-    this.Controller = new Controller();
+    this.#controller = new Controller();
   }
 
   play() {
-    this.Controller.start();
+    this.#controller.start();
   }
 }
 
