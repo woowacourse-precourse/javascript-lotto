@@ -20,10 +20,7 @@ class Controller {
   }
 
   start() {
-    this.InputDisplay.getInput(
-      '구입금액을 입력해 주세요.\n',
-      this.getLotto.bind(this)
-    );
+    this.InputDisplay.readAmountInput(this.getLotto.bind(this));
   }
 
   getLotto(amount) {
@@ -39,10 +36,7 @@ class Controller {
   }
 
   inputWinningNum() {
-    this.InputDisplay.getInput(
-      '당첨 번호를 입력해 주세요.\n',
-      this.getWinningNum.bind(this)
-    );
+    this.InputDisplay.readWinningNum(this.getWinningNum.bind(this));
   }
 
   getWinningNum(winningNum) {
@@ -54,10 +48,7 @@ class Controller {
   }
 
   inputBonusNum() {
-    this.InputDisplay.getInput(
-      '\n보너스 번호를 입력해 주세요.\n',
-      this.getBonusNum.bind(this)
-    );
+    this.InputDisplay.readBonusNum(this.getBonusNum.bind(this));
   }
 
   getBonusNum(bonusNum) {
