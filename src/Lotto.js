@@ -8,16 +8,14 @@ class Lotto {
 
   validate(numbers) {
     if (
-      !(
-        this.checkIsNum(numbers) &&
-        this.checkLength(numbers) &&
-        this.checkNumOverlap(numbers) &&
-        this.checkHasSpace(numbers) &&
-        this.checkNumRange(numbers)
-      )
-    ) {
-      throw new Error('[ERROR] 입력한 당첨 번호가 올바르지 않습니다.');
-    }
+      this.checkIsNum(numbers) &&
+      this.checkLength(numbers) &&
+      this.checkNumOverlap(numbers) &&
+      this.checkHasSpace(numbers) &&
+      this.checkNumRange(numbers)
+    )
+      return;
+    throw new Error('[ERROR] 입력한 당첨 번호가 올바르지 않습니다.');
   }
 
   checkIsNum(numbers) {
