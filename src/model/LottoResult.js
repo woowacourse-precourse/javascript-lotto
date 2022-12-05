@@ -20,7 +20,7 @@ class LottoResult {
       if (arrLength === 3) this.statusChange(0, 5000);
       if (arrLength === 4) this.statusChange(1, 50000);
       if (arrLength === 5) this.statusChange(2, 1500000);
-      if (arrLength === 5 && !this.sameBonusNum) this.statusChange(3, 30000000);
+      if (arrLength === 5 && this.sameBonusNum) this.statusChange(3, 30000000);
       if (arrLength === 6) this.statusChange(4, 2000000000);
     });
 
