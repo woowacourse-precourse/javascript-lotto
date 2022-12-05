@@ -10,12 +10,12 @@ class LottoRandomNum {
       lottoQuantity: 0,
       lottoNums: [],
     };
-    let i = 0;
+    let count = 0;
 
     result.lottoQuantity = this.getQuantity(amount);
-    while (i < result.lottoQuantity) {
+    while (count < result.lottoQuantity) {
       result.lottoNums.push(Random.pickUniqueNumbersInRange(1, 45, 6));
-      i++;
+      count++;
     }
 
     return result;
