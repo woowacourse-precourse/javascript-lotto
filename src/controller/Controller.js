@@ -24,8 +24,7 @@ class Controller {
   }
 
   getLotto(amount) {
-    if (!this.InputCheck.checkAmountInput(amount))
-      throw new Error('[ERROR] 입력한 구입 금액이 올바르지 않습니다.');
+    this.InputCheck.checkAmountInput(amount);
 
     this.amount = amount;
     const result = this.LottoRandomNum.getLottoNum(amount);
@@ -52,9 +51,7 @@ class Controller {
   }
 
   getBonusNum(bonusNum) {
-    if (!this.InputCheck.checkBonusInput(bonusNum, this.winSplitNum)) {
-      throw new Error('[ERROR] 입력한 보너스 번호가 올바르지 않습니다.');
-    }
+    this.InputCheck.checkBonusInput(bonusNum, this.winSplitNum);
     this.bonusNum = bonusNum;
     this.getLottoResult();
   }

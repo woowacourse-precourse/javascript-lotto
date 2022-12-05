@@ -2,19 +2,23 @@ class InputCheck {
   checkAmountInput(input) {
     const INPUT_NUM = Number(input);
 
-    return (
+    if (
       this.checkIsNum(INPUT_NUM) &&
       this.checkThousand(INPUT_NUM) &&
       this.checkUnit(INPUT_NUM)
-    );
+    )
+      return;
+    throw new Error('[ERROR] 입력한 구입 금액이 올바르지 않습니다.');
   }
 
   checkBonusInput(input, winSplitNum) {
-    return (
+    if (
       this.checkIsNum(input) &&
       this.checkNumRange(input) &&
       this.checkSameWinNum(input, winSplitNum)
-    );
+    )
+      return;
+    throw new Error('[ERROR] 입력한 보너스 번호가 올바르지 않습니다.');
   }
 
   checkIsNum(input) {
