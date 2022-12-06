@@ -42,10 +42,6 @@ class Lotto {
     return this.#numbers.some((value) => value === number);
   }
 
-  getNumbers() {
-    return this.#numbers;
-  }
-
   toString() {
     return `[${this.#numbers.join(', ')}]`;
   }

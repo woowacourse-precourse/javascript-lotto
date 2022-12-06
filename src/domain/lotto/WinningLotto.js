@@ -20,7 +20,7 @@ class WinningLotto extends Lotto {
   static validateBonusNumberDuplicated(numbers, bonusNumber) {
     Validation.validate({
       condition: numbers.includes(bonusNumber),
-      exception: WinningLottoDuplicatedException(bonusNumber),
+      exception: new WinningLottoDuplicatedException(bonusNumber),
     });
   }
 
