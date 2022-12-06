@@ -1,7 +1,7 @@
 const LottoNumber = require('./LottoNumber');
+const Validation = require('../../util/Validation');
 const LottoHasDuplicatedException = require('../../exception/lotto/LottoHasDuplicatedException');
 const LottoLengthException = require('../../exception/lotto/LottoLengthException');
-const Validation = require('../../util/Validation');
 
 class Lotto {
   static SIZE = 6;

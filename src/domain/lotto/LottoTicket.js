@@ -10,6 +10,10 @@ class LottoTicket {
   }
 
   static validate(lottos) {
+    LottoTicket.validateLottosInstance(lottos);
+  }
+
+  static validateLottosInstance(lottos) {
     lottos.forEach(LottoTicket.checkLottoInstance);
   }
 

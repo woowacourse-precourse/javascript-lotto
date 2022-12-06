@@ -1,5 +1,5 @@
-const LottoNumberRangeException = require('../../exception/lotto/LottoNumberRangeException');
 const Validation = require('../../util/Validation');
+const LottoNumberRangeException = require('../../exception/lotto/LottoNumberRangeException');
 
 class LottoNumber {
   static RANGE = Object.freeze({

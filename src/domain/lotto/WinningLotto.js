@@ -1,6 +1,7 @@
-const WinningLottoDuplicatedException = require('../../exception/lotto/WinningLottoDuplicatedException');
 const Lotto = require('./Lotto');
 const LottoNumber = require('./LottoNumber');
+const Validation = require('../../util/Validation');
+const WinningLottoDuplicatedException = require('../../exception/lotto/WinningLottoDuplicatedException');
 
 class WinningLotto extends Lotto {
   #bonusNumber;
@@ -13,9 +14,14 @@ class WinningLotto extends Lotto {
   }
 
   static validate(numbers, bonusNumber) {
-    if (numbers.includes(bonusNumber)) {
-      throw new WinningLottoDuplicatedException(bonusNumber);
-    }
+    WinningLotto.validateBonusNumberDuplicated(numbers, bonusNumber);
+  }
+
+  static validateBonusNumberDuplicated(numbers, bonusNumber) {
+    Validation.validate({
+      condition: numbers.includes(bonusNumber),
+      exception: WinningLottoDuplicatedException(bonusNumber),
+    });
   }
 
   getBonusNumber() {

@@ -1,6 +1,6 @@
+const Validation = require('../../util/Validation');
 const LottoAmountDivideException = require('../../exception/lotto/LottoAmountDivideException');
 const LottoAmountLessException = require('../../exception/lotto/LottoAmountLessException');
-const Validation = require('../../util/Validation');
 
 class LottoAmount {
   static #LOTTO_PRICE = 1000;

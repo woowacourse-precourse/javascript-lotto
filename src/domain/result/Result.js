@@ -1,7 +1,7 @@
 const LottoTicket = require('../lotto/LottoTicket');
 const WinningLotto = require('../lotto/WinningLotto');
 const Prize = require('./Prize');
-const InstanceException = require('../../exception/InstanceException');
+const Validation = require('../../util/Validation');
 
 class Result {
   static #PROFIT = Object.freeze({
@@ -24,13 +24,8 @@ class Result {
   }
 
   static validate(lottoTicket, winningLotto) {
-    if (!(lottoTicket instanceof LottoTicket)) {
-      throw new InstanceException('LottoTicket');
-    }
-
-    if (!(winningLotto instanceof WinningLotto)) {
-      throw new InstanceException('WinningLotto');
-    }
+    Validation.checkInstance(lottoTicket, LottoTicket);
+    Validation.checkInstance(winningLotto, WinningLotto);
   }
 
   getProfit(lottoAmount) {
