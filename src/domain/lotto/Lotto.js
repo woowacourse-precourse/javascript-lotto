@@ -1,7 +1,7 @@
 const LottoNumber = require('./LottoNumber');
-const InstanceException = require('../../exception/InstanceException');
 const LottoHasDuplicatedException = require('../../exception/lotto/LottoHasDuplicatedException');
 const LottoLengthException = require('../../exception/lotto/LottoLengthException');
+const Validation = require('../../util/Validation');
 
 class Lotto {
   static SIZE = 6;
@@ -15,22 +15,26 @@ class Lotto {
   }
 
   static validate(numbers) {
-    if (numbers.length !== Lotto.SIZE) {
-      throw new LottoLengthException(numbers.length);
-    }
-    if (new Set(numbers).size !== Lotto.SIZE) {
-      throw new LottoHasDuplicatedException();
-    }
+    Lotto.validateLottoLength(numbers);
+    Lotto.validateDuplicated(numbers);
   }
 
-  static validateLotto(lotto) {
-    if (!(lotto instanceof Lotto)) {
-      throw new InstanceException('Lotto');
-    }
+  static validateLottoLength(numbers) {
+    Validation.validate({
+      condition: numbers.length !== Lotto.SIZE,
+      exception: new LottoLengthException(numbers.length),
+    });
+  }
+
+  static validateDuplicated(numbers) {
+    Validation.validate({
+      condition: new Set(numbers).size !== Lotto.SIZE,
+      exception: new LottoHasDuplicatedException(),
+    });
   }
 
   countSameNumber(lotto) {
-    Lotto.validateLotto(lotto);
+    Validation.checkInstance(lotto, Lotto);
     return this.#numbers.filter((number) => lotto.includes(number)).length;
   }
 

@@ -1,12 +1,10 @@
 const Exception = require('./Exception');
 
 class InstanceException extends Exception {
-  constructor(instance) {
-    super(InstanceException.#getErrorMessage(instance));
-  }
+  static #ERROR_MESSAGE = '인스턴스가 다릅니다.';
 
-  static #getErrorMessage(instance) {
-    return `인스턴스가 ${instance}가 아닙니다.`;
+  constructor() {
+    super(InstanceException.#ERROR_MESSAGE);
   }
 }
 
