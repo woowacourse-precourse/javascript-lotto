@@ -121,9 +121,10 @@ class App {
     );
     const rateOfReturn = (
       returnList.reduce((acc, cur) => acc + cur) / this.purchaseAmount
-    ).toFixed(1);
+      * 100).toFixed(1) ;
     this.rateOfReturn = rateOfReturn;
   }
 }
-
+const app = new App();
+app.play()
 module.exports = App;
