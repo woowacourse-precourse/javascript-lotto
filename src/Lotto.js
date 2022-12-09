@@ -1,18 +1,23 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+const Validation = require("./Validation.js");
+
 class Lotto {
   #numbers;
 
-  constructor(numbers) {
+  constructor(numbers){
     this.validate(numbers);
     this.#numbers = numbers;
   }
 
-  validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
+  getNumbers(){
+    return this.#numbers;
   }
 
-  // TODO: 추가 기능 구현
+  validate(numbers) {
+    Validation.isValidLength(numbers);
+    Validation.isEachUniqueNumber(numbers);
+    numbers.forEach(number => Validation.isValidRangeNumber(number));
+  }
 }
 
 module.exports = Lotto;
