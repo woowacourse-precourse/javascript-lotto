@@ -62,12 +62,9 @@ class App {
   showRankList () {
     const rank = this.staticLotto.getRank();
     Console.print(
+      
       Message.getTotalMatch(
-        rank.rankFive,
-        rank.rankFour,
-        rank.rankThree,
-        rank.rankTwo,
-        rank.rankOne,
+        rank
       ),
     );
     this.showRevenue();
