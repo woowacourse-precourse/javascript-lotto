@@ -6,5 +6,11 @@ const INPUT_MESSAGE = {
   bonusNumberMessage : "보너스 번호를 입력해 주세요.\n",
 };
 
+const LOTTO_PRICE_UNIT = 1000;
 
-module.exports = {INPUT_MESSAGE}
+const OUTPUT_MESSAGE = {
+  purchaseQuantityMessage : (num) => `${num}개를 구매했습니다.\n`,
+
+}
+
+module.exports = {INPUT_MESSAGE, LOTTO_PRICE_UNIT,OUTPUT_MESSAGE}
