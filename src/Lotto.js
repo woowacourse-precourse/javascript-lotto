@@ -1,4 +1,5 @@
-const {LOTTO_PRICE_UNIT} = require('../src/Constant');
+const {LOTTO_PRICE_UNIT, RANDOM_RANGE_NUM : {minInclusive,maxInclusive,numberCount}} = require('../src/Constant');
+const {Random} = require("@woowacourse/mission-utils");
 
 class Lotto {
   #numbers; // 당첨번호
@@ -6,10 +7,25 @@ class Lotto {
   constructor(numbers) {
     // this.validate(numbers);
     this.#numbers = numbers;
+    
+  
   }
 
   purchaseQuantity(amount) {
     return amount/LOTTO_PRICE_UNIT
+  }
+
+  lottomaker (lottoQuantity) {
+    const userLottoList = []
+    for(let count = 0 ; count < lottoQuantity ; count++){
+      let userLotto = Random.pickUniqueNumbersInRange(minInclusive,maxInclusive,numberCount)
+      userLottoList.push(this.ascendingOrder(userLotto))
+    }
+    return userLottoList;
+  } 
+
+  ascendingOrder(numbersList) {
+    return numbersList.sort((a,b) => a-b)
   }
 
   // validate(numbers) {
