@@ -1,4 +1,9 @@
-const setting = require("./LottoGame");
+const {
+  LOTTO_NUMBERS,
+  BONUS_NUMBER,
+  PURCHASE_PRICE,
+} = require("./constants/ErrorMsg");
+
 const {
   LOTTO_LEGNTH,
   MIN_PRICE,
@@ -19,43 +24,30 @@ class Validation {
 
   #validateLottoNumbers(numbers) {
     if (numbers.length !== LOTTO_LEGNTH) {
-      throw new Error(
-        `[ERROR] 로또 번호는 1~${MAX_NUMBER}사이의 ${LOTTO_LEGNTH}자리 숫자여야 합니다.`
-      );
+      throw new Error(LOTTO_NUMBERS.LOTTO_NUMBER_RANGE);
     }
 
     if (numbers.length !== new Set(numbers).size) {
-      throw new Error("[ERROR] 로또 번호는 중복될 수 없습니다.");
+      throw new Error(LOTTO_NUMBERS.CANNOT_DUPLICATE_NUMBER);
     }
   }
 
   #validatePurchasePrice(number) {
     let num = Number(number);
 
-    if (number.includes(","))
-      throw new Error(
-        "[ERROR] 구입 금액 입력 시 콤마(,)는 제외하고 입력해주세요."
-      );
+    if (number.includes(",")) throw new Error(PURCHASE_PRICE.EXCEPT_COMMA);
 
-    if (Number.isNaN(num))
-      throw new Error(
-        `[ERROR] 금액은 ${MIN_PRICE}원 단위로 숫자만 입력해주세요.`
-      );
+    if (Number.isNaN(num)) throw new Error(PURCHASE_PRICE.MIN_UNIT_PRICE);
 
-    if (num < MIN_PRICE)
-      throw new Error(`[ERROR] 로또 구입의 최소 금액은 ${MIN_PRICE}원 입니다.`);
+    if (num < MIN_PRICE) throw new Error(PURCHASE_PRICE.MIN_PURCHASE_PRICE);
   }
 
   #validateBonusNumber(number, targetNumbers) {
     if (Number.isNaN(number) || number > MAX_NUMBER || number < 1)
-      throw new Error(
-        `[ERROR] 보너스 번호는 1~${MAX_NUMBER}사이의 숫자이여야 합니다.`
-      );
+      throw new Error(BONUS_NUMBER.BONUS_NUMBER_RANGE);
 
     if (targetNumbers.includes(number))
-      throw new Error(
-        "[ERROR] 보너스 번호는 당첨 번호와 중복이 되어서는 안됩니다."
-      );
+      throw new Error(BONUS_NUMBER.CANNOT_DUPLICATE_NUMBER);
   }
 }
 

@@ -114,9 +114,7 @@ class LottoGame {
 
     if (countComma !== this.lottoLength - 1)
       throw new Error(
-        `[ERROR] 당첨 번호는 콤마(,)를 사용해서 구분해주세요.(${
-          this.length - 1
-        }개)`
+        `[ERROR] 당첨 번호는 콤마(,)를 사용해서 구분해주세요.(${this.lottoLength}개)`
       );
 
     let array = input.split(",").map((num) => Number(num));
