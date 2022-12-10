@@ -1,15 +1,15 @@
-const game = require('./LottoGame');
+const game = require("./LottoGame");
+const GAME_SETTING = require("./constants/GameConfig");
 
 class App {
-
   constructor() {
     this.lottoGame = new game.GameBuilder()
-      .lottoLength(6)
-      .maxNumber(45)
-      .minPrice(1000)
+      .lottoLength(GAME_SETTING.LOTTO_LEGNTH)
+      .maxNumber(GAME_SETTING.MAX_NUMBER)
+      .minPrice(GAME_SETTING.MIN_PRICE)
       .build();
   }
-  
+
   play() {
     this.lottoGame.play();
   }
