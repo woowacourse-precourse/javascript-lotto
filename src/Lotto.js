@@ -1,4 +1,4 @@
-const {LOTTO_PRICE_UNIT} = require('../src/Constant');
+const {LOTTO_PRICE_UNIT, WINNING_AMOUNT} = require('../src/Constant');
 
 
 class Lotto {
@@ -8,8 +8,13 @@ class Lotto {
     // this.validate(numbers);
     this.#numbers = numbers;
     this.userLottoList = [];
-    this.result = { first : 0, second : 0, third : 0, fourth : 0, fifty : 0}
+    this.result = { fifty : 0,  fourth: 0, third : 0, second : 0, first : 0}
   }
+
+  getProfit() {
+    WINNING_AMOUNT.map
+  }
+  
 
   findMatchCount(winningLotto,bonusNumber) {
     this.userLottoList.forEach((lottoNums) => {
