@@ -1,0 +1,47 @@
+## 기능 목록
+- [x] 로또 구입금액에 대한 예외처리를 한다. LottoAmount#validate
+  - [x] (예외처리) 숫자가 아닌 경우
+  - [x] (예외처리) 1000보다 작을 경우
+  - [x] (예외처리) 로또 가격(1000원)으로 나누어 떨어지지 않는 경우
+- [x] 로또 구입금액으로 로또 발행 수량을 생성한다. LottoAmount#getLottoCount
+- [x] 로또(1부터 45사이의 중복되지 않은 6개)를 생성한다. NumberGenerator#createRandomNumbers
+- [x] 로또 번호에 대한 예외처리를 한다. LottoNumber#validate
+  - [x] (예외처리) 숫자가 아닌 경우
+  - [x] (예외처리) 숫자가 1부터 45사이 숫자가 아닌 경우
+- [x] 로또에 대한 예외처리를 한다. Lotto#validate
+  - [x] (예외처리) 배열의 크기가 6자리가 아닌 경우
+  - [x] (예외처리) 배열에 중복인 로또 번호들이 있는 경우
+- [x] 보너스 번호에 대한 예외처리를 한다. WinningLotto#validate
+  - [x] (예외처리) 보너스 번호가 당첨(로또) 번호에 포함되는지 확인한다. 
+- [x] 로또 번호와 다른 로또 번호 사이에 같은 숫자의 개수를 구한다. Lotto#countSameNumber
+- [x] 인수에 대한 예외처리를 한다. Lotto#validateLotto
+  - [x] (예외처리) instance가 Lotto인지 확인한다. 
+- [x] 보너스 번호가 당첨 번호에 포함되는지 확인한다. Lotto#includes
+- [x] 일치하는 개수를 통해 당첨 결과을 구한다. Prize#getPrize
+- [x] 로또 구입금액 만큼 랜덤 로또를 생성한다. LottoTicket#createRandomLotto
+- [x] 당첨 결과 개수를 구한다 Result#countPrize
+- [x] 수익률을 구한다. Result#getProfit
+  - 수익률은 소수점 둘째 자리에서 반올림한다.
+  - 1000보다 큰 수익률은 세 자릿수마다 `,`콤마를 추가한다.
+## UI 관련
+- [x] (readLine) 로또 구입금액을 입력받는다. InputView#inputLottoAmount
+  - '구입금액을 입력해 주세요.'
+- [x] (print) 로또 발행 수량를 출력한다. PrintView#printLottoCount
+  - '`n`개를 구매했습니다'
+- [x] (print) 임의 생성된 로또 번호들을 출력한다. PrintView#printLottoNumbers
+  - [x] 로또 발행 수량만큼 출력한다.
+  - [x] 각 로또 번호들은 number 배열 형태이다.
+- [x] (readLine) 당첨 번호를 입력받는다. InputView#inputWinningLottoNumbers
+  - '당첨 번호를 입력해 주세요.'
+- [x] (readLine) 보너스 번호를 입력받는다. InputView#inputBonusNumber
+  - '보너스 번호를 입력해 주세요.'
+- [x] (print) 당첨 통계를 출력한다. PrintView#printWinningStats
+  - '당첨 통계\n---\n'
+  - '3개 일치 (5,000원) - `n`개'
+  - '4개 일치 (50,000원) - `n`개'
+  - '5개 일치 (1,500,000원) - `n`개'
+  - '5개 일치, 보너스 볼 일치 (30,000,000원) - `n`개'
+  - '6개 일치 (2,000,000,000원) - `n`개'
+- [x] (print) 수익률을 출력한다. PrintView#printProfit
+  - '총 수익률은 `n`%입니다.'
+

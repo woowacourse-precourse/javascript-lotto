@@ -68,4 +68,20 @@ describe("로또 테스트", () => {
       app.play();
     }).toThrow("[ERROR]");
   });
+
+  test("예외 테스트 (단위 조건 만족x)", () => {
+    mockQuestions(["1800"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
+
+  test("예외 테스트", () => {
+    mockQuestions(["1000j"]);
+    expect(() => {
+      const app = new App();
+      app.play();
+    }).toThrow("[ERROR]");
+  });
 });
