@@ -11,8 +11,9 @@ class Lotto {
     this.result = { fifty : 0,  fourth: 0, third : 0, second : 0, first : 0}
   }
 
-  getProfit() {
-    WINNING_AMOUNT.map
+  getProfit(Quantity) {
+    const returnList = WINNING_AMOUNT.map((prize,index) => prize * Object.values(this.result)[index]);
+    return (returnList.reduce((acc, cur) => acc + cur) / (Quantity * 10)).toFixed(1) ;
   }
   
 

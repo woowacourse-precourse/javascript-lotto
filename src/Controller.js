@@ -61,7 +61,8 @@ class Controller {
   }
 
   printRateOfReturn() {
-    const profit = 
+    OutputView.rateOfreturn(this.lotto.getProfit(this.lottoQuantity))
+    Console.close()
   }
 
 }
