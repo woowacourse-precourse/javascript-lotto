@@ -2,6 +2,7 @@ const InputView = require('../src/View/InputView')
 const OutputView = require('../src/View/OutputView')
 const Lotto = require('../src/Lotto')
 const {Console} = require("@woowacourse/mission-utils");
+const LottoRandomNumberGenerator = require('../src/LottoRandomNumberGenerator')
 
 class Controller {
   constructor() {
@@ -24,7 +25,7 @@ class Controller {
   }
 
   printUserLotto() {
-    this.userLottoList = this.lotto.lottomaker(this.lottoQuantity)
+    this.userLottoList = this.lotto.lottomaker(this.lottoQuantity,LottoRandomNumberGenerator.generate())
     this.userLottoList.forEach((lottoList) => {
     let printLottoList = lottoList.join().split(',').join(', ')
     Console.print(`[${printLottoList}]`)
