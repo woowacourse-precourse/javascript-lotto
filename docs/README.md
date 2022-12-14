@@ -165,7 +165,7 @@ const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
 
 ## 기능 목록
 
-1. 로또 번호 입력 받기
+1. [x] 로또 금액 입력 받기
 
    - [x] 예외: 숫자가 아닌 경우, 1000원으로 나누어지지 않는 경우, 최소 금액: 1000,
 
