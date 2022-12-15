@@ -15,7 +15,9 @@ const InputView = {
     this.readLine(ASk_MESSAGE.LOTTO_NUMBER, callback);
   },
 
-  readLineLottoBonusNumber() {},
+  readLineLottoBonusNumber(callback) {
+    this.readLine(ASk_MESSAGE.BONUS_NUMBER, callback);
+  },
 };
 
 module.exports = InputView;
