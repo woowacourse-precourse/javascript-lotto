@@ -13,6 +13,7 @@ class Purchase {
 
   purchaseLotto() {
     const countTickets = this.#amount / LOTTO_PURCHASE.UNIT;
+    return Array.from({ length: countTickets }, () => this.#generateLottoTickets());
   }
 
   #checkValidation(value) {
@@ -22,6 +23,14 @@ class Purchase {
       .isNumberDivided(LOTTO_PURCHASE.UNIT)
       .isNumberBigger(LOTTO_PURCHASE.MIMIMUM)
       .getMessages();
+  }
+
+  #generateLottoTickets() {
+    return Random.pickUniqueNumbersInRange(
+      LOTTO_NUMBER.START_RANGE,
+      LOTTO_NUMBER.END_RANGE,
+      LOTTO_NUMBER.LENGTH
+    ).sort((a, b) => a - b);
   }
 }
 
