@@ -1,6 +1,6 @@
 const { UTIL } = require('../constant/Libs');
-const { ASk_MESSAGE } = require('../constant/Message');
 const { Console } = require(UTIL);
+const { ASk_MESSAGE } = require('../constant/Message');
 
 const InputView = {
   readLine(askMessage, callback) {

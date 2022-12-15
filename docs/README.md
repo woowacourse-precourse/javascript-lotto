@@ -173,7 +173,7 @@ const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
 
    - [x] 로또 수량 계산
    - [x] 로또 번호 오름차순으로 출력
-   - [ ] 출력 형태: 시작: "[" 끝: "]" 구분: ", "
+   - [x] 출력 형태: 시작: "[" 끝: "]" 구분: ", "
 
 3. 당첨 번호 입력 받기
 
