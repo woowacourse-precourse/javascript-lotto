@@ -8,6 +8,7 @@ const LOTTO_NUMBER = {
   LENGTH: 6,
   START_RANGE: 1,
   END_RANGE: 45,
+  BAN_START_WITH: '0',
 };
 
 module.exports = { LOTTO_PURCHASE, LOTTO_NUMBER };

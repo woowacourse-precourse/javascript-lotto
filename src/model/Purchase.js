@@ -1,4 +1,4 @@
-const { LOTTO_PURCHASE, LOTTO_NUMBER } = require('../constant/Lotto');
+const { LOTTO_PURCHASE, LOTTO_NUMBER } = require('../constant/LottoNumbers');
 const Validation = require('./Validation');
 const { UTIL } = require('../constant/Libs');
 const { Random } = require(UTIL);

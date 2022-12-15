@@ -1,4 +1,4 @@
-const { LOTTO_PURCHASE } = require('../src/constant/Lotto');
+const { LOTTO_PURCHASE } = require('../src/constant/LottoNumbers');
 const Validation = require('../src/model/Validation');
 
 /*eslint-disable */

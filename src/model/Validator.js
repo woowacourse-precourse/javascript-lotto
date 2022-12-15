@@ -2,11 +2,12 @@ const {
   ISNUMBER,
   ISNUMBERDIVIDED,
   ISNUMBERBIGGER,
-  ISARRAYELEMENTTYPE,
   ISSPLIT,
   ISLENGTH,
   ISREPEAT,
   ISRANGE,
+  ISARRAYELEMENTNUMBER,
+  ISSTARTWITH,
 } = require('../constant/Error');
 
 class Validator {
@@ -38,8 +39,8 @@ class StringValidator extends Validator {
   }
 
   isNumber() {
-    const check = this.#stringValue.split('').filter((letter) => !Number.isInteger(Number(letter)));
-    const message = check.length === 0 ? true : ISNUMBER;
+    const check = /^\d+$/.test(this.#stringValue);
+    const message = check ? true : ISNUMBER;
     return this.makeMessages(message);
   }
 
@@ -59,11 +60,6 @@ class StringValidator extends Validator {
     const message = this.#stringValue.split(checkSplit).length !== 1 ? true : ISSPLIT;
     return this.makeMessages(message);
   }
-
-  isLength(checkLength) {
-    const message = this.#stringValue.length === checkLength ? true : ISLENGTH(checkLength);
-    return this.makeMessages(message);
-  }
 }
 
 class ArrayValidator extends Validator {
@@ -74,16 +70,14 @@ class ArrayValidator extends Validator {
     this.#arrayValue = this.checkValue;
   }
 
-  isArrayElementType(checkElementType) {
-    const check = this.#arrayValue.filter((value) => this[checkElementType](value) === true);
-    const message =
-      check.length === this.#arrayValue.length ? true : ISARRAYELEMENTTYPE(checkElementType);
+  isArrayElementNumber() {
+    const check = this.#arrayValue.map((value) => /^\d+$/.test(value));
+    const message = check.every((value) => value) ? true : ISARRAYELEMENTNUMBER;
     return this.makeMessages(message);
   }
 
   isRepeated(checkLength) {
     const message = new Set(this.#arrayValue).size === checkLength ? true : ISREPEAT;
-
     return this.makeMessages(message);
   }
 
@@ -93,7 +87,19 @@ class ArrayValidator extends Validator {
         (number) => Number(number) >= checkRange[0] && Number(number) <= checkRange[1]
       ).length === this.#arrayValue.length
         ? true
-        : ISRANGE;
+        : ISRANGE(checkRange[0], checkRange[1]);
+    return this.makeMessages(message);
+  }
+
+  isLength(checkLength) {
+    const message = this.#arrayValue.length === checkLength ? true : ISLENGTH(checkLength);
+    return this.makeMessages(message);
+  }
+
+  isStartWith(checkStartWith) {
+    const message = this.#arrayValue.filter((number) => number.startsWith(checkStartWith)).length
+      ? ISSTARTWITH(checkStartWith)
+      : true;
     return this.makeMessages(message);
   }
 }
