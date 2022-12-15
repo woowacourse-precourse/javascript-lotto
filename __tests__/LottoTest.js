@@ -1,4 +1,5 @@
 const { LOTTO_NUMBER } = require('../src/constant/LottoNumbers');
+const Lotto = require('../src/model/Lotto');
 const Validation = require('../src/model/Validation');
 
 /*eslint-disable */
@@ -74,6 +75,15 @@ describe('로또 번호 테스트', () => {
           .isNumberRange([LOTTO_NUMBER.START_RANGE, LOTTO_NUMBER.END_RANGE])
           .isStartWith(LOTTO_NUMBER.BAN_START_WITH)
           .getMessages();
+      }).toThrow('[ERROR]');
+    }
+  );
+
+  test.each(['01,3,4,5,6,1', '1,1e3,34,56', '1,3,4,5,5,6', '15,6,0,-3,3,4'])(
+    '숫자가 0으로 시작할 때',
+    (value) => {
+      expect(() => {
+        new Lotto(value);
       }).toThrow('[ERROR]');
     }
   );
