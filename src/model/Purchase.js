@@ -20,8 +20,8 @@ class Purchase {
     new Validation(value)
       .getStringValidator()
       .isNumber()
-      .isNumberDivided(LOTTO_PURCHASE.UNIT)
       .isNumberBigger(LOTTO_PURCHASE.MIMIMUM)
+      .isNumberDivided(LOTTO_PURCHASE.UNIT)
       .getMessages();
   }
 
