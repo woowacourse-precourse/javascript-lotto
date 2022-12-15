@@ -169,7 +169,7 @@ const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
 
    - [x] 예외: 숫자가 아닌 경우, 1000원으로 나누어지지 않는 경우, 최소 금액: 1000,
 
-2. 로또 번호 출력하기
+2. [x] 로또 번호 출력하기
 
    - [x] 로또 수량 계산
    - [x] 로또 번호 오름차순으로 출력
