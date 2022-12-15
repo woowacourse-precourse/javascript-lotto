@@ -8,6 +8,7 @@ const {
   ISRANGE,
   ISARRAYELEMENTNUMBER,
   ISSTARTWITH,
+  ISCLUDE,
 } = require('../constant/Error');
 
 class Validator {
@@ -60,6 +61,28 @@ class StringValidator extends Validator {
     const message = this.#stringValue.split(checkSplit).length !== 1 ? true : ISSPLIT;
     return this.makeMessages(message);
   }
+
+  isNumberInRange(checkStart, checkEnd) {
+    const message =
+      Number(this.#stringValue) >= checkStart && Number(this.#stringValue) <= checkEnd
+        ? true
+        : ISRANGE(checkStart, checkEnd);
+    return this.makeMessages(message);
+  }
+
+  isStartWith(checkStartWith) {
+    const message = this.#stringValue.startsWith(checkStartWith)
+      ? ISSTARTWITH(checkStartWith)
+      : true;
+    return this.makeMessages(message);
+  }
+
+  isInclude(compareList) {
+    const message = compareList.filter((compare) => compare === this.#stringValue).length
+      ? ISCLUDE
+      : true;
+    return this.makeMessages(message);
+  }
 }
 
 class ArrayValidator extends Validator {
@@ -81,7 +104,7 @@ class ArrayValidator extends Validator {
     return this.makeMessages(message);
   }
 
-  isNumberRange(checkRange) {
+  isArrayElementInRange(checkRange) {
     const message =
       this.#arrayValue.filter(
         (number) => Number(number) >= checkRange[0] && Number(number) <= checkRange[1]

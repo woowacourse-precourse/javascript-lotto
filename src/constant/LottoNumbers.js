@@ -11,4 +11,10 @@ const LOTTO_NUMBER = {
   BAN_START_WITH: '0',
 };
 
-module.exports = { LOTTO_PURCHASE, LOTTO_NUMBER };
+const BONUSLOTTO_NUMBER = {
+  START_RANGE: 1,
+  END_RANGE: 45,
+  BAN_START_WITH: '0',
+};
+
+module.exports = { LOTTO_PURCHASE, LOTTO_NUMBER, BONUSLOTTO_NUMBER };

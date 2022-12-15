@@ -20,12 +20,10 @@ class Lotto {
       .isArrayElementNumber()
       .isLength(LOTTO_NUMBER.LENGTH)
       .isRepeated(LOTTO_NUMBER.LENGTH)
-      .isNumberRange([LOTTO_NUMBER.START_RANGE, LOTTO_NUMBER.END_RANGE])
+      .isArrayElementInRange([LOTTO_NUMBER.START_RANGE, LOTTO_NUMBER.END_RANGE])
       .isStartWith(LOTTO_NUMBER.BAN_START_WITH)
       .getMessages();
   }
-
-  // TODO: 추가 기능 구현
 }
 
 module.exports = Lotto;
