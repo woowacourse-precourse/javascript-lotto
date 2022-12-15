@@ -1,4 +1,5 @@
 const { LOTTO_NUMBER } = require('../src/constant/LottoNumbers');
+const BonusLotto = require('../src/model/BonusLotto');
 const Lotto = require('../src/model/Lotto');
 const Validation = require('../src/model/Validation');
 
@@ -56,7 +57,7 @@ describe('로또 번호 테스트', () => {
           .isArrayElementNumber()
           .isLength(LOTTO_NUMBER.LENGTH)
           .isRepeated(LOTTO_NUMBER.LENGTH)
-          .isNumberRange([LOTTO_NUMBER.START_RANGE, LOTTO_NUMBER.END_RANGE])
+          .isArrayElementInRange([LOTTO_NUMBER.START_RANGE, LOTTO_NUMBER.END_RANGE])
           .getMessages();
       }).toThrow('[ERROR]');
     }
@@ -72,7 +73,7 @@ describe('로또 번호 테스트', () => {
           .isArrayElementNumber()
           .isLength(LOTTO_NUMBER.LENGTH)
           .isRepeated(LOTTO_NUMBER.LENGTH)
-          .isNumberRange([LOTTO_NUMBER.START_RANGE, LOTTO_NUMBER.END_RANGE])
+          .isArrayElementInRange([LOTTO_NUMBER.START_RANGE, LOTTO_NUMBER.END_RANGE])
           .isStartWith(LOTTO_NUMBER.BAN_START_WITH)
           .getMessages();
       }).toThrow('[ERROR]');
@@ -87,4 +88,12 @@ describe('로또 번호 테스트', () => {
       }).toThrow('[ERROR]');
     }
   );
+});
+
+describe('보너스 로또 번호 테스트', () => {
+  test.each(['234', '02', '1', '', '0'])('구분이 쉽표가 아닐 때', (value) => {
+    expect(() => {
+      new BonusLotto(value);
+    }).toThrow('[ERROR]');
+  });
 });
