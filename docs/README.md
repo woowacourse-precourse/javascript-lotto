@@ -193,7 +193,7 @@ const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
    - [x] 소수점 둘째 자리에서 반올림
          (ex. 100.0%, 51.5%, 1,000,000.0%)
 
-7. 예외 상황 문구 출력하기
+7. [x] 예외 상황 문구 출력하기
 
-   - [ ] 형태: "[ERROR]"로 시작
-   - [ ] 에러 메시지를 출력 후 종료
+   - [x] 형태: "[ERROR]"로 시작
+   - [x] 에러 메시지를 출력 후 종료

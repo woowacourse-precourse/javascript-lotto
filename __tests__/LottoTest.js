@@ -91,9 +91,9 @@ describe('로또 번호 테스트', () => {
 });
 
 describe('보너스 로또 번호 테스트', () => {
-  test.each(['234', '02', '1', '', '0'])('구분이 쉽표가 아닐 때', (value) => {
+  test.each(['234', '02', '1', '', '0'])('보너스 로또 테스트', (value) => {
     expect(() => {
-      new BonusLotto(value);
+      new BonusLotto(value, ['1', '3', '4', '6', '10', '20']);
     }).toThrow('[ERROR]');
   });
 });

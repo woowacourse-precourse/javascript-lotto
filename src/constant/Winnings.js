@@ -1,6 +1,6 @@
 const RANKING = [
   {
-    LOCATE: '0',
+    LOCATE: 0,
     MATCH: 3,
     BONUS: false,
     JACKPOT: 5000,
@@ -9,7 +9,7 @@ const RANKING = [
     },
   },
   {
-    LOCATE: '1',
+    LOCATE: 1,
     MATCH: 4,
     BONUS: false,
     JACKPOT: 50000,
@@ -18,7 +18,7 @@ const RANKING = [
     },
   },
   {
-    LOCATE: '2',
+    LOCATE: 2,
     MATCH: 5,
     BONUS: false,
     JACKPOT: 1500000,
@@ -27,7 +27,7 @@ const RANKING = [
     },
   },
   {
-    LOCATE: '3',
+    LOCATE: 3,
     MATCH: 5,
     BONUS: true,
     JACKPOT: 30000000,
@@ -36,7 +36,7 @@ const RANKING = [
     },
   },
   {
-    LOCATE: '4',
+    LOCATE: 4,
     MATCH: 6,
     BONUS: false,
     JACKPOT: 2000000000,
