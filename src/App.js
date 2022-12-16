@@ -1,5 +1,9 @@
+const { GameController } = require('./controller/GameController');
+
 class App {
-  play() {}
+  play() {
+    new GameController();
+  }
 }
 
 module.exports = App;
