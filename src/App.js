@@ -1,7 +1,7 @@
 const { Console, Random } = require('@woowacourse/mission-utils');
 const Lotto = require('./Lotto');
 const { validator } = require('./utils');
-
+const OutputView = require('./OutputView')
 const { FORMULA, UNITS, MESSAGE, ERROR_MESSAGE } = require('./constants');
 
 class App {
@@ -54,7 +54,7 @@ class App {
   }
 
   publish() {
-    Console.print(MESSAGE.GUIDE_NUMBER_OF_LOTTO(this.numberOfLotto));
+    OutputView.printNumberOfLotto(this.numberOfLotto)
     for (let i = 0; i < this.numberOfLotto; i++) {
       const lotto = new Lotto(
         Random.pickUniqueNumbersInRange(
@@ -72,7 +72,7 @@ class App {
 
   printLottos() {
     this.myLottos.map((myLotto) => {
-      Console.print(myLotto.getNumbers());
+      OutputView.printLotto(myLotto.getNumbers());
     });
     return;
   }
@@ -121,7 +121,7 @@ class App {
     this.match()
       .calculateRevenue()
       .calculateProfit()
-      .printResult();
+      .endSystem();
   }
 
   match() {
@@ -145,7 +145,7 @@ class App {
   }
 
   calculateRevenue() {
-    for (let [rank, pair] of Object.entries(this.winningMap)) {
+    for (let [_, pair] of Object.entries(this.winningMap)) {
       this.revenue += pair.count * pair.WINNING_AMOUNT;
     }
     return this;
@@ -156,10 +156,13 @@ class App {
     return this;
   }
 
-  printResult() {
-    Console.print(MESSAGE.WINNING_STATS(this.winningMap, this.profit));
+  endSystem() {
+    OutputView.printResult(this.winningMap, this.profit);
     Console.close();
   }
 }
+
+const app = new App();
+app.play()
 
 module.exports = App;
