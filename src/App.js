@@ -1,12 +1,8 @@
-const View = require('./View');
+const { GameController } = require('./controller/GameController');
 
 class App {
   play() {
-    this.process();
-  }
-
-  process() {
-    new View();
+    new GameController();
   }
 }
 
