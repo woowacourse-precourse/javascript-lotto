@@ -11,6 +11,10 @@ class BonusLotto {
     this.#checkValidation(this.#bonusValue, this.#lottoValue);
   }
 
+  makeBonusLottoNumber() {
+    return this.#bonusValue;
+  }
+
   #checkValidation(bonusValue, lottoValue) {
     new Validation(bonusValue)
       .getStringValidator()

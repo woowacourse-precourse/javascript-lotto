@@ -1,5 +1,6 @@
 const BonusLotto = require('../model/BonusLotto');
 const Lotto = require('../model/Lotto');
+const Profit = require('../model/Profit');
 const Purchase = require('../model/Purchase');
 const Statistics = require('../model/Statistics');
 const InputView = require('../view/InputView');
@@ -35,7 +36,7 @@ class GameController {
 
   #inputBonusLottoNumber() {
     InputView.readLineLottoBonusNumber((number) => {
-      this.#bonusLotto = new BonusLotto(number, this.#lotto);
+      this.#bonusLotto = new BonusLotto(number, this.#lotto).makeBonusLottoNumber();
       const winnging = new Statistics(
         [this.#lotto, this.#bonusLotto],
         this.#lottoTickets
@@ -46,6 +47,12 @@ class GameController {
 
   #printStatistics(winnging) {
     OutputView.printWinningLotto(winnging);
+    this.#printProfit(winnging);
+  }
+
+  #printProfit(winnging) {
+    new Profit(winnging);
+    // OutputView.printProfitLotto(profit);
   }
 }
 
