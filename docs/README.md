@@ -185,7 +185,7 @@ const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
 
 5. 당첨 확인하기
 
-   - [ ] 당첨 및 보너스 번호와 구매한 로또 번호가 일치하는지 확인
+   - [x] 당첨 및 보너스 번호와 구매한 로또 번호가 일치하는지 확인
    - [ ] 개수 출력
 
 6. 수익률 출력하기
