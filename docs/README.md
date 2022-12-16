@@ -190,7 +190,7 @@ const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
 
 6. 수익률 출력하기
 
-   - [ ] 소수점 둘째 자리에서 반올림
+   - [x] 소수점 둘째 자리에서 반올림
          (ex. 100.0%, 51.5%, 1,000,000.0%)
 
 7. 예외 상황 문구 출력하기
