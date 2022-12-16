@@ -10,17 +10,20 @@ class GameController {
   #lotto;
   #bonusLotto;
   #lottoTickets;
+  #amount;
 
   constructor() {
     this.#inputPurchaseAmount();
     this.#lotto = [];
     this.#bonusLotto = '';
     this.#lottoTickets = [];
+    this.#amount = 0;
   }
 
   #inputPurchaseAmount() {
     InputView.readLinePurchaseAmount((amount) => {
       const purchaseAmount = new Purchase(amount);
+      this.#amount = amount;
       this.#lottoTickets = purchaseAmount.purchaseLotto();
       OutputView.printLottoTickets(this.#lottoTickets);
       this.#inputLottoNumber();
@@ -51,8 +54,8 @@ class GameController {
   }
 
   #printProfit(winnging) {
-    new Profit(winnging);
-    // OutputView.printProfitLotto(profit);
+    const profit = new Profit(winnging, this.#amount).formateProfitRate();
+    OutputView.printProfitLotto(profit);
   }
 }
 

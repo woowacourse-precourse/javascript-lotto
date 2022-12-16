@@ -188,7 +188,7 @@ const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
    - [x] 당첨 및 보너스 번호와 구매한 로또 번호가 일치하는지 확인
    - [x] 개수 확인
 
-6. 수익률 출력하기
+6. [x] 수익률 출력하기
 
    - [x] 소수점 둘째 자리에서 반올림
          (ex. 100.0%, 51.5%, 1,000,000.0%)

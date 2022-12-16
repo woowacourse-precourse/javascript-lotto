@@ -15,6 +15,9 @@ const PRINT_MESSAGE = {
 
   LOTTO_WINNING: '당첨 통계',
   LOTTO_WINNING_START_DIVISION: '---',
+  LOTTO_PROFIT(PROFIT) {
+    return `총 수익률은 ${PROFIT}%입니다.`;
+  },
 };
 
 module.exports = { ASk_MESSAGE, PRINT_MESSAGE };

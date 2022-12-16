@@ -14,17 +14,17 @@ class Statistics {
 
   #makeRankingMap() {
     const map = new Map();
-    RANKING.forEach(({ LOCATE, MATCH, BONUS }) => map.set(LOCATE, { MATCH, BONUS }));
+    RANKING.forEach(({ LOCATE, MATCH, BONUS, JACKPOT }) =>
+      map.set(LOCATE, { MATCH, BONUS, JACKPOT })
+    );
     return map;
   }
 
   matchRankingMap() {
-    //[{ LOCATE: 0, MATCH: 3, BONUS: false, total: 0 },{ LOCATE: 1, MATCH: 4, BONUS: false, total: 1 },{ LOCATE: 2, MATCH: 5, BONUS: false, total: 1 },{ LOCATE: 3, MATCH: 5, BONUS: true, total: 1 },{ LOCATE: 4, MATCH: 6, BONUS: false, total: 0 }]
-
     const matchSum = this.#sumCountWinningLotto();
-    return [...this.#rankingMap].reduce((matchRanking, [LOCATE, { MATCH, BONUS }]) => {
+    return [...this.#rankingMap].reduce((matchRanking, [LOCATE, { MATCH, BONUS, JACKPOT }]) => {
       const key = `match${MATCH}bonus${BONUS}`;
-      matchRanking[LOCATE] = { MATCH, BONUS, total: matchSum[key] || 0 };
+      matchRanking[LOCATE] = { JACKPOT, MATCH, BONUS, total: matchSum[key] || 0 };
       return matchRanking;
     }, {});
   }

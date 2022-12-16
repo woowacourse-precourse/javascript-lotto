@@ -18,6 +18,11 @@ const OutputView = {
     this.print(PRINT_MESSAGE.LOTTO_WINNING_START_DIVISION);
     RANKING.forEach((rank) => this.print(rank.MESSAGE(winnings[rank.LOCATE].total)));
   },
+
+  printProfitLotto(profit) {
+    this.print(PRINT_MESSAGE.LOTTO_PROFIT(profit));
+    Console.close();
+  },
 };
 
 module.exports = OutputView;
