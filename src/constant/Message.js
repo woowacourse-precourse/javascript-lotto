@@ -12,6 +12,9 @@ const PRINT_MESSAGE = {
   LOTTO_TICKET(LOTTONUMBERLIST) {
     return `[${LOTTONUMBERLIST.join(', ')}]`;
   },
+
+  LOTTO_WINNING: '당첨 통계',
+  LOTTO_WINNING_START_DIVISION: '---',
 };
 
 module.exports = { ASk_MESSAGE, PRINT_MESSAGE };

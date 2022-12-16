@@ -10,6 +10,10 @@ class Lotto {
     this.#checkArrayValidaton(this.#numbers.split(LOTTO_NUMBER.DIVISION));
   }
 
+  makeLottoNumber() {
+    return this.#numbers.split(LOTTO_NUMBER.DIVISION);
+  }
+
   #checkStringValidation(value) {
     new Validation(value).getStringValidator().isSplit(LOTTO_NUMBER.DIVISION).getMessages();
   }

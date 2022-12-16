@@ -19,12 +19,14 @@ class Statistics {
   }
 
   matchRankingMap() {
-    // [[0, { MATCH: 3, BONUS: false, total: 0 }],[1, { MATCH: 4, BONUS: false, total: 1 }],[2, { MATCH: 5, BONUS: false, total: 0 }],[3, { MATCH: 5, BONUS: true, total: 0 }],[4, { MATCH: 6, BONUS: false, total: 0 }],];
+    //[{ LOCATE: 0, MATCH: 3, BONUS: false, total: 0 },{ LOCATE: 1, MATCH: 4, BONUS: false, total: 1 },{ LOCATE: 2, MATCH: 5, BONUS: false, total: 1 },{ LOCATE: 3, MATCH: 5, BONUS: true, total: 1 },{ LOCATE: 4, MATCH: 6, BONUS: false, total: 0 }]
+
     const matchSum = this.#sumCountWinningLotto();
-    return [...this.#rankingMap].map(([locate, { MATCH, BONUS }]) => {
+    return [...this.#rankingMap].reduce((matchRanking, [LOCATE, { MATCH, BONUS }]) => {
       const key = `match${MATCH}bonus${BONUS}`;
-      return [locate, { MATCH, BONUS, total: matchSum[key] || 0 }];
-    });
+      matchRanking[LOCATE] = { MATCH, BONUS, total: matchSum[key] || 0 };
+      return matchRanking;
+    }, {});
   }
 
   #sumCountWinningLotto() {
