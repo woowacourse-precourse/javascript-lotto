@@ -30,6 +30,17 @@ const UNIT = Object.freeze({
   money: 1000,
 });
 
+const INITIAL_RESULT = {
+  0: 0,
+  1: 0,
+  2: 0,
+  3: 0,
+  4: 0,
+  5: 0,
+  5.5: 0,
+  6: 0,
+};
+
 const PRIZE_MONEY = Object.freeze({
   3: 5000,
   4: 50000,
@@ -43,6 +54,7 @@ module.exports = {
   INPUT_MESSAGE,
   RESULT_MEESAGE,
   UNIT,
+  INITIAL_RESULT,
   PRIZE_MONEY,
   NEW_LINE,
 };

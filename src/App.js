@@ -1,111 +1,112 @@
-const { Console, Random } = require("@woowacourse/mission-utils");
+const { Console } = require("@woowacourse/mission-utils");
 const {
-  INPUT_MESSAGE,
-  UNIT,
-  RESULT_MEESAGE,
-  PRIZE_MONEY,
-  NEW_LINE,
-} = require("./constant/constant");
+  caculateLottoAmount,
+  caculateTotalPrize,
+  caculateProfitRatio,
+} = require("./Caculator");
+const { UNIT, INITIAL_RESULT } = require("./constant/constant");
+const InputView = require("./InputView");
 const Lotto = require("./Lotto");
+const {
+  print,
+  printPurchaseNumber,
+  printResult,
+  printProfitRatio,
+} = require("./OutputView");
+const { generateRandomNumbers } = require("./RandomNumberGenerator");
+const { validateMoney } = require("./Validation");
 const Validation = require("./Validation");
 
 class App {
-  #money;
   #lottos;
   #winningNumbers;
   #bonusNumber;
   #result;
-  #profitRatio;
-
-  constructor() {
-    this.#result = { 3: 0, 4: 0, 5: 0, 5.5: 0, 6: 0 };
-  }
 
   play() {
-    this.getMoney();
+    InputView.getMoney(this.actWithMoney.bind(this));
   }
 
-  getMoney() {
-    Console.readLine(INPUT_MESSAGE.money, (money) => {
-      this.#money = Number(money);
-      Validation.validateMoney(this.#money);
-      this.#lottos = this.exchangeLotto(this.#money / UNIT.money);
+  actWithMoney(moneyInput) {
+    const money = Number(moneyInput);
+    try {
+      validateMoney(money);
+      const lottoAmount = caculateLottoAmount(money);
+      this.setLottos(lottoAmount);
       this.printLottos(this.#lottos);
       this.getWinningNumbers();
-    });
+    } catch (e) {
+      print(e);
+    }
   }
 
-  exchangeLotto(quantity) {
-    return [...Array(quantity)].map(
-      () => new Lotto(this.generateRandomNumbers())
+  setLottos(quantity) {
+    this.#lottos = [...Array(quantity)].map(
+      () => new Lotto(generateRandomNumbers())
     );
-  }
-
-  generateRandomNumbers() {
-    return Random.pickUniqueNumbersInRange(1, 45, 6);
   }
 
   printLottos(lottos) {
-    Console.print(RESULT_MEESAGE.purchase(lottos.length));
-    lottos.forEach((lotto) => lotto.printNumbers());
+    printPurchaseNumber(lottos.length);
+    lottos.forEach((lotto) => {
+      print(lotto.getLottoString());
+    });
   }
 
   getWinningNumbers() {
-    Console.readLine(INPUT_MESSAGE.winningNumber, (numbers) => {
-      this.#winningNumbers = numbers.split(",").map((number) => Number(number));
-      Validation.validateNumbers(this.#winningNumbers);
+    InputView.getWinningNumber(this.actWithWinningNumbers.bind(this));
+  }
+
+  actWithWinningNumbers(numbersInput) {
+    const numbers = numbersInput.split(",").map((num) => Number(num));
+    try {
+      Validation.validateNumbers(numbers);
+      this.#winningNumbers = numbers;
       this.getBonusNumber();
-    });
+    } catch (e) {
+      print(e);
+    }
   }
 
   getBonusNumber() {
-    Console.readLine(INPUT_MESSAGE.bonusNumber, (number) => {
-      this.#bonusNumber = Number(number);
-      Validation.validateBonusNumber(this.#winningNumbers, this.#bonusNumber);
-      this.compare(this.#lottos, this.#winningNumbers, this.#bonusNumber);
-    });
+    InputView.getBonusNumber(this.actWithBonusNumber.bind(this));
   }
 
-  compare(lottos, winningNumbers, bonusNumber) {
-    lottos.forEach((lotto) => {
-      const match = lotto.compare(winningNumbers, bonusNumber);
-      match >= 3 ? (this.#result[match] += 1) : null;
-    });
-
-    this.#profitRatio = this.caculateProfitRatio(
-      this.#money,
-      this.getTotalPrize(this.#result)
-    );
-    this.printResult();
+  actWithBonusNumber(number) {
+    const bonusNumber = Number(number);
+    try {
+      Validation.validateBonusNumber(this.#winningNumbers, bonusNumber);
+      this.#bonusNumber = bonusNumber;
+      this.setResult(this.#lottos, this.#winningNumbers, this.#bonusNumber);
+      this.endGame();
+    } catch (e) {
+      print(e);
+    }
   }
 
-  printResult() {
-    Console.print(RESULT_MEESAGE.lottoResult);
-    Console.print(
-      RESULT_MEESAGE.match3(this.#result[3]) +
-        NEW_LINE +
-        RESULT_MEESAGE.match4(this.#result[4]) +
-        NEW_LINE +
-        RESULT_MEESAGE.match5(this.#result[5]) +
-        NEW_LINE +
-        RESULT_MEESAGE.match5andBonus(this.#result[5.5]) +
-        NEW_LINE +
-        RESULT_MEESAGE.match6(this.#result[6])
-    );
-    Console.print(RESULT_MEESAGE.profit(this.#profitRatio));
+  setResult(lottos, winningNumbers, bonusNumber) {
+    this.#result = lottos.reduce((result, lotto) => {
+      const match = lotto.matchCount(winningNumbers, bonusNumber);
+      result[match] += 1;
+      return result;
+    }, INITIAL_RESULT);
+  }
+
+  getProfitRatio() {
+    const totalPrize = caculateTotalPrize(this.#result);
+    const money =
+      Object.values(this.#result).reduce((sum, each) => sum + each, 0) *
+      UNIT.money;
+    return caculateProfitRatio(money, totalPrize);
+  }
+
+  endGame() {
+    printResult(this.#result);
+    printProfitRatio(this.getProfitRatio());
     Console.close();
   }
-
-  getTotalPrize(result) {
-    return Object.entries(result).reduce(
-      (total, [match, number]) => (total += PRIZE_MONEY[match] * number),
-      0
-    );
-  }
-
-  caculateProfitRatio(money, totalPrize) {
-    return ((totalPrize / money) * 100).toFixed(1);
-  }
 }
+
+new App().play();
 
 module.exports = App;

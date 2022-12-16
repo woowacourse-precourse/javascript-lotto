@@ -1,13 +1,13 @@
 const { UNIT, ERROR_MESSAGE } = require("./constant/constant");
 
-class Validation {
-  static validateMoney(money) {
-    if (money % UNIT.money !== 0) {
+const Validation = {
+  validateMoney(money) {
+    if (money % UNIT.money !== 0 || money <= 0) {
       throw new Error(ERROR_MESSAGE.wrongUnit);
     }
-  }
+  },
 
-  static validateNumbers(numbers) {
+  validateNumbers(numbers) {
     if (numbers.length !== 6) {
       throw new Error(ERROR_MESSAGE.wrongQuantity);
     }
@@ -23,9 +23,9 @@ class Validation {
     if (numbers.length !== new Set(numbers).size) {
       throw new Error(ERROR_MESSAGE.hasRepeat);
     }
-  }
+  },
 
-  static validateBonusNumber(winningNumbers, number) {
+  validateBonusNumber(winningNumbers, number) {
     if (number < 1 || number > 45) {
       throw new Error(ERROR_MESSAGE.notInRange);
     }
@@ -33,7 +33,7 @@ class Validation {
     if (winningNumbers.includes(number)) {
       throw new Error(ERROR_MESSAGE.hasRepeat);
     }
-  }
-}
+  },
+};
 
 module.exports = Validation;

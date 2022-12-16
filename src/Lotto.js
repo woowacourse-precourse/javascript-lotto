@@ -1,4 +1,3 @@
-const { Console } = require("@woowacourse/mission-utils");
 const Validation = require("./Validation");
 
 class Lotto {
@@ -8,12 +7,12 @@ class Lotto {
     Validation.validateNumbers(numbers);
     this.#numbers = numbers;
   }
-
-  printNumbers() {
-    Console.print(`[${this.#numbers.join(", ")}]`);
+  //이거 더 괜찮게 할 방법없나?
+  getLottoString() {
+    return `[${this.#numbers.join(", ")}]`;
   }
 
-  compare(winningNumbers, bonusNumber) {
+  matchCount(winningNumbers, bonusNumber) {
     let match = this.#numbers.reduce(
       (match, number) => (match += winningNumbers.includes(number) ? 1 : 0),
       0
