@@ -9,6 +9,31 @@ class Statistics {
   constructor(fullLotto, lottoTickets) {
     [this.#lottoNumber, this.#bonusNumber] = fullLotto;
     this.#lottoTickets = lottoTickets;
+    this.#rankingMap = this.#makeRankingMap();
+  }
+
+  #makeRankingMap() {
+    const map = new Map();
+    RANKING.forEach(({ LOCATE, MATCH, BONUS }) => map.set(LOCATE, { MATCH, BONUS }));
+    return map;
+  }
+
+  matchRankingMap() {
+    // [[0, { MATCH: 3, BONUS: false, total: 0 }],[1, { MATCH: 4, BONUS: false, total: 1 }],[2, { MATCH: 5, BONUS: false, total: 0 }],[3, { MATCH: 5, BONUS: true, total: 0 }],[4, { MATCH: 6, BONUS: false, total: 0 }],];
+    const matchSum = this.#sumCountWinningLotto();
+    return [...this.#rankingMap].map(([locate, { MATCH, BONUS }]) => {
+      const key = `match${MATCH}bonus${BONUS}`;
+      return [locate, { MATCH, BONUS, total: matchSum[key] || 0 }];
+    });
+  }
+
+  #sumCountWinningLotto() {
+    // { match1bonusfalse: 1, match0bonusfalse: 1, match2bonusfalse: 2 }
+    return this.#countWinning().reduce((matchSum, [userMatch, userBonus]) => {
+      const key = `match${userMatch}bonus${userBonus}`;
+      matchSum[key] = (matchSum[key] || 0) + 1;
+      return matchSum;
+    }, {});
   }
 
   /**
