@@ -5,26 +5,10 @@ class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    this.validateLotto(numbers);
     this.#numbers = numbers.sort(FORMULA.COMPARE);
   }
 
-  validate(numbers) {
-    if (validator.isLengthError(numbers)) {
-      throw new Error(ERROR_MESSAGE.LENGTH_OF_LOTTO);
-    }
-    if (validator.isDuplicate(numbers)) {
-      throw new Error(ERROR_MESSAGE.DUPLICATE_OF_LOTTO);
-    }
-    if (validator.isDigitError(numbers)) {
-      throw new Error(ERROR_MESSAGE.DIGIT_OF_LOTTO);
-    }
-    if (validator.isNotIntegers(numbers)) {
-      throw new Error(ERROR_MESSAGE.INTEGER_OF_LOTTO);
-    }
-  }
-
-  // TODO: 추가 기능 구현
   getNumbers() {
     return `[${this.#numbers.join(', ')}]`;
   }
@@ -44,6 +28,21 @@ class Lotto {
       return true;
     }
     return false;
+  }
+
+  validateLotto(numbers) {
+    if (validator.isLengthError(numbers)) {
+      throw new Error(ERROR_MESSAGE.LENGTH_OF_LOTTO);
+    }
+    if (validator.isDuplicate(numbers)) {
+      throw new Error(ERROR_MESSAGE.DUPLICATE_OF_LOTTO);
+    }
+    if (validator.isDigitError(numbers)) {
+      throw new Error(ERROR_MESSAGE.DIGIT_OF_LOTTO);
+    }
+    if (validator.isNotIntegers(numbers)) {
+      throw new Error(ERROR_MESSAGE.INTEGER_OF_LOTTO);
+    }
   }
 }
 

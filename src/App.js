@@ -45,15 +45,17 @@ class App {
     InputView.readInput(this.pay.bind(this))
   }
 
+  validateInput(input) {
+    if (validator.isNotRightPay(input)) {
+      throw new Error(ERROR_MESSAGE.PAY_AMOUNT);
+    }
+  }
+
   pay(response) {
-      this.payAmount = Number(response);
-
-      // if (validator.isNotRightPay(this.payAmount)) {
-      //   throw new Error(ERROR_MESSAGE.PAY_AMOUNT);
-      // }
-
-      this.numberOfLotto = this.payAmount / UNITS.LOTTO_PRICE;
-      this.publish();
+    this.payAmount = Number(response);
+    this.validateInput(this.payAmount);
+    this.numberOfLotto = this.payAmount / UNITS.LOTTO_PRICE;
+    this.publish();
   };
 
   publish() {
@@ -122,7 +124,7 @@ class App {
 
   setBonusNumber(response) {
       this.bonusNumber = Number(response);
-      // this.validate(this.luckyNumbers, this.bonusNumber);
+      this.validate(this.luckyNumbers, this.bonusNumber);
       this.winning();
   }
 
