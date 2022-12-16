@@ -4,15 +4,13 @@ const { validator } = require('./utils');
 const OutputView = require('./OutputView')
 const { FORMULA, UNITS, MESSAGE, ERROR_MESSAGE } = require('./constants');
 const InputView = require('./InputView');
+const User = require('./User');
 
 class App {
-  payAmount = 0;
   numberOfLotto = 0;
-  myLottos = [];
   luckyNumbers = [];
   bonusNumber = 0;
-  revenue = 0;
-  profit = 0;
+  
 
   winningMap = {
     firstPlace: {
@@ -38,6 +36,7 @@ class App {
   };
 
   play() {
+    this.user = new User();
     this.requestInput();
   }
 
@@ -52,15 +51,16 @@ class App {
   }
 
   pay(response) {
-    this.payAmount = Number(response);
-    this.validateInput(this.payAmount);
-    this.numberOfLotto = this.payAmount / UNITS.LOTTO_PRICE;
+    this.validateInput(Number(response));
+    this.user.setPayAmount(Number(response));
+    this.numberOfLotto = this.user.getPayAmount() / UNITS.LOTTO_PRICE;
     this.publish();
   };
 
   publish() {
     OutputView.printNumberOfLotto(this.numberOfLotto);
 
+    let lottos = []
     for (let i = 0; i < this.numberOfLotto; i++) {
       const lotto = new Lotto(
         Random.pickUniqueNumbersInRange(
@@ -69,15 +69,16 @@ class App {
           UNITS.LIMIT_LOTTO,
         ),
       );
-      this.myLottos.push(lotto);
+      lottos.push(lotto);
     }
+    this.user.setMyLottos(lottos);
     this.printLottos();
     this.requestLuckyNumbers();
     return;
   }
 
   printLottos() {
-    this.myLottos.map((myLotto) => {
+    this.user.getMyLottos().map((myLotto) => {
       OutputView.printLotto(myLotto.getNumbers());
     });
     return;
@@ -129,14 +130,12 @@ class App {
   }
 
   winning() {
-    this.match()
-      .calculateRevenue()
-      .calculateProfit()
-      .endSystem();
+    this.match();
+    this.end();
   }
 
   match() {
-    this.myLottos.map((myLotto) => {
+    this.user.getMyLottos().map((myLotto) => {
       let numberOfMatch = myLotto.countNumberOfMatches(this.luckyNumbers);
       let isBonus = myLotto.isBonus(this.bonusNumber);
 
@@ -152,23 +151,12 @@ class App {
         this.winningMap.firstPlace.count += 1;
       }
     });
-    return this;
+
+    this.user.calculate(this.winningMap);
   }
 
-  calculateRevenue() {
-    for (let [_, pair] of Object.entries(this.winningMap)) {
-      this.revenue += pair.count * pair.WINNING_AMOUNT;
-    }
-    return this;
-  }
-
-  calculateProfit() {
-    this.profit = FORMULA.PROFIT(this.revenue, this.payAmount);
-    return this;
-  }
-
-  endSystem() {
-    OutputView.printResult(this.winningMap, this.profit);
+  end() {
+    OutputView.printResult(this.winningMap, this.user.getProfit());
     Console.close();
   }
 }
