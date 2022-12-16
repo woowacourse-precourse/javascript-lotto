@@ -13,7 +13,7 @@ class Profit {
   }
 
   #calculateProfitRate() {
-    return this.#calculateTotalPrice() % Number(this.#amount);
+    return (this.#calculateTotalPrice() / Number(this.#amount)) * 100;
   }
 
   #calculateTotalPrice() {
