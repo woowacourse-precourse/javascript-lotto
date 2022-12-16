@@ -3,6 +3,7 @@ const Lotto = require('./Lotto');
 const { validator } = require('./utils');
 const OutputView = require('./OutputView')
 const { FORMULA, UNITS, MESSAGE, ERROR_MESSAGE } = require('./constants');
+const InputView = require('./InputView');
 
 class App {
   payAmount = 0;
@@ -37,24 +38,27 @@ class App {
   };
 
   play() {
-    this.pay();
+    this.requestInput();
   }
 
-  pay() {
-    Console.readLine(MESSAGE.GUIDE_INPUT, (input) => {
-      this.payAmount = Number(input);
+  requestInput() {
+    InputView.readInput(this.pay.bind(this))
+  }
 
-      if (validator.isNotRightPay(this.payAmount)) {
-        throw new Error(ERROR_MESSAGE.PAY_AMOUNT);
-      }
+  pay(response) {
+      this.payAmount = Number(response);
+
+      // if (validator.isNotRightPay(this.payAmount)) {
+      //   throw new Error(ERROR_MESSAGE.PAY_AMOUNT);
+      // }
 
       this.numberOfLotto = this.payAmount / UNITS.LOTTO_PRICE;
       this.publish();
-    });
-  }
+  };
 
   publish() {
-    OutputView.printNumberOfLotto(this.numberOfLotto)
+    OutputView.printNumberOfLotto(this.numberOfLotto);
+
     for (let i = 0; i < this.numberOfLotto; i++) {
       const lotto = new Lotto(
         Random.pickUniqueNumbersInRange(
@@ -66,7 +70,7 @@ class App {
       this.myLottos.push(lotto);
     }
     this.printLottos();
-    this.setLuckyNumbers();
+    this.requestLuckyNumbers();
     return;
   }
 
@@ -101,20 +105,25 @@ class App {
     }
   }
 
-  setLuckyNumbers() {
-    Console.readLine(MESSAGE.REQUEST_LUCKY_NUMBERS, (input) => {
-      this.luckyNumbers = input.split(',').map(Number);
-      this.setBonusNumber();
-    });
+  requestLuckyNumbers() {
+    InputView.readLuckyNumbers(this.setLuckyNumbers.bind(this));
+  }
+
+  setLuckyNumbers(response) {
+    this.luckyNumbers = response.split(',').map(Number);
+    this.requestBonusNumbers();
+
     return;
   }
 
-  setBonusNumber() {
-    Console.readLine(MESSAGE.REQUEST_BONUS_NUMBER, (input) => {
-      this.bonusNumber = Number(input);
-      this.validate(this.luckyNumbers, this.bonusNumber);
+  requestBonusNumbers() {
+    InputView.readBonusNumber(this.setBonusNumber.bind(this));
+  }
+
+  setBonusNumber(response) {
+      this.bonusNumber = Number(response);
+      // this.validate(this.luckyNumbers, this.bonusNumber);
       this.winning();
-    });
   }
 
   winning() {

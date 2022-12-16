@@ -11,7 +11,7 @@ const UNITS = {
 };
 
 const MESSAGE = {
-  GUIDE_INPUT: '구입금액을 입력해 주세요.\n',
+  REQUEST_INPUT: '구입금액을 입력해 주세요.\n',
   GUIDE_NUMBER_OF_LOTTO: (count) => `\n${count}개를 구매했습니다.`,
   REQUEST_LUCKY_NUMBERS: '\n당첨 번호를 입력해 주세요.\n',
   REQUEST_BONUS_NUMBER: '\n보너스 번호를 입력해 주세요.\n',
